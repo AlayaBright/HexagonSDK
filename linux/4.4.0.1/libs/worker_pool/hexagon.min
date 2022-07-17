@@ -1,0 +1,31 @@
+# This builds the libworker_pool
+
+INCDIRS += \
+  inc \
+  src \
+  $(QURT_IMAGE_DIR)/ADSP$(V_ARCH)MP/include \
+  $(QURT_IMAGE_DIR)/ADSP$(V_ARCH)MP/include/qurt \
+  $(QURT_IMAGE_DIR)/compute$(V_ARCH)/include \
+  $(QURT_IMAGE_DIR)/compute$(V_ARCH)/include/qurt
+
+LIBNAME := libworker_pool
+
+BUILD_DLLS += $(LIBNAME)
+BUILD_LIBS += $(LIBNAME)
+
+CXX_FLAGS+= -ffunction-sections -fvisibility=hidden
+CXX_FLAGS+= "-D__QAIC_HEADER_EXPORT=__attribute__((__visibility__(\"default\")))"
+CXX_FLAGS+= "-D__QAIC_SKEL_EXPORT=__attribute__((__visibility__(\"default\")))"
+LD_FLAGS+=-Wl,--gc-sections,--print-gc-sections
+
+# .cpp files to build into the shared lib
+$(LIBNAME)_CPP_SRCS = \
+  src/worker_pool
+
+# copy final build products to the ship directory
+BUILD_COPIES += \
+   inc/worker_pool.h \
+   $(EXES) \
+   $(DLLS) \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

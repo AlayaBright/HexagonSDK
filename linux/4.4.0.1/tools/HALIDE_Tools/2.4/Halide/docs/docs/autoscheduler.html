@@ -1,0 +1,404 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Autoscheduler &#8212; Halide for HVX 2.4.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Halide with UBWCDMA" href="ubwcdma.html" />
+    <link rel="prev" title="Halide for HVX" href="halide_for_hvx.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="halide_for_hvx.html" title="previous chapter">Halide for HVX</a></li>
+      <li>Next: <a href="ubwcdma.html" title="next chapter">Halide with UBWCDMA</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="halide.html">The Halide programming language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="halide_for_hvx.html">Halide for HVX</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Autoscheduler</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#use-the-autoscheduler">Use the Autoscheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autotuning">Autotuning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#schedule-files">Schedule files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autoscheduler-examples">Autoscheduler examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ubwcdma.html">Halide with UBWCDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_bindings.html">Python bindings (Linux only)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Halide examples</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="autoscheduler">
+<h1>Autoscheduler<a class="headerlink" href="#autoscheduler" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+<p>Writing schedules (<a class="reference internal" href="halide.html#schedule"><span class="std std-ref">Schedule</span></a>) that achieve high performance is difficult.
+There are two problems:</p>
+<ol class="arabic simple">
+<li>The search space of possible schedules is large.</li>
+<li>Predicting the runtime of a given schedule in the search space of possible
+schedules is hard.</li>
+</ol>
+<p>Halide provides an Autoscheduler plug-in that can schedule Halide pipelines written
+for HVX. Following are the important features of the Autoscheduler library:</p>
+<ul class="simple">
+<li>It defines a parameterization of the schedule space that enables it to explore
+a large set of schedules.</li>
+<li>It provides a cost model based on a combination of hand-crafted features and
+machine learning.</li>
+</ul>
+<p>The Autoscheduler uses a variant of beam search to search the space of possible
+schedules. At each stage of the beam search, it sorts the schedules based on the
+runtimes predicted by the cost model. The use of a hybrid learned cost model makes
+it easy for the Autoscheduler to adapt to a given target or algorithm
+(see <a class="reference internal" href="#autotuning"><span class="std std-ref">Autotuning</span></a>).</p>
+<p>This Autoscheduler is based on the paper, <em>Learning to Optimize Halide with Tree
+Search and Random Programs</em>
+(<a class="reference external" href="https://halide-lang.org/papers/halide_autoscheduler_2019.pdf">https://halide-lang.org/papers/halide_autoscheduler_2019.pdf</a>).</p>
+<div class="section" id="use-the-autoscheduler">
+<h2>Use the Autoscheduler<a class="headerlink" href="#use-the-autoscheduler" title="Permalink to this headline">¶</a></h2>
+<p>We support using the Autoscheduler for Halide pipelines that are defined using
+generators (<a class="reference internal" href="halide.html#generators"><span class="std std-ref">Generators</span></a>). Following are the steps to use the Autoscheduler
+on a Halide pipeline:</p>
+<ol class="arabic">
+<li><p class="first">Add estimates for all input/output buffers in the generator.</p>
+</li>
+<li><p class="first">Compile the generator as usual with an extra <code class="docutils literal notranslate"><span class="pre">rdynamic</span></code> option.</p>
+</li>
+<li><p class="first">Run the generator with the appropriate target, specifying the generator,
+parameter, <code class="docutils literal notranslate"><span class="pre">auto_schedule=true</span></code>, and the location of the Autoscheduler
+plug-in.</p>
+<p>This step runs the Autoscheduler for the given pipeline and produces the
+autoscheduled object file.</p>
+</li>
+</ol>
+<p>The Autoscheduler plug-in library is located at: <code class="docutils literal notranslate"><span class="pre">Halide/lib/libauto_schedule.so</span></code></p>
+<p>For autotuning (<a class="reference internal" href="#autotuning"><span class="std std-ref">Autotuning</span></a>), required tools are located at: <code class="docutils literal notranslate"><span class="pre">Halide/bin</span></code>.</p>
+<div class="section" id="set-up-a-generator-for-autoscheduling">
+<span id="settingupageneratorforautoscheduling"></span><h3>Set up a generator for autoscheduling<a class="headerlink" href="#set-up-a-generator-for-autoscheduling" title="Permalink to this headline">¶</a></h3>
+<p>No change is required in the Halide algorithm part for autoscheduling.
+The Autoscheduler uses estimates for the region of input and output buffers to
+make its decisions. Provide estimates for the input and output buffers and any
+other generator inputs. For example:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// set the estimates for input and output buffer dimensions.</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">W</span> <span class="o">=</span> <span class="mi">292</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">H</span> <span class="o">=</span> <span class="mi">274</span><span class="p">;</span>
+
+<span class="n">in</span><span class="p">.</span><span class="n">dim</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">set_estimate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+<span class="n">in</span><span class="p">.</span><span class="n">dim</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">set_estimate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">H</span><span class="p">);</span>
+
+<span class="n">output</span><span class="p">.</span><span class="n">dim</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">set_estimate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">W</span><span class="p">);</span>
+<span class="n">output</span><span class="p">.</span><span class="n">dim</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">set_estimate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">H</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Use the provided generator parameter, <code class="docutils literal notranslate"><span class="pre">auto_schedule</span></code> (default value:
+<code class="docutils literal notranslate"><span class="pre">false</span></code>), to predicate manual scheduling directives, if any, when not using
+the Autoscheduler. This parameter is required because if any scheduling
+directives are already present, the generator will issue an error
+(with the exception of the <code class="docutils literal notranslate"><span class="pre">.hexagon()</span></code> directive. See <a class="reference internal" href="#userspecifiedoffload"><span class="std std-ref">User-specified offloading</span></a>).</p>
+<p>For example:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">auto_schedule</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">vector_size</span> <span class="o">=</span> <span class="n">natural_vector_size</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="n">output</span>
+        <span class="p">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">vector_size</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">parallel</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The Autoscheduler generates a schedule for the Hexagon DSP if the host in the
+target is set to <code class="docutils literal notranslate"><span class="pre">hexagon</span></code> or if the target has the target feature, <code class="docutils literal notranslate"><span class="pre">hvx</span></code>.</p>
+</div>
+<div class="section" id="user-specified-offloading">
+<span id="userspecifiedoffload"></span><h3>User-specified offloading<a class="headerlink" href="#user-specified-offloading" title="Permalink to this headline">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+<p>User-specified offloading provides more control in deciding which stages of a pipeline
+are offloaded to the Hexagon DSP using the Autoscheduler. If you add the <code class="docutils literal notranslate"><span class="pre">hexagon</span></code> scheduling
+directive to a <code class="docutils literal notranslate"><span class="pre">Func</span></code>, the Autoscheduler will generate a schedule that offloads that
+<code class="docutils literal notranslate"><span class="pre">Func</span></code> and other stages computed within the loopnest of that <code class="docutils literal notranslate"><span class="pre">Func</span></code> to the Hexagon DSP.</p>
+<p>However, if no stage is explicitly marked with the <code class="docutils literal notranslate"><span class="pre">hexagon</span></code> scheduling directive,
+the Autoscheduler, by default, offloads the execution of the entire pipeline to the Hexagon DSP.
+For example:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">auto_schedule</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// This ensures that the autoscheduler generates schedule such that the output</span>
+    <span class="c1">// Func and all other funcs computed inside the loopnest of output are</span>
+    <span class="c1">// scheduled to be offloaded to Hexagon.</span>
+
+    <span class="n">output</span><span class="p">.</span><span class="n">hexagon</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Apart from the <code class="docutils literal notranslate"><span class="pre">hexagon</span></code> scheduling directive, other scheduling directives are not
+respected by the Autoscheduler. In some cases, they might cause the generator to issue
+an error.</p>
+</div>
+</div>
+<div class="section" id="call-the-pipeline-generator-with-the-autoscheduler">
+<h3>Call the pipeline generator with the Autoscheduler<a class="headerlink" href="#call-the-pipeline-generator-with-the-autoscheduler" title="Permalink to this headline">¶</a></h3>
+<p>The Autoscheduler is invoked on the pipeline when the following are passed to
+the generator executable:</p>
+<ul class="simple">
+<li>Parameter: <code class="docutils literal notranslate"><span class="pre">auto_schedule=true</span></code></li>
+<li>Option: <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">Halide/lib/libauto_schedule.so</span> <span class="pre">-s</span> <span class="pre">Adams2019</span></code>, used to point to
+the Autoscheduler plug-in and specify the name of the Autoscheduler
+(<code class="docutils literal notranslate"><span class="pre">Adams2019</span></code>).</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If the plug-in library is not passed to the Autoscheduler, Halide uses the
+default Autoscheduler, which cannot offload to HVX.</p>
+</div>
+<p>A large part of the Autoscheduler plug-in library is written in Halide and uses
+<code class="docutils literal notranslate"><span class="pre">libHalide</span></code> at runtime. For the Autoscheduler to find <code class="docutils literal notranslate"><span class="pre">libHalide</span></code> symbols
+when the generator is run, specify the <code class="docutils literal notranslate"><span class="pre">-rdynamic</span></code> compiler option while
+building the generator.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">schedule</span></code> emit option can be specified to the generator executable to
+output a <code class="docutils literal notranslate"><span class="pre">&lt;pipeline&gt;.schedule.h</span></code> header file, which contains the schedule
+produced by the Autoscheduler. This schedule file can be included directly with
+the pipeline to reproduce the Autoscheduler results (see <a class="reference internal" href="#schedulefiles"><span class="std std-ref">Schedule files</span></a>).</p>
+<p>For example, specifying the <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">o,h,schedule</span></code> emit options to the generator
+tells the generator to output the object file, header file, and generated schedule
+header. If the generator is not directed to <code class="docutils literal notranslate"><span class="pre">auto_schedule</span></code>, the schedule file
+will not include any scheduling directives.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">featurization</span></code> emit option produces a feature file that is required for
+autotuning. For details, see <a class="reference internal" href="#autotuning"><span class="std std-ref">Autotuning</span></a>.</p>
+</div>
+<div class="section" id="environment-variables">
+<h3>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline">¶</a></h3>
+<p>The following Halide environment variables can be used with the Autoscheduler.</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">HL_WEIGHTS_DIR</span></code></dt>
+<dd><p class="first">Path to custom weights to use for the cost model. This variable is used for
+autotuning and retraining.</p>
+<p class="last">The initially trained weights are located at
+<code class="docutils literal notranslate"><span class="pre">Halide/bin/baseline.weights</span></code>. The path to <code class="docutils literal notranslate"><span class="pre">baseline.weights</span></code> is not
+required because the Autoscheduler uses <code class="docutils literal notranslate"><span class="pre">baseline.weights</span></code> by default.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">HL_DEBUG_AUTOSCHEDULE</span></code></dt>
+<dd>If set, this variable is used for the debug log level for autoschedule
+generation (overriding the value of <code class="docutils literal notranslate"><span class="pre">HL_DEBUG_CODEGEN</span></code>, if there is a
+value).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">HL_MACHINE_PARAMS</span></code></dt>
+<dd><p class="first">An architecture description string that contains three comma-separated values.</p>
+<p class="last">The Autoscheduler plug-in uses only the first term, which loosely defines the
+number of parallel contexts supported by the hardware. For HVX, the ideal
+first term is four (for example, <code class="docutils literal notranslate"><span class="pre">HL_MACHINE_PARAMS=4,,</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">HL_PREFETCHING</span></code></dt>
+<dd><p class="first">If set to 1, this variable allows the Autoscheduler to emit prefetches of
+inputs required for computing the innermost tile of output.</p>
+<p class="last">This variable will emit prefetches only if the target is <code class="docutils literal notranslate"><span class="pre">hexagon</span></code> or if
+it has the feature <code class="docutils literal notranslate"><span class="pre">hvx_128</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">HL_BEAM_SIZE</span></code></dt>
+<dd>This variable is used in the beam search. The default value is 32. To get a
+<em>greedy</em> search instead, set this variable to 1.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">HL_RANDOM_DROPOUT</span></code></dt>
+<dd><p class="first">This variable is the chance (as a percent) of accepting each state in the
+beam, normalized by the number of decisions made.</p>
+<p class="last">For example, a value of 5 means there is a 5 percent chance of never rejecting
+any states in the beam.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">HL_SEED</span></code></dt>
+<dd>This variable specifies the random seed used by the random dropout.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="autotuning">
+<span id="id1"></span><h2>Autotuning<a class="headerlink" href="#autotuning" title="Permalink to this headline">¶</a></h2>
+<p>The Autoscheduler can be retrained for specific user pipelines, which typically
+leads to better performance for those pipelines. It is designed so schedules can
+be importance-sampled based on the cost model. These schedules can then be
+benchmarked and used to retrain the cost model.</p>
+<p>This process of randomly sampling schedules and retraining the cost model helps
+the Autoscheduler find better performing schedules for a given algorithm
+(<a class="reference internal" href="halide.html#algorithm"><span class="std std-ref">Algorithm</span></a>). This process is called <em>autotuning</em>.</p>
+<p>The Autoscheduler is shipped with the following tools that allow for autotuning
+custom pipelines:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">autotune_loop.py</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">featurization_to_sample</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">retrain_cost_model</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">baseline.weights</span></code></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">autotune_loop.py</span></code> script uses the Autoscheduler as follows:</p>
+<ul class="simple">
+<li>Compiles a user pipeline with different schedules.</li>
+<li>Benchmarks the compiled pipelines on a Hexagon device, using the
+<code class="docutils literal notranslate"><span class="pre">featurization_to_sample</span></code> construct samples for each schedule and the
+corresponding runtimes that are observed.</li>
+<li>Retrains the Autoscheduler cost model on the new samples.</li>
+</ul>
+<p>Autotuning requires a compiled generator enabled for autoscheduling
+(see <a class="reference internal" href="#settingupageneratorforautoscheduling"><span class="std std-ref">Set up a generator for autoscheduling</span></a>).</p>
+<p>Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./autotune_loop.py /path/to/some.generator generatorname
+</pre></div>
+</div>
+<p>The following options can be given to <code class="docutils literal notranslate"><span class="pre">autotune_loop.py</span></code>:</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">--target/-t</span></code></dt>
+<dd>Autotune target. The default target is <code class="docutils literal notranslate"><span class="pre">host</span></code>.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--bld-dir/-b</span></code></dt>
+<dd>Location for any built artifacts. The default location is the current directory.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--batch-size/-s</span></code></dt>
+<dd>Batch of samples to compile in parallel. The default value is 32.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--num-batches/-n</span></code></dt>
+<dd>Number of batches to train for. The default value is 100.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--parallel-factor/-p</span></code></dt>
+<dd>Parallelization factor to be used for schedules. The default value is 16.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--hexagon-sdk-root/-sdk</span></code></dt>
+<dd>Location of the Hexagon SDK. This option is required for
+any Android-based target.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--run-device-id/-r</span></code></dt>
+<dd>Space-separated list of devices on which to run benchmarking.
+This option is required for any Android-based target.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">q6-version/-v</span></code></dt>
+<dd>Hexagon (Q6) version of the device. The default value is 65 for v65.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">generator-arg-sets</span></code></dt>
+<dd>Space-separated list of extra generator argument sets
+used when running the generator.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--weights/-w</span></code></dt>
+<dd>Location of the starting weights file. The default file is baseline.weights.</dd>
+</dl>
+<p>The <code class="docutils literal notranslate"><span class="pre">autotune_loop.py</span></code> script compiles a batch of 32 schedules in parallel
+and serially benchmarks them on a device. By default, it runs 1000 such batches
+(retraining after every iteration) before stopping.</p>
+<p>The best performing schedule found during autotuning is saved at
+<code class="docutils literal notranslate"><span class="pre">build_dir/samples/best.&lt;generatorname&gt;.schedule.h</span></code>, which can be used to
+reproduce the performance seen after autotuning (see <a class="reference internal" href="#schedulefiles"><span class="std std-ref">Schedule files</span></a>).</p>
+<p>The script can be stopped at any point, and it saves the current trained
+weights in <code class="docutils literal notranslate"><span class="pre">build_dir/samples/updated.weights</span></code>. To run the Autoscheduler
+with new weights, point the <code class="docutils literal notranslate"><span class="pre">HL_WEIGHTS_DIR</span></code> environment variable to this
+path:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">HL_WEIGHTS_DIR</span><span class="o">=</span>build_dir/samples/updated.weights
+</pre></div>
+</div>
+<p>Weights trained before every batch execution are also saved in the corresponding
+batch directory. For example, weights used to produce the second batch are in
+<code class="docutils literal notranslate"><span class="pre">build_dir/samples/batch_2_0/used.weights</span></code>. The script saves the schedule files
+for all the benchmarked pipelines and the best schedule seen so far.</p>
+</div>
+<div class="section" id="schedule-files">
+<span id="schedulefiles"></span><h2>Schedule files<a class="headerlink" href="#schedule-files" title="Permalink to this headline">¶</a></h2>
+<p>The Autoscheduler generates the schedule in a header file that exposes an
+interface for using the schedule with a pipeline.</p>
+<p>For example, the interface to apply the schedule that the Autoscheduler produces
+after autoscheduling <code class="docutils literal notranslate"><span class="pre">median3x3</span></code> is written to the header file,
+<code class="docutils literal notranslate"><span class="pre">median3x3.schedule.h</span></code>, as follows:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">apply_schedule_median3x3</span><span class="p">(</span>
+    <span class="o">::</span><span class="n">Halide</span><span class="o">::</span><span class="n">Pipeline</span> <span class="n">pipeline</span><span class="p">,</span>
+    <span class="o">::</span><span class="n">Halide</span><span class="o">::</span><span class="n">Target</span> <span class="n">target</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>The following example shows a schedule can be used within a generator.</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">median3x3.schedule.h</span><span class="cp"></span>
+
+<span class="n">apply_schedule_median3x3</span><span class="p">(</span><span class="n">get_pipeline</span><span class="p">(),</span> <span class="n">target</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Using a schedule file can fail or produce sub-optimal results if there is a
+change to the pipeline algorithm after the schedule file is generated.</p>
+</div>
+</div>
+<div class="section" id="autoscheduler-examples">
+<h2>Autoscheduler examples<a class="headerlink" href="#autoscheduler-examples" title="Permalink to this headline">¶</a></h2>
+<p>The following examples are enabled for autoscheduling:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">Halide/Examples/standalone/device/apps/conv3x3</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Halide/Examples/offload/apps/hexagon_benchmarks</span></code></li>
+</ul>
+<p>Set up the environment as described in (<a class="reference internal" href="examples.html#examplessetup"><span class="std std-ref">Setup</span></a>).</p>
+<p>For a manual schedule:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make run
+</pre></div>
+</div>
+<p>To automatically schedule this example, set the <code class="docutils literal notranslate"><span class="pre">AUTOSCHEDULE</span></code> variable to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">AUTOSCHEDULE</span><span class="o">=</span><span class="nb">true</span> make run
+</pre></div>
+</div>
+<p>To use the pregenerated schedule file, set the <code class="docutils literal notranslate"><span class="pre">USE_SCHEDULE</span></code> variable to
+<code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">USE_SCHEDULE</span><span class="o">=</span><span class="nb">true</span> make run
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2020, Qualcomm Technologies, Inc. All rights reserved..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/docs/autoscheduler.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

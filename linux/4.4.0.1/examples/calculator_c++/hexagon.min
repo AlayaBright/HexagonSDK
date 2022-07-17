@@ -1,0 +1,54 @@
+######## Configuration flags ########
+V_ARCH_EXTN=CPP
+TARGET_DIR = $(HEXAGON_LIB_DIR)/$(V_ARCH)/G0/pic
+INCDIRS+=inc
+
+CXX_FLAGS += -std=c++14
+
+######## Build Libraries ########
+BUILD_DLLS += libcalculator_plus_skel
+
+######## Compile calculator skel ########
+libcalculator_plus_skel_QAICIDLS += inc/calculator_plus
+libcalculator_plus_skel_C_SRCS += $(OBJ_DIR)/calculator_plus_skel
+libcalculator_plus_skel.CPP_SRCS += src/calculator_dsp.cpp
+libcalculator_plus_skel.CPP_SRCS += src/thread_local.cpp
+
+#Link c++ libraries into shared object
+libcalculator_plus_skel_DLLS += $(TARGET_DIR)/libc++
+libcalculator_plus_skel_DLLS += $(TARGET_DIR)/libc++abi
+ifneq (1,$(filter 1,$(V_toolv83)$(V_toolv82)$(V_toolv81)))
+# Link static weak_refs as a whole archive. See README.md for more information.
+libcalculator_plus_skel_LD_FLAGS +=--start-group --whole-archive $(HEXAGON_SDK_ROOT)/libs/weak_refs/ship/hexagon_toolv84/weak_refs.a --no-whole-archive --end-group
+endif
+
+BUILD_QEXES += calculator_q
+calculator_q_C_SRCS += src/calculator_test_main src/calculator_test $(HEXAGON_SDK_ROOT)/utils/examples/dsp_capabilities_utils
+calculator_q_DLLS += rpcmem libcalculator_plus_skel
+
+# Link the c++ libs statically into each .so
+# calculator_q_LIBS += $(TARGET_DIR)/libc++
+# calculator_q_LIBS += $(TARGET_DIR)/libc++abi
+# calculator_q_LIBS += $(TARGET_DIR)/libc_eh
+
+# Copy needed libraries to local build directory
+$(V)/libcalculator_plus_skel.so: $(V)/libc++.so.1 $(V)/libc++abi.so.1
+
+# Copy both versions of the library to the local build directory
+# The loader will select one version at link time
+$(V)/libc++.so.1:  $(V)/libc++abi.so.1
+	$(call cp_af,$(TARGET_DIR)/libc++.so.1 $(V))
+	$(call cp_af,$(TARGET_DIR)/libc++.so.1.0 $(V))
+
+$(V)/libc++abi.so.1:
+	$(call mkdir_p,$(V))
+	$(call cp_af,$(TARGET_DIR)/libc++abi.so.1 $(V))
+	$(call cp_af,$(TARGET_DIR)/libc++abi.so.1.0 $(V))
+
+## copy final build products to the ship directory
+BUILD_COPIES += \
+   calculator.input \
+   $(DLLS) \
+   $(EXES) \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

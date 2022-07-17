@@ -1,0 +1,235 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Getting started &#8212; Halide for HVX 2.4.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Halide programming language" href="halide.html" />
+    <link rel="prev" title="Halide for Hexagon Vector eXtensions(HVX) User Guide" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">Halide for Hexagon Vector eXtensions(HVX) User Guide</a></li>
+      <li>Next: <a href="halide.html" title="next chapter">The Halide programming language</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#download-the-hexagon-sdk">Download the Hexagon SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples-of-running-halide">Examples of running Halide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#release-notes-for-version-release">Release notes for Version 2.4.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="halide.html">The Halide programming language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="halide_for_hvx.html">Halide for HVX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoscheduler.html">Autoscheduler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubwcdma.html">Halide with UBWCDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_bindings.html">Python bindings (Linux only)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Halide examples</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>To use Halide for HVX, you need the Qualcomm® Hexagon™ Software
+Development Kit (SDK) in addition to the Halide installer. Follow these steps
+to download and install the Hexagon SDK.</p>
+<div class="section" id="download-the-hexagon-sdk">
+<h2>Download the Hexagon SDK<a class="headerlink" href="#download-the-hexagon-sdk" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Visit <a class="reference external" href="https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools">https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools</a></li>
+<li>Download and install Qualcomm Package Manager - Linux</li>
+<li>Run QPM and select “All” on the top tool bar</li>
+<li>Scroll down to the Qualcomm Hexagon SDK Product Suite and click on it</li>
+<li>Click on Hexagon SDK 4.x</li>
+<li>Select a version of at least 4.2.0.2</li>
+<li>Click on the pull-down next to the version number and select install</li>
+<li>Accept the terms of the license agreement</li>
+<li>Click on Customize</li>
+<li>Accept or specify the SDK install directory</li>
+<li>Click on Next</li>
+<li>Select “Full Android NDK” &amp; “Eclipse”, de-select “Minimal Android NDK”</li>
+<li>Click on Next</li>
+<li>Proceed with the installation</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you do not have Android NDK r19c installed, choose the option to do a
+full install so it will also be installed.</p>
+</div>
+</div>
+<div class="section" id="examples-of-running-halide">
+<h2>Examples of running Halide<a class="headerlink" href="#examples-of-running-halide" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="examples.html#halideexamples"><span class="std std-ref">Halide examples</span></a>.</p>
+</div>
+<div class="section" id="release-notes-for-version-release">
+<h2>Release notes for Version 2.4.0<a class="headerlink" href="#release-notes-for-version-release" title="Permalink to this headline">¶</a></h2>
+<p>Following are the changes made in this release (Qualcomm® Halide
+2.4.0) in comparison to the previous major release (Qualcomm®
+Halide 2.3.0).</p>
+<div class="section" id="vector-floating-point-support">
+<h3>Vector floating point support<a class="headerlink" href="#vector-floating-point-support" title="Permalink to this headline">¶</a></h3>
+<p>Halide provides support for HVX floating point on the Hexagon DSP for both
+<code class="docutils literal notranslate"><span class="pre">float16_t</span></code> half-precision (16-bit) and <code class="docutils literal notranslate"><span class="pre">float_t</span></code> single precision (32-bit)
+data types as well as conversion between floating point and integer data types.
+In the previous release, Qualcomm ® Halide 2.3.0,
+vectorized floating point pipelines had to completely operate in
+floating point and operate in only one selected precision (no conversions).
+Floating point vector support is only available on HVX ISA v68 or later.</p>
+<p>To enable this feature, add both of the Halide target features, <code class="docutils literal notranslate"><span class="pre">hvx</span></code> and
+<code class="docutils literal notranslate"><span class="pre">hvx_v68</span></code>, to the target when running your generator.</p>
+<p>The following functions support both 16- and 32-bit floating point vectors:
+<code class="docutils literal notranslate"><span class="pre">sin(x)</span></code>,  <code class="docutils literal notranslate"><span class="pre">cos(x)</span></code>,  <code class="docutils literal notranslate"><span class="pre">tan(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">asin(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">acos(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">atan(x)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">sinh(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">cosh(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">tanh(x)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">exp(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">log(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">pow(x,y)</span></code>, <code class="docutils literal notranslate"><span class="pre">sqrt(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">fast_inverse_sqrt(x)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">hypot(x,y)</span></code>, <code class="docutils literal notranslate"><span class="pre">floor(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">ceil(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">trunc(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">round(x)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">is_inf(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">is_nan(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">is_finite(x)</span></code></p>
+<p>The following functions support only 32-bit floating point vectors:
+<code class="docutils literal notranslate"><span class="pre">fast_exp(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">fast_log(x)</span></code></p>
+<p>Using other functions will result in scalar code generation.
+Support for more functions will be added in a future release.</p>
+<p>To get a complete list of supported functions, please see
+<a class="reference internal" href="halide_for_hvx.html#vectorfloatingpoint"><span class="std std-ref">Vector floating point</span></a>.</p>
+</div>
+<div class="section" id="rotate-native-halide-intrinsic-for-hvx-vror-instruction">
+<h3><code class="docutils literal notranslate"><span class="pre">rotate_native</span></code> Halide intrinsic for HVX <code class="docutils literal notranslate"><span class="pre">vror</span></code> instruction<a class="headerlink" href="#rotate-native-halide-intrinsic-for-hvx-vror-instruction" title="Permalink to this headline">¶</a></h3>
+<p>In this release, we have added a new function called <code class="docutils literal notranslate"><span class="pre">rotate_native</span></code> allowing
+users to generate vror instruction for HVX.</p>
+</div>
+<div class="section" id="gather-for-8-bit-data">
+<h3>Gather for 8-bit data<a class="headerlink" href="#gather-for-8-bit-data" title="Permalink to this headline">¶</a></h3>
+<p>In this release, we have added the ability to generate <code class="docutils literal notranslate"><span class="pre">vgather</span></code> instruction
+when trying to gather 8-bit data. Users no longer need to upcast data to 16-bit
+to use <code class="docutils literal notranslate"><span class="pre">vgather</span></code> instructions.</p>
+</div>
+<div class="section" id="deprecation-of-64-byte-hvx-support">
+<h3>Deprecation of 64-byte HVX support<a class="headerlink" href="#deprecation-of-64-byte-hvx-support" title="Permalink to this headline">¶</a></h3>
+<p>This release removes support for 64 byte HVX vectors. <code class="docutils literal notranslate"><span class="pre">hvx_64</span></code> is no
+longer a valid target feature and the native vector size for HVX is now
+assumed to always be 128 bytes. Consequently, we have introduced a new
+target feature <code class="docutils literal notranslate"><span class="pre">hvx</span></code> that can be used interchangeably with <code class="docutils literal notranslate"><span class="pre">hvx_128</span></code>.</p>
+</div>
+<div class="section" id="user-specified-offloading-while-autoscheduling">
+<h3>User specified offloading while Autoscheduling<a class="headerlink" href="#user-specified-offloading-while-autoscheduling" title="Permalink to this headline">¶</a></h3>
+<p>This release adds the ability to let the user specify which stage of a pipeline
+should be offloaded to Hexagon by the Autoscheduler. Prior to this release,
+in case of offload mode, the Autoscheduler generated a schedule such that
+execution of the entire pipeline is offloaded to Hexagon.</p>
+</div>
+<div class="section" id="deprecation-of-hvx-v65-target-feature">
+<h3>Deprecation of hvx_v65 Target feature<a class="headerlink" href="#deprecation-of-hvx-v65-target-feature" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">hvx_v65</span></code> is no longer a valid target feature and the default ISA is now
+assumed to always be HVX v65. Using any of target features <code class="docutils literal notranslate"><span class="pre">hvx</span></code> &amp;``hvx_128``
+now will instruct the Halide compiler to generate code for HVX v65 ISA.</p>
+</div>
+<div class="section" id="autotuning-on-windows-host">
+<h3>Autotuning on Windows host<a class="headerlink" href="#autotuning-on-windows-host" title="Permalink to this headline">¶</a></h3>
+<p>In this release, the autotuner shell script has been replaced by a Python based
+autotuner, which adds the ability to autotune on a Windows machine. In the previous
+release, autotuning was only supported on Linux based systems. Minimum Python version
+required for autotuning is 3.3.</p>
+</div>
+<div class="section" id="autoscheduling-autotuning-support-for-standalone-mode">
+<h3>Autoscheduling/Autotuning support for standalone mode<a class="headerlink" href="#autoscheduling-autotuning-support-for-standalone-mode" title="Permalink to this headline">¶</a></h3>
+<p>In this release, we have added the ability to autotune pipelines in standalone mode.
+This release also includes support in the Autoscheduler for emitting the <code class="docutils literal notranslate"><span class="pre">prefetch</span></code>
+scheduling directives in standalone mode.</p>
+</div>
+<div class="section" id="dma-buf-heap-for-android-s">
+<h3>DMA-BUF heap for Android-S<a class="headerlink" href="#dma-buf-heap-for-android-s" title="Permalink to this headline">¶</a></h3>
+<p>In this release, we have added support for the new Android-S DMA-BUF heap. DMA-BUF
+heap replaces the older ION heap mechanism. To be able to run Halide apps on newer
+Android-S devices, the latest <code class="docutils literal notranslate"><span class="pre">libhalide_hexagon_host.so</span></code> (for offload mode)
+or <code class="docutils literal notranslate"><span class="pre">ion_allocation.cpp</span></code> in <code class="docutils literal notranslate"><span class="pre">Halide/Examples/standalone/device/utils/ion</span></code> (for
+standalone mode) must be used. ION heap is still supported when run on older
+devices.</p>
+</div>
+<div class="section" id="system-requirements">
+<h3>System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h3>
+<p>Minimum system requirements are as follows</p>
+<ul class="simple">
+<li>Clang 7.0 with libc++ as the native (x86) compiler and C++ runtime library
+respectively.</li>
+<li>Ubuntu 16.04</li>
+<li>SDK 4.2.0.2</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">SDK 4.2.0.2 contains an updated QAIC IDL compiler that includes important
+security fixes. Note that while these fixes are recommended for all devices, on
+SM8450 and newer devices the QAIC generated skel shared objects will also be
+version checked when run. On SM8450 and newer devices, only skel objects that
+have been built with all the QAIC security fixes are allowed to run on the DSP.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2020, Qualcomm Technologies, Inc. All rights reserved..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/docs/getting_started.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

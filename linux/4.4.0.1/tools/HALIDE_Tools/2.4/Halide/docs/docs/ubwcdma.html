@@ -1,0 +1,576 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Halide with UBWCDMA &#8212; Halide for HVX 2.4.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python bindings (Linux only)" href="python_bindings.html" />
+    <link rel="prev" title="Autoscheduler" href="autoscheduler.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="autoscheduler.html" title="previous chapter">Autoscheduler</a></li>
+      <li>Next: <a href="python_bindings.html" title="next chapter">Python bindings (Linux only)</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="halide.html">The Halide programming language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="halide_for_hvx.html">Halide for HVX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoscheduler.html">Autoscheduler</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Halide with UBWCDMA</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ubwcdma-basics">UBWCDMA basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#program-ubwcdma-with-halide">Program UBWCDMA with Halide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-considerations">Performance considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_bindings.html">Python bindings (Linux only)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Halide examples</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="halide-with-ubwcdma">
+<h1>Halide with UBWCDMA<a class="headerlink" href="#halide-with-ubwcdma" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#ubwcdma-basics" id="id1">UBWCDMA basics</a><ul>
+<li><a class="reference internal" href="#supported-data-formats" id="id2">Supported data formats</a></li>
+<li><a class="reference internal" href="#supported-snapdragon-devices-and-hexagon-local-memory" id="id3">Supported Snapdragon devices and Hexagon local memory</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#program-ubwcdma-with-halide" id="id4">Program UBWCDMA with Halide</a><ul>
+<li><a class="reference internal" href="#ubwcdma-with-halide-runtime-model" id="id5">UBWCDMA with Halide runtime model</a></li>
+<li><a class="reference internal" href="#halide-device-interface-for-ubwcdma" id="id6">Halide device interface for UBWCDMA</a></li>
+<li><a class="reference internal" href="#scheduling" id="id7">Scheduling</a></li>
+<li><a class="reference internal" href="#de-interleaving-of-uv-for-4-2-0" id="id8">De-interleaving of UV for 4:2:0</a></li>
+<li><a class="reference internal" href="#known-limitations" id="id9">Known limitations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#performance-considerations" id="id10">Performance considerations</a><ul>
+<li><a class="reference internal" href="#memory-locality" id="id11">Memory locality</a></li>
+<li><a class="reference internal" href="#power-api-for-ubwcdma" id="id12">Power API for UBWCDMA</a></li>
+<li><a class="reference internal" href="#ubwcdma-concurrency" id="id13">UBWCDMA concurrency</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples" id="id14">Examples</a></li>
+</ul>
+</div>
+<p>Universal Bandwidth Compression Direct Memory Access (UBWCDMA) is a feature
+provided by an IP peripheral block on the cDSP. This feature provides DMA
+capability for transferring data from DDR main memory to Hexagon local memory
+and back, with the data (image frames) in DDR either compressed (bandwidth-wise)
+or linear, for the DSP to process. The data in local memory in the DSP is
+uncompressed.</p>
+<div class="section" id="ubwcdma-basics">
+<h2><a class="toc-backref" href="#id1">UBWCDMA basics</a><a class="headerlink" href="#ubwcdma-basics" title="Permalink to this headline">¶</a></h2>
+<p>The following table describes the UBWCDMA read and write operations.</p>
+<table border="1" class="colwidths-given docutils align-left">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">UBWCDMA direction</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>UBWCDMA read</td>
+<td>Transfer data from a buffer in DDR main memory to a buffer in Hexagon local memory</td>
+</tr>
+<tr class="row-odd"><td>UBWCDMA write</td>
+<td>Transfer data from a buffer in Hexagon local memory to a buffer in DDR main memory</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Do not confuse UBWCDMA with User DMA (Hexagon V68 ISA and later). UBWCDMA
+is provided on select Qualcomm Snapdragon devices by an IP block external
+to the cDSP. User DMA is internal to the cDSP and is supported in
+Halide by the user of the <code class="docutils literal notranslate"><span class="pre">hexagon_user_dma</span></code> scheduling directive.
+UBWCDMA is supported only in the two Standalone modes.</p>
+</div>
+<p>In Halide, the UBWCDMA operations and interactions are abstracted with the DMA
+driver calls hidden by the Hexagon UBWCDMA runtime. They are reduced to the
+following:</p>
+<ul class="simple">
+<li>A set of host-side API calls used to manage DMA resources and associate a
+frame buffer with DMA along with the buffer parameters</li>
+<li>A set of Halide scheduling directives to describe where, when, and how much
+data to move using UBWCDMA</li>
+</ul>
+<p>For more detailed information about UBWCDMA, see the Hexagon SDK documentation.</p>
+<div class="section" id="supported-data-formats">
+<h3><a class="toc-backref" href="#id2">Supported data formats</a><a class="headerlink" href="#supported-data-formats" title="Permalink to this headline">¶</a></h3>
+<p>The following table lists the UBWCDMA formats. The enumerations
+(<code class="docutils literal notranslate"><span class="pre">halide_hexagon_image_fmt_t</span></code>) are defined in
+<code class="docutils literal notranslate"><span class="pre">Halide/include/HalideRuntimeHexagonDma.h</span></code>.</p>
+<table border="1" class="colwidths-given docutils align-left">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Data format in DDR</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Raw</td>
+<td>Unformatted and uncompressed, per-byte DMA access</td>
+</tr>
+<tr class="row-odd"><td>NV12</td>
+<td>Linear, 8 bpp semi-planar 4:2:0 YUV format, with each pixel component stored in 8b</td>
+</tr>
+<tr class="row-even"><td>NV12-4R</td>
+<td>Same as linear NV12</td>
+</tr>
+<tr class="row-odd"><td>P010</td>
+<td>Linear, padded 10 bpp semi-planar 4:2:0 YUV format, with each 10b pixel component represented in 16b; results in 2 bytes per pixel in Y plane and 4 bytes per pixel in UV plane</td>
+</tr>
+<tr class="row-even"><td>NV12 UBWC</td>
+<td>Bandwidth compressed NV12</td>
+</tr>
+<tr class="row-odd"><td>NV12-4R UBWC</td>
+<td>Bandwidth compressed NV12-4R, encoded differently than NV12 compressed</td>
+</tr>
+<tr class="row-even"><td>P010 UBWC</td>
+<td>Bandwidth compressed P010</td>
+</tr>
+<tr class="row-odd"><td>TP10</td>
+<td>Bandwidth compressed, tightly packed 10 bpp semi-planar 4:2:0 YUV format; results in 4 bytes for every three pixels in Y plane and 8 bytes for every three pixels in UV plane</td>
+</tr>
+</tbody>
+</table>
+<p>Because Halide requires the image frame to be represented by two separate
+Halide buffers (a Y and a UV buffer), a DMA transaction is specified and
+scheduled separately for the Y and UV planes. An image-formatted frame buffer
+must compose and contain either Y (luma) only or both Y (luma) and UV (chroma)
+planes, per the format specification</p>
+</div>
+<div class="section" id="supported-snapdragon-devices-and-hexagon-local-memory">
+<h3><a class="toc-backref" href="#id3">Supported Snapdragon devices and Hexagon local memory</a><a class="headerlink" href="#supported-snapdragon-devices-and-hexagon-local-memory" title="Permalink to this headline">¶</a></h3>
+<p>Hexagon local memory is a shared and limited resource for the entire compute
+subsystem. Its available size is device-specific, and its usage must be
+constrained with a trade-off against the required application performance.
+The following table lists the device-specific memory information.</p>
+<table border="1" class="colwidths-given docutils align-left">
+<colgroup>
+<col width="22%" />
+<col width="21%" />
+<col width="36%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Snapdragon device</th>
+<th class="head">Total L2 cache</th>
+<th class="head">Hexagon local memory type</th>
+<th class="head">Size</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SM8150</td>
+<td>1 MB</td>
+<td>Hexagon locked L2 cache</td>
+<td>Up to 384 KB</td>
+</tr>
+<tr class="row-odd"><td>SM8250</td>
+<td>1 MB</td>
+<td>Hexagon locked L2 cache</td>
+<td>Up to 768 KB</td>
+</tr>
+<tr class="row-even"><td>SM8350</td>
+<td>1 MB</td>
+<td>Hexagon locked L2 cache</td>
+<td>Up to 768 KB</td>
+</tr>
+</tbody>
+</table>
+<p>Hexagon local memory is a shared and limited resource for the entire compute
+subsystem, whose available size is device specific, and its usage must be
+constrained with a trade-off against required application performance.</p>
+</div>
+</div>
+<div class="section" id="program-ubwcdma-with-halide">
+<h2><a class="toc-backref" href="#id4">Program UBWCDMA with Halide</a><a class="headerlink" href="#program-ubwcdma-with-halide" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ubwcdma-with-halide-runtime-model">
+<h3><a class="toc-backref" href="#id5">UBWCDMA with Halide runtime model</a><a class="headerlink" href="#ubwcdma-with-halide-runtime-model" title="Permalink to this headline">¶</a></h3>
+<p>UBWCDMA with Halide is supported in the two Standalone modes
+(<a class="reference internal" href="halide_for_hvx.html#executionmodes"><span class="std std-ref">Halide execution modes</span></a>). In Simulator Standalone mode, the generated object
+file can be used to simulate an end-to-end vision algorithm running on the DSP
+with the UBWCDMA co-sim add on.</p>
+</div>
+<div class="section" id="halide-device-interface-for-ubwcdma">
+<h3><a class="toc-backref" href="#id6">Halide device interface for UBWCDMA</a><a class="headerlink" href="#halide-device-interface-for-ubwcdma" title="Permalink to this headline">¶</a></h3>
+<p>The Halide device interface for UBWCDMA provides a host-side API for
+application code to set up and associate buffers to the UBWCDMA device. This
+gives the host-side application access to the UBWCDMA device services. The
+functions are summarized in the following table, and the prototypes and
+detailed descriptions are available in
+<code class="docutils literal notranslate"><span class="pre">Halide/include/HalideRuntimeHexagonDma.h</span></code>.</p>
+<table border="1" class="colwidths-given docutils align-left">
+<colgroup>
+<col width="46%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">API name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">halide_hexagon_dma_device_interface</span></code></td>
+<td>Used with the <code class="docutils literal notranslate"><span class="pre">device_wrap_native</span></code> method of <code class="docutils literal notranslate"><span class="pre">Halide::Runtime::Buffer</span></code> to associate the
+buffer with the UBWCDMA device.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">halide_hexagon_dma_allocate_engine</span></code></td>
+<td>Allocate a UBWCDMA engine.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">halide_hexagon_dma_power_mode_voting</span></code></td>
+<td>Vote for a preset performance level to set the DMA power mode as required by the application.
+This power mode voting is separate from the Hexagon power votes.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">halide_hexagon_dma_device_wrap_native</span></code></td>
+<td>Attach a buffer to the UBWCDMA interface when a raw buffer (<code class="docutils literal notranslate"><span class="pre">halide_buffer_t</span></code>) is used.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">halide_hexagon_dma_prepare_for_copy_to_host</span></code></td>
+<td>Before any UBWCDMA transfers, set up the DDR buffer specification for UBWCDMA read.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">halide_hexagon_dma_prepare_for_copy_to_device</span></code></td>
+<td>Before any UBWCDMA transfers, set up the DDR buffer specification for UBWCDMA write.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">halide_hexagon_dma_unprepare</span></code></td>
+<td>Clean up the buffer from UBWCDMA after all transfers are completed.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">halide_hexagon_dma_device_detach_native</span></code></td>
+<td>Detach a buffer from the UBWCDMA interface when a raw buffer (<code class="docutils literal notranslate"><span class="pre">halide_buffer_t</span></code>) is used.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">halide_hexagon_dma_deallocate_engine</span></code></td>
+<td>De-allocate the DMA engine.</td>
+</tr>
+</tbody>
+</table>
+<p>The Hexagon local memory buffer is internal to the generated Halide pipeline
+that is managed by the Halide UBWCDMA runtime, and it is not visible to the
+host-side user code. However, pipeline execution might be impacted at runtime
+by its availability; for details, see <a class="reference internal" href="#memorylocality"><span class="std std-ref">Memory locality</span></a>.</p>
+</div>
+<div class="section" id="scheduling">
+<h3><a class="toc-backref" href="#id7">Scheduling</a><a class="headerlink" href="#scheduling" title="Permalink to this headline">¶</a></h3>
+<p>Many scheduling directive have already been covered (<a class="reference internal" href="halide.html#schedule"><span class="std std-ref">Schedule</span></a>). This
+section lists more scheduling directives that are important to working with
+UBWCDMA.</p>
+<table border="1" class="colwidths-given docutils align-left">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Directive</th>
+<th class="head">Description of typical use</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">hexagon_ubwcdma_read</span></code></td>
+<td>UBWCDMA read.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">hexagon_ubwcdma_write</span></code></td>
+<td>UBWCDMA write.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">store_in</span></code></td>
+<td>Specify the type of memory to be allocated for a <code class="docutils literal notranslate"><span class="pre">Func</span></code>. For UBWCDMA, it is typically Hexagon local memory,
+<code class="docutils literal notranslate"><span class="pre">MemoryType::LockedCache</span></code>.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">store_at</span></code></td>
+<td>Place the allocation of Hexagon local memory buffer at a specific stage or loop (that is, it must be outside of inner loops).</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">reorder_storage</span></code></td>
+<td>De-interleave the UV semi-plane for 4:2:0 pixel format in the Hexagon local memory buffer.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">tile</span></code></td>
+<td>Define the ROI dimensions that are factored into calculating the required Hexagon local memory buffer size.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">bound</span></code></td>
+<td>For stencil processing, bound DMA access to within the image frame buffer boundary.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">fold_storage</span></code></td>
+<td>For asynchronous or stencil processing, a circular buffer of Hexagon local memory. Allows access in a
+monotonically increasing or decreasing order, by rotating the buffer. Also factored into the required Hexagon local memory buffer size.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">async</span></code></td>
+<td>Asynchronous control flow between the consumer and producer of fold storage. Allows concurrency of processing data that is
+already transferred on one fold while simultaneously DMA transferring data on another fold. That is, to prefetch the next required consumer
+data from the DDR with DMA read, or to store resultant producer data to DDR with DMA write, while in parallel, processing (consuming or
+producing) another set of data.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">split</span></code></td>
+<td>Splits the dimension of a frame buffer. Precursor to independent DMA access per an outer dimension split when used with the
+parallel directive.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">parallel</span></code></td>
+<td>Parallelize each split outer dimension, with independently assigned DMA access. Allows for parallel processing and DMA of
+data for each split.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">compute_at</span></code></td>
+<td>Specify when the producer stage is computed with respect to the consumer stage.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">compute_root</span></code></td>
+<td>Place the computation of the stage at the top level (before any place where it is used).</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">store_at</span></code></td>
+<td>Specify where the memory for the producer stage is allocated with respect to the consumer stage.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">store_root</span></code></td>
+<td>Place the allocation of the stage at the top level.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">align_storage</span></code></td>
+<td>Align the dimension specified by <code class="docutils literal notranslate"><span class="pre">x</span></code> to be a multiple of the alignment specified by <code class="docutils literal notranslate"><span class="pre">align</span></code>.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can use <code class="docutils literal notranslate"><span class="pre">copy_to_host</span></code> instead of <code class="docutils literal notranslate"><span class="pre">hexagon_ubwcdma_read</span></code>, and <code class="docutils literal notranslate"><span class="pre">copy_to_device</span></code> instead of <code class="docutils literal notranslate"><span class="pre">hexagon_ubwcdma_write</span></code>. However, these two alternatives will lead to noticeably poor run-time performance of your pipeline.</p>
+</div>
+</div>
+<div class="section" id="de-interleaving-of-uv-for-4-2-0">
+<h3><a class="toc-backref" href="#id8">De-interleaving of UV for 4:2:0</a><a class="headerlink" href="#de-interleaving-of-uv-for-4-2-0" title="Permalink to this headline">¶</a></h3>
+<p>For the 4:2:0 semi-planar format, the UV plane is expected to be after the Y
+plane when stored within a frame buffer. The Y and UV planes are then cropped
+appropriately and presented as two individual Halide buffers to the Halide
+pipeline. The Y buffer is described as 2D, and UV buffer is described as 3D
+with the UV interleaved.</p>
+<p>For details on how to describe the UV interleaved property to Halide, see
+the NV12 example in
+<code class="docutils literal notranslate"><span class="pre">Halide/Examples/standalone/device/apps/dma_nv12_rw/halide/dma_nv12_rw_generator.cpp</span></code>.</p>
+</div>
+<div class="section" id="known-limitations">
+<h3><a class="toc-backref" href="#id9">Known limitations</a><a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h3>
+<p>Following are the known limitations of UBWCDMA with Halide.</p>
+<table border="1" class="colwidths-given docutils align-left">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Limitation</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">fold_storage</span></code></td>
+<td>See limitation for <code class="docutils literal notranslate"><span class="pre">async</span></code>.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">async</span></code></td>
+<td>Requires use of <code class="docutils literal notranslate"><span class="pre">fold_storage</span></code> to ping-pong asynchronously between producer and consumer threads.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="performance-considerations">
+<h2><a class="toc-backref" href="#id10">Performance considerations</a><a class="headerlink" href="#performance-considerations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="memory-locality">
+<span id="memorylocality"></span><h3><a class="toc-backref" href="#id11">Memory locality</a><a class="headerlink" href="#memory-locality" title="Permalink to this headline">¶</a></h3>
+<p>UBWCDMA data transfer into Hexagon local memory increases the transfer
+efficiency and reduces access latency seen by the Hexagon DSP core. This
+improves the overall performance of the program. The requirement of Hexagon
+local memory is mandatory for UBWCDMA as either the destination memory type
+for UBWCDMA read or the source memory type for UBWCDMA write to DDR.</p>
+<p>The Halide pipeline uses the <code class="docutils literal notranslate"><span class="pre">store_in</span></code> scheduling directive to allocate
+Hexagon local memory.</p>
+<p>For each extern buffer provided to the Halide pipeline, there is at least one
+corresponding instance of a Hexagon local memory buffer allocated to service it.
+The size of this local buffer is determined by several factors, including the
+Halide tile size, value size, and amount of storage folded.
+This is equivalent to the following example.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">local_size</span> <span class="o">=</span> <span class="n">align</span><span class="p">(</span><span class="n">tile_width</span> <span class="n">x</span> <span class="n">tile_height</span> <span class="n">x</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="mi">128</span><span class="p">)</span> <span class="n">x</span> <span class="n">number_of_folds</span>
+</pre></div>
+</div>
+<p>The number of allocated local memory instances per Halide data buffer is
+determined by the parallelizable aspect of Halide directives, such as the
+number of splits for multi-threading. This is roughly represented by the number
+of DMA threads, which, to avoid unnecessary resource allocation, should be
+limited to the number of Hexagon cores.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">number_of_DMA_threads</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">number_of_splits</span><span class="p">,</span> <span class="n">number_of_hexagon_cores</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When supported, local memory is allocated from a part of the L2 cache
+(Snapdragon device-specific). This is a limited resource and because UBWCDMA
+data transfers require locked L2 cache, the amount of L2 cache memory available
+for other processing is reduced. Thus, while increasing the UBWCDMA data
+transfer size will increase the efficiency of UBWCDMA, it might impact the
+performance of the entire cDSP-based workload due to the reduced L2 cache
+available for compute.</p>
+</div>
+<div class="section" id="power-api-for-ubwcdma">
+<h3><a class="toc-backref" href="#id12">Power API for UBWCDMA</a><a class="headerlink" href="#power-api-for-ubwcdma" title="Permalink to this headline">¶</a></h3>
+<p>UBWCDMA performance can be controlled by its power modes. Each mode translates
+into a corresponding set of pre-configured performance parameters. The
+application determines its performance requirement and votes for a power mode
+accordingly. This is done using an API that is provided for both the Hexagon DSP
+(<a class="reference internal" href="halide_for_hvx.html#powerandperformanceapi"><span class="std std-ref">Power and performance APIs</span></a>) and UBWCDMA. UBWCDMA performance/power level
+is voted for independently from the Hexagon DSP power level.</p>
+<p>The power level must be voted for after a UBWCDMA engine has been allocated.
+You can change your vote at any time during the allocation lifetime of the
+UBWCDMA engine. If there is no power mode vote, the default power mode is
+applied. On application exit and before deallocating the DMA engine, vote the
+power mode back to the default mode.</p>
+<p>All enumerated power modes are supported by the API. If a specific Snapdragon
+device does not have support for a mode, that requested power mode is mapped to
+the closest (next or higher) appropriate supported mode.</p>
+<p>The following example shows the application-side API for specifying the power
+level of UBWCDMA (voting).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;HalideRuntimeHexagonHost.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;HalideRuntimeHexagDma.h&quot;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">halide_hexagon_dma_power_mode_voting</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">user_context</span><span class="p">,</span> <span class="n">halide_hexagon_power_mode_t</span> <span class="n">mode</span><span class="p">);</span>
+<span class="c1">// user_context - Ignore. Can be NULL</span>
+<span class="c1">// mode         - Power level value similar to selecting a voltage corner as documented in the Hexagon SDK</span>
+<span class="c1">//                documentation.</span>
+</pre></div>
+</div>
+<p>For all possible values for the <code class="docutils literal notranslate"><span class="pre">mode</span></code> argument to
+<code class="docutils literal notranslate"><span class="pre">halide_hexagon_dma_power_mode_voting</span></code>, see <a class="reference internal" href="halide_for_hvx.html#powerandperformanceapi"><span class="std std-ref">Power and performance APIs</span></a>.</p>
+</div>
+<div class="section" id="ubwcdma-concurrency">
+<h3><a class="toc-backref" href="#id13">UBWCDMA concurrency</a><a class="headerlink" href="#ubwcdma-concurrency" title="Permalink to this headline">¶</a></h3>
+<p>To improve performance, following are some best practices or considerations for
+concurrency.</p>
+<ul class="simple">
+<li>Split a frame for parallel processing to take advantage of the multi-threaded
+Hexagon DSP core.<ul>
+<li>Processing of each split is scheduled on a separate hardware thread. The
+number of tasks created is based on the split factor.</li>
+<li>A key best practice is to keep the number of tasks less than or equal to
+the number of supported hardware threads.</li>
+</ul>
+</li>
+<li>Asynchronize between the Halide producer and consumer to allow simultaneous
+UBWCDMA data transfer and data processing to reduce processing time.<ul>
+<li>UBWCDMA is a hardware accelerator that runs independently of the cDSP core.
+This method improves performance by removing UBWCDMA transfer waits with
+ahead-of-time data transfer to ensure that data is already available when
+the cDSP core needs it.</li>
+<li>The best practice is to transfer the right-sized data that takes longer for
+the cDSP to process than for UBWCDMA to transfer it.</li>
+<li>It is also a good idea to apply ping-pong buffers, using <code class="docutils literal notranslate"><span class="pre">fold_storage</span></code>,
+to enable this asynchronous parallelism between producer and consumer. The
+number of folds is dictated by the algorithm of how much data ahead
+(future) and behind (history) is required.</li>
+<li>For right sizing the data buffer, see <a class="reference internal" href="#memorylocality"><span class="std std-ref">Memory locality</span></a> for the local
+memory constraints.</li>
+</ul>
+</li>
+<li>Deploy multiple independent UBWCDMA engines to allow for simultaneous
+transfer of data. This can potentially shorten the overall runtime by
+reducing the data transfer time.<ul>
+<li>Logistically, the per application UBWCDMA engine separation can be:<ul>
+<li>Per frame buffer UBWCDMA engine.</li>
+<li>Read vs. write DMA engine.</li>
+</ul>
+</li>
+<li>Points to consider for potentially reducing runtime:<ul>
+<li>There are a limited number of available UBWCDMA engines, with only
+allocated engines shared within the application and not across
+applications.</li>
+<li>A transfer unit is sized small (local memory resource constraint) such
+that the overall difference between serialization and parallelization of
+a transfer is minimized.</li>
+<li>An asynchronous ping-pong style DMA transfer might be a better option.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="examples">
+<h2><a class="toc-backref" href="#id14">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>All the examples that demonstrate the use of UBWCDMA in Halide are located in
+<code class="docutils literal notranslate"><span class="pre">Halide/Examples/standalone/device/apps/</span></code>.</p>
+<dl class="docutils">
+<dt><strong>Linear data</strong></dt>
+<dd>For details on how to process raw (linear) format data, see <code class="docutils literal notranslate"><span class="pre">dma_raw_blur_rw_async</span></code>.
+This example also includes a line-buffered schedule that demonstrates whole-line transfer
+via UBWCDMA.</dd>
+<dt><strong>p010 format data</strong></dt>
+<dd>For details on how to process p010 format data, see <code class="docutils literal notranslate"><span class="pre">dma_p010_rw_async</span></code>.</dd>
+<dt><strong>nv12 format data</strong></dt>
+<dd>For processing nv12 format data asynchronously with storage folding, see
+<code class="docutils literal notranslate"><span class="pre">dma_nv12_blur_stencil</span></code>. This example also includes details on how to
+use line buffering in the schedule.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2020, Qualcomm Technologies, Inc. All rights reserved..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/docs/ubwcdma.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

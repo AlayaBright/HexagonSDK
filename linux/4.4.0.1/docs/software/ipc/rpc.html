@@ -1,0 +1,2705 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>RPC - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rpc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              RPC
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" checked>
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        RPC
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="rpc.html" class="md-nav__link md-nav__link--active">
+      RPC
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fastrpc-architecture" class="md-nav__link">
+    FastRPC architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastrpc-workflow" class="md-nav__link">
+    FastRPC workflow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-software-components" class="md-nav__link">
+    Android software components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dsp-protection-domains" class="md-nav__link">
+    DSP protection domains
+  </a>
+  
+    <nav class="md-nav" aria-label="DSP protection domains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-vs-static-pd" class="md-nav__link">
+    Dynamic vs static PD
+  </a>
+  
+    <nav class="md-nav" aria-label="Dynamic vs static PD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-pd" class="md-nav__link">
+    Static PD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-user-pd" class="md-nav__link">
+    Dynamic user PD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signed-and-unsigned-pds" class="md-nav__link">
+    Signed and unsigned PDs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsigned-pd-support" class="md-nav__link">
+    Unsigned PD support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsigned-pd-available-services" class="md-nav__link">
+    Unsigned PD available services
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsigned-pd-limitations" class="md-nav__link">
+    Unsigned PD limitations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-signature-free-offload" class="md-nav__link">
+    Request signature-free offload
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idl-compiler" class="md-nav__link">
+    IDL Compiler
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-domain" class="md-nav__link">
+    Multi-domain
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastrpc-threads-and-processes" class="md-nav__link">
+    FastRPC threads and processes
+  </a>
+  
+    <nav class="md-nav" aria-label="FastRPC threads and processes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handling-exceptions" class="md-nav__link">
+    Handling exceptions
+  </a>
+  
+    <nav class="md-nav" aria-label="Handling exceptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssr" class="md-nav__link">
+    SSR
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pd-restart" class="md-nav__link">
+    PD restart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restrictions" class="md-nav__link">
+    Restrictions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-notifications-of-dsp-user-process" class="md-nav__link">
+    Status notifications of DSP User process
+  </a>
+  
+    <nav class="md-nav" aria-label="Status notifications of DSP User process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-fastrpc" class="md-nav__link">
+    Asynchronous FastRPC
+  </a>
+  
+    <nav class="md-nav" aria-label="Asynchronous FastRPC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idl-async-support" class="md-nav__link">
+    IDL async support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-descriptor" class="md-nav__link">
+    Async Descriptor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notification-declaration" class="md-nav__link">
+    Notification declaration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-async-jobid" class="md-nav__link">
+    Release Async JobID
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-file-system" class="md-nav__link">
+    Remote File system
+  </a>
+  
+    <nav class="md-nav" aria-label="Remote File system">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#search-path-on-remote-file-system" class="md-nav__link">
+    Search path on remote file system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-dsp_library_path" class="md-nav__link">
+    Using DSP_LIBRARY_PATH
+  </a>
+  
+    <nav class="md-nav" aria-label="Using DSP_LIBRARY_PATH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-value" class="md-nav__link">
+    Default value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    Usage examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-loading" class="md-nav__link">
+    Dynamic loading
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    Memory management
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-overview" class="md-nav__link">
+    Hardware overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mmus-and-address-spaces" class="md-nav__link">
+    MMUs and address spaces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrpc-memory-management" class="md-nav__link">
+    FastRPC memory management
+  </a>
+  
+    <nav class="md-nav" aria-label="FastRPC memory management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allocate-memory-for-shared-buffers" class="md-nav__link">
+    Allocate memory for shared buffers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transient-shared-buffers" class="md-nav__link">
+    Transient shared buffers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistent-shared-buffers-using-dmahandle-objects" class="md-nav__link">
+    Persistent shared buffers using dmahandle objects
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistent-shared-buffers-using-fastrpc_mmap" class="md-nav__link">
+    Persistent shared buffers using fastrpc_mmap
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-implications" class="md-nav__link">
+    Performance implications
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance implications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tlb-pressure" class="md-nav__link">
+    TLB pressure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-buffers-vs-copying-data" class="md-nav__link">
+    Shared buffers vs copying data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastrpc-debugging" class="md-nav__link">
+    FastRPC debugging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastrpc-performance" class="md-nav__link">
+    FastRPC performance
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fastrpc-architecture" class="md-nav__link">
+    FastRPC architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastrpc-workflow" class="md-nav__link">
+    FastRPC workflow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-software-components" class="md-nav__link">
+    Android software components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dsp-protection-domains" class="md-nav__link">
+    DSP protection domains
+  </a>
+  
+    <nav class="md-nav" aria-label="DSP protection domains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-vs-static-pd" class="md-nav__link">
+    Dynamic vs static PD
+  </a>
+  
+    <nav class="md-nav" aria-label="Dynamic vs static PD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-pd" class="md-nav__link">
+    Static PD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-user-pd" class="md-nav__link">
+    Dynamic user PD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signed-and-unsigned-pds" class="md-nav__link">
+    Signed and unsigned PDs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsigned-pd-support" class="md-nav__link">
+    Unsigned PD support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsigned-pd-available-services" class="md-nav__link">
+    Unsigned PD available services
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsigned-pd-limitations" class="md-nav__link">
+    Unsigned PD limitations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-signature-free-offload" class="md-nav__link">
+    Request signature-free offload
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idl-compiler" class="md-nav__link">
+    IDL Compiler
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-domain" class="md-nav__link">
+    Multi-domain
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastrpc-threads-and-processes" class="md-nav__link">
+    FastRPC threads and processes
+  </a>
+  
+    <nav class="md-nav" aria-label="FastRPC threads and processes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handling-exceptions" class="md-nav__link">
+    Handling exceptions
+  </a>
+  
+    <nav class="md-nav" aria-label="Handling exceptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssr" class="md-nav__link">
+    SSR
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pd-restart" class="md-nav__link">
+    PD restart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restrictions" class="md-nav__link">
+    Restrictions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-notifications-of-dsp-user-process" class="md-nav__link">
+    Status notifications of DSP User process
+  </a>
+  
+    <nav class="md-nav" aria-label="Status notifications of DSP User process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-fastrpc" class="md-nav__link">
+    Asynchronous FastRPC
+  </a>
+  
+    <nav class="md-nav" aria-label="Asynchronous FastRPC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idl-async-support" class="md-nav__link">
+    IDL async support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-descriptor" class="md-nav__link">
+    Async Descriptor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notification-declaration" class="md-nav__link">
+    Notification declaration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-async-jobid" class="md-nav__link">
+    Release Async JobID
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-file-system" class="md-nav__link">
+    Remote File system
+  </a>
+  
+    <nav class="md-nav" aria-label="Remote File system">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#search-path-on-remote-file-system" class="md-nav__link">
+    Search path on remote file system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-dsp_library_path" class="md-nav__link">
+    Using DSP_LIBRARY_PATH
+  </a>
+  
+    <nav class="md-nav" aria-label="Using DSP_LIBRARY_PATH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-value" class="md-nav__link">
+    Default value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    Usage examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-loading" class="md-nav__link">
+    Dynamic loading
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    Memory management
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-overview" class="md-nav__link">
+    Hardware overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mmus-and-address-spaces" class="md-nav__link">
+    MMUs and address spaces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrpc-memory-management" class="md-nav__link">
+    FastRPC memory management
+  </a>
+  
+    <nav class="md-nav" aria-label="FastRPC memory management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allocate-memory-for-shared-buffers" class="md-nav__link">
+    Allocate memory for shared buffers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transient-shared-buffers" class="md-nav__link">
+    Transient shared buffers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistent-shared-buffers-using-dmahandle-objects" class="md-nav__link">
+    Persistent shared buffers using dmahandle objects
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistent-shared-buffers-using-fastrpc_mmap" class="md-nav__link">
+    Persistent shared buffers using fastrpc_mmap
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-implications" class="md-nav__link">
+    Performance implications
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance implications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tlb-pressure" class="md-nav__link">
+    TLB pressure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-buffers-vs-copying-data" class="md-nav__link">
+    Shared buffers vs copying data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastrpc-debugging" class="md-nav__link">
+    FastRPC debugging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastrpc-performance" class="md-nav__link">
+    FastRPC performance
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="rpc">RPC</h1>
+<p>A Remote Procedure Call (RPC) allows a computer program calling a procedure to execute in another remote processor, while hiding the details of the remote interaction. FastRPC is the RPC mechanism used to enable remote function calls between the CPU and DSP.</p>
+<p>Customers with algorithms that benefit from being executed on the DSP can use the FastRPC framework to offload large processing tasks onto the DSP. The DSP can then leverage its internal processing resources, such as HVX, to execute the tasks in a more compute- and power-efficient way than the CPU.</p>
+<p>FastRPC interfaces are defined in an IDL file, and they are compiled using the QAIC compiler to generate header files and stub and skel code. The header files and stub should be built and linked into the CPU executable while the header files and skel should be built and linked into the DSP library.</p>
+<h2 id="fastrpc-architecture">FastRPC architecture</h2>
+<p>The following diagram depicts the major FastRPC software components on the CPU and DSP.</p>
+<p><img alt="svg" src="../../images/FastRPC_architecture.png" /></p>
+<p>Definition of the terms in the diagram:</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application</td>
+<td>User mode process that initiates the remote invocation</td>
+</tr>
+<tr>
+<td>Stub</td>
+<td>Auto-generated code that takes care of marshaling parameters and runs on the CPU</td>
+</tr>
+<tr>
+<td>FastRPC user driver on CPU</td>
+<td>User mode library that is used by the stub code to do remote invocations</td>
+</tr>
+<tr>
+<td>FastRPC Kernel Driver</td>
+<td>Receives the remote invocations from the client, queues them up with the FastRPC DSP driver, and then waits for the response after signaling the remote side</td>
+</tr>
+<tr>
+<td>FastRPC DSP Driver</td>
+<td>Dequeues the messages sent by the FastRPC kernel driver and dispatches them for processing</td>
+</tr>
+<tr>
+<td>FastRPC user driver on DSP</td>
+<td>User mode code that includes a shell executable to run in the user protection domain (PD) on the DSP and complete the remote invocations to the skel library</td>
+</tr>
+<tr>
+<td>Skel</td>
+<td>Auto-generated code that un-marshals parameters and invokes the user-defined implementation of the function that runs on the DSP</td>
+</tr>
+<tr>
+<td>User PD</td>
+<td>User protection domain on the DSP that provides the environment to run the user code</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fastrpc-workflow">FastRPC workflow</h2>
+<p>The FastRPC framework is a typical proxy pattern. The interface object stub and the implementation skeleton objects are on different processors. FastRPC clients are directly exposed to the stub object, and the skeleton object is called by the FastRPC framework on the DSP.</p>
+<p>The FastRPC framework consists of the following components.</p>
+<p><img alt="svg" src="../../images/FRPC_workflow.png" /></p>
+<p>Workflow:</p>
+<ol>
+<li>The CPU process calls the stub version of the function. The stub code converts the function call to an RPC message.</li>
+<li>The stub code internally invokes the FastRPC framework on the CPU to queue the converted message.</li>
+<li>The FastRPC framework on the CPU sends the queued message to the FastRPC DSP framework on the DSP.</li>
+<li>The FastRPC DSP framework on the DSP dispatches the call to the relevant skeleton code.</li>
+<li>The skeleton code un-marshals the parameters and calls the method implementation.</li>
+<li>The skeleton code waits for the implementation to finish processing, and, in turn, marshals the return value and any other output arguments into the return message.</li>
+<li>The skeleton code calls the FastRPC DSP framework to queue the return message to be transmitted to the CPU.</li>
+<li>The FastRPC DSP framework on the DSP sends the return message back to the FastRPC framework on the CPU.</li>
+<li>The FastRPC framework identifies the waiting stub code and dispatches the return value.</li>
+<li>The stub code un-marshals the return message and sends it to the calling User mode process.</li>
+</ol>
+<h2 id="android-software-components">Android software components</h2>
+<p>The FastRPC framework consists of several libraries in the system and vendor partitions of the Android image.</p>
+<table>
+<thead>
+<tr>
+<th>Software component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/system/vendor/lib/lib*rpc.so</code> or <code>/vendor/lib/lib*rpc.so</code>, where <code>*</code> is <code>adsp</code>, <code>cdsp</code>, or <code>sdsp</code></td>
+<td>Shared object library to be linked with the user-space vendor application that is invoking the remote procedure call. This library interfaces with the kernel driver to initiate the remote invocation to the aDSP, cDSP, or sDSP.</td>
+</tr>
+<tr>
+<td><code>/system/lib/lib*rpc_system.so</code>, where <code>*</code> is <code>adsp</code>, <code>cdsp</code>, or <code>sdsp</code></td>
+<td>Shared object library that is to be linked with the user-space system application that is invoking the remote procedure call. This library interfaces with the kernel driver to initiate the remote invocation to the aDSP, cDSP, or sDSP. This library is applicable for system applications on Android P and onwards.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>NOTE: </em></strong> The <code>/system/vendor</code> path is only supported on Android O.</p>
+<h2 id="dsp-protection-domains">DSP protection domains</h2>
+<p>Because the DSP is a real-time processor whose stability critically affects the overall user experience, different PDs exist in the DSP software architecture. These PDs ensure the stability of the kernel software and the safety of Qualcomm proprietary hardware information. There are various protection domains in the DSP.</p>
+<ul>
+<li>Kernel: Access to all memory of all PDs</li>
+<li>Guest OS: Access to the memory of its own PD, the memory of the user PD, and some system registers</li>
+<li>User: Access only to the memory of its own PD</li>
+</ul>
+<p>DSP system libraries make system calls to the Guest OS or Kernel as appropriate to access operating system services. FastRPC client programs run in user PDs.</p>
+<h3 id="dynamic-vs-static-pd">Dynamic vs static PD</h3>
+<p>User PDs can be created statically at boot time, but they are more often created dynamically at run time by CPU applications that are to offload modules to the DSP. Both static and dynamic PDs support dynamic loading of shared objects.</p>
+<h4 id="static-pd">Static PD</h4>
+<p>Static PDs are created on DSPs to support specific use cases like Audio and Sensors. The static PDs allow the dynamic loading of shared objects with the help of a daemon running on the CPU. For more details, see <a href="#dynamic-loading">Dynamic loading</a>.</p>
+<h4 id="dynamic-user-pd">Dynamic user PD</h4>
+<p>Every CPU user process that uses a DSP via FastRPC will have a corresponding dynamic user PD on the DSP. The FastRPC Kernel driver manages the life cycle of the dynamic user PD. That is, if the CPU user process exits, the corresponding user PD on the DSP is cleaned up as well.</p>
+<p>The DSP supports different types of dynamic user PD environments, including signed and unsigned PDs.</p>
+<p>Each DSP can only support a limited number of concurrent dynamic user
+PDs. This limit depends on the hardware configuration for each
+supported chip and DSP; see the <a href="../../reference/feature_matrix.html">feature
+matrix</a>.</p>
+<h4 id="signed-and-unsigned-pds">Signed and unsigned PDs</h4>
+<p>DSPs support different types of dynamic execution environments (dynamic PDs) including signed and unsigned PDs.</p>
+<p>Signed PDs are available on all the DSPs, and they require that the modules (shared objects) being loaded in the PD are signed with a digital signature. This signature must be verified at the time of loading the shared objects in the PD. For details on signing a shared object, see <a href="../../tools/sign.html">Signing</a>.</p>
+<p>On the other hand, unsigned PDs are only supported in the cDSP, and they allow the DSP modules to load without any digital signatures.</p>
+<p>An unsigned PD is a sandboxed low-rights process that allows the signature-free modules to run on the cDSP. In the event of a compromise, access to full system functionality and data is prevented by the sandbox. Unsigned PDs are designed to support general compute applications and have limited access to underlying drivers (see the following sections for available services and limitations). The available/unavailable services in the unsigned PD may change in the future, depending on continuing security reviews.</p>
+<h4 id="unsigned-pd-support">Unsigned PD support</h4>
+<p>To check whether a device supports unsigned PDs, perform a <a href="../../doxygen/remote/index.html" target="_blank">capability query</a> using the DSP attribute, <code>UNSIGNED_PD_SUPPORT</code>. For an example on how to make this query, see the <a href="../../examples/calculator/index.html#on-target-testing">calculator example</a>.</p>
+<h4 id="unsigned-pd-available-services">Unsigned PD available services</h4>
+<ul>
+<li>Thread creation and thread services</li>
+<li>HVX contexts</li>
+<li>Clock frequency controls</li>
+<li>VTCM</li>
+<li>Cache operations</li>
+<li>Map HLOS memory allocated by the corresponding HLOS application</li>
+</ul>
+<h4 id="unsigned-pd-limitations">Unsigned PD limitations</h4>
+<ul>
+<li>Access to limited drivers: UBWCDMA and Camera Streamer are not available to unsigned PDs</li>
+<li>QuRT timer APIs are not available. Applications can use <code>qurt_signal_wait_timed()</code>, <code>qurt_thread_sleep()</code> and related APIs instead.
+  See the <a href="../../pdf/80-VB419-178_B_QuRT_User_Guide.pdf">QuRT user guide</a> for more information.</li>
+<li>No access to L2 cache locking APIs</li>
+<li>Thread limitations<ul>
+<li>Thread priority ceiling (highest priority for any unsigned PD thread): 64.
+    Note that this limitation is no longer applicable on Lahaina and
+    later targets. Instead the priority limit applies to
+    <a href="../system_integration.html#privileged-and-unprivileged-clients">unprivileged clients</a>,
+    whether they use signed or unsigned PDs; privileged clients have no such limit.</li>
+<li>Maximum number of threads allowed per unsigned PD: 128</li>
+</ul>
+</li>
+</ul>
+<p><strong><em>NOTE:</em></strong> These limitations might change in the future.</p>
+<h4 id="request-signature-free-offload">Request signature-free offload</h4>
+<p>To request a signature-free dynamic module offload, clients make the request as follows:</p>
+<pre><code>#pragma weak remote_session_control
+if (remote_session_control)
+{
+    struct remote_rpc_control_unsigned_module data;
+    data.enable = 1;
+    data.domain = CDSP_DOMAIN_ID;
+    remote_session_control(DSPRPC_CONTROL_UNSIGNED_MODULE, (void*)&amp;data, sizeof(data));
+}
+</code></pre>
+<p>This request must be made before calling any other FastRPC function.</p>
+<p>A success message from the <code>remote_session_control()</code> function allows the client to offload the dynamic shared object to the cDSP without signing.</p>
+<h2 id="idl-compiler">IDL Compiler</h2>
+<p>Interfaces for the DSP platform and all FastRPC programs are described in a language called IDL. IDL allows interface authors to expose only what that object does, but not where it resides or the programming language in which it is implemented. IDL provides flexibility of software implementation while maintaining a consistent interface for the software module. Following is a typical IDL header file.</p>
+<pre><code>#include "AEEStdDef.idl"
+#include "remote.idl"
+
+interface calculator : remote_handle64 {
+   long sum(in sequence&lt;long&gt; vec, rout long long res);
+   long max(in sequence&lt;long&gt; vec, rout long res);
+};
+</code></pre>
+<p>When using the function parameters:</p>
+<ul>
+<li>Indicate input parameters as <code>in</code>.</li>
+<li>Indicate parameters to be modified as output as <code>rout</code>.</li>
+</ul>
+<p>For more information on the concept and use of the IDL compiler, see the <a href="../../reference/idl.html">IDL reference page</a>.</p>
+<p>For information on how to define the interface, generate the stub and skel, and link and test the application, see the <a href="../../examples/calculator/index.html">calculator example</a>.</p>
+<h2 id="multi-domain">Multi-domain</h2>
+<p>Snapdragon products include multiple Hexagon DSPs (for example, cDSP, aDSP, mDSP, or sDSP). On many targets, more than one of these domains is available to FastRPC CPU user processes.</p>
+<p>A domain is a remote environment (DSP) for loading and executing code. Linking the CPU user process to the FastRPC user library for a specific DSP (like <code>libcdsprpc.so</code> for the cDSP) allows the CPU user process to offload to the cDSP only. To offload modules to multiple domains from the same CPU user process, use the multi-domain feature.</p>
+<p>The multi-domain framework provides the following benefits over the single domain framework:</p>
+<ul>
+<li>The CPU user process does not need to choose which DSP to use at link time. Instead, it can link to <code>libadsprpc.so</code> and specify the domain later at runtime.</li>
+<li>The CPU user process can query the target for its domain capabilities and select the domain with the required capabilities.</li>
+<li>The CPU user process can open multiple concurrent sessions on different DSPs.</li>
+<li>The multi-domain session is handle-based, allowing the CPU user process to restart a crashed DSP session by closing the handle using <code>interface_close ()</code> and reopening a new handle. Upon closing the handle, the framework calls the user-written deinitialization function, which allows you to clean up any resource being used. (This process is referred to as session restart or PD restart.)</li>
+<li>The handle for a session is passed to each interface API and can easily be associated to user-defined context stored in the DSP memory. This allows an application to easily access data that is persistent across FastRPC calls.</li>
+</ul>
+<p>To see how to use multi-domain feature, see the <a href="../../examples/calculator/index.html">calculator example</a>.</p>
+<h2 id="fastrpc-threads-and-processes">FastRPC threads and processes</h2>
+<p>A separate user PD is created on the DSP for each HLOS user process that runs on the CPU and establishes a FastRPC session with the DSP.</p>
+<ul>
+<li>Each user process or thread on the CPU has a corresponding user PD or thread on the DSP.</li>
+<li>The user PD on DSP is created when the device is opened on the CPU, and it is destroyed when the device is closed on the CPU.</li>
+<li>A shell executable is loaded on the DSP when a user PD on the DSP is spawned.</li>
+<li>When an RPC message is invoked from a CPU thread and no corresponding thread exists on the DSP, the required thread is created on the DSP.</li>
+<li>The threads are destroyed when the corresponding CPU thread exits.</li>
+</ul>
+<p>The CPU user process can use the <a href="../../doxygen/remote/index.html" target="_blank">remote_session_control API</a> that allows clients to configure the stack size and priority of all threads in their user PD on the DSP.</p>
+<p>Clients can use the following API and data structure (exposed in the <code>remote.h</code> header) to configure their DSP thread parameters:</p>
+<pre><code>struct remote_rpc_thread_params {
+            int domain;
+            int prio;
+            int stack_size;
+};
+</code></pre>
+<h3 id="handling-exceptions">Handling exceptions</h3>
+<h4 id="ssr">SSR</h4>
+<p>The DSP subsystem enters a SubSystem Restart (SSR) state and FastRPC returns AEE_ECONNRESET when a non-recoverable exception occurs:</p>
+<ul>
+<li>in a kernel of the DSP subsystem</li>
+<li>in a critical process.
+    A process can be spawned as critical by setting a debug attribute as follows from the terminal window each time before launching the application:
+        adb shell setprop vendor.fastrpc.process.attrs 1</li>
+</ul>
+<h4 id="pd-restart">PD restart</h4>
+<p>The following <a href="#dsp-protection-domains">PDs</a> have the capability to be restarted without disrupting other user PDs running on the same subsystem.  The new PD will be spawned for the same HLOS process that was used before.</p>
+<ul>
+<li>Static PDs on the audio and sensor domains, which all support Protection Domain Restart (PDR)</li>
+<li>Dynamic user PDs on the cDSP, which all have their own user space handles
+    When a user PD on the cDSP incurs a non-recoverable exception, FastRPC returns either <code>AEE_ENOSUCH</code> or <code>AEE_EBADSTATE + DSP_OFFSET</code>. These error codes allow the client to take an appropriate action.
+    An example of code catching these errors and restarting the session is illustrated in <code>calculator_test.c</code> as part of the <a href="../../examples/calculator/index.html">calculator</a> example.</li>
+</ul>
+<h3 id="restrictions">Restrictions</h3>
+<ul>
+<li>This API must be called before making any other RPC call from your CPU process: this call must be the first call from your application.</li>
+<li>The thread stack size is to be between 16 KB and 8 MB.</li>
+<li>The DSP thread priority must be between 1 and 254 (with 1 being the highest).<ul>
+<li>We do not recommend using priority 255, because you be preempted by interrupts even if other threads are idle. 255 is basically treated as the idle priority.</li>
+<li>On SM8250 devices, the unsigned PDs are restricted to a maximum thread priority of 64.</li>
+<li>On SM8350 and later devices, all unprivileged PDs are restricted to a maximum thread priority of 64. For details, see <a href="../system_integration.html">system integration page</a>.</li>
+</ul>
+</li>
+<li>Currently, we do not support individual thread configuration. That is, if you update the thread priority and stack size once, the same parameters will be used for <em>all</em> the FastRPC threads in that DSP user PD.</li>
+<li>After the first RPC call is made, the FastRPC thread parameters cannot be updated again, and they will persist for the lifetime of the DSP process.<ul>
+<li>You can always spawn <em>worker</em> threads anytime from the DSP with different stack sizes and priorities.</li>
+</ul>
+</li>
+</ul>
+<h3 id="example">Example</h3>
+<p>Set the priority to 100 and the stack size to 4 MB on the cDSP:</p>
+<pre><code>#include "remote.h"
+...
+main() {
+        struct remote_rpc_thread_params th_data;
+        th_data.domain = CDSP_DOMAIN_ID;
+        th_data.stack_size = 4*1024*1024;
+        th_data.prio = 100;
+        nErr = remote_session_control(FASTRPC_THREAD_PARAMS, (void*)&amp;th_data, sizeof(th_data));
+        if (nErr) {
+                printf("ERROR 0x%x: remote_session_control failed to set thread params\n", nErr);
+        } else {
+                printf(" - Successfully set CDSP user process thread parameter(s)\n");
+        }
+        ....
+        my_first_RPC_call();
+}
+</code></pre>
+<h3 id="status-notifications-of-dsp-user-process">Status notifications of DSP User process</h3>
+<p>In targets after LAHAINA, the CPU user process can use the <a href="../../doxygen/remote/index.html" target="_blank">remote_session_control API</a> that allows clients to register for the status notifications of the DSP User process.
+Clients can use this API and following data structure (exposed in the remote.h header) to register for status notifications of DSP user process.</p>
+<pre><code>typedef struct remote_rpc_notif_register {
+            void *context;
+            int domain;
+            fastrpc_notif_fn_t notifier_fn;
+} remote_rpc_notif_register_t;
+</code></pre>
+<p>Following notifications are supported for DSP User process.</p>
+<pre><code>// DSP User PD status notification flags
+typedef enum remote_rpc_status_flags {
+        /* DSP user process is up */
+        FASTRPC_USER_PD_UP = 0,
+        /* DSP user process exited */
+        FASTRPC_USER_PD_EXIT = 1,
+        /* DSP user process forcefully killed. Happens when DSP resources needs to be freed. */
+        FASTRPC_USER_PD_FORCE_KILL = 2,
+        /* Exception in the user process of DSP. */
+        FASTRPC_USER_PD_EXCEPTION = 3,
+        /* Subsystem restart of the DSP, where user process is running. */
+        FASTRPC_DSP_SSR = 4,
+} remote_rpc_status_flags_t;
+</code></pre>
+<h4 id="example_1">Example</h4>
+<p>Register for Status notifications of DSP User process.</p>
+<pre><code>#include "remote.h"
+...
+int fastrpc_notif_dsp(void *context, int domain, int session, remote_rpc_status_flags_t status) {
+    ...
+}
+...
+main() {
+        struct remote_rpc_notif_register status_notif;
+        status_notif.context = (void *)&lt;NOTIF_CONTEXT&gt;;
+        status_notif.domain = domain;
+        status_notif.notifier_fn = fastrpc_notif_dsp;
+        nErr = remote_session_control(FASTRPC_REGISTER_STATUS_NOTIFICATIONS, (void*)&amp;status_notif, sizeof(status_notif));
+        if (nErr) {
+                printf("ERROR 0x%x: remote_session_control failed to register for status notifications of DSP process\n", nErr);
+        } else {
+                printf(" - Successfully registered for status notifications of DSP process \n");
+        }
+        ....
+        my_RPC_call();
+}
+</code></pre>
+<h2 id="asynchronous-fastrpc">Asynchronous FastRPC</h2>
+<p>FastRPC is a remote procedure call framework for CPU clients to efficiently offload tasks to the DSP. FastRPC is synchronous by default: the caller thread on the CPU is blocked until the remote method execution on the DSP completes and returns with a result. This prevents the same client thread from doing additional processing while remote call in progress. Asynchronous FastRPC allows the caller to continue while the remote call is still ongoing.</p>
+<p>An asynchronous FastRPC call is queued to the DSP thread while control returns immediately to the calling thread with a job ID. The caller gets notified later when the call completes. The caller must process the notification and release the job.</p>
+<p>Refer to example in  $HEXAGON_SDK_ROOT/addons/compute/docs/docs/examples/benchmark/README.md, to understand how to use async support.</p>
+<h3 id="idl-async-support">IDL async support</h3>
+<p>Please refer to the <a href="../../reference/idl.html#async-fastrpc-support">IDL documentation</a> for more details on how to declare an asynchronous FastRPC function.</p>
+<h3 id="async-descriptor">Async Descriptor</h3>
+<p>A FastRPC async descriptor is made of a of notification type, job ID and callback:</p>
+<pre><code>struct fastrpc_async_descriptor {
+    enum fastrpc_async_notify_type type;  /**&lt; asynchronous notification type */
+    fastrpc_async_jobid jobid;            /**&lt; jobid returned in async remote invocation call */
+    union {
+            struct fastrpc_async_callback cb; /**&lt; call back function filled by user */
+    }
+} fastrpc_async_descriptor_t;
+</code></pre>
+<p><code>fastrpc_async_notify_type</code> is used to notify the caller of an async FastRPC call completion, notifications are one of the following types:</p>
+<ol>
+<li>Callback notification</li>
+<li>User poll for job completion</li>
+<li>No notification required</li>
+</ol>
+<p><code>fastrpc_async_notify_type</code> is defined in <code>remote.h</code>:</p>
+<pre><code>enum fastrpc_async_notify_type{
+    FASTRPC_ASYNC_NO_SYNC = 0, /**&lt; No notification asynchronous call*/
+    FASTRPC_ASYNC_CALLBACK,    /**&lt; asynchronous call with response with call back */
+    FASTRPC_ASYNC_POLL,        /**&lt; asynchronous call with polling */
+    FASTRPC_ASYNC_TYPE_MAX,    /**&lt; reserved */
+};
+</code></pre>
+<p>A client making an asynchronous FastRPC is responsible for initializing the async descriptor with the required type of notification and pass it as an argument to the stub method. An async call will return 0 on successful submission of the job to the DSP and update jobid field in the async descriptor. Async call will return non-zero value (error code) in case of failure to submit the job.</p>
+<p><code>fastrpc_async_callback</code> is made of a function pointer to the callback function and a context pointer:</p>
+<pre><code>typedef struct fastrpc_async_callback {
+    void (*fn)(fastrpc_async_jobid jobid, void* context, int result);/**&lt; call back function */
+    void *context;                                                  /**&lt; unique context filled by user*/
+}fastrpc_async_callback_t;
+</code></pre>
+<h3 id="notification-declaration">Notification declaration</h3>
+<ol>
+<li>
+<p><strong><em>Callback notification:</em></strong> User needs to put the callback function in the descriptor</p>
+<pre><code>struct fastrpc_async_descriptor desc;
+desc.type = FASTRPC_ASYNC_CALLBACK;
+desc.cb.fn= fn;
+desc.cb.context = ptr;
+</code></pre>
+<p>Async call completion is notified to user with a callback function shared in the descriptor. User shall process the notification and release the jobid. Release function can be called within a callback function also. One worker thread is used for notifying all async jobs. Hence it is recommended to keep processing inside a callback function to a minimum.</p>
+<pre><code>void foo_async_callback(fastrpc_async_jobid job_id, void* context, int result) {
+        /* Callback function for jobid */
+        /* Release jobid */
+}
+</code></pre>
+</li>
+<li>
+<p><strong><em>User poll for job completion:</em></strong> User needs to use <code>FASTRPC_ASYNC_POLL</code> for notify_type</p>
+<pre><code>struct fastrpc_async_descriptor desc;
+desc.type = FASTRPC_ASYNC_POLL;
+</code></pre>
+<p>The FastRPC library does not notify call completion to user for the jobs submitted with <code>FASTRPC_ASYNC_POLL</code> type. Instead, the user needs to poll for the status of the job using <code>fastrpc_async_get_status</code> function and release jobid after its use. Blocking poll and non-blocking poll with timeout are supported.</p>
+<p>The <code>fastrpc_async_get_status</code> function returns 0 on completion of the job. Actual return value (success/error/return value) of the remote call will be updated in <code>&amp;result</code> if the job status is completed.</p>
+<pre><code>/* Get current status of an async call with jobid.
+*
+* @param jobid, jobid returned in descriptor during successfull async call
+* @param timeout_us, timeout in micro seconds
+*                    timeout = 0, returns immediately with status/result
+*                    timeout &gt; 0, wait for completion with timeout in micro-sec
+*                    timeout &lt; 0. wait indefinitely. Block thread until job completion.
+* @param result, integer pointer for the result of the job
+*                0 on success
+*                error code on failure
+* @retval, 0 on job completion and result of job is part of @param result
+*          AEE_EBUSY, if job status is pending and is not returned from the DSP
+*          AEE_EBADPARM, if job id is invalid
+*          AEE_EFAILED, FastRPC internal error
+*/
+int fastrpc_async_get_status(fastrpc_async_jobid jobid, int timeout_us, int *result);
+</code></pre>
+</li>
+<li>
+<p><strong><em>No notification required:</em></strong> User needs to use <code>FASTRPC_ASYNC_NO_SYNC</code> for notify_type</p>
+<pre><code>struct fastrpc_async_descriptor desc;
+desc.type = FASTRPC_ASYNC_NO_SYNC;
+</code></pre>
+<p>In this mode, no notification are sent to user after completion of the job with the result of either success or failure. The FastRPC library will ignore the result and automatically release the jobid after completion. User is not required to book keep any of the data associated with this type of job after successful submission.</p>
+</li>
+</ol>
+<h3 id="release-async-jobid">Release Async JobID</h3>
+<p>Client shall release jobid after receiving call completion notification with user poll or callback. The release allows the framework to clean internal states associated with the async jobid. <code>AEE_PENDING</code> will be returned if the release function called before the job completion.</p>
+<pre><code>/* Release Async job.  Release async job after receiving status either through callback/poll
+    *
+    * @param jobid, jobid returned during Async job submission.
+    * @retval, 0 on success
+    *          AEE_EBUSY, if job status is pending and is not yet returned from the DSP
+    *          AEE_EBADPARM, if job id is invalid
+*/
+int fastrpc_release_async_job(fastrpc_async_jobid jobid);
+</code></pre>
+<p><strong><em>NOTE:</em></strong> This function can be called within the callback function also</p>
+<h2 id="remote-file-system">Remote File system</h2>
+<p>The DSP does not have its own file system, so it uses the CPU remote file system to read shared object files. Prebuilt shared objects and the FastRPC shell are present in the remote file system. Any client libraries that are to be loaded in the DSP user PD are also read by the FastRPC framework from the remote file system.</p>
+<p>On Android builds, the remote file system is implicitly implemented by the user mode library: <code>libadsprpc.so</code> or <code>libcdsprpc.so</code>. It uses the calling process's context to open files.</p>
+<h3 id="search-path-on-remote-file-system">Search path on remote file system</h3>
+<ul>
+<li>On Android, the default file system search directory, <code>PATH</code>, is <code>/vendor/lib/rfsa/dsp;/vendor/dsp</code>.</li>
+<li>The optional environment variable, <code>DSP_LIBRARY_PATH</code>, can be used to prepend a user-specified path to the default file system search directory. It contains a list of directories to search when <code>dlopen("library")</code> is called.</li>
+<li>If multiple versions of a file are found in the DSP search path, it will choose the one found earliest in the search path.</li>
+<li>The FastRPC framework first searches in the domain of the path, and then it searches in the path directly, for all the paths that are part of <code>DSP_LIBRARY_PATH</code>. If any shared objects are specific to a particular domain, they can be put under the domain directory of the search path. See examples below.</li>
+<li>The SM8250 and later targets support the optional <code>DSP_LIBRARY_PATH</code>environment variable. If <code>DSP_LIBRARY_PATH</code> is not defined, the FastRPC framework looks for the <code>ADSP_LIBRARY_PATH</code> environment variable. For older targets, it checks only for the <code>ADSP_LIBRARY_PATH</code> environment variable. The <code>ADSP_LIBRARY_PATH</code> environment variable <em>replaces</em> the default path, while <code>DSP_LIBRARY_PATH</code> <em>prepends</em> to the default search path. For more information on <code>DSP_LIBRARY_PATH</code>, see the next section.</li>
+</ul>
+<h3 id="using-dsp_library_path">Using DSP_LIBRARY_PATH</h3>
+<p><code>DSP_LIBRARY_PATH</code> is a <code>;</code> delimited variable used for specifying search paths on the remote file system. Use the following instructions to set the <code>DSP_LIBRARY_PATH</code>:</p>
+<ul>
+<li>
+<p><code>adb shell</code></p>
+</li>
+<li>
+<p>To set up a single directory for <code>DSP_LIBRARY_PATH</code>:</p>
+<pre><code>export DSP_LIBRARY_PATH = “foo”
+</code></pre>
+</li>
+<li>
+<p>To set up multiple directories for <code>DSP_LIBRARY_PATH</code>:</p>
+<pre><code>export DSP_LIBRARY_PATH = “foo; bar”
+</code></pre>
+</li>
+<li>
+<p>To set up multiple directories for <code>DSP_LIBRARY_PATH</code>, including the current process directory:</p>
+<pre><code>export DSP_LIBRARY_PATH = “; foo; bar”
+</code></pre>
+</li>
+</ul>
+<p><strong><em>NOTE:</em></strong> The client application can call <code>setenv()</code> to set this variable from within the program as well.</p>
+<h4 id="default-value">Default value</h4>
+<p>When <code>DSP_LIBRARY_PATH</code> is not set, a default value for the module directory is used. This value is specific to the CPU OS.</p>
+<ul>
+<li>On Android, the path is <code>/vendor/lib/rfsa/dsp;/vendor/dsp</code>.</li>
+<li>On Windows, the path is <code>c:\Program Files\Qualcomm\RFSA\aDSP</code>.</li>
+<li>On LE the, path is <code>/dsp;/usr/lib/rfsa/adsp</code>.</li>
+</ul>
+<h4 id="usage-examples">Usage examples</h4>
+<ul>
+<li>
+<p>Assumptions:</p>
+<ul>
+<li>The CPU user process is using the cDSP domain</li>
+<li>The default <code>DSP_LIBRARY_PATH</code> is used</li>
+</ul>
+<p>The following paths will be searched for the shared objects in this order:</p>
+<pre><code>/vendor/lib/rfsa/dsp/cdsp/
+/vendor/lib/rfsa/dsp/
+/vendor/dsp/cdsp/
+/vendor/dsp/
+</code></pre>
+</li>
+<li>
+<p>Assumptions:</p>
+<ul>
+<li>The CPU user process is using the cDSP domain</li>
+<li><code>DSP_LIBRARY_PATH</code> = “foo;bar”</li>
+</ul>
+<p>The following paths will be searched for the shared objects in this order:</p>
+<pre><code>foo/cdsp/
+foo/
+bar/cdsp/
+bar/
+/vendor/lib/rfsa/dsp/cdsp/
+/vendor/lib/rfsa/dsp/
+/vendor/dsp/cdsp/
+/vendor/dsp/
+</code></pre>
+</li>
+<li>
+<p>Assumptions:</p>
+<ul>
+<li>The CPU user process is using the cDSP domain</li>
+<li><code>DSP_LIBRARY_PATH</code> = “;foo;bar”</li>
+</ul>
+<p>The following paths will be searched for the shared objects in this order:</p>
+<pre><code>./cdsp/
+./
+foo/cdsp/
+foo/
+bar/cdsp/
+bar/
+/vendor/lib/rfsa/dsp/cdsp/
+/vendor/lib/rfsa/dsp/
+/vendor/dsp/cdsp/
+/vendor/dsp/
+</code></pre>
+</li>
+</ul>
+<h2 id="dynamic-loading">Dynamic loading</h2>
+<p>The Hexagon SDK provides the tools and services to create and execute custom code on the DSP via dynamic shared objects.</p>
+<p>Dynamic shared objects allow for customization of the DSP image at runtime without the need to rebuild the DSP image. They also allow for DSP code to be added or removed based on runtime needs.</p>
+<p>Dynamic shared objects are analogous to Linux SO and Windows DLL files. They are implemented as ELF files, and in the CPU file system, they exist as files that are loaded by the DSP via an interprocessor communication mechanism. Once loaded, all symbols publicly exported by the shared object can be referenced or called.</p>
+<p>The creation of shared objects is supported by the Hexagon Tools. For more information about the structure and limitations of dynamic shared objects, see the <a href="../../pdf/80-N2040-23_K_Hexagon_Application_Binary_Interface_User_Guide.pdf">Hexagon Application Binary Interface (ABI) User Guide</a>.</p>
+<p>Dynamic loading is supported as follows:</p>
+<ul>
+<li>
+<p>Within FastRPC invocation</p>
+<ul>
+<li>The FastRPC framework dynamically loads the necessary skel libraries and their dependencies from the remote file system when the first method is called from each interface. FastRPC will also create a new dynamic user PD on the DSP during the first invocation from an HLOS user process.</li>
+</ul>
+</li>
+<li>
+<p>Outside FastRPC invocation</p>
+<ul>
+<li>Static code on the DSP can use <code>dlopen()</code> to initiate shared object loading. In this case, vendor-side daemons are provided with the Android image to support the dynamic loading for specific domains.</li>
+<li>This mechanism is used by the Audio and Sensor static code. The <code>/vendor/bin/adsprpcd</code> (for Audio) and <code>/vendor/bin/sdsprpcd</code> (for Sensor) daemons on the CPU must be up and running to support dynamic loading in the static audio and sensor environment on the DSP.</li>
+</ul>
+</li>
+</ul>
+<h2 id="memory-management">Memory management</h2>
+<p>This section discusses the Hexagon DSP memory management model for FastRPC-based applications: the types of memory available, memory management hardware, and memory performance implications that you must be aware of.</p>
+<h3 id="hardware-overview">Hardware overview</h3>
+<p>A typical Qualcomm Snapdragon SoC includes several processors and other hardware cores, all with access to the same external system memory. All such processors and cores, including the Hexagon DSP, access memory via one or more memory management units (MMUs). These MMUs control which parts of the memory the different cores and software running on them can access. The following diagram illustrates a simple example of the main CPU, a Hexagon DSP, and a third hardware core.</p>
+<p><img alt="Memory management hardware overview" src="../../images/memory_system_overview.svg" title="Memory management hardware overview" /></p>
+<p>The Hexagon DSP, when implemented as a compute or application DSP, uses two different MMUs:</p>
+<ul>
+<li>An internal MMU inside the DSP, managed by the DSP operating system</li>
+<li>An external System MMU (SMMU) between the DSP and system buses and the external memory, managed by the application processor (CPU)</li>
+</ul>
+<p>All accesses to external memory and hardware registers are via the SMMU. However, accesses to internal DSP memories (such as VTCM) and DSP subsystem registers are not via the SMMU.</p>
+<p>By default, each processor and hardware core is isolated to its own memory space, and cannot access memory belonging to other cores. It is possible however to allocate and map shared memory to share data efficiently between multiple cores. For the Hexagon DSP this can be done with FastRPC APIs as discussed <a href="#fastrpc-memory-management">below</a>.</p>
+<h3 id="mmus-and-address-spaces">MMUs and address spaces</h3>
+<p>The following diagram represents the three different address spaces on the Hexagon DSP that you should know about, and the MMUs used to translate between them.</p>
+<p><img alt="MMUs and address spaces" src="../../images/mmus_address_spaces.svg" title="MMUs and address spaces" /></p>
+<p>Each process on the DSP runs in its own <em>Virtual Address space</em> (DSP VA). The DSP VA is managed by <a href="../os/os_support_dsp.html">QuRT, the DSP RTOS</a>, ensuring that different processes are isolated from each other and from the operating system itself. The Hexagon DSP uses a 32-bit virtual address space, limiting each process to 4 GB of address space. If a process attempts to access memory that is not mapped to the DSP MMU, the DSP-side process is killed with a page fault.</p>
+<p>Memory accesses going out from the Hexagon DSP towards the system are in the <em>DSP Physical Address space</em> (DSP PA). This space is not the same as the overall SoC physical address space; rather, DSP PAs are used as input addresses to the SMMU, which translates them to system physical addresses. The SMMU is used for two purposes: to control what memory the DSP can access, and to give the DSP a contiguous view of physically non-contiguous buffers.</p>
+<p>The SMMU is managed by the main application CPU. If the DSP attempts to access memory that is not mapped to the SMMU, the access results in an SMMU page fault handled by the CPU, which typically results in a system crash.</p>
+<p>Finally, memory accesses going out from the SMMU to the system buses and external memory are in the <em>System Physical Address space</em> (System PA). This address space is global across the entire SoC.</p>
+<h3 id="fastrpc-memory-management">FastRPC memory management</h3>
+<p>As discussed <a href="#dynamic-user-pd">above</a>, each FastRPC client process runs its DSP code in a separate dynamic user PD. Each such PD is a separate process with its own virtual address space, separate from other DSP processes and its CPU-side counterpart. The user PD starts with some local memory available, and it can get access to more memory in two ways:</p>
+<ul>
+<li>
+<p>Heap allocations</p>
+<p>Standard C/C++ heap allocation operations (such as <code>malloc()</code> and <code>operator new</code>) on the DSP use a custom heap manager that requests more memory from the CPU as needed. This memory is automatically mapped to the process's address space, but it is not accessible to the CPU-side client.</p>
+</li>
+<li>
+<p>Shared buffers</p>
+<p>Client applications can allocate shared memory buffers and map them to the DSP either temporarily for the duration of an RPC call, or persistently with explicit map/unmap calls. Using shared buffers lets the CPU-side client application and its DSP counterpart share data efficiently without copying between the processors. For more information, see the <a href="#allocate-memory-for-shared-buffers">allocate memory section</a>.</p>
+<p>The FastRPC framework maps memory to the DSP MMU and the SMMU as needed. By default, FastRPC copies all arguments passed in a function call from CPU-accessible memory to DSP-accessible memory as part of the call. For small amounts of data, this is not a concern, but for large input/output buffers such as camera pictures or video frames, the copy can take a significant amount of time. To avoid copies, FastRPC clients should use shared ION buffers for all large input/output data buffers.</p>
+</li>
+</ul>
+<h4 id="allocate-memory-for-shared-buffers">Allocate memory for shared buffers</h4>
+<p>On Android and other supported Linux platforms, shared memory buffers must be allocated with the ION allocator. The easiest approach is to use the <a href="../../doxygen/rpcmem/index.html" target="_blank">RPCMEM library</a>; it automatically uses the correct ION APIs and registers buffers for FastRPC.</p>
+<p>If using RPCMEM is not possible, for example, when the buffers are allocated by a different framework, clients can use the <code>remote_register_buf()</code> function that is defined as part of the <a href="../../doxygen/remote/index.html" target="_blank">remote API</a>:</p>
+<pre><code>remote_register_buf(buffer, size, fd); // register
+remote_register_buf(buffer, size, -1); // unregister
+</code></pre>
+<h4 id="transient-shared-buffers">Transient shared buffers</h4>
+<p>FastRPC automatically recognizes shared buffers in function calls based on their address. Buffers allocated with the <a href="../../doxygen/rpcmem/index.html" target="_blank">RPCMEM library</a> are automatically used as shared buffers; other ION buffers must first be registered using <code>remote_register_buf()</code>, as discussed above. The buffer address and size passed to the <code>remote_register_buf()</code> call must match the values passed to the RPC call where they are used, otherwise the buffer will not be recognized.</p>
+<p>FastRPC automatically maps shared buffers used as function arguments to the SMMU and DSP MMU for the duration of the call, and it passes the resulting DSP VA as an argument to the DSP-side function. Once the function call returns, FastRPC automatically unmaps the buffers. As a result, the pointers will not be valid on the DSP side after the call returns, and the same buffer might receive a different address during subsequent calls.</p>
+<p>FastRPC also handles cache maintenance operations automatically for shared buffers used as RPC function call parameters.</p>
+<h4 id="persistent-shared-buffers-using-dmahandle-objects">Persistent shared buffers using dmahandle objects</h4>
+<p>Shared buffers mapped automatically during FastRPC calls are only mapped for the duration of the call. Clients that need to map a buffer persistently across function calls can pass buffers to the DSP as <code>dmahandle</code> objects and manage their mapping lifetimes manually. These <code>dmahandle</code>-based persistent shared buffers must be allocated from ION similarly to regular transient shared buffers, but they are passed to the DSP with a separate function call:</p>
+<pre><code>interface example {
+    AEEResult map_buffer(in dmahandle buffer);
+    AEEResult unmap_buffer();
+};
+//...
+buffer = rpcmem_alloc(RPCMEM_HEAP_ID_SYSTEM, RPCMEM_DEFAULT_FLAGS, size);
+fd = rpcmem_to_fd(buffer);
+example_map_buffer(fd, 0, size);
+// ... Use buffer ...
+example_unmap_buffer();
+</code></pre>
+<p><strong><em>NOTE:</em></strong> A <code>dmahandle</code> parameter in the IDL interface is converted into three parameters in the generated C interface. For details, see the <a href="../../reference/idl.html">IDL reference page</a>.</p>
+<p>On the DSP side, the implementation can use <code>HAP_mmap()</code> to map the buffer to the process, and <code>HAP_munmap()</code> to unmap the buffer once done. Both functions are documented as part of <a href="../../doxygen/HAP_mem/index.html" target="_blank">HAP memory management APIs</a>:</p>
+<pre><code>AEEResult example_map_buffer(int bufferfd, uint32 bufferoffset,
+                             uint32 bufferlen) {
+    //...
+    buffer = HAP_mmap(NULL, bufferlen, HAP_PROT_READ|HAP_PROT_WRITE, 0, bufferfd, 0);
+}
+
+AEEResult example_unmap_buffer(void) {
+    //...
+HAP_munmap(buffer, size);
+}
+</code></pre>
+<p>If the buffer is used to share data between the CPU and the DSP between map/unmap operations, the application must also perform cache maintenance operations manually:</p>
+<ul>
+<li>
+<p>On the DSP side, use the <code>qurt_mem_cache_clean()</code> function to flush or invalidate the cache as needed. For details, see the <a href="../os/os_support_dsp.html">QuRT documentation</a>.</p>
+</li>
+<li>
+<p>On the CPU side, cache maintenance is not required on platforms that support I/O coherency (to determine whether I/O coherency is supported, see the <a href="../../reference/feature_matrix.html">feature matrix</a>. On other platforms, standard Arm cache maintenance operations might be available, but we do not recommend using persistent shared buffers for sharing data between the CPU and DSP without I/O coherency support.</p>
+</li>
+</ul>
+<p>See the <code>fcvqueue</code> library in <code>$HEXAGON_SDK_ROOT/examples/asyncdspq_sample/</code> for an example on how to use <code>dmahandle</code> objects to persistently map buffers to the DSP and how perform cache maintenance operations on the DSP.</p>
+<h4 id="persistent-shared-buffers-using-fastrpc_mmap">Persistent shared buffers using fastrpc_mmap</h4>
+<p>Shared buffers mapped automatically during FastRPC calls are only mapped for the duration of the call. Clients that need to map a buffer persistently across function calls can map them using <code>fastrpc_mmap()</code> and manage the lifetime of the mapping manually. The <code>fastrpc_mmap()</code> API provides similar options as <code>dmahandle</code> type of object discussed in the previous section. It provides a unified interface with control flags for explicitly mapping a buffer to the DSP. The <code>fastrpc_mmap()</code> API is available from Lahaina and later targets. It is recommended to use over <code>dmahandle</code> objects when available. Refer to <a href="../../doxygen/remote/index.html" target="_blank">fastrpc_mmap API</a> for more information.</p>
+<p>On the CPU side, an application allocates an ION memory and maps it to the remote process on the DSP as follows.</p>
+<pre><code>#include "remote.h"
+
+buffer = rpcmem_alloc(RPCMEM_HEAP_ID_SYSTEM, RPCMEM_DEFAULT_FLAGS, size);
+fd = rpcmem_to_fd(buffer);
+nErr = fastrpc_mmap(domain, fd, buffer, 0, size, FASTRPC_MAP_FD);
+// ... share fd with DSP for accessing the same buffer on DSP ...
+nErr = fastrpc_munmap(domain, fd, buffer, size);
+</code></pre>
+<p>On the DSP side, the implementation can use <code>HAP_mmap_get()</code> to pass the buffer file descriptor in order to increment the reference to the buffer mapping and get the virtual address of the buffer, and <code>HAP_mmap_put()</code> to release the reference on the buffer once done. Both functions are documented as part of <a href="../../doxygen/HAP_mem/index.html" target="_blank">HAP memory management APIs</a>:</p>
+<pre><code>//...
+nErr = HAP_mmap_get(fd, &amp;buffer, NULL);
+//... use buffer and release reference once done ...
+nErr = HAP_mmap_put(fd);
+</code></pre>
+<p>If the buffer is used to share data between the CPU and the DSP between map/unmap operations, the application must also perform cache maintenance operations manually:</p>
+<ul>
+<li>
+<p>On the DSP side, use the <code>qurt_mem_cache_clean()</code> function to flush or invalidate the cache as needed. For details, see the <a href="../os/os_support_dsp.html">QuRT documentation</a>.</p>
+</li>
+<li>
+<p>On the CPU side, cache maintenance is not required on platforms that support I/O coherency. To determine whether I/O coherency is supported, see the <a href="../../reference/feature_matrix.html">feature matrix</a>. On other platforms, standard Arm cache maintenance operations might be available, but we do not recommend using persistent shared buffers for sharing data between the CPU and DSP without I/O coherency support.</p>
+</li>
+</ul>
+<h3 id="performance-implications">Performance implications</h3>
+<h4 id="tlb-pressure">TLB pressure</h4>
+<p>The Hexagon DSP uses a software-managed Translation Lookaside Buffer (TLB) instead of a full hardware MMU, making TLB misses more expensive than many other processors. Because the number of TLB entries is limited in the TLB table, the TLB table can quickly fill up. From then on, each addition into the TLB table must be proceeded by the eviction of an existing TLB entry. This is referred to as <em>TLB pressure</em>.</p>
+<p>To reduce the TLB pressure, the Hexagon TLB accommodates various sizes of TLB entries, for example, 4k, 16k, 64k, 256k, 1 MB, 4 MB, 16 MB. Therefore, to optimize data usage for large buffers, it is important that these large buffers use a minimum number of TLB entries. Do this by allocating large contiguous buffers rather than many individual smaller ones, and maintain good data locality within those buffers. Even buffers that are non-contiguous in physical memory are visible to the DSP as contiguous through the SMMU.</p>
+<h4 id="shared-buffers-vs-copying-data">Shared buffers vs copying data</h4>
+<p>By default, FastRPC copies all arguments passed in a function call from CPU-accessible memory to DSP-accessible memory as part of the function call. For large buffers, this can take a significant amount of time. To avoid copies, client applications should use shared ION buffers for all large input/output buffers, as discussed above in <a href="#allocate-memory-for-shared-buffers">Allocating memory for shared buffers</a> and <a href="#transient-shared-buffers">Transient shared buffers</a>.</p>
+<h2 id="fastrpc-debugging">FastRPC debugging</h2>
+<p>For generic instructions on how to debug an Android application making FastRPC calls to the DSP, see the <a href="../../tools/debug.html">Debug</a> section. When you run into specific issues, you can also see the <a href="../../reference/troubleshooting.html#trouble-shooting-fastrpc-issues">FastRPC debugging FAQs</a>.</p>
+<h2 id="fastrpc-performance">FastRPC performance</h2>
+<p>The latency of a FastRPC synchronous call is the amount of time spent from when the CPU thread initiates a call to the DSP until it can resume its operation, less the amount of time spent by the DSP to execute the task itself. Under optimized conditions, the FastRPC round-trip average latency is on the order of 100 to 700 microseconds on the targets with hardware <a href="../../reference/feature_matrix.html">IO coherency</a> support. It is recommended to measure average FastRPC latency over multiple RPC calls instead of one call for consistent results as it depends on variable latencies like CPU wakeup and scheduler delays.</p>
+<p>The FastRPC latency is measured on Lahaina chipset for different workloads on the DSP are published in the tables below. Because CPU wake up delay is one of the significant contributors to FastRPC latency, performance is measured with and without <a href="../../doxygen/remote/index.html" target="_blank">FastRPC QoS (PM_QOS)</a> mode with the DSP running at TURBO clocks. To understand the latencies and potential optimizations to FastRPC performance, see the discussion on the <a href="../system_performance/system_optimizations.html">system-level optimizations</a> section.</p>
+<p>The FastRPC latency for remote calls with no processing (NOP loopback) on DSP is profiled using the <a href="../../examples/profiling/index.html">profiling</a> application and published in the table below. The table captures the numbers collected from running the two ADB commands below.</p>
+<div class="highlight"><pre><span></span><code>Chipset: Lahaina
+
+# FastRPC QoS on, ION buffers, IO coherent, DSP_clocks=TURBO
+adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH DSP_LIBRARY_PATH=&quot;/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;&quot; /vendor/bin/profiling -f default -n 1000 -p -q 300
+
+# FastRPC QoS off, ION buffers, IO coherent, DSP_clocks=TURBO
+adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH DSP_LIBRARY_PATH=&quot;/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;&quot; /vendor/bin/profiling -f default -n 1000 -p -q 0
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Buffer type</th>
+<th>Buffer size</th>
+<th>FastRPC latency for NOP loopback with QoS off (microseconds)</th>
+<th>FastRPC latency for NOP loopback with QoS on (microseconds)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>noop</td>
+<td>0K</td>
+<td>55</td>
+<td>54</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>32K</td>
+<td>93</td>
+<td>109</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>32K</td>
+<td>93</td>
+<td>110</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>64K</td>
+<td>91</td>
+<td>108</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>64K</td>
+<td>92</td>
+<td>108</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>128K</td>
+<td>97</td>
+<td>109</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>128K</td>
+<td>96</td>
+<td>109</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>1M</td>
+<td>175</td>
+<td>138</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>1M</td>
+<td>174</td>
+<td>138</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>4M</td>
+<td>174</td>
+<td>139</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>4M</td>
+<td>174</td>
+<td>139</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>8M</td>
+<td>179</td>
+<td>140</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>8M</td>
+<td>180</td>
+<td>141</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>16M</td>
+<td>176</td>
+<td>153</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>16M</td>
+<td>171</td>
+<td>153</td>
+</tr>
+</tbody>
+</table>
+<p>The FastRPC performance published in the table below is a sample measurement of some realistic DSP workloads, performed on the benchmark application example available in the compute add-on. Such performance may vary somewhat across devices, software builds, and trials, due to numerous factors.</p>
+<div class="highlight"><pre><span></span><code>Chipset: Lahaina
+
+# With FastRPC QoS enabled, ION buffers, IO coherent, DSP_clocks=TURBO
+adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH DSP_LIBRARY_PATH=&quot;/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;&quot; /vendor/bin/benchmark -o /data/local/benchmark.csv -f epsilon -P 6 -L 1000 -l 1 -s -q
+
+# With FastRPC QoS disabled (default mode), ION buffers, IO coherent, DSP_clocks=TURBO
+adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH DSP_LIBRARY_PATH=&quot;/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;&quot; /vendor/bin/benchmark -o /data/local/benchmark.csv -f epsilon -P 6 -L 1000 -l 1 -s
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Benchmark Function</th>
+<th>Image size</th>
+<th>DSP skel method execution time (microseconds)</th>
+<th>FastRPC latency with QoS OFF (microseconds)</th>
+<th>FastRPC latency with QoS ON (microseconds)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Epsilon</td>
+<td>1920x1080</td>
+<td>949</td>
+<td>301</td>
+<td>265</td>
+</tr>
+<tr>
+<td>Bilateral</td>
+<td>1920x1080</td>
+<td>13259</td>
+<td>303</td>
+<td>275</td>
+</tr>
+<tr>
+<td>Fast9</td>
+<td>1920x1080</td>
+<td>4232</td>
+<td>189</td>
+<td>177</td>
+</tr>
+<tr>
+<td>Integrate</td>
+<td>1920x1080</td>
+<td>615</td>
+<td>339</td>
+<td>303</td>
+</tr>
+<tr>
+<td>Dilate3x3</td>
+<td>1920x1080</td>
+<td>228</td>
+<td>300</td>
+<td>271</td>
+</tr>
+<tr>
+<td>Dilate5x5</td>
+<td>1920x1080</td>
+<td>175</td>
+<td>203</td>
+<td>190</td>
+</tr>
+<tr>
+<td>Conv3x3</td>
+<td>1920x1080</td>
+<td>237</td>
+<td>297</td>
+<td>284</td>
+</tr>
+<tr>
+<td>Gaussian7x7</td>
+<td>1920x1080</td>
+<td>217</td>
+<td>305</td>
+<td>272</td>
+</tr>
+<tr>
+<td>Sobel3x3</td>
+<td>1920x1080</td>
+<td>174</td>
+<td>304</td>
+<td>269</td>
+</tr>
+<tr>
+<td>FFT</td>
+<td>1024x1024</td>
+<td>2767</td>
+<td>309</td>
+<td>270</td>
+</tr>
+<tr>
+<td>Scatter</td>
+<td>1920x1080</td>
+<td>223</td>
+<td>406</td>
+<td>383</td>
+</tr>
+<tr>
+<td>Gather</td>
+<td>1920x1080</td>
+<td>268</td>
+<td>263</td>
+<td>244</td>
+</tr>
+<tr>
+<td>Histogram</td>
+<td>1920x1080</td>
+<td>128</td>
+<td>274</td>
+<td>256</td>
+</tr>
+</tbody>
+</table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../system_performance/resource_management.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Resource management
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="dspqueue.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Asynchronous DSP Packet Queue
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../../js/iframe-worker.js"></script>
+<script src="../../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

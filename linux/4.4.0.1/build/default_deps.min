@@ -1,0 +1,51 @@
+# Default dependency paths include file
+# This file contains a list of paths to SDK-provided libraries, along with the default selection of prebuilt
+# or source for each. This file is meant to be included by user project local dependency files (e.g. hexagon_deps.min,
+# android_deps.min, etc.) that depend on one or more SDK-provided library.
+
+# Each library path herein is defined according to the following convention:
+
+# <DEPENDENCY_NAME>_[PREBUILT_]DIR_DEFAULT = <path>
+
+# where:
+# <DEPENDENCY_NAME>: This is what a user project must add to the 'DEPENDENCIES' variable in its local dependency
+# file to pull in this dependency.
+# [PREBUILT_]: presence of 'PREBUILT' indicates that by default, this dependency will be taken in binary from
+# <path>/prebuilt. Absence of 'PREBUILT' indicates that by default, this dependency will be built from source at <path>.
+
+# A user project dependency file includes a dependency with:
+# DEPENDENCIES += <DEPENDENCY_NAME>
+
+# Optionally, the user project dependency file may override the default selection of the prebuilt or source version of
+# the dependency by defining
+# <DEPENDENCY_NAME>_[PREBUILT]_DIR = <path>
+# (note that "_DEFAULT" is omitted).
+
+# ATOMIC is a (Hexagon | Android | UbuntuARM) library of atomic operators
+ATOMIC_PREBUILT_DIR_DEFAULT = $(HEXAGON_SDK_ROOT)/libs/atomic
+# QHL is a (Hexagon) library of Math, Complex, BLAS, DSP operators.
+QHL_PREBUILT_DIR_DEFAULT = $(HEXAGON_SDK_ROOT)/libs/qhl
+# QHL_HVX is a (Hexagon) library of Math, Complex, BLAS, DSP operators for vector data.
+QHL_HVX_PREBUILT_DIR_DEFAULT = $(HEXAGON_SDK_ROOT)/libs/qhl_hvx
+# QPRINTF is a (Hexagon) library of macros and functions to call from Hexagon assembly or C/C++ for message.
+QPRINTF_PREBUILT_DIR_DEFAULT = $(HEXAGON_SDK_ROOT)/libs/qprintf
+# WORKER_POOL is a (Hexagon) library for creating, submitting jobs to and managing worker pools.
+WORKER_POOL_PREBUILT_DIR_DEFAULT = $(HEXAGON_SDK_ROOT)/libs/worker_pool
+# RPCMEM is a (Hexagon | Android | UbuntuARM) library for ION buffers managment.
+RPCMEM_PREBUILT_DIR_DEFAULT = $(HEXAGON_SDK_ROOT)/ipc/fastrpc/rpcmem
+# ASYNCDSPQ is a (Hexagon | Android | UbuntuARM) library for asynchronous communication between CPU and DSP.
+ASYNCDSPQ_PREBUILT_DIR_DEFAULT = $(HEXAGON_SDK_ROOT)/ipc/asyncq/asyncdspq
+# TEST_MAIN is a (Hexagon) library for simulator testing of a module.
+TEST_MAIN_PREBUILT_DIR_DEFAULT = $(HEXAGON_SDK_ROOT)/utils/test_main
+# TEST_UTIL is a (Hexagon | Android | UbuntuARM) library provides support for the qtest environment
+TEST_UTIL_PREBUILT_DIR_DEFAULT = $(HEXAGON_SDK_ROOT)/utils/sim_utils
+
+
+# List of hexagon architectures in descending order starting from particular architecture till supported by SDK.
+# The linker will try to look for particular dependant library based on order given for hexagon varients.
+# If prebuilt for particular version of hexagon is not available, Build system will move to one version down
+# each time and try to link with that library.
+HEX_PREBUILT_v65 := v65
+HEX_PREBUILT_v66 := v66 v65
+HEX_PREBUILT_v68 := v68 v66 v65
+

@@ -1,0 +1,2352 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Profiling - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#profiling-example" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Profiling
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Profiling
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="index.html" class="md-nav__link md-nav__link--active">
+      Profiling
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-profiling_walkthroughpy" class="md-nav__link">
+    Running profiling_walkthrough.py
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    Building
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-on-device" class="md-nav__link">
+    Running on device
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-on-simulator" class="md-nav__link">
+    Running on simulator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastrpc-performance-tests" class="md-nav__link">
+    FastRPC performance tests
+  </a>
+  
+    <nav class="md-nav" aria-label="FastRPC performance tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contributing-factors-to-fastrpc-performance" class="md-nav__link">
+    Contributing factors to FastRPC performance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profiling-summary-report" class="md-nav__link">
+    Profiling summary report
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-run_profilerspy" class="md-nav__link">
+    Running run_profilers.py
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#timer-apis" class="md-nav__link">
+    Timer APIs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hexagon-profiler" class="md-nav__link">
+    Hexagon Profiler
+  </a>
+  
+    <nav class="md-nav" aria-label="Hexagon Profiler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_1" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-results" class="md-nav__link">
+    Understanding the results
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hexagon-trace-analyzer" class="md-nav__link">
+    Hexagon Trace Analyzer
+  </a>
+  
+    <nav class="md-nav" aria-label="Hexagon Trace Analyzer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_2" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_1" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-on-device" class="md-nav__link">
+    Profile on device
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-on-simulator" class="md-nav__link">
+    Profile on simulator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-results_1" class="md-nav__link">
+    Understanding the results
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sysmonapp" class="md-nav__link">
+    sysMonApp
+  </a>
+  
+    <nav class="md-nav" aria-label="sysMonApp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_3" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-from-the-command-line" class="md-nav__link">
+    Profile from the Command Line
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-using-android-application" class="md-nav__link">
+    Profile using Android Application
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-results_2" class="md-nav__link">
+    Understanding the results
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-profiling_walkthroughpy" class="md-nav__link">
+    Running profiling_walkthrough.py
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    Building
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-on-device" class="md-nav__link">
+    Running on device
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-on-simulator" class="md-nav__link">
+    Running on simulator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastrpc-performance-tests" class="md-nav__link">
+    FastRPC performance tests
+  </a>
+  
+    <nav class="md-nav" aria-label="FastRPC performance tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contributing-factors-to-fastrpc-performance" class="md-nav__link">
+    Contributing factors to FastRPC performance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profiling-summary-report" class="md-nav__link">
+    Profiling summary report
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-run_profilerspy" class="md-nav__link">
+    Running run_profilers.py
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#timer-apis" class="md-nav__link">
+    Timer APIs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hexagon-profiler" class="md-nav__link">
+    Hexagon Profiler
+  </a>
+  
+    <nav class="md-nav" aria-label="Hexagon Profiler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_1" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-results" class="md-nav__link">
+    Understanding the results
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hexagon-trace-analyzer" class="md-nav__link">
+    Hexagon Trace Analyzer
+  </a>
+  
+    <nav class="md-nav" aria-label="Hexagon Trace Analyzer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_2" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_1" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-on-device" class="md-nav__link">
+    Profile on device
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-on-simulator" class="md-nav__link">
+    Profile on simulator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-results_1" class="md-nav__link">
+    Understanding the results
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sysmonapp" class="md-nav__link">
+    sysMonApp
+  </a>
+  
+    <nav class="md-nav" aria-label="sysMonApp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_3" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-from-the-command-line" class="md-nav__link">
+    Profile from the Command Line
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-using-android-application" class="md-nav__link">
+    Profile using Android Application
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-results_2" class="md-nav__link">
+    Understanding the results
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="profiling-example">Profiling Example</h1>
+<h2 id="overview">Overview</h2>
+<p>This example illustrates the use of the various <a href="../../tools/profile.html">profiling tools and APIs</a> available on the Hexagon SDK. This example also measures and reports the <a href="#fastrpc-performance-tests">FastRPC performance</a> with different buffer sizes and <a href="../../software/system_performance/system_optimizations.html">optimizations</a>.</p>
+<p>This example shows how to use the following:</p>
+<ul>
+<li>The <a href="#fastrpc-performance-tests">FastRPC performance</a> tests can be viewed in the shell. These tests print the overhead time for a CPU thread to offload a task to the DSP, wait for the DSP to execute that task, and wake up when the task is complete. The time measurements are meaningless on the simulator.</li>
+<li>The <a href="#timer-apis">timer APIs</a> demonstrate the APIs that can be used for accessing cycle and clock counters and use them to time a block of code. These APIs work on both the simulator and device. The time measurements are meaningless on the simulator.</li>
+<li>The <a href="#hexagon-profiler">Hexagon Profiler</a> generates function-level profiling reports. This profiler can be used only on the simulator.</li>
+<li>The <a href="#hexagon-trace-analyzer">Hexagon Trace Analyzer</a> parses trace files generated on device or on simulator and generates various analysis reports. This profiler works only on Linux.</li>
+<li>The <a href="#sysmonapp">sysMonApp</a> displays various performance-related services on the cDSP, aDSP, and sDSP. This profiler can only be used on device.</li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before the profiling application is run the following conditions should be met:</p>
+<ul>
+<li>Make sure the Hexagon SDK is properly setup with the <a href="../../tools/setup.html">Setup Instructions</a>.</li>
+<li>Some of the profiling tools discussed in this example are not supported on all devices. Please refer to the <a href="../../reference/feature_matrix.html">feature matrix</a> for more details.</li>
+<li>The Hexagon Trace Analyzer requires <a href="https://github.com/brendangregg/FlameGraph/">Flamegraph</a> and <a href="https://github.com/catapult-project/catapult">Catapult</a>. These tools will be downloaded from the internet when the <a href="#running-run_profilerspy">run_profilers.py script</a> is run for the first time. You can download Flamegraph <a href="https://github.com/brendangregg/FlameGraph/archive/master.zip">here</a> and Catapult <a href="https://github.com/catapult-project/catapult/archive/master.zip">here</a>.</li>
+</ul>
+<h2 id="running-profiling_walkthroughpy">Running profiling_walkthrough.py</h2>
+<p>The profiling_walkthrough.py script <a href="#building">builds</a> and <a href="#running-on-device">runs</a> the <a href="#timer-apis">timer APIs</a> and default <a href="#fastrpc-performance-tests">FastRPC performance</a> tests on a device.</p>
+<p>Usage: <code>profiling_walkthrough.py [-p] [-n ITERATIONS] [-i] [-m] [-u] [-q FASTRPC_QOS] [-U UNSIGNED_PD_FLAG]</code></p>
+<p>In addition to the options supported by all <a href="../index.html#walkthrough-scripts">walkthrough scripts</a>, the profiling_walkthrough.py script supports the following options:</p>
+<ul>
+<li>Optional arguments:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-n ITERATIONS</td>
+<td>Number of iterations to run.</td>
+<td>-n 1000</td>
+</tr>
+<tr>
+<td>-d DOMAIN</td>
+<td>Specifies the domain on which to run the example. MDSP and SDSP are not supported. Domain is CDSP by default. 0: ADSP 3: CDSP</td>
+<td>-d 3</td>
+</tr>
+<tr>
+<td>-q FASTRPC_QOS</td>
+<td>Set the FastRPC QoS latency in micro-seconds. This can improve performance at the expense of some increase in power consumption. QoS is turned ON by default. 0 will turn QoS OFF. Positive numbers set the QoS latency in micro-seconds.</td>
+<td>-q 300</td>
+</tr>
+<tr>
+<td>-y SLEEP_LATENCY</td>
+<td>Set DSP Sleep Latency. 0 is default and means DCVS V3 vote will not be made. Range of values is from 10 to 65535 microseconds. To remove a previous latency vote, simply vote for a large latency such as 65535 to indicate that there is no specific latency request.</td>
+<td>-y 0</td>
+</tr>
+<tr>
+<td>-U UNSIGNED_PD_FLAG</td>
+<td>Set the PD to run the example. 1 is default and means run the example on the Unsigned PD.</td>
+<td>-U 1</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>Run power boost using the request type HAP_power_set_DCVS_v3 with HAP_DCVS_V2_PERFORMANCE_MODE. Further details are provided <a href="#powerboost">below</a>.</td>
+<td>OFF</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>Disable <a href="../../software/system_performance/system_optimizations.html#reduce-fastrpc-overhead">ION memory</a> for FastRPC performance tests. ION memory is used by default. This option is relevant only for FUNCTION_NAME default, noop, inbuf, routbuf. Otherwise this option is ignored.</td>
+<td>ON</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>Verify memory operations for FastRPC performance tests by passing a fixed pattern to the DSP function which copies it to the output. The caller then confirms the correct pattern is received.</td>
+<td>OFF</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>Use uncached buffers on the HLOS.</td>
+<td>OFF</td>
+</tr>
+</tbody>
+</table>
+<p>For example, to build and run the timer APIs and default FastRPC performance tests on a sm8250 device:
+<div class="highlight"><pre><span></span><code>python profiling_walkthrough.py -T sm8250
+</code></pre></div></p>
+<h2 id="building">Building</h2>
+<p>Before modifying or understanding the code, we need to make sure we can build the example and generate the binary files from source. You can reproduce the steps of the walkthrough script by building and running the example manually as explained below.</p>
+<ul>
+<li>Build Android variant as follows:
+<div class="highlight"><pre><span></span><code>make android BUILD=Debug
+</code></pre></div></li>
+<li>Build Hexagon variant as follows:
+<div class="highlight"><pre><span></span><code>make hexagon BUILD=Debug DSP_ARCH=v65
+</code></pre></div></li>
+</ul>
+<p>For more information on the build flavors available and build syntax, please refer to the <a href="../../tools/build.html">building reference instructions</a>.</p>
+<h2 id="running-on-device">Running on device</h2>
+<ul>
+<li>Use ADB as root and remount system read/write
+<div class="highlight"><pre><span></span><code>adb root
+adb wait-for-device
+adb remount
+</code></pre></div></li>
+<li>Push Android components as follows:
+<div class="highlight"><pre><span></span><code>adb wait-for-device shell mkdir -p /vendor/bin
+adb wait-for-device push android_Debug_aarch64/ship/profiling /vendor/bin
+adb wait-for-device shell chmod 777 /vendor/bin/profiling
+adb wait-for-device push android_Debug_aarch64/ship/libprofiling.so /vendor/lib64/
+</code></pre></div></li>
+<li>Push Hexagon components as follows:
+<div class="highlight"><pre><span></span><code>adb wait-for-device shell mkdir -p /vendor/lib/rfsa/dsp/sdk/
+adb wait-for-device push hexagon_Debug_toolv84_v66/ship/libprofiling_skel.so /vendor/lib/rfsa/dsp/sdk/
+</code></pre></div></li>
+<li>Generate a device-specific test signature based on the device serial number
+Follow the steps listed in the <a href="../../tools/sign.html#use-signerpy">signing documentation</a>.</li>
+</ul>
+<p><strong><em>NOTE:</em></strong> Signing the device needs to be done once as the same test signature will enable loading any module.</p>
+<ul>
+<li>Direct DSP messages to logcat:
+<div class="highlight"><pre><span></span><code>adb wait-for-device shell &quot;echo 0x1f &gt; /vendor/lib/rfsa/dsp/sdk/profiling.farf&quot;
+adb wait-for-device
+</code></pre></div></li>
+<li>Open another window to see aDSP diagnostic messages:</li>
+<li>Linux:
+In a separate terminal:
+<div class="highlight"><pre><span></span><code>adb logcat -s adsprpc
+</code></pre></div></li>
+<li>
+<p>Windows:
+<div class="highlight"><pre><span></span><code>start cmd.exe /c adb logcat -s adsprpc
+sleep 2
+</code></pre></div></p>
+</li>
+<li>
+<p>Run Profiling Example:
+<div class="highlight"><pre><span></span><code>adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH DSP_LIBRARY_PATH=&quot;/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;&quot; /vendor/bin/profiling
+</code></pre></div></p>
+</li>
+<li>
+<p>Optional Arguments supported by the binary when running the <a href="#timer-apis">timer APIs</a> and <a href="#fastrpc-performance-tests">FastRPC performance</a>:</p>
+</li>
+</ul>
+<p>Usage: <code>/vendor/bin/profiling [-f FUNCTION_NAME] [-n ITERATIONS] [-s SIZE] [-q FASTRPC_QOS] [-U UNSIGNED_PD_FLAG] [-p] [-i] [-m] [-u]</code></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-f FUNCTION_NAME</td>
+<td>Specify which function to run.<p> The supported values are as follows:</p> <p><code>timers</code> to run the timer API examples,</p> <p><code>default</code> to run a default set of FastRPC performance tests with configurations which are cached, ion set by user, variable size, check_memory off. This option is run if -f is not provided.</p> <p><code>noop</code> to run the FastRPC performance test with no operation,</p> <p><code>inbuf</code> to run the FastRPC performance test with <a href="#fastrpc-performance-tests">input buffer</a>, and</p> <p><code>routbuf</code> to run the FastRPC performance test with <a href="#fastrpc-performance-tests">output buffer</a>.</p></td>
+</tr>
+<tr>
+<td>-d DOMAIN</td>
+<td>Specifies the domain on which to run the example. MDSP and SDSP are not supported. Domain is CDSP by default. 0: ADSP 3: CDSP</td>
+</tr>
+<tr>
+<td>-n ITERATIONS</td>
+<td>Iterations to run FastRPC performance tests. 1000 is default. This option is relevant only for FUNCTION_NAME noop inbuf, routbuf. Otherwise this option is ignored.</td>
+</tr>
+<tr>
+<td>-s SIZE</td>
+<td>Size of data buffer for FastRPC performance tests. If 0 is given the noop function will run.</td>
+</tr>
+<tr>
+<td>-q QOS_LATENCY</td>
+<td>Set the <a href="#fastrpc-performance-tests">FastRPC QoS</a> latency in micro-seconds. Increasing the latency will save power at the expense of low performance. QoS is turned ON by default. 0 will turn QoS OFF. Positive numbers set the QoS latency in micro-seconds (300 is default).</td>
+</tr>
+<tr>
+<td>-y SLEEP_LATENCY</td>
+<td>Set DSP Sleep Latency. 0 is default and means DCVS V3 vote will not be made. Range of values is from 10 to 65535 microseconds. To remove a previous latency vote, simply vote for a large latency such as 65535 to indicate that there is no specific latency request.</td>
+</tr>
+<tr>
+<td>-U UNSIGNED_PD_FLAG</td>
+<td>Set the PD to run the example. 1 is default and means run the example on the Unsigned PD.</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>Run power boost using the request type HAP_power_set_DCVS_v3 with HAP_DCVS_V2_PERFORMANCE_MODE. Further details are provided <a href="#powerboost">below</a></td>
+</tr>
+<tr>
+<td>-i</td>
+<td>Disable <a href="#fastrpc-performance-tests">ION memory</a> for FastRPC performance tests. ION memory is used by default. This option is ignored with the FUNCTION_NAME timers. Otherwise the option is relevant.</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>Verify memory operations for FastRPC performance tests by passing a fixed pattern to the DSP function which copies the pattern to the output. The caller then confirms the correct pattern is received. This option is relevant only for FUNCTION_NAME inbuf, routbuf. Otherwise this option is ignored.</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>Use Uncached buffers on HLOS for FastRPC performance tests. This option is relevant only for FUNCTION_NAME inbuf, routbuf. Otherwise this option is ignored.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Example commands with optional arguments to run the FastRPC tests on a specific buffer:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH DSP_LIBRARY_PATH=&quot;/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;&quot; /vendor/bin/profiling -f inbuf -n 5000 -s 8388608 -p -q 700
+</code></pre></div>
+
+<p>The above example command will run the FastRPC performance test on an input buffer of size 8 MB with power boost and FastRPC QoS set to 700 micro-seconds.</p>
+<div class="highlight"><pre><span></span><code>adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH DSP_LIBRARY_PATH=&quot;/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;&quot; /vendor/bin/profiling -f default
+</code></pre></div>
+
+<p>The above example command will run the FastRPC performance tests with on cached buffers, with ion disabled, with check memory off. The buffer types and sizes run will be the following:</p>
+<table>
+<thead>
+<tr>
+<th>Buffer type</th>
+<th>Buffer size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>noop</td>
+<td>0K</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>32K</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>32K</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>64K</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>64K</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>128K</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>128K</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>1M</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>1M</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>4M</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>4M</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>8M</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>8M</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>16M</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>16M</td>
+</tr>
+</tbody>
+</table>
+<p>The results of the above command is as shown in <a href="#profiling-summary-report">Profiling summary report</a>.</p>
+<h2 id="running-on-simulator">Running on simulator</h2>
+<ul>
+<li>
+<p>When running the example on the <a href="../../pdf/80-N2040-1784_E_Hexagon_Simulator_User_Guide.pdf">Hexagon simulator</a>, you need to use the <code>--timing</code> option for the cycle count to be accurate. The time measurements will not be meaningful.</p>
+</li>
+<li>
+<p>When running on the simulator, you need to pass both the arguments to the Hexagon simulator and to the test executable.</p>
+</li>
+<li>
+<p>The arguments given to the executable are given in the <a href="#running-on-device">previous section</a>.</p>
+</li>
+<li>
+<p>The simulator arguments are as follows:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Simulator option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--mv*</code></td>
+<td>Simulate for a particular architecture version of Hexagon. E.g. <code>-mv65</code>.</td>
+</tr>
+<tr>
+<td><code>--timing</code></td>
+<td>Model processor micro-architecture with cache, multi-threading mode, and processor stalls as part of the simulation. This enables timing so that the simulation more accurately models the operation of the processor hardware.</td>
+</tr>
+<tr>
+<td><code>--simulated_returnval</code></td>
+<td>Cause the simulator to return a value to its caller indicating the final execution status of the target application.</td>
+</tr>
+<tr>
+<td><code>--usefs &lt;path&gt;</code></td>
+<td>Cause the simulator to search for required files in the directory with the specified path.</td>
+</tr>
+<tr>
+<td><code>--pmu_statsfile &lt;filename&gt;</code></td>
+<td>Generate a PMU statistics file with the specified name. See the <a href="../../tools/sysmon_profiler.html">SysMon Profiler</a> for more information about PMU events.</td>
+</tr>
+<tr>
+<td><code>--help</code></td>
+<td>Prints available simulator options.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The Hexagon Architecture version for the -mv* flag can be selected based on the DSP architecture version from the following:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>DSP Architecture version</th>
+<th>Simulator Flag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v65</td>
+<td><code>-mv65a_1024</code></td>
+</tr>
+<tr>
+<td>v66</td>
+<td><code>-mv66g_1024</code></td>
+</tr>
+<tr>
+<td>v68</td>
+<td><code>-mv68n_1024</code></td>
+</tr>
+</tbody>
+</table>
+<p>As an example, here is how the <code>profiling_q.so</code> file might be run on the simulator:
+<div class="highlight"><pre><span></span><code>cd $HEXAGON_SDK_ROOT/examples/profiling/
+$DEFAULT_HEXAGON_TOOLS_ROOT/Tools/bin/hexagon-sim -mv65a_1024 --timing --simulated_returnval --usefs hexagon_Debug_toolv84_v65 --pmu_statsfile hexagon_Debug_toolv84_v65/pmu_stats.txt --cosim_file hexagon_Debug_toolv84_v65/q6ss.cfg --l2tcm_base 0xd800 --rtos hexagon_Debug_toolv84_v65/osam.cfg $HEXAGON_SDK_ROOT/rtos/qurt/computev65/sdksim_bin/runelf.pbn -- $HEXAGON_SDK_ROOT/libs/run_main_on_hexagon/ship/hexagon_toolv84_v65/run_main_on_hexagon_sim -- ./hexagon_Debug_toolv84_v65/profiling_q.so -f timers
+</code></pre></div></p>
+<h2 id="fastrpc-performance-tests">FastRPC performance tests</h2>
+<p>The FastRPC overhead can be calculated for different buffer sizes.
+Below is the brief description of the tests that can be executed:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>noop</td>
+<td>Makes a FastRPC invocation with no input and output buffers</td>
+</tr>
+<tr>
+<td>inbuf</td>
+<td>Makes a FastRPC invocation with one input buffer of varying buffer sizes ranging from 32K to 16M</td>
+</tr>
+<tr>
+<td>routbuf</td>
+<td>Makes a FastRPC invocation with one output buffer of varying buffer sizes ranging from 32K to 16M</td>
+</tr>
+</tbody>
+</table>
+<p>The input buffer and output buffer are defined in the IDL file inc/profiling.idl. To understand the in and rout parameters given in the idl file, please refer to the <a href="../../reference/idl.html">IDL documentation</a>.</p>
+<h3 id="contributing-factors-to-fastrpc-performance">Contributing factors to FastRPC performance</h3>
+<p>Various factors impact the performance of FastRPC. Some of the relevant factors are described below. For a detailed explanation of these factors refer to the <a href="../../software/system_performance/system_optimizations.html#reduce-fastrpc-overhead">system performance</a> documentation. The profiling application allows you to explore the impact of some of these factors.</p>
+<ul>
+<li>
+<p>ION buffers:
+ION buffers (available on Android targets) do not require extra copies of buffers when shared between the DSP and the CPU. Non-ION buffers will automatically be copied by FastRPC framework. The impact on performance can be observed in the FastRPC performance tests by using the -i flag to disable ION memory for the FastRPC performance tests.</p>
+</li>
+<li>
+<p>Caches:
+The FastRPC driver takes care of maintaining cache coherency between CPU and DSP for shared buffers. When the -u flag is given for uncached buffers, RPCMEM_HEAP_UNCACHED is used. You can refer to the <a href="../../doxygen/rpcmem/index.html">RPCMEM API</a> to learn more. Caching should result in better performance, but this depends on the application.</p>
+</li>
+<li>
+<p>FastRPC QoS:
+FastRPC offers a QoS API to enable users to request for a required FastRPC latency between CPU application making the remote call and beginning of DSP method execution. This latency requested is not guaranteed but the driver tries to meet available options on the target. Refer to remote_handle_control() and remote_handle64_control() defined at <a href="../../doxygen/remote/index.html" target="_blank">remote API</a>. In the FastRPC performance tests, the user can request for latency by providing it with the -q flag. The default latency is set to 300 microseconds. A higher latency increases the FastRPC overhead observed.</p>
+</li>
+<li>
+<p>Sleep latency:
+The low power sleep modes of the DSP can be entered by setting the <a href="../../software/system_performance/system_optimizations.html#dsp-sleep-latency">DSP sleep latency</a>. The DCVS V3 power voting is done to set the DSP sleep latency. This is supported only on limited devices. The values set for this should be in the range of 10 to 65535 microseconds.</p>
+</li>
+<li>
+<p>Powerboost:       <a name="powerboost"></a>
+If the power boost is set, the following DCVS V3 voting is implemented:
+<div class="highlight"><pre><span></span><code>HAP_power_request_t request = {0};
+request.type = HAP_power_set_DCVS_v3;
+request.dcvs_v3.set_dcvs_enable = TRUE;
+request.dcvs_v3.dcvs_enable = TRUE;
+request.dcvs_v3.dcvs_option = HAP_DCVS_V2_PERFORMANCE_MODE;
+request.dcvs_v3.set_bus_params = TRUE;
+request.dcvs_v3.bus_params.min_corner = HAP_DCVS_VCORNER_MAX;
+request.dcvs_v3.bus_params.max_corner = HAP_DCVS_VCORNER_MAX;
+request.dcvs_v3.bus_params.target_corner = HAP_DCVS_VCORNER_MAX;
+request.dcvs_v3.set_core_params = TRUE;
+request.dcvs_v3.core_params.min_corner = HAP_DCVS_VCORNER_MAX;
+request.dcvs_v3.core_params.max_corner = HAP_DCVS_VCORNER_MAX;
+request.dcvs_v3.core_params.target_corner = HAP_DCVS_VCORNER_MAX;
+request.dcvs_v3.set_sleep_disable = TRUE;
+request.dcvs_v3.sleep_disable = TRUE;
+HAP_power_set(NULL, &amp;request);
+</code></pre></div></p>
+</li>
+</ul>
+<p>The above settings can be found in the src/rpcperf_imp.c: profiling_powerboost() and profiling_sleep_latency(). To understand the DCVS_v2 and DCVS_v3 APIs, please refer to the <a href="../../doxygen/HAP_power/index.html" target="_blank">HAP_power API documentation</a>.</p>
+<p><strong><em>NOTE:</em></strong> Please note the following when running the FastRPC performance tests:</p>
+<ul>
+<li>There may be variability of timing results between runs<ul>
+<li>The variability of timing results could be attributed due to a few reasons:<ul>
+<li>Workload on the system</li>
+<li>Some entity in the system may be entering or exiting low power modes.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The noop operation is run once before running the FastRPC performance tests on the inbuf and routbuf buffers. This is done so as to ignore the additional overhead of starting a FastRPC session on the DSP. This noop operation is not a part of the average overhead time displayed.</li>
+<li>The default Linux kernel boot image enables some config items that would impact performance. The Linux kernel boot image should be built with perf defconfig.</li>
+<li>The average overhead time should be computed over many iterations, to be more accurate.</li>
+</ul>
+<h3 id="profiling-summary-report">Profiling summary report</h3>
+<p>The FastRPC performance tests described above returns the following summary report on the command line. This report shows the average FastRPC overhead in microseconds when making FastRPC calls per iteration, with variable input and output buffer sizes.</p>
+<p><strong><em>NOTE:</em></strong> The average FastRPC overhead per iteration will vary depending on the target and other factors
+<div class="highlight"><pre><span></span><code>adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH DSP_LIBRARY_PATH=&quot;/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;&quot; /vendor/bin/profiling -f default
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>[Test_Name Buffer_Size]  Avg FastRPC overhead per iteration(micro-seconds)
+
+[noop        0K]          311us
+[inbuf      32K]          634us
+[routbuf    32K]          627us
+[inbuf      64K]          713us
+[routbuf    64K]          784us
+[inbuf     128K]          823us
+[routbuf   128K]          790us
+[inbuf       1M]          909us
+[routbuf     1M]          887us
+[inbuf       4M]          900us
+[routbuf     4M]          891us
+[inbuf       8M]          897us
+[routbuf     8M]          907us
+[inbuf      16M]          919us
+[routbuf    16M]          896us
+</code></pre></div>
+
+<h2 id="running-run_profilerspy">Running run_profilers.py</h2>
+<p>The run_profilers.py script can be used to run the following profiling tools on simulator and on device:</p>
+<ul>
+<li><a href="#hexagon-profiler">Hexagon Profiler</a></li>
+<li><a href="#hexagon-trace-analyzer">Hexagon Trace Analyzer</a></li>
+<li><a href="#sysmonapp">sysMonApp</a></li>
+</ul>
+<p>Unlike the <a href="#running-profiling_walkthroughpy">profiling_walkthrough.py script</a>, the run_profilers.py script does not automate the steps of <a href="#building">building</a> the binaries and <a href="#running-on-device">running</a> them on to the device. The user needs to ensure that the profiling_walkthrough.py script has been run or the binaries are present on the device.</p>
+<p>Usage: <code>run_profilers.py -T Target [-M] [-r PROFILER]</code></p>
+<ul>
+<li>Required Argument:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-T TARGET</td>
+<td>Specify the TARGET on which to run the script. Can be any supported device in the <a href="../../reference/feature_matrix.html">feature matrix</a></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Optional Arguments:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-M</td>
+<td>Don't rebuild</td>
+</tr>
+<tr>
+<td>-r PROFILER</td>
+<td>Specify which profiler to run. <p>The Supported values are as follows:</p><p><code>all</code> (default) to run all the profiling tools that are supported on the selected target,</p><p><code>hexagon_profiler</code> to run the Hexagon profiler,</p><p><code>hexagon_trace_analyzer</code> to run the Hexagon Trace Analyzer, and</p><p><code>sysmon_app</code> to run the sysmon_app</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Hexagon profiler needs to be passed the address at which the simulator loaded the shared object. This is accomplished by following the name of the shared object with a <code>:</code> separator and the load address. The <code>$HEXAGON_SDK_ROOT/tools/debug/hexagon-trace-analyzer/generate_config.py</code> script automates these steps by running first the simulator, capturing the shared object load address, and passing that address to the Hexagon profiler, which will generate the HTML file.</p>
+<p>Similarly, the Hexagon Trace Analyzer needs to be passed the address at which the simulator loaded the shared object in <code>config.py</code>. The <code>$HEXAGON_SDK_ROOT/tools/debug/hexagon-trace-analyzer/generate_config.py</code> script does so automatically. The <code>run_profilers.py</code> script runs consecutively the Hexagon Trace Analyzer on simulator and the device.</p>
+<p>The <code>run_profilers.py</code> script calls the <code>$HEXAGON_SDK_ROOT/tools/debug/hexagon-trace-analyzer/generate_config.py</code> script and thus runs without requiring any user intervention.  You will only need to modify manually the shared object load address if you decide to run the Hexagon Trace Analyzer or the Hexagon profiler outside of these scripts.</p>
+<ul>
+<li>
+<p>Example to run the run_profilers.py script on the sm8250:
+<div class="highlight"><pre><span></span><code>python run_profilers.py -T sm8250
+</code></pre></div>
+This will run the simulator tests as well as tests on the SM8250 target. If the example is run on Linux, the Hexagon Trace Analyzer will run as well.</p>
+</li>
+<li>
+<p>Cleaning the folder to remove result files:
+<div class="highlight"><pre><span></span><code>python run_profilers.py -T sm8250 -r clean
+</code></pre></div>
+This will delete the result files generated by the run_profilers.py script</p>
+</li>
+</ul>
+<h2 id="timer-apis">Timer APIs</h2>
+<p>Available <a href="../../doxygen/HAP_perf/index.html">Timer APIs</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+<th>Usage location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HAP_perf_get_time_us</td>
+<td>Gives the current time in microseconds</td>
+<td>Usage demonstrated in profiling_memcpy_time_us</td>
+</tr>
+<tr>
+<td>HAP_perf_get_pcycles</td>
+<td>Gets the number of processor cycles</td>
+<td>Usage demonstrated in function</td>
+</tr>
+<tr>
+<td>HAP_perf_get_qtimer_count</td>
+<td>Needs to be converted to micro seconds. Gets the qtimer from hardware. qtimer count is in terms of hw_ticks of a 19Mhz clock</td>
+<td>Usage demonstrated in profiling_asm_iterations_time_us()</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hexagon-profiler">Hexagon Profiler</h2>
+<h3 id="overview_1">Overview</h3>
+<p>The <a href="../../pdf/80-N2040-10_D_Hexagon_Profiler_UG.pdf" target="_blank">Hexagon Profiler</a> is a <a href="../../tools/profile.html#simulator-profiling">simulator profiling</a> tool that generates cycle analysis reports in json and html files. This profiler displays information about the execution history of a program, which may be used to identify any processor stalls in a program.</p>
+<ul>
+<li>To profile the example on the simulator with the Hexagon Profiler, do the following:</li>
+<li>Run the Hexagon example executable <code>profiling_q.so</code> on the <a href="#running-on-simulator">simulator</a> using the following simulator flags:<ul>
+<li>--timing</li>
+<li>--packet_analyze hexagon_profiler.json</li>
+<li>--uarchtrace uarch.txt (Optional)</li>
+</ul>
+</li>
+</ul>
+<p>The above flags generate the json file <code>hexagon_profiler.json</code>.</p>
+<ul>
+<li>
+<p>Run the Hexagon Profiler to convert the json profiling file into a human-readable cycle analysis file in HTML format:
+<div class="highlight"><pre><span></span><code>$DEFAULT_HEXAGON_TOOLS_ROOT/Tools/bin/hexagon-profiler --packet_analyze --elf=$HEXAGON_SDK_ROOT/libs/run_main_on_hexagon/ship/hexagon_toolv84_v66/run_main_on_hexagon_sim,hexagon_Debug_toolv84_v66/profiling_q.so:0xd8042000 --json=hexagon_profiler.json -o hexagon_profiler.html
+</code></pre></div>
+<strong><em>NOTE:</em></strong>
+The address <code>0xd8042000</code> is referred as vaddr in the console logs and its value is provided below the text including the shared object name, profiling_q.so. Please change this address in the above command for any other address and ensure this address is correct. Refer to the <a href="../../tools/profile.html#load-address-of-dynamic-libraries">profiling documentation</a> for further information.</p>
+</li>
+<li>
+<p>The files generated are as follows:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>File name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hexagon_profiler.json</td>
+<td>This json file is an intermediate file generated by the Hexagon Simulator. It contains the profiling information  that needs to be post-processed by the Hexagon Profiler.</td>
+</tr>
+<tr>
+<td>hexagon_profiler.html</td>
+<td>This file contains profiling data generated by the Hexagon Profiler from the json file collected by the Hexagon Simulator.</td>
+</tr>
+<tr>
+<td>uarch.txt</td>
+<td>This is the micro-architecture trace file generated by the Hexagon Simulator. It reports major micro-architecture events like cache misses, packets executed, stall cycles, etc.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>NOTE:</em></strong> The Micro-architecture trace files(<code>uarch.txt</code>) can generate huge amounts of data. The option <code>-- uarchtrace</code> should be used with filtering to limit the collection of trace file data to relatively small time periods. For further information refer to the <a href="../../pdf/80-N2040-1784_E_Hexagon_Simulator_User_Guide.pdf">simulator documentation</a>.</p>
+<h3 id="understanding-the-results">Understanding the results</h3>
+<p><img alt="HTML report after profiling" src="../../images/profiling_hexagon_profiler_html.PNG" /></p>
+<p>The HTML report file presents an interactive document that allows you to select and display profiling information. The CORE Stalls tab shows a Summary report, Top packets, Top Functions, the Disassembly/Stall Name, etc. In the Top Packets section, you can observe the count and percentage of the profiling packets and functions. Many of the functions shown will be internal to the Simulator. These stats give a good picture of the packets and functions running on the simulator. The other tabs available are HVX Stalls, Events, PMU Events, Derived Stats, Instructions, and Help. These tabs give additional information about the example that has been profiled.</p>
+<h2 id="hexagon-trace-analyzer">Hexagon Trace Analyzer</h2>
+<h3 id="overview_2">Overview</h3>
+<p>The <a href="../../tools/profile.html#hexagon-trace-analyzer">Hexagon Trace Analyzer</a> is a software analysis tool that processes the Hexagon Embedded Trace Macrocell (ETM) traces generated by the software running on the cDSP or on the <a href="#running-on-simulator">Simulator</a>. In the instructions below, we will demonstrate how to generate a trace on the device or on the simulator when running the profiling example, and how to process this trace with the Hexagon Trace Analyzer.</p>
+<h3 id="prerequisites_1">Prerequisites</h3>
+<ul>
+<li>The Hexagon Trace Analyzer works only on Linux systems.</li>
+<li>The Flamegraph and Catapult tools need to be installed to $HEXAGON_SDK_ROOT/tools/debug/hexagon-trace-analyzer/ to view the results.<ul>
+<li>The <code>run_profilers.py</code> script installs these tools to the appropriate location when first run.</li>
+<li>You will need an internet connection when running the script for the first time in order to download Flamegraph and Catapult. The links to download these two tools are given <a href="#prerequisites">above</a></li>
+</ul>
+</li>
+<li>Flamegraph and Catapult work only on systems with Python 2.</li>
+<li>The Hexagon Trace Analyzer requires the module <code>xlsxwriter</code> and <code>sortedcontainers</code>. Refer to <code>$HEXAGON_SDK_ROOT/utils/scripts/python_requirements.txt</code> for more information on the requirements.</li>
+</ul>
+<h3 id="profile-on-device">Profile on device</h3>
+<ul>
+<li>The following command configures and enables tracing on the device, and launches sysMonApp to start collecting the trace:
+<div class="highlight"><pre><span></span><code>python $HEXAGON_SDK_ROOT/tools/debug/hexagon-trace-analyzer/target_profile_setup.py -T Target -S trace_size -O
+</code></pre></div></li>
+</ul>
+<p><code>trace_size</code> is the size of the trace that will be collected. It is expressed in bytes, in hexadecimal format. The trace file is updated in a circular buffer so that its contents will always reflect the most recent events. The default value is <code>0x4000000</code>.</p>
+<p>The <code>-O</code> option retrieves all the device binaries that the Hexagon Trace Analyzer needs to parse any collected trace.</p>
+<p><strong><em>Note: </em></strong> The <code>-O</code> option is only needed the first time you run the script on a newly flashed device. It should be omitted thereafter.</p>
+<ul>
+<li>Run the application
+<div class="highlight"><pre><span></span><code>adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH DSP_LIBRARY_PATH=&quot;/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;&quot; /vendor/bin/profiling -f timers
+</code></pre></div></li>
+<li>While your application is running, copy the ETM trace to a .bin file
+<div class="highlight"><pre><span></span><code>adb wait-for-device shell &quot;cat /dev/coresight-tmc-etr &gt; /data/local/tmp/trace.bin&quot;
+</code></pre></div></li>
+<li>Copy the trace.bin to your local machine
+<div class="highlight"><pre><span></span><code>adb wait-for-device pull /data/local/tmp/trace.bin trace.bin
+</code></pre></div></li>
+<li>Run sysMonApp to display the load offsets of all DSP libraries that were recently loaded on device
+<div class="highlight"><pre><span></span><code>adb wait-for-device shell /data/local/tmp/sysMonApp etmTrace --command dll --q6 cdsp
+</code></pre></div></li>
+<li>You should see output lines similar to:
+<div class="highlight"><pre><span></span><code>data.ELF_NAME = libprofiling_skel.so
+data.LOAD_ADDRESS = 0xe040c000
+data.ELF_IDENTIFIER = 0x00014000
+data.LOAD_TIMESTAMP = 0x1ea6b0def4
+data.UNLOAD_TIMESTAMP = 0x1ea726162d
+</code></pre></div></li>
+<li>
+<p>Edit the <code>config.py</code> file by modifying the library names (i.e. ELF_NAME) and load addresses (i.e. LOAD_ADDRESS) values obtained from the etmTrace sysMonApp service that was invoked above. You can refer to the example config file <code>$HEXAGON_SDK_ROOT/examples/profiling/config_example.py</code>.</p>
+<p><strong><em>NOTE:</em></strong></p>
+<ul>
+<li>
+<p>Make sure the LLVM_TOOLS_PATH tools version in the config.py file matches the version of the tools present in <code>$HEXAGON_SDK_ROOT/tools/HEXAGON_Tools/</code></p>
+</li>
+<li>
+<p>If the same library name occurs multiple times with different load addresses in the report from the sysMonApp etmTrace service, include all these instances in the <code>config.py</code> file</p>
+</li>
+<li>
+<p>If the target is Lahaina, include <code>ver="V68"</code> in the config.py file</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Run the Hexagon Trace Analyzer to run generate the analysis reports:
+<div class="highlight"><pre><span></span><code>$HEXAGON_SDK_ROOT/tools/debug/hexagon-trace-analyzer/hexagon-trace-analyzer ./config.py ./HexTA_result ./trace.bin
+</code></pre></div></p>
+</li>
+</ul>
+<p>In the command line above</p>
+<ul>
+<li><code>config.py</code> is the configuration file you edited</li>
+<li><code>HexTA_result</code> is the directory in which the results will be placed</li>
+<li><code>trace.bin</code> is the trace file that you retrieved from the device</li>
+</ul>
+<p><strong><em> NOTE: </em></strong>
+If the target is Lahaina, you might see the following or similar logs on the console:
+<div class="highlight"><pre><span></span><code>[47][ERROR] handleAsid ERROR zero!=1
+[190][ERROR] handleProfile ERROR zero!=0
+[190][ERROR] Has the correct version of Q6 been specified in config.py ?
+[684][ERROR] Dropping Negative Gsync in timeline [thread,pcAddr,cycles,Gsync,recordOffset]:[4,4262405372,3,-38,84338]
+</code></pre></div>
+These messages might show up as the ETM trace might have invalid packet headers and some fields in the packets might be corrupted.
+These errors are not of concern and do not affect the output of the Hexagon Trace Analyzer.</p>
+<h3 id="profile-on-simulator">Profile on simulator</h3>
+<ul>
+<li>Run the application on the simulator with the following args:<ul>
+<li>--timing</li>
+<li>--pctrace_nano</li>
+</ul>
+</li>
+</ul>
+<p>For example to run on the DSP v66:
+<div class="highlight"><pre><span></span><code>$DEFAULT_HEXAGON_TOOLS_ROOT/Tools/bin/hexagon-sim --timing --pctrace_nano pctrace.txt -mv66g_1024 --simulated_returnval --usefs $HEXAGON_SDK_ROOT/examples/profiling/hexagon_Debug_toolv84_v66 --pmu_statsfile $HEXAGON_SDK_ROOT/examples/profiling/hexagon_Debug_toolv84_v66/pmu_stats.txt --cosim_file $HEXAGON_SDK_ROOT/examples/profiling/hexagon_Debug_toolv84_v66/q6ss.cfg --l2tcm_base 0xd800 --rtos $HEXAGON_SDK_ROOT/examples/profiling/hexagon_Debug_toolv84_v66/osam.cfg $HEXAGON_SDK_ROOT/rtos/qurt/computev66/sdksim_bin/runelf.pbn -- $HEXAGON_SDK_ROOT/libs/run_main_on_hexagon/ship/hexagon_toolv84_v66/run_main_on_hexagon_sim -- ./$HEXAGON_SDK_ROOT/examples/profiling/hexagon_Debug_toolv84_v66/profiling_q.so -f timers
+</code></pre></div>
+This command will result in generating a trace file <code>pctrace.txt</code> using the Hexagon Simulator when running the <code>profiling_q.so</code> on run_main_on_hexagon_sim executable.
+For other DSPs the argument <code>-mv66g_1024</code> can be changed appropriately. Refer to the <a href="#running-on-simulator">Running on simulator</a> section above and <a href="../../pdf/80-N2040-1784_E_Hexagon_Simulator_User_Guide.pdf" target="_blank">simulator documentation</a> for further information.</p>
+<p><strong><em>NOTE:</em></strong> Make sure in the <code>config_simulator.py</code> script the LLVM_TOOLS_PATH tools version is the same as $HEXAGON_SDK_ROOT/tools/HEXAGON_Tools/8.4.12 in your currently installed Hexagon SDK.</p>
+<ul>
+<li>Make sure the extension for the trace file for the simulator is .txt. If .bin is used like the trace.bin file pulled from device, the Hexagon Trace Analyzer will not be able to process the traces from simulator.</li>
+<li>Finally run the Hexagon Trace Analyzer with the <code>config_simulator.py</code> file already present in the example folder :
+<div class="highlight"><pre><span></span><code>$HEXAGON_SDK_ROOT/tools/debug/hexagon-trace-analyzer/hexagon-trace-analyzer ./config_simulator.py ./result_hexta_simulator ./pctrace.txt
+</code></pre></div></li>
+</ul>
+<p>In the command line above</p>
+<ul>
+<li><code>config_simulator.py</code> is the configuration file</li>
+<li><code>result_hexta_simulator</code> is the directory in which the results from simulator will be placed</li>
+<li><code>pctrace.txt</code> is the trace file generated when running the application on the simulator</li>
+</ul>
+<h3 id="understanding-the-results_1">Understanding the results</h3>
+<ul>
+<li>The perFunctionStats.xlsx file in the generated result folder has a column "function". The column has a drop-down menu allowing you to select the function for which you want to display statistics.</li>
+<li>The cycleCount column in this file shows the total number of cycles a function has consumed. The same information can also be viewed in flamegraph/globalCycles_icicle.</li>
+</ul>
+<p>To view the breakdown of cycles per call to this function you can look for the function in flamegraph/globalCycles</p>
+<ul>
+<li>Run command using the <code>run_profilers.py</code> script:</li>
+</ul>
+<p>The Hexagon Trace Analyzer works only on Linux systems.</p>
+<ul>
+<li>
+<p>For device:
+<div class="highlight"><pre><span></span><code>python run_profilers.py -T sm8250 -r hexagon_trace_analyzer
+</code></pre></div></p>
+</li>
+<li>
+<p>For simulator:
+<div class="highlight"><pre><span></span><code>python run_profilers.py -T simulator -r hexagon_trace_analyzer
+</code></pre></div></p>
+</li>
+</ul>
+<p>The files generated:</p>
+<table>
+<thead>
+<tr>
+<th>File name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>trace.bin</td>
+<td>This is the binary file pulled from the device</td>
+</tr>
+<tr>
+<td>flamegraph files</td>
+<td>Graphical demonstration of the different functions</td>
+</tr>
+<tr>
+<td>catapult files</td>
+<td>Graphical demonstration of the different functions</td>
+</tr>
+<tr>
+<td>xlsx files</td>
+<td>These files have the time of execution in numerical format</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Profiling on device unfiltered view perFunctionStats file" src="../../images/profiling_hexta_device_perFunctionstats_unfiltered.png" /></p>
+<p>The perFunctionStats.xlsx file for the device has a detailed analysis of the different functions running on the device. Many of these functions are marked as hidden_function. These hidden_functions are internal to the device but the user can observe the effects of these functions. To find a particular function to analze, a user can use the drop-down filter for columns to filter the functions. A filtered view of these functions is shown below.</p>
+<p><img alt="Profiling on device filtered view perFunctionStats" src="../../images/profiling_hexta_device_perFunctionstats.PNG" /></p>
+<p>The filtered view of the functions shows the relevant functions along with the different cycle count, %load, cycles per packet(cpp), unused bytes, etc. You can make an analysis of the functions that are taking too many cycles using this information.</p>
+<p><img alt="Profiling on device Flamegraph global cycles" src="../../images/profiling_hexta_device_globalcycles_flamegraph.PNG" /></p>
+<p>Flamegraph gives a graphical representation of the different profiled functions. The global cycles is one such graphical representation that shows the function call tree with corresponding cycles. The width of each bar is proportional to the number of cycles spent in that task/function and its children. A function can be searched in the top right corner search box. Once found, the function is marked in a shade of purple to highlight it. The function details are showing below the Flamegraph. In the above image profiling_memcpy_time_pcycles is shown as selected. Majority of the functions shown are marked hidden as they are internal to the device.</p>
+<p><img alt="Profiling on device Flamegraph global packets icicle" src="../../images/profiling_hexta_device_global_packets_icycles_flamegraph.PNG" /></p>
+<p>Globalcycles icicles is similar to the global cycles but with an inverted layout. The Global Packets is graphical representation of the packets run for each function. In this representation as well, you can look for a particular function. Once the function is found, it is marked with a shade of purple and its statistics are displayed.</p>
+<p><img alt="Profiling on device Catapult results" src="../../images/profiling_hexta_device_catapult.PNG" /></p>
+<p>Catapult provides another graphical representation of the profiled functions. Catapult provides an interface where you can pan and zoom, in and out of the graphical representation using the zooming options provided at the right side of the interface. To the left of the interface, HWT represents the HW threads. To the extreme right of the interface there are additional tabs that can also be used for analysis. You can search for your function in the top right corner of the page. The statistics of that function appears in the bottom half of the page.</p>
+<p>On the simulator, the results are quite similar to the results obtained from the device:</p>
+<p><img alt="Profiling on simulator perFunctionStats" src="../../images/profiling_hexta_sim_perFunctionStats_relevant_functions.PNG" /></p>
+<p><img alt="Profiling on simulator Flamegraph global cycles" src="../../images/profiling_hexta_sim_global_cycles_flamegraph.PNG" /></p>
+<p><img alt="Profiling on simulator Catapult" src="../../images/profiling_hexta_sim_catapult.PNG" /></p>
+<h2 id="sysmonapp">sysMonApp</h2>
+<h3 id="overview_3">Overview</h3>
+<p>The <a href="../../tools/sysmon_app.html">sysMonApp</a> is an app that configures and displays multiple performance-related services on the cDSP, aDSP, and sDSP.
+The sysMonApp can be run as a standalone profiling tool or as an Android Application. In the instructions below we will demonstrate how to use the sysMonApp profiler tools to analyze the profiling example on the device.</p>
+<h3 id="profile-from-the-command-line">Profile from the Command Line</h3>
+<ul>
+<li>Copy the sysMonApp to the device
+<div class="highlight"><pre><span></span><code>adb push $HEXAGON_SDK_ROOT/tools/utils/sysmon/sysMonApp /data/local/tmp/
+adb shell chmod 777 /data/local/tmp/sysMonApp
+</code></pre></div></li>
+<li>Make sure adsprpcd is running:
+<div class="highlight"><pre><span></span><code>adb shell ps | grep adsprpcd
+</code></pre></div></li>
+<li>Run the <a href="../../tools/sysmon_app.html#profiler-service">sysMonApp profiler service</a> in user mode on cDSP as follows:
+<div class="highlight"><pre><span></span><code>adb shell /data/local/tmp/sysMonApp profiler --debugLevel 1 --q6 cdsp
+</code></pre></div></li>
+<li>Run the profiling example on device:
+<div class="highlight"><pre><span></span><code>adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH DSP_LIBRARY_PATH=&quot;/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;&quot; /vendor/bin/profiling -f inbuf -s 65536 -m&#39;)
+</code></pre></div></li>
+<li>
+<p>The previous command should have generated a file <code>/sdcard/sysmon_cdsp.bin</code>. This file should be pulled to your local computer as follows:
+<div class="highlight"><pre><span></span><code>adb pull /sdcard/sysmon_cdsp.bin
+</code></pre></div>
+<strong><em>NOTE:</em></strong> On some devices, the trace file may be generated in the /data folder instead.</p>
+</li>
+<li>
+<p>The <code>sysmon_cdsp.bin</code> file can be parsed with the sysMonApp parser service as shown below.</p>
+</li>
+<li>
+<p>Run the <a href="../../tools/sysmon_parser.html">sysMonApp Parser</a></p>
+</li>
+</ul>
+<p><strong><em>NOTE:</em></strong> The Hexagon SDK contains Windows and Linux versions of the parser. Both versions have the same interface. Below we illustrate how to use the Linux parser. For Windows simply replace parser_linux_v2 with parser_win_v2 in the commands below.</p>
+<ul>
+<li>The following example command shows how to generate HTML and CSV files in Linux to output directory <code>sysmon_parsed_output</code>. The sysMonApp parser usage can be found <a href="../../tools/sysmon_parser.html#usage">here</a>. The Windows tool expects the same arguments:
+<div class="highlight"><pre><span></span><code>$HEXAGON_SDK_ROOT/tools/utils/sysmon/parser_linux_v2/HTML_Parser/sysmon_parser ./sysmon_cdsp.bin --outdir sysmon_parsed_output
+</code></pre></div></li>
+</ul>
+<h3 id="profile-using-android-application">Profile using Android Application</h3>
+<ul>
+<li>Install the sysMon DSP profiler application on the device using adb install:
+<div class="highlight"><pre><span></span><code>adb install -g $HEXAGON_SDK_ROOT/tools/utils/sysmon/sysMon_DSP_Profiler_V2.apk
+</code></pre></div></li>
+<li>The sysMon DSP Profiler UI for the sysMonApp Android Application provides user flexibility to choose from different modes of profiling. You can select the Mode based on your requirements. The available modes are:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DSP DCVS</td>
+<td>User can adjust DSP core and bus clocks dynamically for profiling duration.</td>
+</tr>
+<tr>
+<td>Default Mode</td>
+<td>A fixed set of performance metrics will be monitored. Sampling period is either 1 or 50 milli-seconds.</td>
+</tr>
+<tr>
+<td>User Mode</td>
+<td>If Default Mode is unchecked, User Mode is enabled. The user can select the desired PMU events to be captured.</td>
+</tr>
+<tr>
+<td>8-PMU Mode</td>
+<td>If both DSP DCVS and Default modes are unchecked, 8-PMU mode is enabled. This allows user to choose whether to configure 4 PMU events or 8 PMU Events.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The Configuration Settings button is enabled in user mode and you can select the PMU events to be captured.</li>
+<li>Further details about the different modes and options can be found in <a href="../../tools/sysmon_profiler.html">sysMonApp Profiler</a>.</li>
+</ul>
+<h3 id="understanding-the-results_2">Understanding the results</h3>
+<ul>
+<li>The files generated by sysMon Profiler application are the following:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>File name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sysmon_cdsp.bin</td>
+<td>This is the cDSP binary file pulled from the device.</td>
+</tr>
+<tr>
+<td>sysmon_report directory</td>
+<td>This directory is generated after running the sysMonApp HTML Parser. It contains HTML and csv files generated by the HTML Parser. This directory is named based on the date the report was generated.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The sysMonApp HTML file gives an overall summary of the profiling done using the sysMonApp. Here is an example of the HTML generated from the sysMonApp.</li>
+</ul>
+<p><img alt="HTML Summary Report of sysMonApp" src="../../images/profiling_sysmonapp_html_1.PNG" /></p>
+<p><img alt="HTML Summary Report of sysMonApp" src="../../images/profiling_sysmonapp_html_2.PNG" /></p>
+<ul>
+<li>To understand the output of these files generated please refer to the <a href="../../tools/sysmon_profiler.html">sysMonApp profiler documentation</a></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../multithreading/index.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Multithreading
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../qhl/index.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                QHL
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../../js/iframe-worker.js"></script>
+<script src="../../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

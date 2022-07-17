@@ -1,0 +1,18 @@
+//============================================================================
+/// @file gtest.idl
+///
+                                                           //qidl copyright
+//% Copyright (c) 2021 Qualcomm Technologies, Inc.
+                                                           //qidl nested=false
+//% All Rights Reserved.
+//% Qualcomm Confidential and Proprietary
+//============================================================================
+
+#include "AEEStdDef.idl"
+#include "remote.idl"
+
+interface gtest : remote_handle64 {
+   long square_root(in double input_val, rout double output_val);
+   long verify_on_dsp();
+};
+

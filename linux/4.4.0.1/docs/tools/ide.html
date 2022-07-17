@@ -1,0 +1,2005 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Using the IDE - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-hexagon-ide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Using the IDE
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Using the IDE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="ide.html" class="md-nav__link md-nav__link--active">
+      Using the IDE
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-the-hexagon-ide" class="md-nav__link">
+    Set up the Hexagon IDE
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up the Hexagon IDE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-the-ide" class="md-nav__link">
+    Start the IDE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-ide-preferences" class="md-nav__link">
+    Set IDE preferences
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#develop-your-first-project" class="md-nav__link">
+    Develop your first project
+  </a>
+  
+    <nav class="md-nav" aria-label="Develop your first project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-project" class="md-nav__link">
+    Create a new project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-project" class="md-nav__link">
+    New project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-customization" class="md-nav__link">
+    Project customization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-modified-project" class="md-nav__link">
+    Build modified project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-on-simulator-using-the-gui" class="md-nav__link">
+    Run on simulator using the GUI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-on-simulator-using-the-gui" class="md-nav__link">
+    Debug on simulator using the GUI
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-project-with-existing-code" class="md-nav__link">
+    Import project with existing code
+  </a>
+  
+    <nav class="md-nav" aria-label="Import project with existing code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-project-as-make-file-project" class="md-nav__link">
+    Import project as Make File Project
+  </a>
+  
+    <nav class="md-nav" aria-label="Import project as Make File Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-a-makefile-project" class="md-nav__link">
+    Build a Makefile project
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-project-as-cmake-project" class="md-nav__link">
+    Import project as CMake Project
+  </a>
+  
+    <nav class="md-nav" aria-label="Import project as CMake Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-a-cmake-project" class="md-nav__link">
+    Build a CMake Project
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-and-debug-on-simulator" class="md-nav__link">
+    Run and debug on simulator
+  </a>
+  
+    <nav class="md-nav" aria-label="Run and debug on simulator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    Run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    Debug
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-and-debug-on-target" class="md-nav__link">
+    Run and debug on target
+  </a>
+  
+    <nav class="md-nav" aria-label="Run and debug on target">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-for-target" class="md-nav__link">
+    Build for target
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-required-binaries-to-target" class="md-nav__link">
+    Push required binaries to target
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attach-to-user-pd-process" class="md-nav__link">
+    Attach to user PD process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-debug-configuration" class="md-nav__link">
+    Set up debug configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug_1" class="md-nav__link">
+    Debug
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#page-table-viewer" class="md-nav__link">
+    Page table viewer
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-the-hexagon-ide" class="md-nav__link">
+    Set up the Hexagon IDE
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up the Hexagon IDE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-the-ide" class="md-nav__link">
+    Start the IDE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-ide-preferences" class="md-nav__link">
+    Set IDE preferences
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#develop-your-first-project" class="md-nav__link">
+    Develop your first project
+  </a>
+  
+    <nav class="md-nav" aria-label="Develop your first project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-project" class="md-nav__link">
+    Create a new project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-project" class="md-nav__link">
+    New project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-customization" class="md-nav__link">
+    Project customization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-modified-project" class="md-nav__link">
+    Build modified project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-on-simulator-using-the-gui" class="md-nav__link">
+    Run on simulator using the GUI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-on-simulator-using-the-gui" class="md-nav__link">
+    Debug on simulator using the GUI
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-project-with-existing-code" class="md-nav__link">
+    Import project with existing code
+  </a>
+  
+    <nav class="md-nav" aria-label="Import project with existing code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-project-as-make-file-project" class="md-nav__link">
+    Import project as Make File Project
+  </a>
+  
+    <nav class="md-nav" aria-label="Import project as Make File Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-a-makefile-project" class="md-nav__link">
+    Build a Makefile project
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-project-as-cmake-project" class="md-nav__link">
+    Import project as CMake Project
+  </a>
+  
+    <nav class="md-nav" aria-label="Import project as CMake Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-a-cmake-project" class="md-nav__link">
+    Build a CMake Project
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-and-debug-on-simulator" class="md-nav__link">
+    Run and debug on simulator
+  </a>
+  
+    <nav class="md-nav" aria-label="Run and debug on simulator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    Run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    Debug
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-and-debug-on-target" class="md-nav__link">
+    Run and debug on target
+  </a>
+  
+    <nav class="md-nav" aria-label="Run and debug on target">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-for-target" class="md-nav__link">
+    Build for target
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-required-binaries-to-target" class="md-nav__link">
+    Push required binaries to target
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attach-to-user-pd-process" class="md-nav__link">
+    Attach to user PD process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-debug-configuration" class="md-nav__link">
+    Set up debug configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug_1" class="md-nav__link">
+    Debug
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#page-table-viewer" class="md-nav__link">
+    Page table viewer
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="the-hexagon-ide">The Hexagon IDE</h1>
+<p>The Hexagon SDK includes a complete set of software development tools. The tools can be used in either of the following environments:</p>
+<ul>
+<li>The command-line interface (CLI) of the host development system</li>
+<li>The Hexagon integrated development environment (IDE)</li>
+</ul>
+<p>This document explains how to use the tools in the Hexagon IDE. The Hexagon IDE is built on top of Eclipse. For an overview of Eclipse concepts, please follow the <a href="http://www.eclipse.org/cdt/documentation.php">Eclipse CDT Documentation</a>. Note that all instructions are given assuming you are running Eclipse under Windows but Linux paths should be used when using Eclipse under Linux</p>
+<p><strong><em>NOTE:</em></strong> The Hexagon IDE is not installed by default with the Hexagon SDK. To install the Hexagon IDE, either select the Eclipse checkbox when installing the Hexagon SDK, or install it separately following <a href="setup.html#sdk-dependencies">these instructions</a>.</p>
+<h2 id="set-up-the-hexagon-ide">Set up the Hexagon IDE</h2>
+<h3 id="start-the-ide">Start the IDE</h3>
+<p>To start the IDE from a CLI shell, run the <code>%HEXAGON_SDK_ROOT%\launch_hexagon_ide.cmd</code> for Windows installation and <code>$HEXAGON_SDK_ROOT/launch_hexagon_ide.sh</code> for Linux installation.</p>
+<p>The first time you start the IDE a dialog box appears, asking where to create your project workspace.</p>
+<p><img alt="svg" src="../images/ide_starting_workspace_dialog.png" /></p>
+<p>The workspace is where the source code (and related files and settings) for all your projects will be stored.</p>
+<p>Specify the location where the workspace should be created.</p>
+<p>Click <strong><em>OK</em></strong> to create the workspace at the specified location.</p>
+<p><strong><em>NOTE:</em></strong> Be sure to store your workspace outside the Hexagon SDK install directory – this will make life easier when you need to upgrade to a newer Hexagon IDE version.</p>
+<p><strong><em>NOTE:</em></strong> Workspace names cannot contain spaces. If they do, the Hexagon IDE will have problems building and executing projects.</p>
+<p>After you launch the IDE, a welcome screen appears.</p>
+<p><img alt="svg" src="../images/ide_starting_welcome_screen.png" /></p>
+<p>This screen provides a brief description of the IDE, along with quick links to the help systems for the Hexagon IDE, Hexagon SDK, Eclipse CDT, and Eclipse IDE.</p>
+<p><strong><em>NOTE:</em></strong> The Hexagon IDE and Hexagon SDK help files are obtained from the Hexagon SDK.</p>
+<p>Close the welcome screen by clicking <strong><em>X</em></strong> that appears next to the <strong><em>Welcome</em></strong> tab in the upper left-hand corner of the window.</p>
+<p>After you close the welcome screen, the main IDE window appears.</p>
+<p><img alt="svg" src="../images/ide_starting_main_ide_window.png" /></p>
+<p><strong><em>NOTE:</em></strong> The main Hexagon IDE window defaults to the Hexagon perspective (as indicated in the upper-right corner or the window).</p>
+<h3 id="set-ide-preferences">Set IDE preferences</h3>
+<p>The Hexagon IDE has several data settings which control how it works. These settings are called preferences, and they must be properly set before you can begin using the IDE.</p>
+<p><strong><em>NOTE:</em></strong> If the Hexagon IDE was launched from the scripts mentioned in <a href="#start-the-ide">Start the IDE</a> section, the preferences are set automatically, so you can skip this section.</p>
+<p>To access the IDE preferences, choose <strong><em>Preferences &gt; Hexagon</em></strong> from the IDE’s <strong><em>Window</em></strong> menu. The following dialog box appears:</p>
+<p><img alt="svg" src="../images/ide_starting_prefs_dialog.png" /></p>
+<p>In the <strong><em>Hexagon SDK path</em></strong> field, specify the pathname of the root directory of the Hexagon SDK.</p>
+<p>In the <strong><em>Hexagon processor version</em></strong> drop-down list, choose the Hexagon processor version that you are developing software for. The default value is V65.</p>
+<p>The <strong><em>Hexagon tools path</em></strong> field is preset to the pathname of the Hexagon development tools (as defined in the PATH environment variable).</p>
+<p>Click <strong><em>Apply</em></strong> to save the changes, and then click <strong><em>OK</em></strong> to close the dialog box.</p>
+<h2 id="develop-your-first-project">Develop your first project</h2>
+<h3 id="create-a-new-project">Create a new project</h3>
+<p>To create a new project, start the Hexagon IDE as mentioned above section. The main IDE window should appear as shown below:</p>
+<p><img alt="svg" src="../images/ide_first_proj_default_eclipse_window.png" /></p>
+<p>Choose <strong><em>New &gt; Hexagon Project</em></strong> from the <strong><em>File</em></strong> menu:</p>
+<p><img alt="svg" src="../images/ide_first_project_create_project.png" /></p>
+<p>The following dialog box appears:</p>
+<p><img alt="svg" src="../images/create_exe_hexagon_project.png" />
+<img alt="svg" src="../images/create_lib_or_so_hexagon_project.png" /></p>
+<p>In the <strong><em>Project name</em></strong> field, enter <code>factorial</code> as the name of the new project.</p>
+<p><strong><em>NOTE:</em></strong> Project names cannot contain spaces – if they do, the Hexagon IDE will have problems building and executing the project.</p>
+<p><strong><em>Project location</em></strong> defaults to the workspace. <strong><em>Tools location</em></strong> defaults to the value defined in the system environment variable, PATH. You can change either of these fields, or use the checkbox to restore the original default.</p>
+<p>In the <strong><em>Hexagon SDK location</em></strong> field, specify the SDK location. (This field is auto-filled if the IDE was launched from the scripts mentioned in <a href="#start-the-ide">Start the IDE</a> section.)</p>
+<p>In the <strong><em>Project type</em></strong> drop-down list, choose <strong><em>Executable (.exe)</em></strong>.</p>
+<p>In the <strong><em>Architecture</em></strong> drop-down list, choose the required architecture.</p>
+<p>Click <strong><em>Finish</em></strong>.</p>
+<p>The main IDE window now displays a new project named <code>factorial</code>:</p>
+<p><img alt="svg" src="../images/ide_first_project_factorial.png" /></p>
+<p>Creating a new project results in generating a Hello World example with a <code>hello.c</code> file.</p>
+<h3 id="new-project">New project</h3>
+<p>By default, new Hexagon Projects can be built with <code>CMake</code>.</p>
+<p>To build the project, right-click the project in the Project Explorer view and choose <strong><em>Build Project</em></strong>.</p>
+<p><img alt="svg" src="../images/ide_first_proj_build_menu.png" /></p>
+<p>This will trigger a <code>CMake</code> build, which can be tracked in the console view:</p>
+<p><img alt="svg" src="../images/default_build.png" /></p>
+<h3 id="project-customization">Project customization</h3>
+<p>Once you have confirmed that the project is successfully built, you can customize it. For example, let's add another source file <code>factorial.cpp</code> to the project with the factorial program code.</p>
+<p>To do this, right-click the project in Project Explorer and choose <strong><em>New &gt; Source File</em></strong>.</p>
+<p><img alt="svg" src="../images/ide_first_proj_source_file_menu.png" /></p>
+<p>A dialog box appears, prompting you to create a new source file.</p>
+<p>Enter the name of the source file (<code>factorial.cpp</code>) and select the file template (<strong><em>Default C++ source template</em></strong>).</p>
+<p><img alt="svg" src="../images/ide_first_proj_source_file_dialog.png" /></p>
+<p>Click on <strong><em>Finish</em></strong> button to create the new source file.</p>
+<p>Next, copy the following code (or any other factorial implementation you want to use) to the source file, <code>factorial.cpp</code>. This code computes the factorial of a number passed to the program as a command-line argument.</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int fact (int n)
+{
+        if (n&lt;=1)
+                return 1;
+        else
+                return n*fact(n-1);
+}
+int main(int argc, char *argv[])
+{
+
+        int num,factorial;
+        if (argc==2)
+        {
+                num=atoi(argv[1]);
+                printf("User input is : %d",num);
+        }
+        else
+        {
+                printf("Invalid number of arguments");
+                return -1;
+        }
+        if(num&lt;0)
+        {
+                printf("Invalid input - Must be positive");
+                return -1;
+        }
+        factorial=fact(num);
+        printf("\nFactorial of %d is %d",num,factorial);
+        return 0;
+
+}
+</code></pre>
+<h3 id="build-modified-project">Build modified project</h3>
+<p>All source files need to be added manually to the <code>CMakeList.txt</code> file.  In the present example, update this file by adding the line below:</p>
+<p><code>set(prj_sources factorial.cpp)</code></p>
+<p>The default CMake settings not only build the code but also run the the project on the Hexagon Simulator. Runtime arguments are specified as follows:</p>
+<p><strong><em>Note:</em></strong> Use the line below in <code>CMakeList.txt</code> before <code>runHexagonSim</code></p>
+<p><code>set(HEXAGON_EXEC_CMD_OPTIONS ${HEXAGON_EXEC_CMD_OPTIONS} 5)</code></p>
+<p>This will result in invoking the Hexagon simulator with the factorial binary file and passing the argument '5'</p>
+<p>To build the project, right-click the project in Project Explorer and choose <strong><em>Build Project</em></strong>.</p>
+<p><img alt="svg" src="../images/ide_first_proj_build_menu.png" /></p>
+<p>The status of the build can be viewed in the <strong><em>Console</em></strong> tab at the bottom of the main IDE window.</p>
+<p><img alt="svg" src="../images/ide_first_proj_build_console.png" /></p>
+<p>The <code>factorial</code> example above builds a standalone executable that does not need QuRT APIs.</p>
+<p><strong><em>Note:</em></strong> New projects in the Hexagon IDE are QuRT-disabled by default, which means that the QuRT libraries are not linked to the project. </p>
+<p>Follow the steps below for QuRT enablement:</p>
+<ol>
+<li>
+<p>Right-click the project in Project Explorer and choose <strong><em>Properties</em></strong></p>
+</li>
+<li>
+<p>Under <strong><em>C/C++ Build</em></strong> navigate to <strong><em>Cmake4Eclipse</em></strong>, select <strong><em>Symbols</em></strong> tab</p>
+</li>
+</ol>
+<p><img alt="svg" src="../images/project_cmake_properties.png" /></p>
+<ol>
+<li>
+<p>Edit <strong><em>QURT_OS</em></strong> flag and make value as <strong><em>1</em></strong></p>
+</li>
+<li>
+<p>Press <strong><em>Apply</em></strong> to save the changes.</p>
+</li>
+</ol>
+<p>Now User can continue building the QuRT enabled project.</p>
+<h3 id="run-on-simulator-using-the-gui">Run on simulator using the GUI</h3>
+<p>To run the project, right-click the project in Project Explorer and select <strong><em>Run As &gt; Hexagon C/C++ Application</em></strong>.</p>
+<p><img alt="svg" src="../images/ide_first_proj_run_as_menu.png" /></p>
+<p>Running the program produces the following output in the console.</p>
+<p><img alt="svg" src="../images/ide_first_proj_run_as_console.png" /></p>
+<p>Note the message <strong><em>Invalid number of arguments</em></strong>, which appears in the console output – the factorial program expects its input value to be specified as a command-line argument, and generates this error message because no argument was specified.</p>
+<p>To fix this problem, right-click the project in Project Explorer and choose <strong><em>Run As &gt; Run Configuration</em></strong>.</p>
+<p>This command displays the <strong><em>Run Configurations</em></strong> dialog box, which enables you to configure the Application, simulator, program arguments, and runtime environment.</p>
+<p><img alt="svg" src="../images/ide_first_proj_run_configs_dialog_main.png" /></p>
+<p>The dialog box display tabs for configuring the simulator, program arguments, and runtime environment.</p>
+<p>(Note that the left-hand pane in the dialog box includes a newly-created runtime configuration named <code>factorial</code>, which appears under the item, <strong><em>Hexagon C/C++ Application</em></strong>.)</p>
+<p>To specify the program argument for the factorial program, click the <strong><em>Arguments</em></strong> tab in the dialog box.</p>
+<p>The factorial program expects one user argument (namely, the number whose factorial will be computed). Enter the value <code>5</code> as a program argument.</p>
+<p><img alt="svg" src="../images/ide_first_proj_run_configs_dialog_args.png" /></p>
+<p>To execute the factorial program with the specified argument, click <strong><em>Apply</em></strong> and then <strong><em>Run</em></strong> at the bottom of the dialog box.</p>
+<p>The dialog box closes and the following output (which includes the factorial output) is displayed in the console of the main IDE window.</p>
+<p><img alt="svg" src="../images/ide_first_proj_run_console_args.png" /></p>
+<p><strong><em>Note:</em></strong> In some instances, running project do not recognize the binaries built which are located inside the project and throws below error</p>
+<p><img alt="svg" src="../images/ide_first_proj_run_error.png" /></p>
+<p>To fix this problem, right-click the project in Project Explorer and choose <strong><em>Run As &gt; Run Configuration</em></strong>.</p>
+<p>This command displays the <strong><em>Run Configurations</em></strong> dialog box below</p>
+<p><img alt="image-20210826180136842" src="../images/ide_first_proj_runConfig_Step1.png" /></p>
+<p>Right click Hexagon C/C++ Application and create New Configuration below</p>
+<p><img alt="image-20210826180136842" src="../images/ide_first_proj_runConfig_Step2.png" /></p>
+<p>Under C/C++ Application field browse to locate the project binaries in file system.</p>
+<p><img alt="image-20210826180136842" src="../images/ide_first_proj_runConfig_Step3.png" /></p>
+<p><img alt="image-20210826180136842" src="../images/ide_first_proj_runConfig_Step4.png" /></p>
+<p>Now press Apply and Run.</p>
+<h3 id="debug-on-simulator-using-the-gui">Debug on simulator using the GUI</h3>
+<p>To debug the executable generated by the project, right-click the project in Project Explorer and choose <strong><em>Debug As &gt; Hexagon C/C++ Application</em></strong>.</p>
+<p>A prompt will appear asking you to Select Preferred Launcher (This dialog won't appear if Run was performed previously)</p>
+<p><img alt="svg" src="../images/ide_select_preferred_launcher.png" /></p>
+<p>Click <strong><em>Use configuration specific settings</em></strong> and then select <strong><em>Standard Create Debug Process Launcher</em></strong> if the project tool chain is GNU. If project tool chain is LLVM select, <strong><em>Standard Create LLDB Debug Process Launcher</em></strong>.</p>
+<p>A prompt appears asking you to confirm switching to the IDE debug perspective.</p>
+<p><img alt="svg" src="../images/ide_first_proj_confirm_switch_dialog.png" /></p>
+<p>Click <strong><em>Yes</em></strong> to switch to the debug perspective.</p>
+<p>The debug perspective enables you to perform debugging operations such as stepping, disassembly, setting breakpoints, viewing/modifying variables, and viewing registers.</p>
+<p><img alt="svg" src="../images/ide_first_proj_debug_perspective.png" /></p>
+<p>For example, clicking on the Registers tab of the debug perspective displays the contents of the Hexagon processor registers.</p>
+<p><img alt="svg" src="../images/ide_first_proj_debug_perspective_registers.png" /></p>
+<p>If any debug-related information is not displayed, you can display it by choosing <strong><em>Show View</em></strong> from the <strong><em>Window</em></strong> menu.</p>
+<p><img alt="svg" src="../images/ide_first_proj_debug_show_view_menu.png" /></p>
+<p><strong><em>NOTE:</em></strong> Each Hexagon processor thread has its own set of resources (registers, memory, etc.). If a thread is selected in the Debug tab window, the corresponding resources are displayed.</p>
+<p>To configure the debug environment, right-click the project in Project Explorer and choose <strong><em>Debug As &gt; Debug configuration</em></strong>.</p>
+<p>This command displays the <strong><em>Debug Configurations</em></strong> dialog box. Using the tabs in this dialog box you can configure the debugger, program arguments, and runtime environment.</p>
+<p><img alt="svg" src="../images/ide_first_proj_debug_configs_dialog.png" /></p>
+<p><strong><em>Note:</em></strong> In some instances, debugging project do not recognize the binaries built which are located inside the project and throws below error</p>
+<p><img alt="svg" src="../images/ide_first_proj_run_error.png" /></p>
+<p>To fix this problem, right-click the project in Project Explorer and choose <strong><em>Debug As &gt; Debug Configuration</em></strong>.</p>
+<p>This command displays the <strong><em>Debug Configurations</em></strong> dialog box below</p>
+<p><img alt="image-20210826180136842" src="../images/ide_first_proj_debugConfig_Step1.png" /></p>
+<p>Right click Hexagon C/C++ Application and create New Configuration below</p>
+<p><img alt="image-20210826180136842" src="../images/ide_first_proj_debugConfig_Step2.png" /></p>
+<p>Under C/C++ Application field browse to locate the project binaries in file system.</p>
+<p><img alt="image-20210826180136842" src="../images/ide_first_proj_debugConfig_Step3.png" /></p>
+<p><img alt="image-20210826180136842" src="../images/ide_first_proj_debugConfig_Step4.png" /></p>
+<p>Now press Apply and Debug.</p>
+<h2 id="import-project-with-existing-code">Import project with existing code</h2>
+<p>The previous section explained how to create a project from scratch and then run and debug it on the simulator. In this section, we will see how to import an existing project with source code, build, run and debug on simulator and target. We will import the <a href="../examples/multithreading/index.html">multithreading example</a> found in Hexagon SDK at location <code>%HEXAGON_SDK_ROOT%\examples\multithreading</code>.</p>
+<p>Import Project in Hexagon IDE has two supported project types.</p>
+<ol>
+<li><code>Makefile</code> project</li>
+<li><code>CMake</code> project</li>
+</ol>
+<h3 id="import-project-as-make-file-project">Import project as Make File Project</h3>
+<p>Import the <code>multithreading</code> example by right-clicking in <strong><em>Project Explorer</em></strong> and selecting <strong><em>Import -&gt; Hexagon C/C++ -&gt; Import Hexagon Project &gt; Next</em></strong>.</p>
+<p><img alt="svg" src="../images/import_Hexagon_project.png" /></p>
+<p>In the next dialogue box, set the following project properties:</p>
+<ul>
+<li>Project type: – <code>Makefile Project</code></li>
+<li>Project Name: <code>multithreading</code></li>
+<li>Project Location: <code>%HEXAGON_SDK_ROOT%\examples\multithreading</code></li>
+</ul>
+<p><img alt="svg" src="../images/ide_import_existing_code_multithreading.png" /></p>
+<p>Click <strong><em>Finish</em></strong> to close the window. This should result in showing the "multithreading" project in the workspace.</p>
+<h4 id="build-a-makefile-project">Build a Makefile project</h4>
+<ul>
+<li>
+<p>Right-click the "multithreading" project and select <strong><em>Properties &gt; C/C++ Build</em></strong>.</p>
+<p><img alt="svg" src="../images/project_multithreading_build_properties.png" /></p>
+</li>
+<li>
+<p>On the <strong><em>Builder Settings</em></strong> tab,</p>
+<ul>
+<li>set the build type to <strong><em>External Builder</em></strong></li>
+<li>set the build command:<ul>
+<li>Build command: <code>make</code></li>
+</ul>
+</li>
+<li>remove the selection from checkbox <strong><em>Generate Makefiles automatically</em></strong></li>
+</ul>
+</li>
+</ul>
+<p><strong><em>NOTE:</em></strong> You can set the build flavor to <code>Debug</code>, <code>Release</code> or <code>ReleaseG</code>. While debugging, <code>Debug</code> build flavors are recommended when possible over <code>ReleaseG</code>, to avoid possible confusions caused by the compiler optimizer.</p>
+<p><img alt="svg" src="../images/ide_properties_for_multithreading.png" /></p>
+<ul>
+<li>
+<p>In the <strong><em>Behavior</em></strong> tab, set the flags:</p>
+<ul>
+<li>Build: <strong><em>BUILD=Debug DSP_ARCH=v65 hexagon</em></strong></li>
+<li>Clean: <strong><em>BUILD=Debug DSP_ARCH=v65 hexagon_clean</em></strong></li>
+</ul>
+<p><img alt="svg" src="../images/ide_properties_for_multithreading_behavior.png" /></p>
+<p>Click <strong><em>Apply and Close</em></strong>.</p>
+</li>
+<li>
+<p>To build the project, right-click the <code>multithreading</code> project and select <strong><em>Build Project</em></strong>.</p>
+</li>
+</ul>
+<p><img alt="svg" src="../images/ide_build_project_multithreading.png" /></p>
+<h3 id="import-project-as-cmake-project">Import project as CMake Project</h3>
+<p>Import the "multithreading" example by right-clicking in <strong><em>Project Explorer</em></strong> and selecting <strong><em>Import -&gt; Hexagon C/C++ -&gt; Import Hexagon Project &gt; Next</em></strong>.</p>
+<p><img alt="svg" src="../images/import_Hexagon_project.png" /></p>
+<p>In the next dialogue box, set the following project properties:</p>
+<ul>
+<li>Project type: – <code>CMake Defaults</code></li>
+<li>Project Name: <code>multithreading</code></li>
+<li>Project Location: <code>%HEXAGON_SDK_ROOT%\examples\multithreading</code></li>
+</ul>
+<p><img alt="svg" src="../images/ide_import_existing_cmake_code_multithreading.png" /></p>
+<p>Click <strong><em>Finish</em></strong> to close the window. The Hexagon IDE will then apply the Build configuration settings to the project.</p>
+<p>The import behavior depends on whether a <code>CMakeLists.txt</code> is present in the project being imported.</p>
+<p>The IDE first looks for <code>CMakeLists.txt</code> file presence and performs suitable below operations.</p>
+<ol>
+<li>If the IDE finds <code>CMakeLists.txt</code> file, it Imports the project as it is and sets additional CMake build properties as below.</li>
+</ol>
+<p><img alt="svg" src="../images/cmake_project_defines.png" /></p>
+<p><strong><em>Note:</em></strong> You can set the build flavor to <code>Debug</code>, <code>Release</code> or <code>ReleaseG</code> following below steps:</p>
+<ol>
+<li>
+<p>Select <strong><em>Manage Configurations...</em></strong> </p>
+</li>
+<li>
+<p>Choose desired build flavor row and press <strong><em>Set Active</em></strong> button.</p>
+<p><img alt="svg" src="../images/project_build_configurations.png" /></p>
+</li>
+</ol>
+<p>You can always can update the CMake build properties above from Project-&gt;Properties-&gt;<strong><em>Hexagon</em></strong> page as below:</p>
+<p><img alt="svg" src="../images/hexagon_project_properties.png" /></p>
+<p>Press <code>Apply</code> to save these settings. The project is then ready for build.</p>
+<ol>
+<li>
+<p>If the IDE does not find a <code>CMakeLists.txt</code> file, it will look for a <code>hexagon.min</code> file instead.</p>
+</li>
+<li>
+<p>If the IDE finds a <code>hexagon.min</code> file, it opens a prompt asking confirmation from the user to convert the project to a <code>CMake</code> project.</p>
+<p><img alt="svg" src="../images/makeD_to_cmake_convertion.png" /></p>
+<ol>
+<li>OK: the IDE generates MakeD to CMake build template file and sets additional CMake build properties. Resulting project is ready for Build.</li>
+<li>Cancel: the IDE exits Import project operation.</li>
+</ol>
+</li>
+<li>
+<p>If the IDE does not find a <code>hexagon.min</code> file, it generates a Hexagon <code>CMakeLists.txt</code> standard file. The project is then ready to be built.</p>
+</li>
+</ol>
+<h4 id="build-a-cmake-project">Build a CMake Project</h4>
+<p>Once a project has been <a href="#import_project_with_existing_code">imported</a>, the user can build the project by right-clicking and choosing <strong><em>Build Project</em></strong>.</p>
+<p>The user can check the build status in the console view as shown</p>
+<p><img alt="svg" src="../images/cmake_to_makeD_build.png" /></p>
+<h3 id="run-and-debug-on-simulator">Run and debug on simulator</h3>
+<p>This section explains how to run and debug the code on the simulator.</p>
+<h4 id="run">Run</h4>
+<p>The following steps show how to run the project on the Hexagon simulator.</p>
+<ul>
+<li>
+<p>Right-click the <code>multithreading</code> project and select <strong><em>Run As &gt; Run Configurations</em></strong>. In the <strong><em>Run Configurations</em></strong> dialog box, select <strong><em>Hexagon C/C++ Application</em></strong> and under the <strong><em>Main</em></strong> tab, set the simulator target:</p>
+<ul>
+<li>C/C++ Application: <code>&lt;HEXAGON_SDK_ROOT&gt;\rtos\qurt\computev66\sdksim_bin\runelf.pbn</code></li>
+</ul>
+</li>
+</ul>
+<p><img alt="svg" src="../images/ide_run_configurations_main_multithreading.png" /></p>
+<ul>
+<li>On the <strong><em>Simulator</em></strong> tab, set the simulator arguments:<ul>
+<li>CPU Architecture: <code>v66</code></li>
+<li>Miscellaneous Flags: <code>--simulated_returnval --usefs hexagon_Debug_toolv84_v66  --l2tcm_base 0xd800 --rtos hexagon_Debug_toolv84_v66\osam.cfg</code></li>
+</ul>
+</li>
+</ul>
+<p><img alt="svg" src="../images/ide_run_configurations_simulator.png" /></p>
+<ul>
+<li>On the <strong><em>Arguments</em></strong> tab, set the program arguments:<pre><code>&lt;HEXAGON_SDK_ROOT&gt;\libs\run_main_on_hexagon\ship\hexagon_toolv84_v66\run_main_on_hexagon_sim -- hexagon_Debug_toolv84_v66\multithreading_q.so
+</code></pre>
+</li>
+</ul>
+<p><img alt="svg" src="../images/ide_run_configurations_arguments_multithreading.png" /></p>
+<p>To execute the program, click <strong><em>Run</em></strong>.</p>
+<h4 id="debug">Debug</h4>
+<p>The following steps show how to debug the project</p>
+<ul>
+<li>
+<p>Define <code>LLDB_HEXAGON_BOOTER_PATH</code>:</p>
+<ul>
+<li>The <code>LLDB_HEXAGON_BOOTER_PATH</code> environment variable needs to be defined before the start of debugging on the simulator.</li>
+</ul>
+<p>Right-click the project and select <strong><em>Properties &gt; C/C++ Build &gt; Environment &gt; Add</em></strong>.</p>
+<p>In the dialog-box that opens, set the environment variable:</p>
+<p><strong><em>Name</em></strong>: <code>LLDB_HEXAGON_BOOTER_PATH</code></p>
+<p><strong><em>Value</em></strong>: <code>&lt;HEXAGON_SDK_ROOT&gt;\rtos\qurt\computev66\sdksim_bin\runelf.pbn</code></p>
+<p><img alt="svg" src="../images/ide_lldb_booter_path_multithreading.png" /></p>
+<p>Click <strong><em>Apply and Close</em></strong> to finish setting the <code>LLDB_HEXAGON_BOOTER_PATH</code> environment variable.</p>
+</li>
+<li>
+<p>Configure the debug environment by right-clicking on project and selecting <strong><em>Debug As &gt; Debug Configurations</em></strong>.</p>
+<ul>
+<li>On the <strong><em>Main</em></strong> tab, set <strong><em>C/C++ Application</em></strong> field as <code>&lt;HEXAGON_SDK_ROOT&gt;\libs\run_main_on_hexagon\ship\hexagon_toolv84_v66\run_main_on_hexagon_sim</code></li>
+</ul>
+</li>
+</ul>
+<p><img alt="svg" src="../images/ide_debug_configuration_main_multithreading.png" /></p>
+<ul>
+<li>If an error message <code>Multiple launchers available - Select one</code> appears, click <strong><em>Select one</em></strong>. Select the <strong><em>Use configuration specific settings</em></strong> box and choose  <strong><em>Standard Create LLDB Debug Process Launcher</em></strong>.</li>
+</ul>
+<p><img alt="svg" src="../images/ide_debug_process_launcher_multithreading.png" /></p>
+<ul>
+<li>Under the <strong><em>Arguments</em></strong> tab, set the program arguments:<ul>
+<li>Program arguments: <code>--hexagon_Debug_toolv84_v66\\multithreading_q.so</code></li>
+</ul>
+</li>
+</ul>
+<p><img alt="svg" src="../images/ide_debug_process_arguments_multithreading.png" /></p>
+<ul>
+<li>
+<p>By default, breakpoints are set at the entry point of all functions defined in the IDL files listed in the <code>*_QAICIDLS</code> variable present in the <code>hexagon.min</code> file of the current project. If <a href="run.html#run_main_on_hexagon">run_main_on_hexagon</a> is used to execute the DSP code without defining any IDL file, then one breakpoint is set to the <code>main()</code> function for simulator debugging. If you want to override this default behaviour and set a specific breakpoint to one function then follow the steps below.</p>
+</li>
+<li>
+<p>To set up a breakpoint, click the <strong><em>Debugger</em></strong> tab and set <strong><em>Stop on startup at</em></strong> to <code>multithreading_parallel_sum</code>.</p>
+</li>
+</ul>
+<p><img alt="svg" src="../images/ide_debug_breakpoint_multithreading.png" /></p>
+<ul>
+<li>On the <strong><em>Debugger</em></strong> tab click <strong><em>Shared libraries</em></strong> to select the folders which contain the shared libraries.</li>
+</ul>
+<p><strong><em>NOTE:</em></strong> If the Shared libraries path is not added or is incorrect, the debugger will not be able to halt at any of the breakpoints in your code.</p>
+<p><img alt="svg" src="../images/ide_debug_add_shared_libs.PNG" /></p>
+<p>This sets the breakpoint at the entry point of the function <code>multithreading_parallel_sum</code>. Click <strong><em>Apply</em></strong> and then <strong><em>Debug</em></strong> to start debugging the program on simulator.</p>
+<ul>
+<li>The Hexagon IDE will then prompt to switch to <strong><em>Debug perspective</em></strong>. Select <strong><em>Switch</em></strong> and the executable is launched and the breakpoint is hit at the <code>multithreading_parallel_sum</code> function.</li>
+</ul>
+<p><img alt="svg" src="../images/ide_debug_perspective_multithreading.png" /></p>
+<ul>
+<li>The debug perspective enables you to perform debugging operations such as step, disassembly, set breakpoints, view/modify variables, and view registers.</li>
+</ul>
+<p><img alt="svg" src="../images/ide_debug_variables_multithreading.png" /></p>
+<ul>
+<li>For example, clicking on the Registers tab of the debug perspective displays the contents of the Hexagon processor registers.</li>
+</ul>
+<p><img alt="svg" src="../images/ide_debug_registers_multithreading.png" /></p>
+<ul>
+<li>If any debug-related information is not displayed, you can display it by choosing Show View from the Window menu.</li>
+</ul>
+<h3 id="run-and-debug-on-target">Run and debug on target</h3>
+<p>Before you start debugging on the target using the IDE, please go through the <a href="debug.html">debug</a> page for supported targets and software requirements for debugging.</p>
+<p>This section presents an example which shows how to debug a library project that is called by an application project:</p>
+<ul>
+<li>The shared library implements a compute engine which runs on the Hexagon processor.</li>
+<li>The application is an Android NDK multithreading application which offloads specific computations onto the compute engine.</li>
+</ul>
+<p>The application communicates with the compute engine using <a href="../software/ipc/rpc.html">FastRPC</a>.</p>
+<p>The compute engine will be debugged from the IDE while running on the target platform.</p>
+<h4 id="build-for-target">Build for target</h4>
+<p>This section assumes that the project was imported as a Makefile project.</p>
+<p>To build the project, right-click on the project name, select <code>Properties</code> and then <code>C/C++ Build</code>. Under <code>Builder settings</code>, enter a make command such as as <code>make BUILD=Debug DSP_ARCH=v66</code>.</p>
+<p>It is recommended to start by debugging a shared object built with the <code>Debug</code> flavor.  Debugging code built with the <code>ReleaseG</code> flavor is supported but more challenging due to the compiler optimizations making the code harder to follow.  Debugging code built with the <code>Release</code> flavor is not supported.</p>
+<p><img alt="svg" src="../images/ide_target_debug_build_settings.png" /></p>
+<p>Now click the <strong><em>Behavior</em></strong> tab and set <strong><em>Build</em></strong> as <code>hexagon</code> and <strong><em>clean</em></strong> as <code>hexagon_clean</code>.</p>
+<p><img alt="svg" src="../images/ide_target_debug_build_settings_behavior.png" /></p>
+<p>Click <strong><em>Apply and close</em></strong> to apply settings and close window.</p>
+<p>Build the project by right-clicking on the project and selecting <strong><em>Build Project</em></strong>.</p>
+<p><img alt="svg" src="../images/ide_target_debug_build_project.png" /></p>
+<h4 id="push-required-binaries-to-target">Push required binaries to target</h4>
+<ul>
+<li>
+<p>To build the android binaries, run following command. Note that this command will build 64 bit version of the android side binaries. For 32 bit version, please refer to the <a href="build.html">building reference instructions</a>.</p>
+<pre><code>make android VERBOSE=1
+</code></pre>
+</li>
+<li>
+<p>Use ADB as root and remount system read/write</p>
+<pre><code>adb root
+adb wait-for-device
+adb remount
+</code></pre>
+</li>
+<li>
+<p>Push the HLOS side multithreading test executable and supporting multithreading stub library to the device</p>
+<pre><code>adb shell mkdir -p /vendor/bin/
+adb push android_ReleaseG_aarch64/multithreading /vendor/bin/
+adb shell chmod 777 /vendor/bin/multithreading
+adb push android_ReleaseG_aarch64/ship/libmultithreading.so /vendor/lib64/
+</code></pre>
+</li>
+<li>
+<p>Push the Hexagon Shared Object to the device's file system</p>
+<pre><code>adb shell mkdir -p /vendor/lib/rfsa/dsp/sdk
+adb push hexagon_Debug_toolv84_v66/ship/libmultithreading_skel.so /vendor/lib/rfsa/dsp/sdk
+</code></pre>
+</li>
+<li>
+<p>Generate a device-specific test signature based on the device's serial number.</p>
+<p>Follow the steps listed in the <a href="sign.html#walkthrough">walkthrough</a> section of the signing documentation.</p>
+</li>
+</ul>
+<p><strong><em>NOTE:</em></strong> This step only needs to be done once as the same test signature will enable loading any module.</p>
+<h4 id="attach-to-user-pd-process">Attach to user PD process</h4>
+<p><strong><em>Set breakpoint in the shared object</em></strong></p>
+<p>The imported Hexagon library project must be configured so it automatically attaches to the target process when you first start debugging it.</p>
+<p>To do this, you need to set breakpoints in the required files in the shared library project where you want the debug session to break.</p>
+<p>As with simulator debugging, breakpoints are set by default at the entry point of all functions defined in the IDL files listed in the <code>*_QAICIDLS</code> variable present in the <code>hexagon.min</code> file of the current project. If <a href="run.html#run_main_on_hexagon">run_main_on_hexagon</a> is used to execute the DSP code without defining any IDL file, no breakpoint will be set.</p>
+<p>To set a breakpoint at particular function double-click on
+<strong><em>Run &gt; Debug Configurations C/C++ &gt; Hexagon C/C++ Attach to Remote Application</em></strong>
+go to Debugger tab and set the function name in the textbox associated with <strong><em>Stop on startup at</em></strong> label.</p>
+<p><img alt="svg" src="../images/ide_target_debug_set_functionname_to_break.png" /></p>
+<p>Click on Main Tab to disable auto build as shown in below.</p>
+<p><img alt="svg" src="../images/ide_remote_debugger_disable_auto_build.png" /></p>
+<p>Click <strong><em>Apply</em></strong> and then <strong><em>Close</em></strong>.</p>
+<h4 id="set-up-debug-configuration">Set up debug configuration</h4>
+<p>Right-click the project in Project Explorer and choose <strong><em>Debug As &gt; Hexagon Attach to Application</em></strong>.</p>
+<p><img alt="svg" src="../images/ide_target_debug_shared_attach_menu.png" /></p>
+<p>The following dialog box appears:</p>
+<p><img alt="svg" src="../images/ide_target_debug_shared_configs_hex_dialog_adsp.png" /></p>
+<p>In this example we are going to use the aDSP Subsystem for debugging. Note that the procedure is the same for the cDSP.</p>
+<p>Shared DSP objects cannot be debugged standalone. The debugger needs the base image that initiates calls to the shared object. For the aDSP, <code>fastrpc_shell_0</code> is the base image and is specified in the <strong><em>Executable</em></strong> field. Users have to pull it from device using the following command.</p>
+<pre><code>adb pull /vendor/dsp/adsp/fastrpc_shell_0
+</code></pre>
+<p>To debug shared object on cDSP unsigned PD, you need to specify <code>fastrpc_shell_unsigned_3</code> and for signed PD, you need to specify <code>fastrpc_shell_3</code>. These files are present in <code>/vendor/dsp/cdsp/</code>.</p>
+<p>In the <strong><em>Shared libraries search path</em></strong> field, specify the directory of shared library to be debugged during the debug session. Use <strong><em>File System</em></strong> or <strong><em>Workspace</em></strong> to search for shared libraries.</p>
+<p>In the <strong><em>Target</em></strong> drop-down list, choose the ID of the target device to debug on. After you choose the target in the <strong><em>Target</em></strong> field, default subsystem will be selected in the <strong><em>Subsystem</em></strong> field and FastRPC processes will be listed in the <strong><em>Process name</em></strong> field. If there are no fastrpc processes running on your target,you will see the <strong><em>Process name</em></strong> field empty.</p>
+<p>Select the subsystem you want to debug for in the <strong><em>Subsystem</em></strong> field, wait for some time to take it effect. Once  your device is online, you will see selected subsystem in the <strong><em>Subsystem</em></strong> field and if there are any fastrpc processes running, they will be listed in the <strong><em>Process name</em></strong> field, otherwise you will find it empty.</p>
+<p><img alt="svg" src="../images/ide_target_debug_shared_configs_hex_dialog_adsp.png" /></p>
+<p><strong><em>NOTE:</em></strong> If no target ID is displayed except the simulator, this indicates the target device is not connected properly – try disconnecting the device and then reconnecting it again. If you get the error as shown below.</p>
+<p><img alt="svg" src="../images/ide_debug_error_search_subsys_list.png" /></p>
+<p>Then make sure your device does not get disconnected(especially after reboot) when processes are being fetched.</p>
+<p>The field “Process name” needs to be set to the application that you will be running on the target. The application will show up in this drop-down list only if it is running on the device.</p>
+<p>Before you proceed and hit the “Debug” button, make sure the next two steps are completed.</p>
+<ul>
+<li>Run the Android application</li>
+</ul>
+<p>Before you can proceed with debugging the Hexagon library project, you will first need to run the multithreading application so it can make a call to the Hexagon library project. Run multithreading from command-line as follows</p>
+<pre><code>    adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH ADSP_LIBRARY_PATH="/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;" /vendor/bin//multithreading
+</code></pre>
+<p>​       Now multithreading will be waiting for the debugger to connect.</p>
+<ul>
+<li>
+<p>Select the user PD process</p>
+<p>Click <strong><em>Refresh</em></strong> icon <img alt="svg" src="../images/ide_target_debug_shared_refresh_icon.png" /> and the multithreading process will be shown in the process drop-down list now and select multithreading process.</p>
+<p><img alt="svg" src="../images/ide_remote_debugger_select_multithreading.png" /></p>
+<p>Click <strong><em>Debug</em></strong> to start the shared library debug session.</p>
+<p>This starts the Hexagon library project, and causes it to automatically connect to the target and then prompt you to switch to the Debug perspective.</p>
+</li>
+</ul>
+<h4 id="debug_1">Debug</h4>
+<p>Your breakpoint will be hit now and you should see the following view.</p>
+<p><img alt="svg" src="../images/ide_multithreading_target_debug.png" /></p>
+<p>At this point you can debug your code by stepping into or stepping over. When the debug session is completed, the <code>multithreading</code> output can be viewed in the console.</p>
+<h2 id="page-table-viewer">Page table viewer</h2>
+<p>When launched through the SDK, the Eclipse IDE includes an additional view: RTOS page table viewer.</p>
+<p>To open the RTOS page table viewer, choose <strong><em>Show View &gt; Other &gt; Hexagon &gt; Page Table</em></strong> from the <strong><em>Window</em></strong> menu. It shows page table mappings made during a debug session.</p>
+<p><img alt="svg" src="../images/ide_utilities_rtos_page_view.png" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="profile.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Profiling
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="clone.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Project cloning
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../js/iframe-worker.js"></script>
+<script src="../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

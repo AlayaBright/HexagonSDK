@@ -1,0 +1,17 @@
+#/* ============================================================================================== */
+#/*  QUALCOMM TECHNOLOGIES, INC.                                                                   */
+#/*                                                                                                */
+#/*  Halide Benchmarks/Examples in Device-standalone mode                                          */
+#/*                                                                                                */
+#/* ---------------------------------------------------------------------------------------------- */
+#/*          Copyright (c) 2016-2021 QUALCOMM Technologies, Inc. and/or its subsidiaries.          */
+#/*                           All Rights Reserved.                                                 */
+#/*                  QUALCOMM Confidential and Proprietary                                         */
+#/* ============================================================================================== */
+
+
+HEXAGON_TOOLS_VER ?= 8.4.12
+
+ifeq ($(origin CXX),default)
+  CXX = clang++
+endif

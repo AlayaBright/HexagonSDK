@@ -1,0 +1,1771 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>DSP optimizations - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dsp-optimizations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              DSP optimizations
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" checked>
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        DSP optimizations
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="dsp_optimizations.html" class="md-nav__link md-nav__link--active">
+      DSP optimizations
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#packing-instructions" class="md-nav__link">
+    Packing instructions
+  </a>
+  
+    <nav class="md-nav" aria-label="Packing instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scalar-packing-rules" class="md-nav__link">
+    Scalar packing rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hvx-packing-rules" class="md-nav__link">
+    HVX packing rules
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reduce-stalls" class="md-nav__link">
+    Reduce stalls
+  </a>
+  
+    <nav class="md-nav" aria-label="Reduce stalls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instruction-latencies" class="md-nav__link">
+    Instruction latencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Instruction latencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thread-vs-processor-cycles" class="md-nav__link">
+    Thread vs. processor cycles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalar-latencies" class="md-nav__link">
+    Scalar latencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hvx-latencies" class="md-nav__link">
+    HVX latencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-latencies" class="md-nav__link">
+    Memory latencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software-pipelining" class="md-nav__link">
+    Software pipelining
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hvx-optimizations" class="md-nav__link">
+    HVX optimizations
+  </a>
+  
+    <nav class="md-nav" aria-label="HVX optimizations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-hvx" class="md-nav__link">
+    When to use HVX
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hvx-byte-manipulations" class="md-nav__link">
+    HVX byte manipulations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-operations" class="md-nav__link">
+    Memory operations
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aligned-hvx-loads-and-stores" class="md-nav__link">
+    Aligned HVX loads and stores
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unaligned-hvx-loads-and-stores" class="md-nav__link">
+    Unaligned HVX loads and stores
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-stores-of-arbitrary-sizes" class="md-nav__link">
+    Array stores of arbitrary sizes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-scalar-contents-from-an-hvx-register" class="md-nav__link">
+    Accessing scalar contents from an HVX register
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vtcmlookup" class="md-nav__link">
+    VTCM/lookup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#float-support" class="md-nav__link">
+    Float support
+  </a>
+  
+    <nav class="md-nav" aria-label="Float support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#float-to-qfloat-conversions" class="md-nav__link">
+    Float to qfloat conversions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qfloat-precision" class="md-nav__link">
+    qfloat precision
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#packing-instructions" class="md-nav__link">
+    Packing instructions
+  </a>
+  
+    <nav class="md-nav" aria-label="Packing instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scalar-packing-rules" class="md-nav__link">
+    Scalar packing rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hvx-packing-rules" class="md-nav__link">
+    HVX packing rules
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reduce-stalls" class="md-nav__link">
+    Reduce stalls
+  </a>
+  
+    <nav class="md-nav" aria-label="Reduce stalls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instruction-latencies" class="md-nav__link">
+    Instruction latencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Instruction latencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thread-vs-processor-cycles" class="md-nav__link">
+    Thread vs. processor cycles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalar-latencies" class="md-nav__link">
+    Scalar latencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hvx-latencies" class="md-nav__link">
+    HVX latencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-latencies" class="md-nav__link">
+    Memory latencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software-pipelining" class="md-nav__link">
+    Software pipelining
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hvx-optimizations" class="md-nav__link">
+    HVX optimizations
+  </a>
+  
+    <nav class="md-nav" aria-label="HVX optimizations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-hvx" class="md-nav__link">
+    When to use HVX
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hvx-byte-manipulations" class="md-nav__link">
+    HVX byte manipulations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-operations" class="md-nav__link">
+    Memory operations
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aligned-hvx-loads-and-stores" class="md-nav__link">
+    Aligned HVX loads and stores
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unaligned-hvx-loads-and-stores" class="md-nav__link">
+    Unaligned HVX loads and stores
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-stores-of-arbitrary-sizes" class="md-nav__link">
+    Array stores of arbitrary sizes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-scalar-contents-from-an-hvx-register" class="md-nav__link">
+    Accessing scalar contents from an HVX register
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vtcmlookup" class="md-nav__link">
+    VTCM/lookup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#float-support" class="md-nav__link">
+    Float support
+  </a>
+  
+    <nav class="md-nav" aria-label="Float support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#float-to-qfloat-conversions" class="md-nav__link">
+    Float to qfloat conversions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qfloat-precision" class="md-nav__link">
+    qfloat precision
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="dsp-optimizations">DSP optimizations</h1>
+<p>There are some basic concepts to keep in mind when writing efficient assembly code. These concepts are also relevant when writing with intrinsics because you should know approximately how the compiler is able to group and schedule intrinsics in order to achieve maximum performance.</p>
+<p>This page briefly describes some of these fundamental concepts.</p>
+<p><strong><em>TIP:</em></strong> When writing code with intrinsics or assembly instructions, it is best to start by writing functional code using the right instructions, and then only optimizing code further by following the optimization guidelines below. Attempting to do too much at once becomes more time consuming because low-level optimizations typically obscure the clarity of the code.</p>
+<h2 id="packing-instructions">Packing instructions</h2>
+<p>Each hardware thread is capable of executing a packet of up to four instructions in a given thread cycle. Instructions occurring in a packet execute in parallel, making it possible within one packet to consume a register and update its content at the same time. For example, the following packet consumes the contents of R0 that were produced in the packets that preceded it and then updates its content with R4.</p>
+<pre><code>{
+    R2 = vaddh(R0,R1)
+    R0 = R4
+}
+</code></pre>
+<p>The exception to this rule is when the <code>.new</code> specifier is used within an instruction. For example, the following packet first computes R2 and then store its content to memory.</p>
+<pre><code>{
+    R2 = memh(R4+#8)
+    memw(R5) = R2.new
+}
+</code></pre>
+<p>To maximize the number of instructions per packet, it is important to understand how instructions can or cannot be combined in each packet. The restrictions are different for scalar and HVX instructions.</p>
+<h3 id="scalar-packing-rules">Scalar packing rules</h3>
+<p>Rules on how to form packets are explained in the Instruction packets section of the Hexagon V66 Programmer's Reference Manual (80-N2040-42).</p>
+<p>Let's focus on mastering the most important restriction to packing instructions together: resource constraints.</p>
+<p>The simplest way to understand the impact of resource constraints on grouping with V66 is to think simply in terms of slots. Because of the resources they use, each type of instruction can only execute on one specific slot, out of four available slots. For example, logical and multiply operations consume either slot 2 or 3, whereas a load instruction consumes either slot 0 or 1. This means that at most two logical operations, or one logical and one multiply operation, or two multiply operations, can execute in a single packet.</p>
+<p>The description of which type of instruction is acceptable for each slot is provided in Figure 3-1 of the Hexagon V66 Programmer's Reference Manual (80-N2040-42) as well as in the detailed description of each instruction. For convenience, this figure is reproduced below.</p>
+<p><img alt="svg" src="../../images/instruction_slots.png" /></p>
+<p><strong><em> Instruction slots </em></strong></p>
+<p>Other restrictions outlined in the Instruction packets section of the same manual occasionally cause a packet that follows the resource constraints to still generate an error message at compile time. However, these other rules come into play much less frequently, and you can learn about them over time.</p>
+<h3 id="hvx-packing-rules">HVX packing rules</h3>
+<p>Rules on how to form packets in HVX are explained in the VLIW packing rules section of the Hexagon V66 HVX Programmer's Reference Manual (80-N2040-44).</p>
+<p>HVX instructions share the same slots as V6x, and there are restrictions on which slot each HVX instruction uses. However, unlike with V6x, resources and slots are not correlated one-to-one. When grouping HVX instructions, it is best to focus on understanding which resources each HVX instruction share, and understanding how this impacts the ability to group instructions in a packet; slot restrictions rarely come into consideration when writing HVX code.</p>
+<p>Resource restrictions are summarized in the Hexagon V66 HVX Programmer's Reference Manual (80-N2040-44) and reproduced in the table below for convenience. The detailed description of each HVX instruction also indicates which HVX resources it consumes.</p>
+<p><img alt="svg" src="../../images/instruction_resources.png" /></p>
+<p><strong><em> HVX slot/resource/latency summary </em></strong></p>
+<p>Be aware that some instructions, such as <code>vrmpy</code>, come in different flavors: some that consume two HVX resources, and some that consume only one resource.</p>
+<p>For example, halfword multiplies use both multiply resources, which means that no other HVX multiply instruction is present in the same packet. When trying to optimize the inner loop of a function multiply-bound, plan early on how to maximize multiply resource utilization in as many packets as possible.</p>
+<p><strong><em>NOTE:</em></strong> Unlike scalar stores, you cannot group two HVX stores in a single packet.</p>
+<h2 id="reduce-stalls">Reduce stalls</h2>
+<p>In addition to executing as many instructions as possible in any given packet to maximize parallelization, it is important to be aware of latencies that might cause the processor to stall. This section discusses the most common causes of stalls that deteriorate performance.</p>
+<h3 id="instruction-latencies">Instruction latencies</h3>
+<h4 id="thread-vs-processor-cycles">Thread vs. processor cycles</h4>
+<p>Hexagon cores dynamically schedule packets from threads into the core pipeline. The number of cycles to execute a packet varies depending on the behavior of other threads. The optimal schedule for a single thread running in isolation can be different than the optimal schedule for a thread running with other threads.</p>
+<p>For example, when multiple threads execute in parallel, one thread executes every other processor cycle. This means that if the processor is clocked at 800 MHz and four threads execute in parallel, each thread runs effectively at 400 MHz.</p>
+<p>However, when a thread is idle, another thread might be able to <em>steal</em> some of its cycles, allowing it to run faster than it runs if all hardware threads were busy. In practice, on Hexagon versions up through the SM8250 device, a single-threaded workload might run up to 20% to 30% faster if it is the only running thread, compared to when it is concurrent with other running software threads that are consuming all the hardware threads.</p>
+<p>The following sections provide general rules on latency scheduling assuming at least two threads are running. These rules provide a simplified programming model that is reasonable to use when writing optimized code.</p>
+<p>Using this model, we introduce the concept of a packet delay. This delay is the number of packets that are to be scheduled between two dependent packets to prevent the thread from stalling.</p>
+<h4 id="scalar-latencies">Scalar latencies</h4>
+<p>Instructions have no packet delays, with the following exceptions:</p>
+<ul>
+<li>
+<p>Instructions that are paired with the <code>.new</code> predicate, which allows two sequential instructions to execute within the same packet.</p>
+</li>
+<li>
+<p>Mispredicted jumps, which typically incur around five packet stalls. For more information on speculative branches, see the Compare jumps section in the Hexagon V66 Programmer's Reference Manual (80-N2040-42).</p>
+<p><strong><em>NOTE:</em></strong> When possible, try using hardware loops; they do not generate stalls, even when exiting the loop.</p>
+</li>
+<li>
+<p>Long-latency instructions that consume the result of another long-latency instruction. These instructions experience a one-packet delay with the exception of back-to-back multiplies that share the same accumulator and thus do not experience any delay.</p>
+<p>Long latency instructions are all the load, multiply, and float instructions.</p>
+<p>For example, the following instruction sequences stall:</p>
+<pre><code>{ R2=mpy(R0.L,R0.L) }
+// one-cycle stall
+{ R3=mpy(R2.L,R2.L) }
+...
+{ R2 = memw(R1) }
+// one-cycle stall
+{ R3=mpy(R2.L,R2.L) }
+</code></pre>
+<p>But this instruction sequence does not stall:</p>
+<pre><code>{ R2=mpy(R0.L,R0.L) }
+{ R2+=mpy(R1.L,R1.L) } // no stall
+</code></pre>
+</li>
+</ul>
+<h4 id="hvx-latencies">HVX latencies</h4>
+<p>The Instruction latency section of the Hexagon V66 HVX Programmer's Reference Manual (80-N2040-44) discusses latencies. This section discusses the most common HVX arithmetic instruction sequences responsible for stalls.</p>
+<p>The most common causes of stalls are one-packet delays present when the following instructions consume a result that was produced in the previous packet:</p>
+<ul>
+<li>
+<p>Multiplies</p>
+<p><strong><em>NOTE:</em></strong> Back-to-back multiplies that only share the same accumulator do not stall.</p>
+</li>
+<li>
+<p>Shift and permute operations</p>
+</li>
+</ul>
+<p>The Instruction latency section provides some examples of these rules:</p>
+<pre><code>{ V8 = VADD(V0,V0) }
+{ V0 = VADD(V8,V9) }   // NO STALL
+{ V1 = VMPY(V0,R0) }   // STALL  due to V0
+{ V2 = VSUB(V2,V1) }   // NO STALL  on V1
+{ V5:4 = VUNPACK(V2) } // STALL due to V2
+{ V2 = VADD(V0,V4) }   // NO STALL on V4
+</code></pre>
+<h3 id="memory-latencies">Memory latencies</h3>
+<p>Scalar data memory accesses go through a two-level cache hierarchy, while HVX memory accesses only transit through the L2 memory.</p>
+<p>Cache sizes vary depending on the exact chip variant:</p>
+<ul>
+<li>L1 cache sizes are 16 to 32 KB</li>
+<li>L2 cache sizes are 128 to 1024 KB on aDSP variants, and 512 to 2048 KB on cDSP variants</li>
+</ul>
+<p>To avoid cache misses when writing optimized applications, it is critical to reduce the data memory throughput and maximize data locality. Common data optimization techniques exploiting data locality include the following techniques:</p>
+<ul>
+<li>
+<p>Register data reuse</p>
+<p>The application stores values into registers for later use. For example, applying a filter on multiple lines at the same time allows holding of coefficients in registers, thus reducing the overall data bandwidth.</p>
+</li>
+<li>
+<p>Tiling</p>
+<p>A tile defines a small region of an image. The application processes an image one tile at a time or a few tiles at a time. This approach might be appropriate when using scalar instructions rather than HVX instructions because it allows preservation of data within L1 and thus maximizes scalar processing throughput. Larger buffers, such as groups of image lines, are typically too large for L1. Using a tiling approach typically comes at the cost of greater programming complexity and more non-linear data addressing.</p>
+</li>
+<li>
+<p>Line processing</p>
+<p>The application processes an image a few lines at a time. This is the most common approach for HVX implementations as it allows to load entire HVX vectors and leverage the large L2 memory cache size.</p>
+</li>
+</ul>
+<p>Another type of cache optimization consists of explicitly managing cache contents by way of prefetching data into cache and, more rarely, invalidating cache line contents. Leave this optimization for the end after you have already ensured a maximum of data locality in your code.</p>
+<p>The Hexagon V66 Programmer's Reference Manual (80-N2040-42) details the L2 cache prefetching mechanism. For an example that shows how to perform L2 prefetching, see the <a href="../../examples/multithreading/index.html">multithreading</a> project example.</p>
+<p><strong><em>NOTE:</em></strong> It is common to optimize an application on a single-thread first and then multi-thread the code later. When using that approach, extrapolating multi-threaded performance from single-thread performance can occasionally be misleading: memory bandwidth might not be a bottleneck when only one thread is running, but it become one of the limiting resources when more threads run in parallel. As a result, it is a good practice to write applications as conservatively as possible with respect to memory bandwidth usage, regardless of the performance of the single-threaded code.</p>
+<p>Although data memory latencies depend on many parameters and architecture variants, it is useful to know to a first order the cost of memory accesses when planning the optimization of an application. The following numbers are rough estimates on what to expect in making memory accesses:</p>
+<ul>
+<li>
+<p>DDR memory access: ~250 ns</p>
+</li>
+<li>
+<p>L2 read latency: 6 thread cycles</p>
+<p>HVX has a mechanism for pushing HVX instructions into a queue called VFIFO. As long as no mispredicted branches occur, this queue remains full. The L2 reads triggered by VMEM instructions occur enough in advance that the result from a VMEM load is available in the next cycle without stalling. In other words, for HVX, L2 reads have a one-cycle latency, and the following instruction sequence does not stall as long as no mispredicted branch has occurred recently:</p>
+<pre><code>{ V0 = VMEM(R0++) }
+{ V1 = VADD(V0,V1) }   // No stall if no recent mispredicted branch
+</code></pre>
+<p><strong><em>Note: </em></strong> The L2 VMEM read latency is higher--around 15 thread cycles--when following an L2 VMEM store to the same location.  The reason for this delay is that the store must fully reach L2 before the load starts. For active data that do not fit in the vector register file, consider using VTCM instead of L2 to reduce the store-to-load penalty.</p>
+</li>
+<li>
+<p>Maximum sustainable read-write L2 bandwidth with no bank conflicts: 128 bytes per processor cycle</p>
+</li>
+</ul>
+<p>Also, the HVX engine is directly connected to L2 cache, bypassing L1. HVX instructions are pipelined deeply enough to avoid any observed latencies for L2 loads or stores (when the pipeline is full and L2 traffic is not very congested). However, due to the depth of the HVX pipeline, it is expensive to do a transfer from an HVX register to a scalar register, or to perform a scalar memory load from an address following an HVX store to the same cache line. When using HVX in performance-sensitive code, do all loads, stores, and arithmetic via HVX instructions, and use scalar instructions and registers only for addressing, controlling, or processing on a different data set than that being done in HVX.</p>
+<h2 id="software-pipelining">Software pipelining</h2>
+<p>The Hexagon instruction set allows multiple unrelated instructions within one packet. This flexibility provides great opportunities for parallelizing the code, which are best exploited by doing software pipelining. Software pipelining consists of processing a few consecutive instances of a loop in parallel in order to reduce data dependencies and provide more opportunities for operations to be executed in parallel.</p>
+<p>This approach comes at the expense of having separate code for prologue and epilogue code. For example, a loop does the following:</p>
+<ul>
+<li>Processes data loads for iteration <code>n+2</code></li>
+<li>Performs some computations for iterations <code>n</code> and <code>n+1</code></li>
+<li>Stores the results of iteration <code>n</code></li>
+</ul>
+<p>In this case, the prologue and epilogue code must handle the first and last two- or three-loop iterations separately, and it handles cases where the number of loop iterations is small.</p>
+<p>The Hexagon instruction set allows for a decrease in the complexity of the prologue and epilogue code by supporting pipelined hardware loops. Pipelined hardware loops set predicate registers after a loop has been iterated a specific number of times, thus allowing some operations (typically stores) to execute only after a few loop iterations. For more information on this approach, see the Pipelined hardware loops section in the Hexagon V66 Programmer's Reference Manual (80-N2040-42).</p>
+<p><strong><em>NOTE:</em></strong> The Hexagon compiler automatically conducts software pipelining of appropriate loops.</p>
+<h2 id="hvx-optimizations">HVX optimizations</h2>
+<p>HVX adds a powerful set of instructions that allow processing of large vectors very efficiently.</p>
+<p>The Hexagon V66 HVX Programmer's Reference Manual (80-N2040-44) is the authoritative source for HVX instruction syntax and behavior for any given revision. The following sections highlight some these instructions.</p>
+<h3 id="when-to-use-hvx">When to use HVX</h3>
+<p>HVX vectors are 128-byte wide. As a result, HVX lends itself well to sequences of identical operations on contiguous 32-bit, 16-bit, or 8-bit elements.</p>
+<p>Thus, HVX is ideally suited for some application spaces such as image processing where many operations are to be applied independently to continuous pixels. However, it does not mean that HVX is restricted to only perform operations on contiguous elements in memory, as explained below.</p>
+<p>Although HVX memory loads and memory stores access contiguous elements in memory, HVX provides several powerful instructions for shuffling and interleaving elements between and within HVX vectors. These instructions allow HVX to efficiently process non-continuous elements that follow some predictable patterns, such as odd and even elements or vertical lines. The next section discusses these instructions in more detail.</p>
+<p>For portions of code that only operate sequentially, one element at a time, and where no parallelism opportunity is found, using V6x instructions and letting other threads use the HVX resources is often the best approach.</p>
+<h3 id="hvx-byte-manipulations">HVX byte manipulations</h3>
+<p>Depending on the nature of the algorithm being ported on HVX, it might be necessary to rearrange elements from an HVX vector or pair of HVX vectors in various ways. Several HVX instructions allow you to address this challenge. The following figure describes these instructions and provides a visual summary of the instructions.</p>
+<p><img alt="svg" src="../../images/HVX_element_manipulations.png" /></p>
+<p><strong><em> Summary of the most common HVX element manipulations </em></strong></p>
+<ul>
+<li>
+<p><code>valign, vlalign, vror</code></p>
+<p>These three instructions are straightforward:</p>
+<ul>
+<li><code>valign</code> and <code>vlalign</code> create an HVX vector made out of the lowest bytes of one vector and the upper bytes of another vector.</li>
+<li><code>vror</code> performs a circular rotation of an HVX vector by an arbitrary number of bytes.</li>
+</ul>
+</li>
+<li>
+<p><code>vpacke, vpacko, vpack, vunpack, vunpacko, vdeal</code></p>
+<ul>
+<li><code>vpacke</code> and <code>vpacko</code> pack the even or odd 32-bit or 16-bit elements of two HVX vectors into one vector.</li>
+<li><code>vpack</code> performs an element size reduction, shrinking the contents of two HVX vectors into one vector after saturation.</li>
+<li><code>vunpack</code> and <code>vunpacko</code> are the opposite forms of <code>vpack</code>, respectively unpacking the even and odd 8-bit or 16-bit elements into elements twice as large.</li>
+<li><code>vdeal</code> (the flavor that consumes one input register) operates in the same way as <code>vpacke</code> and <code>vpacko</code> combined, but it operates on half the number of elements: it packs the even elements from the input register into the lower half of the output register, and packs the odd elements into the upper half of the register.</li>
+</ul>
+</li>
+<li>
+<p><code>vshuffe, vshuffo, vshuffoe, vshuff</code></p>
+<ul>
+<li><code>vshuffe</code> and <code>vshuffo</code> are similar to their counterparts, <code>vpacke</code> and <code>vpacko</code>, in that they move the even or odd elements of two HVX into one HVX vector. The difference with their vpack counterparts is that elements from both input HVX vectors are interleaved (the contents of both input register is being shuffled into one register).</li>
+<li><code>vshuffoe</code> executes both <code>vshuffe</code> and <code>vshuffo</code> at the same time and generates a register pair where the two registers in the pair are the output from the <code>vshuffo</code> and <code>vshuffe</code> instructions.</li>
+<li><code>vshuff</code> (the flavor that consumes one input register) interleaves the elements from the upper and lower parts of a register into another register.</li>
+</ul>
+<p>The <code>vshuff</code> and <code>vpack</code> variants are helpful in different use cases. For example, if an HVX register contains pairs of (x,y) coordinates, use <code>vpacke</code> and <code>vpacko</code> to separate the x and y elements into different vectors. On the other hand, <code>vshuffo</code> or <code>vshuffe</code> can follow HVX instructions that produce HVX vectors with double precision, and store the results of consecutive operations in the upper and lower registers of a pair.</p>
+</li>
+<li>
+<p><code>vasr</code></p>
+<p>A narrowing shift: it takes two input HVX vectors and returns one output HVX vector. The narrowing shift is applied on each element of the two input HVX registers, and thus it produces output with the same order as a <code>vshuffe</code> or <code>vshuffo</code> instruction.</p>
+</li>
+<li>
+<p>Cross-lane <code>vshuff, vdeal</code></p>
+<p>These instructions are very powerful but not trivial to understand. They perform a multi-level transpose operation between groups of registers. The most common configurations used with <code>vshuff</code> and <code>vdeal</code> are for positive and negative powers of 2.</p>
+<ul>
+<li>
+<p><code>vshuff</code> with an element size of <code>Rt</code> = 2<sup>N</sup> places the 2<sup>N</sup>-byte even elements from both input vectors into the low register of the output pair, and the 2<sup>N</sup>-byte odd elements into the high register. This operation is a generalization of <code>vshuffoe</code> to larger element sizes.</p>
+</li>
+<li>
+<p><code>vshuff</code> with an element size of <code>Rt</code> = -2<sup>N</sup> interleaves the 2<sup>N</sup>-byte elements from both input vectors into the output register. This operation is a generalization of the non-Cross-lane variant of <code>vshuff</code> to larger element sizes.</p>
+</li>
+<li>
+<p><code>vdeal</code> with an element size of <code>Rt</code> = 2<sup>N</sup> is identical to <code>vshuff</code>.</p>
+</li>
+<li>
+<p><code>vdeal</code> with an element size of <code>Rt</code> = -2<sup>N</sup> packs the 2<sup>N</sup>-byte even elements from both input vectors into the low output register pair, and the odd elements into the high pair. For <code>N=0</code>, this instruction is the same as executing <code>packo</code> and <code>packe</code> at the same time.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>vdelta, vrdelta</code></p>
+<ul>
+<li>
+<p><code>vdelta</code> and <code>vrdelta</code> use a network of switchboxes to permute or copy bytes within an HVX vector. Consider using these instructions when you need transforms with some irregular patterns not covered in the operations listed above.</p>
+</li>
+<li>
+<p><code>vdelta</code> and <code>vrdelta</code> are configured with an HVX vector. The simplest and safest way of determining the configuration values for this register is to use a configuration tool that is provided with the SDK tools under <code>{HEXAGON_SDK_ROOT}/tools/HEXAGON_Tools/&lt;version number&gt;/Examples/libcore/Vdelta_Helper/General_permute_network.html</code>.</p>
+<p>At the bottom of this html page, you can specify a pattern in which the bytes of the input vector should be reordered. For example, if bytes 1 and 5 are to be dropped from the input vector, specify in the <code>TPERM[N]</code> control box a sequence of bytes that begins with <code>0, 2, 3, 4, 6, ...</code>.</p>
+<p>Once the output pattern is fully specified, click <strong>Submit for Benes</strong> or <strong>Submit for Delta</strong> to retrieve the configuration, if one exists, and perform the pattern transformation using either a sequence of a <code>vrdelta</code> and <code>vdelta</code> instructions (Benes approach) or one <code>vrdelta</code> instruction.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="memory-operations">Memory operations</h3>
+<p>Aligned and unaligned HVX memory operations may be performed in C without using intrinsics.</p>
+<h4 id="aligned-hvx-loads-and-stores">Aligned HVX loads and stores</h4>
+<p>Dereferencing an HVX pointer using the <code>HVX_Vector</code> type defined in <code>$DEFAULT_HEXAGON_TOOLS_ROOT/Tools/target/hexagon/include/hexagon_types.h</code> results in aligned HVX VMEM instructions for loads and stores that ignore the lowest bits of the pointer to always align the load or store to the HVX vector size:</p>
+<pre><code>HVX_Vector* hvx_ptr = (HVX_Vector*)ptr;
+HVX_Vector hvx_value = *hvx_ptr;
+</code></pre>
+<p>Assuming hvx_value is mapped into V0 and ptr into R0, this code is compiled into the following instruction in assembly:</p>
+<pre><code>V0 = VMEM(R0)    // (R0 &amp; 127) bits are ignored
+</code></pre>
+<p>Similarly, storing to an HVX pointer results in ignoring the lowest bits to perform a VMEM store. The following code:</p>
+<pre><code>HVX_Vector* hvx_ptr = (HVX_Vector*)ptr;
+*hvx_ptr = hvx_value;
+</code></pre>
+<p>is compiled into the following single instruction, assuming hvx_value is mapped into V0 and ptr into R0:</p>
+<pre><code>VMEM(R0) = V0    // (R0 &amp; 127) bits are ignored
+</code></pre>
+<h4 id="unaligned-hvx-loads-and-stores">Unaligned HVX loads and stores</h4>
+<p>To perform unaligned loads and stores, you can define the following macro:</p>
+<pre><code>#define vmemu(A) *(( HVX_UVector*)(A))
+</code></pre>
+<p><strong><em> NOTE: </em></strong> Using unaligned HVX load/store operations is inherently less efficient than using aligned load/store operations combined with explicit HVX alignment instructions VALIGN and VLALIGN.</p>
+<p>With these, you can perform unaligned loads and stores in C the same way that you would in assembly:</p>
+<pre><code>HVX_Vector value = vmemu(ptr)
+vmemu(ptr) = new_value
+</code></pre>
+<p>results in assembly in an unaligned VMEMU load and an unaligned VMEMU store operations.</p>
+<pre><code>V0 =  VMEMU(R0)   // All address bits from R0 are used when performing the unaligned load
+VMEMU(R0) = V1    // All address bits from R0 are used when performing the unaligned store
+</code></pre>
+<h4 id="array-stores-of-arbitrary-sizes">Array stores of arbitrary sizes</h4>
+<p>Stores of arrays of arbitrary sizes may be accomplished with the following C helper function that leverages HVX bytewise-enabled stores.  Note that this approach is only recommended for rare boundary cases, as its performance is significantly worse than regular aligned or unaligned stores.</p>
+<pre><code>#include "hexagon_types.h"
+
+#define VLEN 128
+
+// This stores the first n bytes from vector vin to address 'addr'.
+// n must be in range 1..VLEN, addr may have any alignment.
+// Implementation does one or two masked stores.
+static inline void q6op_vstu_variable_ARV( void * addr, int n, HVX_Vector vin)
+{
+    vin = Q6_V_vlalign_VVR( vin, vin, (size_t)addr); //rotate as needed.
+    unsigned left_off = (size_t)addr &amp; (#VLEN-1);
+    unsigned right_off = left_off + n;
+    HVX_VectorPred qL_not = Q6_Q_vsetq_R( (size_t)addr );
+    HVX_VectorPred qR = Q6_Q_vsetq2_R( right_off );
+    if( right_off &gt; 128 ){
+        Q6_vmaskedstoreq_QAV( qR, (HVX_Vector*)addr + 1, vin);
+        qR = Q6_Q_vcmp_eq_VbVb( vin,vin);       // all 1's
+    }
+    qL_not = Q6_Q_or_QQn( qL_not, qR );
+    Q6_vmaskedstorenq_QAV( qL_not,(HVX_Vector*)addr, vin );
+}
+</code></pre>
+<h4 id="accessing-scalar-contents-from-an-hvx-register">Accessing scalar contents from an HVX register</h4>
+<p>The recommended way to access an element from an HVX register is to go through memory instead of using vextract.  This approach is best accomplished using a union. For example, the following code extracts the first 16-bit element of HVX register <code>hvx_value</code> into the 16-bit variable <code>first_element</code>:</p>
+<pre><code>union {int16_t array[ELEM_PER_VEC]; HVX_Vector vector; } HVX_and_array;
+HVX_and_array.vector = hvx_value;                // turns into an HVX store to memory
+int16_t first_element = HVX_and_array.array[0];  // turns into a scalar read from memory
+</code></pre>
+<p>Expect a delay of tens of cycles between the HVX write to memory and the scalar read.</p>
+<h3 id="vtcmlookup">VTCM/lookup</h3>
+<p>V6x supports scatter/gather operations, allowing you to perform vectorized random-access memory lookups that are not limited to 256 entries as is the case with the <code>vlut</code> instruction.</p>
+<p>For more details on this instruction, see the <a href="../../pdf/80-N2040-44_B_Qualcomm_Hexagon_V66_HVX_Reference_Manual_Programmers.pdf">Hexagon V66 HVX Programmer's Reference Manual User Guide</a>.</p>
+<p><strong><em>NOTE:</em></strong> The scatter/gather operations cause significant traffic in the VTCM subsytem, so they are prone to stalling when memory conflicts occur. For information on how to avoid scatter/gather stalls, see the Avoid scatter/gather stalls section of the <a href="../../pdf/80-N2040-44_B_Qualcomm_Hexagon_V66_HVX_Reference_Manual_Programmers.pdf">Hexagon V66 HVX Programmer's Reference Manual User Guide</a>.</p>
+<h3 id="float-support">Float support</h3>
+<h4 id="float-to-qfloat-conversions">Float to qfloat conversions</h4>
+<p>V68 supports HVX operations with float and qfloat data types. Conversion between these types is simply achieved using instructions that consume one type of data and produce another.</p>
+<p>For example:</p>
+<ul>
+<li>
+<p>Conversion from an HVX vector made of IEEE 754 single float elements to an HVX vector made of qfloat elements:</p>
+<pre><code>HVX_Vector vqf32 = Q6_Vqf32_vadd_VsfVsf(vsf, Q6_V_vzero())
+</code></pre>
+</li>
+<li>
+<p>Conversion from an HVX vector made of qfloat elements to an HVX vector made of IEEE 754 single float elements:</p>
+<pre><code>HVX_Vector vsf = Q6_Vsf_equals_Vqf32(vqf32);
+</code></pre>
+</li>
+</ul>
+<p>The <a href="../../doxygen/qhl_hvx/index.html">QHL HVX APIs</a> include a number of helper functions to perform conversions between IEEE and Qualcomm float numbers including those shown above.</p>
+<h4 id="qfloat-precision">qfloat precision</h4>
+<p>Unlike float operations, qfloat operations do not normalize their ouput vectors.  As a result, sequences of qfloat multiplies may lose some accuracy compared to their float equivalent and forcing normalization prior to the multiplies may be needed to achieve greater accuracy.  This is for example the case when using the Horner's method for polynomial approximations where a variable goes through a chain of multiplies.</p>
+<p>The simplest way to normalize a number consists in adding zero to it. For example, 16-bit qfloat normalization is achieved as follows:</p>
+<pre><code>x = Q6_Vqf16_vadd_Vqf16Vhf(x, Q6_V_vzero());
+</code></pre>
+<p>As a general rule of thumb, for greater accuracy:</p>
+<ul>
+<li>inputs to qfloat <code>vmpy</code> instructions should be normalized</li>
+<li>no normalization is needed for the inputs to a qfloat <code>vadd</code> operation</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="system_optimizations.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                System-level optimizations
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../system_integration.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                System integration
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../../js/iframe-worker.js"></script>
+<script src="../../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

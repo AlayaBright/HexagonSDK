@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: surpra
+Created-By: Apache Maven 3.6.0
+Build-Jdk: 1.8.0_11
+
+Name: build.properties
+SHA-256-Digest: 31+AGA0K72iPIY8Tx/F0F3FjgZ9+HuIMYqcvoLNzGhw=
+
+Name: feature.xml
+SHA-256-Digest: kODSsV6lwWnzna8Dm+Ng8jtIICOjTesFr/TpmVT+fmo=
+

@@ -1,0 +1,2356 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>sysMonApp - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sysmonapp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              sysMonApp
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profiler-service" class="md-nav__link">
+    Profiler service
+  </a>
+  
+    <nav class="md-nav" aria-label="Profiler service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sampling-modes" class="md-nav__link">
+    Sampling modes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pmu-selection" class="md-nav__link">
+    PMU selection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    Usage examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-collection" class="md-nav__link">
+    Data collection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-postprocessing" class="md-nav__link">
+    Data postprocessing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getstate-service" class="md-nav__link">
+    Getstate service
+  </a>
+  
+    <nav class="md-nav" aria-label="Getstate service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_1" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getpowerstats-service" class="md-nav__link">
+    getPowerStats service
+  </a>
+  
+    <nav class="md-nav" aria-label="getPowerStats service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_2" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pinfo-service" class="md-nav__link">
+    pinfo service
+  </a>
+  
+    <nav class="md-nav" aria-label="pinfo service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_3" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dcvs-service" class="md-nav__link">
+    DCVS service
+  </a>
+  
+    <nav class="md-nav" aria-label="DCVS service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_4" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_3" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clocks-service" class="md-nav__link">
+    Clocks service
+  </a>
+  
+    <nav class="md-nav" aria-label="Clocks service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_5" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clocks-set" class="md-nav__link">
+    Clocks set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clocks-limit" class="md-nav__link">
+    Clocks limit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clocks-remove" class="md-nav__link">
+    Clocks remove
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tinfo-service" class="md-nav__link">
+    tinfo service
+  </a>
+  
+    <nav class="md-nav" aria-label="tinfo service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_6" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thread-level-profile-tlp-service" class="md-nav__link">
+    Thread level profile (TLP) service
+  </a>
+  
+    <nav class="md-nav" aria-label="Thread level profile (TLP) service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_7" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postprocessing" class="md-nav__link">
+    Postprocessing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etm-trace-service" class="md-nav__link">
+    ETM trace service
+  </a>
+  
+    <nav class="md-nav" aria-label="ETM trace service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_8" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dll-command" class="md-nav__link">
+    DLL command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etm-command" class="md-nav__link">
+    ETM command
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_9" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hta-profiler-service" class="md-nav__link">
+    HTA profiler service
+  </a>
+  
+    <nav class="md-nav" aria-label="HTA profiler service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_10" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-collection_1" class="md-nav__link">
+    Data collection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-postprocessing_1" class="md-nav__link">
+    Data postprocessing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="sysmonapp">sysMonApp</h1>
+<p>sysMonApp is an Android application that configures and displays from multiple performance-related services on the cDSP, aDSP, and sDSP. These services are explained in the following sections.</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#profiler-service">Profiler</a></td>
+<td>Profile any DSP to gather clock information, resource usage, processor and thread load distribution, bus bandwidth metrics, and so on.</td>
+</tr>
+<tr>
+<td><a href="#getstate-service">Getstate</a></td>
+<td>Get the current clock voting information and heap statistics of each static Protection Domain.</td>
+</tr>
+<tr>
+<td><a href="#dcvs-service">DCVS</a></td>
+<td>Enable or disable the Dynamic Clock Voltage Scaling (DCVS) feature executing on each DSP.</td>
+</tr>
+<tr>
+<td><a href="#clocks-service">Clocks</a></td>
+<td>Set the DSP core clock and bus clocks.</td>
+</tr>
+<tr>
+<td><a href="#tinfo-service">Thread info</a></td>
+<td>For each active software thread, display their priority, declared stack size, and maximum stack used.</td>
+</tr>
+<tr>
+<td><a href="#thread-level-profile-tlp-service">TLP</a></td>
+<td>Thread-level profiling (TLP) that monitors software thread activity.</td>
+</tr>
+<tr>
+<td><a href="#etm-trace-service">ETM trace</a></td>
+<td>Enable the ETM to trace the instruction and data memory and provide information about dynamic modules loaded on the cDSP.</td>
+</tr>
+<tr>
+<td><a href="#hta-profiler-service">HTA profiler</a></td>
+<td>Profile the HTA to gather clock information, DDR bandwidth, and various HTA activity statistics.</td>
+</tr>
+<tr>
+<td><a href="#getpowerstats-service">getPowerStats</a></td>
+<td>This service reports time spent in power collapse, low power island (LPI) and each core clock level of selected Q6 subsystem since device boot up or last reset.</td>
+</tr>
+<tr>
+<td><a href="#pinfo-service">pinfo</a></td>
+<td>Display the statistics (e.g. thread priority, stack size) of FastRPC-spawned user processes.</td>
+</tr>
+</tbody>
+</table>
+<p>sysMonApp supports all targets covered by the Hexagon SDK with the exception of Lahaina. For more details, see the <a href="../reference/feature_matrix.html">feature matrix</a>.</p>
+<h2 id="setup">Setup</h2>
+<p>The Hexagon SDK includes the following LA and LE variants of sysMonApp. These variants are present at the indicated locations:</p>
+<ul>
+<li>LA 32-bit version: <code>${HEXAGON_SDK_ROOT}/tools/utils/sysmon/sysMonApp</code></li>
+<li>LA 64-bit verion: <code>${HEXAGON_SDK_ROOT}/tools/utils/sysmon/sysMonApp_64Bit</code></li>
+<li>LE 32-bit version: <code>${HEXAGON_SDK_ROOT}/tools/utils/sysmon/sysMonAppLE</code></li>
+<li>LE 64-bit verion: <code>${HEXAGON_SDK_ROOT}/tools/utils/sysmon/sysMonAppLE_64Bit</code></li>
+</ul>
+<p>Push the version for your device to a location of your choice, and then change the permissions to make the file an executable. For example, on rooted Android devices, we recommend you push your executable into a specified folder as part of the <code>data</code> partition:</p>
+<pre><code>adb push ${HEXAGON_SDK_ROOT}/tools/utils/sysmon/sysMonApp /data/local/tmp/
+adb shell chmod 777 /data/local/tmp/sysMonApp
+</code></pre>
+<p>Execute sysMonApp from the ADB shell by entering the following command:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp &lt;service&gt; &lt;arguments related to the service&gt;
+</code></pre>
+<p>When sysMonApp is executed without a service name, the help page is displayed:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp
+
+--------------------
+sysMonApp user guide:
+--------------------
+Supported features :
+
+1. profiler: Collect performance statistics of Q6
+        Available Options for adsp/sdsp/cdsp : (If no argument then uses default):
+                --q6            (default selected processor:ADSP):
+                                        adsp - Selected processor ADSP
+                                        sdsp - Selected processor Sensors DSP
+                                        cdsp - Selected processor CDSP
+                --debugLevel            (default:1 - default mode) Input 0 for user mode
+                                        0 - User mode logging with 4 PMU events per set
+                                        1 - Default mode logging
+                                        2 - User mode logging with 8 PMU events per set
+                --profileFastrpcTimeline        Profile the time taken by FastRPC communication
+                                                0 - Disable
+                                                1 - Enable
+                --noMeasured                    Controls capturing measured clocks periodically (default = 0)
+                                                0 - Report measured bus clock frequencies periodically
+                                                1 - Disable reporting measured bus clock frequencies
+                      Following options are valid only for 'Default mode' logging
+                --samplingPeriod        sampling period in ms(default:0 ms - no sampling period override - to be decided by sysMon
+                --duration              profiling duration in seconds(default:10s)
+                --dcvsOption            1 - Keep DCVS enabled (if not disabled externally by other clients) for this profiling
+                                        0 - disable DCVS for this profiling. Use this option if you want to fix a particular sampling rate.
+                                        (Default: 1 - Do not disable DCVS)
+                      Following options are valid only for 'user mode' logging
+                --samplingPeriod        sampling period in ms(default:1 ms)
+                --dcvsOption            1 - Keep DCVS enabled (if not disabled externally by other clients) for this profiling
+                                        0 - disable DCVS for this profiling. Use this option if you want to fix a particular sampling rate.
+                                        (Default: 0 - Disables DCVS)
+                        For user mode logging, if you want to override default PMU events used by sysmon app, create /data/pmu_events.txt file with comma separated PMU events in HEX format
+        Example: ./sysMonApp profiler --samplingPeriod 100
+        Example: ./sysMonApp profiler --q6 adsp --samplingPeriod 100
+        Example: ./sysMonApp profiler --q6 cdsp --samplingPeriod 100
+        Available Options for HTA : (If no argument then uses default):
+                --q6            (default selected processor:CDSP):
+                                        HTA - Selected processor HTA
+                --samplingPeriod        sampling period in ms(default:1 ms
+                --cdsp                 (default:0 - Profiles HTA alone
+                                                0 - Profiles HTA alone
+                                                1 - Profiles both HTA and CDSP
+        Example: ./sysMonApp profiler --q6 HTA
+        Example: ./sysMonApp profiler --q6 HTA --cdsp 1
+
+2. tlp: Collect thread level performance statistics of Q6
+        Available Options : (If no argument then uses default):
+                --q6            (default selected processor:ADSP):
+                                        adsp - Selected processor ADSP
+                                        sdsp - Selected processor Sensors DSP
+                                        cdsp - Selected processor CDSP
+                --samplingPeriod        sampling period in ms(default:50 ms)
+                --duration              profiling duration in seconds(default:10s)
+                --tName         Thread names to profile separated with comma(default: Profile all active threads)
+                --profile         Runs Sysmon profile in parallel with TLP(default:0)
+                                        0 - Sysmon Profile is not executed
+                                        1 - Sysmon Profile is executed
+        Example: ./sysMonApp TLP
+        Example: ./sysMonApp TLP --samplingPeriod 50
+        Example: ./sysMonApp TLP --samplingPeriod 10 --profile 1
+        Example: ./sysMonApp TLP --samplingPeriod 5 --profile 1 --tName AfeDy4000,MXAR
+
+3. dcvs: Enable or disable DCVS
+        ./sysMonApp dcvs &lt;enable/disable&gt;
+        ./sysMonApp dcvs --q6 sdsp &lt;enable/disable&gt;
+        ./sysMonApp dcvs --q6 adsp &lt;enable/disable&gt;
+                --q6            (default selected processor:ADSP):
+                                        adsp - Selected processor ADSP
+                                        sdsp - Selected processor Sensors DSP
+                                        cdsp - Selected processor CDSP
+                enable:
+                        Will enable SysMon DCVS in ADSP if previously disabled
+                disable:
+                        Will disable SysMon DCVS in ADSP
+
+4. getstate: Get present clock, heap state
+        Available Options for getstate: (If no argument then uses default parameters):
+                --q6            (default selected processor:ADSP):
+                                        adsp - Selected processor ADSP
+                                        sdsp - Selected processor Sensors DSP
+                --getvotes            (default selected value:0):
+                                        1 - List the DCVS_V2/V3 votes done via HAP_power_set()
+                                        0 - DCVS_V2/V3 votes are not queried
+        Example : ./sysMonApp getstate --q6 sdsp
+        Example : ./sysMonApp getstate --getvotes 1 --q6 adsp
+        Example : ./sysMonApp getstate
+
+5. clocks: For changing Q6 related clocks
+        ./sysMonApp clocks &lt;set/remove/limit&gt; &lt;options&gt;
+
+        Available Options:
+                --q6            (default selected processor:ADSP):
+                                        adsp - Selected processor ADSP
+                                        sdsp - Selected processor Sensors DSP
+                                        cdsp - Selected processor CDSP
+
+        Available Options (for set option):
+                --coreClock    &lt;in MHz&gt;(default:0)
+                --busClock     &lt;in MHz&gt;(default:0)
+                --hcpBusClock  &lt;in MHz&gt;(default:0)
+                --dmaBusClock  &lt;in MHz&gt;(default:0)
+                --sleepLatency &lt;in micro-seconds&gt;(default:0)
+
+        An explicitly vote of 0 removes any previous vote for that option
+        Leave the defaults for the clocks you don't want to change
+        A remove has to be called to revert all the settings once done
+        limit - Limits only the coreClock, all the other clients voting for core clock will be overwritten
+        Example: ./sysMonApp clocks set --coreClock 200 --busClock 100
+        Example: ./sysMonApp clocks remove
+        Example: ./sysMonApp clocks limit --coreClock 400
+
+6. ./sysMonApp tinfo     :Print the all SW threads info at that instance
+        Available Options : (If no argument then uses default):
+                --q6            (default selected processor:ADSP):
+                                        adsp - Selected processor ADSP
+                                        sdsp - Selected processor Sensors DSP
+                                        cdsp - Selected processor CDSP
+                --getstack        Provides the declared and max used Stack Size
+                                        root - Provides Stack info of rootPD
+                                        audio - Provides Stack info of audioPD
+                                        sensors - Provides Stack info of sensorsPD
+                                        user - Provides Stack info of userPD
+                                        all - Provides Stack info of allPDs
+                                        If none of the above match provides the defaults
+        Example: ./sysMonApp tinfo
+        Example: ./sysMonApp tinfo --getstack root
+        Example: ./sysMonApp TLP --getstack all
+
+7. ./sysMonApp benchmark :Run benchmark application with desired functions
+
+8. etmTrace: Etm Trace Enablement || DLL Loaded Output
+        ./sysMonApp etmTrace
+                --command       (default selected etm):
+                                        etm - Enable ETM tracing
+                                        dll - Output DLL
+                --etmType       (default selected pc_mem):
+                                        pc        - PC Only Collection
+                                        mem       - Memory Only Collection
+                                        pc_mem    - PC + Memory Collection
+                                        cc_pc - Cycle Coarse PC Only Collection
+                                        cc_mem - Cycle Coarse Memory Only Collection
+                                        cc_pc_mem - Cycle Coarse PC + Memory Collection
+                                        ca_pc - Cycle Accurate PC Only Collection
+                                        ca_mem - Cycle Accurate Memory Only Collection
+                                        ca_pc_mem - Cycle Accurate PC + Memory Collection
+                --d             (default 0):
+                                        1 - Debug prints enabled
+                                        0 - Debug prints disabled
+
+9. DSP Power Statistics
+         getPowerStats: Report time spent in power collapse, low power island (LPI) and each
+                        core clock level of selected Q6 subsystem since device boot up or last reset.
+                Available options:(If no argument then uses default)
+                        --q6            (default selected processor:ADSP):
+                                                adsp - Selected processor ADSP
+                                                sdsp - Selected processor Sensors DSP
+                                                cdsp - Selected processor CDSP
+                        --clear         1 - Clear the stats collected so far and start fresh logging
+                                        (Default: Statistics are accumulated and not cleared)
+        Example : ./sysMonApp getPowerStats --q6 cdsp
+        Example : ./sysMonApp getPowerStats --clear 1 --q6 adsp
+
+10. pinfo: Displays the statistics related to FastRPC-spawned user process
+        Example : ./sysMonApp pinfo --q6 cdsp
+</code></pre>
+<h2 id="profiler-service">Profiler service</h2>
+<p>Use the sysMonApp profiler option to profile services running on one of the Hexagon DSPs. Gather information such as:</p>
+<ul>
+<li>The clocks voted for</li>
+<li>Resource usage</li>
+<li>Load distribution across available hardware threads</li>
+<li>Load on the processor</li>
+<li>Bus bandwidth metrics</li>
+<li>And other profiling metrics</li>
+</ul>
+<p>The metrics are useful in measuring performance, debugging performance related issues, and identifying possible optimizations.</p>
+<p>To see the profiler service help page:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp profiler -help
+</code></pre>
+<h3 id="usage">Usage</h3>
+<pre><code>sysMonApp profiler [options]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Options</th>
+<th>Expected values</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--samplingPeriod</td>
+<td>Integer &gt;=0</td>
+<td>0 if debugLevel==1<br>1 otherwise</td>
+<td>Sampling period (in milliseconds) at which the eight PMU events are collected. When samplingPeriod is set to 0, the sampling interval is chipset and subsystem dependent but usually on the order of 1 through 50 ms.</td>
+</tr>
+<tr>
+<td>--debugLevel</td>
+<td>0/1/2</td>
+<td>Chipset dependent</td>
+<td>Select a sampling mode. 0 - User mode with four customized PMU counters. 1 - Default mode. 2 - User mode with eight customized PMU counters. See below for more details.</td>
+</tr>
+<tr>
+<td>--dcvsOption</td>
+<td>0/1</td>
+<td>0 if debugLevel==1<br>1 otherwise</td>
+<td>Disable (0) or enable (1) DCVS for the profiling duration.</td>
+</tr>
+<tr>
+<td>--profileFastrpcTimeline</td>
+<td>0/1</td>
+<td>0</td>
+<td>Disable (0) or enable (1) the option of collecting the time spent by the FastRPC interface.</td>
+</tr>
+<tr>
+<td>--noMeasured</td>
+<td>0/1</td>
+<td>0</td>
+<td>Enable (0) or disable (1) reporting measured bus clock frequencies.</td>
+</tr>
+<tr>
+<td>--stidArray</td>
+<td>Comma-separated Software Thread ID (STID) values</td>
+<td>disabled</td>
+<td>User-provided list (comma separated) of STID values. For more details, see <a href="#sampling-modes">below</a>.</td>
+</tr>
+<tr>
+<td>--q6</td>
+<td>adsp, cdsp, sdsp</td>
+<td>adsp</td>
+<td>Select the Hexagon DSP to profile.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sampling-modes">Sampling modes</h3>
+<p>Three sampling modes are supported: Default mode, User mode with four customized PMU counters, and User mode with eight customized PMU counters.</p>
+<p>In Default mode, a fixed set of eight PMU events (MPPS, AXI read and write bandwidth, HVX MPPS, and so on) are monitored. (For more details, see the sysMon parser <a href="sysmon_parser.html#metric-descriptions">metric description</a>.)</p>
+<p>The eight PMU events chosen in this mode are specific to the chipset and subsystem (aDSP/cDSP/sDSP). You cannot override these events. DCVS is enabled by default in this mode.</p>
+<p>In User mode, you can configure which PMU events to assign to four (or eight) of the PMU counters. Further, you can also use the <code>--stidArray</code> option to configure the counters to only increment when the configured events occur on specified software threads. Select any number of <a href="sysmon_profiler.html#interface">PMU events</a> to count in a <code>/data/pmu_events.txt</code> file. sysMonApp rotates through the requested events, four (or eight) at a time, to generate a sampling of all the requested events. If the <code>--stidArray</code> option is used to confine the counting to only specified software threads, sysMonApp further rotates through the specified software threads for each set of four (or eight) PMU events assigned to the PMU counters at a given time.</p>
+<p>For example, in User mode 0 (four user-defined PMUs), assume an STID array specifies two threads and 10 user-defined events:</p>
+<ul>
+<li>The sysMon profiler service collects a set of samples for the first four user-defined PMUs for the first STID, and then for the second STID.</li>
+<li>It then moves on to collect samples for the next four user-defined PMU events for the first STID, and then the second STID.</li>
+<li>Next, it collects samples for both the last two and again the first two user-defined PMU events, for the first STID, and then the second STID, and so on.</li>
+<li>Throughout the entire time, the profiler also collects samples for four predefined PMU events. These events are not filtered by STID: they are collected for all software threads with an STID equal to 0.</li>
+</ul>
+<h3 id="pmu-selection">PMU selection</h3>
+<p>As explained earlier, STIDs allow you to filter some PMU events captured by the profiler service.</p>
+<p>To filter PMU counters by software thread, follow these steps:</p>
+<ol>
+<li>
+<p>Programmatically assign an STID to each thread that is to be filtered by the profiler.</p>
+<p>Use the <code>qurt_thread_attr_enable_stid</code> API at the time of thread creation. The second parameter of this API is an 8-bit unsigned number that has the following meaning:</p>
+<ul>
+<li>0: No STID is assigned. No PMU-based filtering is applied to this thread.</li>
+<li>1: QuRT assigns an STID that is not already in use.</li>
+<li>2 through 255: This value is used as the STID value. QuRT does not check whether that STID is already in use, and thus multiple threads might share the same STID.</li>
+</ul>
+<p>The following code snippet shows how to use <code>qurt_thread_attr_enable_stid</code>:</p>
+<pre><code>// Standard way of setting some thread attributes
+qurt_thread_attr_t attr;
+qurt_thread_attr_init (&amp;attr);
+qurt_thread_attr_set_name(&amp;attr, p_ThreadName);
+qurt_thread_attr_set_stack_addr (&amp;attr, p_StackBase);
+qurt_thread_attr_set_stack_size (&amp;attr, stackSize);
+
+/* The following line enables STID allocation to the software thread being created by
+ * requesting QuRT to assign an available STID to the thread during qurt_thread_create. */
+qurt_thread_attr_enable_stid(&amp;attr, 1);
+
+result = qurt_thread_create(&amp;tid, &amp;attr, (void*)entry, NULL);
+</code></pre>
+</li>
+<li>
+<p>Use the <a href="#tinfo-service">tinfo service</a> while the application is running to determine or confirm which STIDs are assigned to the threads on which STID filtering is required.</p>
+</li>
+<li>
+<p>Run the sysMonApp profiler service with the <code>--stidArray</code> option that lists the STIDs.</p>
+<p>For example, to start the profiler service on the cDSP, enter the following command:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp profiler --debugLevel 0 --stidArray 1,2,3,4 --q6 cdsp
+</code></pre>
+<p>This command starts the profiler in User mode with four customized PMU events (<code>debugLevel 0</code>). The <code>--q6</code> option overrides the default, which is \adsp`.</p>
+<p>As explained <a href="#sampling-modes">previously</a>, four user-configured PMU events are selected per sample in User mode, while the other four are the defaults and remain constant. STID filtering only applies to the four user-configured PMU events, and the defaults are not filtered (STID mask is 0) and thus collected continuously. In a profiling sample captured over a provided sampling period, only one STID value at a time is applied as a filter to the four user-configured PMU counters. In this example, a sequence of 50 PMU events for threads with STID values of 1, 2, 3, and 4 are collected one at a time.</p>
+</li>
+</ol>
+<p><strong><em>NOTES:</em></strong></p>
+<ul>
+<li>By default, STID-based filtering is disabled. You can enable it by using the <code>--stidArray</code> option in conjunction with <code>--debugLevel</code> to select one of the two user modes.</li>
+<li>Not all PMU events are maskable under STID.</li>
+<li>An STID cannot be assigned to a thread that has already been created.</li>
+<li>Due to time division multiplexing (iterating over provided STIDs over profiling samples), selecting multiple STIDs as filters might not provide a complete picture for a given STID (missing time slots where other STID is configured). In cases where a continuous (time domain) filtering is required per STID, pass only one STID to sysMonApp.</li>
+<li>The <code>--stidArray</code> list has a limit of eight STIDs.</li>
+</ul>
+<h3 id="usage-examples">Usage examples</h3>
+<ol>
+<li>
+<p>Run the sysMonApp profiler service in User mode.</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp profiler --debugLevel 0
+
+Starting Profiler with parameters:
+Q6 Processor: adsp
+ Sampling Interval in ms : 1
+ Total samples :0
+ samplesInSet: 50
+ Default Mode : 0
+ dcvs enable : 0
+ no. of stids: 0
+Domain Configured ADSP
+Q6 architecture detected as v66...
+Opening /data/pmu_events.txt file
+/data/pmu_events.txt not found, going ahead with default events, no. of events = 84
+opening outputfile @/sdcard/sysmon.bin
+Enabling DSP SysMon using FastRPC
+Allocating output buffer
+&gt;&gt; Starting thread to Query DSP SysMon for samples
+&gt;&gt; Waiting for a keyboard iHTAt...
+</code></pre>
+</li>
+<li>
+<p>Run the sysMonApp profiler service in Default mode.</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp profiler --debugLevel 1
+
+Starting Profiler with parameters:
+Q6 Processor: adsp
+ Sampling Interval in ms : 0
+ Total samples :0
+ samplesInSet: 50
+ Default Mode : 1
+ dcvs enable : 1
+ no. of stids: 0
+Domain Configured ADSP
+Q6 architecture detected as v66...
+opening outputfile @/sdcard/sysmon.bin
+Enabling DSP SysMon using FastRPC
+Allocating output buffer
+&gt;&gt; Starting thread to Query DSP SysMon for samples
+&gt;&gt; Waiting for a keyboard iHTAt...
+</code></pre>
+</li>
+<li>
+<p>Run the sysMonApp profiler and capture samples at sampling intervals of 10 ms on the cDSP in User mode, and capture the FastRPC timeline packets.</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp profiler --debugLevel 0 --samplingPeriod 10 --q6 cdsp --profileFastrpcTimeline 1
+
+Starting Profiler with parameters:
+Q6 Processor: cdsp
+ Sampling Interval in ms : 10
+ Total samples :0
+ samplesInSet: 50
+ Default Mode : 0
+ dcvs enable : 0
+ no. of stids: 0
+Domain Configured Compute DSP
+Running FastRPC Timeline Profiling in parallel...
+Q6 architecture detected as v66...
+Opening /data/pmu_events.txt file
+/data/pmu_events.txt not found, going ahead with default events, no. of events = 84
+opening outputfile @/sdcard/sysmon_cdsp.bin
+Enabling DSP SysMon using FastRPC
+Allocating output buffer
+&gt;&gt; Starting thread to Query DSP SysMon for samples
+&gt;&gt; Profiling FastRPC Timelines in parallel
+&gt;&gt; Waiting for a keyboard iHTAt...
+</code></pre>
+</li>
+</ol>
+<h3 id="data-collection">Data collection</h3>
+<p>The sysMonApp profiler stores raw profiling data on the device in either the <code>/sdcard</code> or <code>/data</code> folders:</p>
+<ul>
+<li>For the aDSP, the file name is <code>sysmon.bin</code>.</li>
+<li>For the cDSP, the file name is <code>sysmon_cdsp.bin</code>.</li>
+<li>For the sDSP, the file name is <code>sysmon_sdsp.bin</code>.</li>
+</ul>
+<p>The sysMonApp profiler also prints the output file path with the appropriate file name in the standard output. When you finish profiling, pull the file from the device and postprocess it using the sysmon parser on a host machine.</p>
+<p>To pull the profiler output file from device using ADB, enter the following command:</p>
+<pre><code>adb pull /sdcard/sysmon&lt;DSP&gt;.bin &lt;destination directory&gt;
+</code></pre>
+<p>Where <code>&lt;DSP&gt;</code> takes the value <code>_cdsp</code> or <code>_sdsp</code> to designate the cDSP or sDSP, respectively. For the aDSP, do not use <code>&lt;DSP&gt;</code>.</p>
+<h3 id="data-postprocessing">Data postprocessing</h3>
+<p>To postprocess the profiling data, see the instructions on how to use the <a href="sysmon_parser.html">sysmon parser</a>.</p>
+<h2 id="getstate-service">Getstate service</h2>
+<p>Use the getstate service to determine the current clock voting information and heap statistics of each static Protection Domain.</p>
+<h3 id="usage_1">Usage</h3>
+<pre><code>sysMonApp getstate [--getVotes &lt;0/1&gt;] [--q6 &lt;dsp&gt;]
+</code></pre>
+<p>Where the <code>--q6</code> option allows you to specify the DSP to query: <code>adsp</code>, <code>cdsp</code>, or <code>sdsp</code>.
+<code>--getVotes 1</code> can be used to display DCVS_V2/V3 votes done via HAP_power_set() call.</p>
+<h3 id="example">Example</h3>
+<p>The following command queries the clock and heap statistics of the ADSP:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp getstate
+
+Domain Configured ADSP
+DSP Core clock :576.00MHz
+SNOC Vote:1.26MHz
+MEMNOC Vote:0.00MHz
+GuestOS : Total Heap:1792.00KB
+Available Heap:514.49KB
+Max.Free Bin:433.02KB
+Audio PD : Total Heap:9216.00KB
+Available Heap:8170.21KB
+Max.Free Bin:8059.44KB
+Measured SNOC (/clk/snoc) :200.00MHz
+Measured BIMC (/clk/bimc) :681.66MHz
+Measured CPU L3 clock :1612.80MHz
+</code></pre>
+<p>The following command queries the clock and heap statistics of the CDSP:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp getstate --q6 cdsp
+
+Domain Configured Compute DSP
+DSP Core clock :384.00MHz
+SNOC Vote:0.00MHz
+MEMNOC Vote:0.62MHz
+GuestOS : Total Heap:2560.00KB
+Available Heap:1622.56KB
+Max.Free Bin:1575.28KB
+Measured SNOC (/clk/snoc) :200.00MHz
+Measured BIMC (/clk/bimc) :681.66MHz
+Measured CPU L3 clock :1612.80MHz
+</code></pre>
+<h2 id="getpowerstats-service">getPowerStats service</h2>
+<p>Reports time spent in power collapse, low power island (LPI) and each core clock level
+of selected Q6 subsystem since device boot up or last reset.</p>
+<h3 id="usage_2">Usage</h3>
+<pre><code>sysMonApp getPowerStats [--clear 1] [--q6 &lt;dsp&gt;]
+</code></pre>
+<p>Where the <code>--q6</code> option allows you to specify the DSP to query: <code>adsp</code>, <code>cdsp</code>, or <code>sdsp</code>.
+<code>--clear 1</code> can be provided to clear the stats collected so far and start fresh logging.</p>
+<h3 id="example_1">Example</h3>
+<p>The following command queries the power statistics of the ADSP:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp getPowerStats
+
+Domain Configured ADSP
+
+Clock freq.(MHz)                 Active time(seconds)
+    307.20                             7.28
+    576.00                             0.01
+    614.40                             9.60
+    768.00                             0.78
+    940.80                             1.93
+    960.00                             0.10
+   1171.20                             0.05
+   1324.80                             0.00
+   1401.60                             0.03
+Power collapse time(seconds): 17181.12
+Low Power Island time(seconds): 38.59
+Current core clock(MHz): 307.20
+Total time(seconds): 17239.49
+</code></pre>
+<p>The following command queries the power statistics of the CDSP:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp getPowerStats --q6 cdsp
+
+Domain Configured Compute DSP
+
+Clock freq.(MHz)                 Active time(seconds)
+    364.80                             0.10
+    556.80                             0.00
+    768.00                             0.08
+    960.00                             0.00
+   1171.20                             0.18
+   1324.80                             0.00
+   1382.40                             0.00
+Power collapse time(seconds): 17276.43
+Low Power Island time(seconds): 0.00
+Current core clock(MHz): 364.80
+Total time(seconds): 17276.79
+</code></pre>
+<p>The following command queries the power statistics of the SDSP:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp getPowerStats --q6 sdsp
+
+Domain Configured Sensors DSP
+
+Clock freq.(MHz)                 Active time(seconds)
+    423.00                             0.23
+    557.00                             0.00
+    672.00                             0.22
+    845.00                             1.18
+    960.00                             0.00
+   1075.00                             0.01
+Power collapse time(seconds): 13988.50
+Low Power Island time(seconds): 39.77
+Current core clock(MHz): 423.00
+Total time(seconds): 14029.91
+</code></pre>
+<h2 id="pinfo-service">pinfo service</h2>
+<p>This service displays FastRPC-spawned user process statistics.</p>
+<h3 id="usage_3">Usage</h3>
+<pre><code>sysMonApp pinfo [--q6 &lt;dsp&gt;]
+</code></pre>
+<p>Where the <code>--q6</code> option allows you to specify the DSP to query: <code>adsp</code>, <code>cdsp</code>, or <code>sdsp</code>.</p>
+<h3 id="example_2">Example</h3>
+<p>The following command displays the FastRPC-spawned user process statistics of the CDSP:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp pinfo --q6 cdsp
+
+Domain Configured Compute DSP
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Info of UserPD : 1
+    NAME is : /frpc/f05b8b10 sysMonApp    ASID is : 772    PIDA is : 6493    PD State is : InitDone    PD Type is : SignedDynamic
+    User heap Used Bytes in KB : 53.58
+    RPC Total Memory in KB : 512.00    RPC Memory Used in KB  : 35.28
+
+    UserPD Threads info:
+    DSP FastRPC Threads:
+    T1 :     Name : /frpc/f05b8b10     tidQ : 5494    tidA : 6493    Thread state is : Running    Priority : 192    Allocated Stack : 16384
+    T2 :     Name : /frpc/f05b8b10     tidQ : 7553    tidA : 6495    Thread state is : Running    Priority : 192    Allocated Stack : 16384
+    T3 :     Name :     tidQ : 6534    Thread state is : Running
+    DSP Non-FastRPC Threads:
+    T4 :     Thread Name : user_reaper    Priority : 64    Allocated Stack : 4096
+    T5 :     Thread Name : gc_thread    Priority : 192    Allocated Stack : 4096
+    T6 :     Thread Name : HAP_par_thread_    Priority : 192    Allocated Stack : 4096
+    T7 :     Thread Name : HAP_par_thread_    Priority : 192    Allocated Stack : 4096
+    T8 :     Thread Name : exception_handl    Priority : 192    Allocated Stack : 4096
+    T9 :     Thread Name : HAP_par_thread_    Priority : 192    Allocated Stack : 4096
+    T10 :     Thread Name : HAP_par_thread_    Priority : 192    Allocated Stack : 4096
+    T11 :     Thread Name : HAP_par_thread_    Priority : 192    Allocated Stack : 4096
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**********************************************************************************
+    Total memory borrowed from HLOS by all PDs in KB  : 512.00
+    Number of times memory borrowed from HLOS : 1
+    Total Threads created on CDSP by all PDs: 11
+**********************************************************************************
+</code></pre>
+<h2 id="dcvs-service">DCVS service</h2>
+<p>This service is used to enable or disable the Dynamic Clock Voltage Scaling (DCVS) feature executing on each DSP.</p>
+<h3 id="usage_4">Usage</h3>
+<pre><code>sysMonApp dcvs &lt;enable/disable&gt; [--q6 &lt;dsp&gt;]
+</code></pre>
+<p>Where:</p>
+<ul>
+<li><code>enable</code> or <code>disable</code> enables or disables DCVS on the selected DSP until the target is rebooted or this setting is modified again.</li>
+<li><code>--q6</code> option allows you to specify the DSP to query: <code>adsp</code>, <code>cdsp</code>, or <code>sdsp</code>.</li>
+</ul>
+<h3 id="example_3">Example</h3>
+<p>To enable DCVS on the aDSP:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp dcvs enable
+
+Domain Configured ADSP
+Successfully enabled adsp DCVS
+</code></pre>
+<h2 id="clocks-service">Clocks service</h2>
+<p>Use clocks service to set or reset the DSP core clock and bus clocks of the specified DSP.</p>
+<h3 id="usage_5">Usage</h3>
+<p>Three clocks service actions are available:</p>
+<ul>
+<li><a href="#clocks-set">set</a></li>
+<li><a href="#clocks-remove">remove</a></li>
+<li><a href="#clocks-limit">limit</a></li>
+</ul>
+<h4 id="clocks-set">Clocks set</h4>
+<p>Use the clocks set service to set the minimum clock frequency for a given subsystem or vote for a sleep latency:</p>
+<pre><code>sysMonApp clocks set [options]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Options</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--coreClock</td>
+<td>MHz</td>
+<td>Sets the minimum clock speed at which the DSP should run.</td>
+</tr>
+<tr>
+<td>--busClock</td>
+<td>MHz</td>
+<td>Sets the minimum AXI (DSP &lt;-&gt; AXI) bus frequency when the DSP is active.</td>
+</tr>
+<tr>
+<td>--hcpBusClock</td>
+<td>MHz</td>
+<td>Sets the minimum HCP (HCP &lt;-&gt; DDR) bus frequency (cDSP only).</td>
+</tr>
+<tr>
+<td>--dmaBusClock</td>
+<td>MHz</td>
+<td>Sets the minimum DMA (DMA &lt;-&gt; DDR) bus frequency (cDSP only).</td>
+</tr>
+<tr>
+<td>--sleepLatency</td>
+<td>uSec</td>
+<td>Specified DSP sleep latency vote. Used by the sleep driver to choose one of the appropriate low power modes that satisfy the latency requirement.</td>
+</tr>
+<tr>
+<td>--q6</td>
+<td>adsp, cdsp, sdsp</td>
+<td>Execute the service for the selected DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>NOTE:</em></strong> A vote of 0 resets the settings for that option.</p>
+<h4 id="clocks-limit">Clocks limit</h4>
+<p>Use the clocks limit service to put an upper limit (maximum) on the selected DSP core clock:</p>
+<pre><code>sysMonApp clocks limit --coreClock &lt;frequency_MHz&gt; [--q6 &lt;dsp&gt;]
+</code></pre>
+<p>The DSP core clock is capped at the nearest available clock frequency even when the applications request an available higher frequency.</p>
+<p>Given that each target has a finite set of available clock rates, you can select exactly one of these clock rates by setting the minimum (with the clocks set service) and maximum (with the clocks limit service) rates. If a selected range does not include a valid clock rate, the system will be forced to pick a clock rate outside the requested range.</p>
+<h4 id="clocks-remove">Clocks remove</h4>
+<p>Use the clock remove service to reset all clock settings to their default values:</p>
+<pre><code>sysMonApp clocks remove [--q6 &lt;dsp&gt;]
+</code></pre>
+<h3 id="examples">Examples</h3>
+<p><strong><em>NOTE:</em></strong> All sysMonApp invocations are followed by calling the getstate service to show the new DSP clock settings. For the sake of brevity, these calls are not reproduced in the following command output examples.</p>
+<p>To set the CDSP core clock speed to 400 MHz and the DMA clock speed to 100 MHz:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp clocks set  clocks set --coreClock 400 --dmaBusClock 100 --q6 cdsp
+
+Domain Configured Compute DSP
+Calling CDSP set clocks function with following parameters:
+Core clock : 400 MHz
+DMA AXI clock : 100 MHz
+Successfully set the required clock configurations, Call the remove API once done...
+Example: sysMonApp clocks remove
+</code></pre>
+<p>To reinitialize the clock speeds to their default values:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp clocks remove --q6 cdsp
+
+Domain Configured Compute DSP
+Resetting clock votes and limits...
+Successful in resetting the votes and limits...
+</code></pre>
+<p>To disable the power collapse of the aDSP, use a low sleep latency:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp clocks set --sleepLatency 10
+
+Domain Configured ADSP
+Calling adsp set clocks function with following parameters:
+Sleep latency vote : 10usec
+</code></pre>
+<h2 id="tinfo-service">tinfo service</h2>
+<p>For each active software thread, use the tinfo service to display the thread's priority, declared stack size, and maximum stack used.</p>
+<h3 id="usage_6">Usage</h3>
+<pre><code>sysMonApp tinfo [--getstack &lt;PD&gt;] [--q6 &lt;dsp&gt;]
+</code></pre>
+<p>Where <code>&lt;PD&gt;</code> specifies the protection domain (PD) on which to request information. The values are:</p>
+<ul>
+<li>audio</li>
+<li>sensors</li>
+<li>user</li>
+<li>all (to display information for all PDs)</li>
+</ul>
+<h3 id="examples_1">Examples</h3>
+<p>To see the software thread information for the audio PD on the aDSP:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp tinfo --getstack audio
+
+Domain Configured ADSP
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     ThreadName          ThreadID   ThreadPrio      PID      STID     DeclaredStackSize(Bytes)   MaxUsedStackSize(Bytes)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+audio_process_r            243          32            1         0                         4096                       484
+    user_reaper            240          32            1         0                         4096                       248
+         rcinit            239         112            1         0                         6144                       492
+  rcinit_worker            238          94            1         0                         6144                      1528
+           UIST            237          60            1         0                         1952                         0
+     TMR_CLNT_1            236          19            1         0                         4096                       276
+       DIAG_LSM            235         237            1         0                         4096                       476
+  /frpc/AudioPD            234         192            1         0                         4096                       844
+  dog_vir_task1            233          93            1         0                         4096                       476
+         dog_hb            232         121            1         0                         4096                       412
+NPA_ASYNC_EVENT            231          48            1         0                         8192                       136
+NPA_ASYNC_REQUE            230          29            1         0                         8192                       136
+    GPIOINT_SRV            229           4            1         0                         4096                       136
+     DALTF_TH_0            228         252            1         0                         8192                        48
+     DALTF_TH_1            227         253            1         0                         8192                        48
+     DALTF_TH_2            226         254            1         0                         8192                        48
+     DALTF_TH_3            225         255            1         0                         8192                        48
+     IPCRTR_RDR            224         204            1         0                         4096                       640
+   QMI_PING_SVC            223          10            1         0                         2560                       540
+    gen_cb_ctxt            222         205            1         0                         2048                       204
+sr_notif_worker            221          93            1         0                         4096                       960
+sr_notif_signal            220          93            1         0                         2048                        80
+    UTMR_CLNT_1            218          18            1         0                         4096                       168
+                           217          94            1         0                         4096                       248
+ qdssc_svc_task            216          10            1         0                         4096                        48
+      smlworker            215         152            1         0                         4096                       840
+     i2c_qdi_cb            214          14            1         0                         4096                       344
+    APR_QDI_USR            213          50            1         0                         8064                       608
+          AMDB0            212          69            1         0                         8192                       728
+          AMDB1            211          69            1         0                         8192                       548
+          AMDB2            210          69            1         0                         8192                       648
+          AMDB3            209          69            1         0                         8192                       728
+            AVT            208           1            1         0                         4096                       104
+      hw_af_ist            207           2            1         0                         1024                        80
+            VTM            206          11            1         0                         2560                       184
+           VDS1            205          12            1         0                         2560                       208
+           VMX1            204          32            1         0                         4096                       296
+           VMX2            203          32            1         0                         4096                       296
+            VPM            202          52            1         0                        12288                       336
+            VSM            201          35            1         0                        16384                       368
+           AfeS            200          34            1         0                         5120                      1520
+           MXAT            199          38            1         0                         8192                       336
+           MXAR            198          38            1         0                         8192                       820
+dma_typ_dflt_is            197           2            1         0                         1024                        80
+dma_typ_hdmi_is            196           2            1         0                         1024                        80
+     AfeDataMgr            195          31            1         0                         4096                       192
+   CodecIntHldr            194          37            1         0                         4096                       860
+           RXSR            193          38            1         0                         4096                       312
+           TXSR            192          38            1         0                         4096                       312
+            ADM            191          37            1         0                        12544                       812
+            ASM            190          37            1         0                        16640                       736
+           VfrD            189          10            1         0                         4096                       480
+            LSM            188          71            1         0                         2048                       336
+            USM            187          69            1         0                         4096                       384
+         AfeANC            186          90            1         0                         5120                       320
+            ACS            184          37            1         0                        16384                       792
+            MVM            183          50            1         0                         4096                       712
+   CVD_CAL_LOGG            182         109            1         0                         2048                       364
+  SlimBusQmiSvc            181          39            1         0                         4096                      1068
+            usb            180          32            1         0                         2040                       420
+          irq11            177           4            1         0                         2048                       344
+     SlimBusMsg            176         207            1         0                         4088                       624
+  SlimBusMaster            175         207            1         0                         4088                       616
+          irq86            173           4            1         0                         2048                        96
+     SlimBusMsg            172         207            1         0                         4088                       584
+  SlimBusMaster            171         207            1         0                         4088                       544
+          irq87           4266           4            1         0                         2048                       336
+    err_ex_pd_1            167           1            1         0                         4096                       248
+  mem_gc_thread            166         192            1         0                         4096                        56
+  /frpc/audiopd            165         192            1         0                        16384                      1172
+  /frpc/audiopd            164         192            1         0                        16384                       988
+          irq12          94382           4            1         0                         2048                       336
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+</code></pre>
+<p>To see the software thread information for the user PD on the cDSP:</p>
+<pre><code>adb shell /data/local/tmp/sysMonApp  tinfo --getstack user  --q6 cdsp
+
+Domain Configured Compute DSP
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     ThreadName          ThreadID   ThreadPrio      PID      STID     DeclaredStackSize(Bytes)   MaxUsedStackSize(Bytes)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+/frpc/c04d3240           41193          32           12         0                        65536                       940
+    user_reaper          41190          32           12         0                         4096                       248
+  mem_gc_thread          61666         192           12         0                         4096                        64
+HAP_par_thread_          61662         192           12         0                         8192                       540
+exception_handl          61669         192           12         0                         4096                       248
+/frpc/c04d3240           41187         192           12         0                        16384                      1196
+/frpc/c04d3240           61663         192           12         0                         4096                      3136
+HAP_par_thread_          61674         192           12         0                         8192                      2220
+HAP_par_thread_         209124         192           12         0                         8192                      1008
+HAP_par_thread_          41191         192           12         0                         8192                       752
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+</code></pre>
+<p><strong><em>NOTE:</em></strong> The PID value allows you to distinguish between the different user PDs that are running.</p>
+<h2 id="thread-level-profile-tlp-service">Thread level profile (TLP) service</h2>
+<p>The TLP service provides profiling information for specified software threads. The profiling information includes cycles spent and packets executed per software thread.</p>
+<p>The service also provides a <code>--profile</code> option to run the <a href="#profiler-service">sysmon profiler service</a> in parallel to collect all DSP profiling data along with the software thread-specific information.</p>
+<h3 id="usage_7">Usage</h3>
+<pre><code>sysMonApp tlp [options]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Options</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--samplingPeriod</td>
+<td>Integer&gt;=1. Default=50</td>
+<td>Sampling period in milliseconds for collecting profile statistics for a given software thread</td>
+</tr>
+<tr>
+<td>--profile</td>
+<td>0 (default)/1</td>
+<td>Execute the sysmon profiler in parallel (1). Execute the TLP service only (0).</td>
+</tr>
+<tr>
+<td>--tname</td>
+<td>Thread names (case sensitive) to profile separated by <code>,</code>. Default = Profile all active threads.</td>
+<td></td>
+</tr>
+<tr>
+<td>--q6</td>
+<td>adsp, cdsp, sdsp</td>
+<td>Execute the service for the selected DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>NOTE:</em></strong> Thread names can be accessed by using the <a href="#tinfo-service">tinfo service</a>.</p>
+<p>To end the profiling service, press <strong>Enter</strong>. Then enter the following command to retrieve the output binary file created in <code>/sdcard</code> (or <code>/data</code>):</p>
+<pre><code>adb pull /sdcard/sysmontlp_&lt;x&gt;dsp.bin
+</code></pre>
+<p>Where <x> takes the value <code>a</code>, <code>c</code>, or <code>s</code> to designate the aDSP, cDSP, or sDSP.</p>
+<p>If the sysmon profiler was executed in parallel using the <code>--profile 1</code> option, follow the <a href="#data-collection">data collection instructions above</a> to retrieve the generated output.</p>
+<h3 id="postprocessing">Postprocessing</h3>
+<p>Refer to the <a href="sysmon_parser.html">sysMon parser documentation</a> for postprocessing TLP output binary files. <a href="sysmon_parser.html">sysmon parser</a> can parse the output from the TLP service with or without the sysmon profiler output.</p>
+<h2 id="etm-trace-service">ETM trace service</h2>
+<p>Use the ETM service to trace the instruction and data memory on the cDSP only. The service also provides information about the dynamic modules that are loaded on the cDSP.</p>
+<h3 id="usage_8">Usage</h3>
+<p>Two ETM trace services commands are available:</p>
+<ul>
+<li><a href="#dll-command">dll</a></li>
+<li><a href="#etm-command">etm</a></li>
+</ul>
+<h4 id="dll-command">DLL command</h4>
+<p>The DLL command provides information about all the dynamic modules loaded on the cDSP. It also provides the information required to run the <a href="profile.html#hexagon-trace-analyzer">Hexagon Trace Analyzer tool</a>.</p>
+<p>Usage:</p>
+<pre><code>sysMonApp etmTrace --command dll
+</code></pre>
+<p>For each loaded DLL, the following information is provided:</p>
+<ul>
+<li>ELF_NAME: Name of the dynamic module that was loaded.</li>
+<li>LOAD_ADDRESS: Virtual address where the dynamic module was loaded.</li>
+<li>LOAD_TIMESTAMP: Timestamp when the dynamic module was loaded.</li>
+<li>UNLOAD_TIMESTAMP: Timestamp when the dynamic module was unloaded.</li>
+</ul>
+<p><strong><em>NOTE:</em></strong> This command can take around 30 seconds to complete.</p>
+<p>Following is an example of output data showing when the FastRPC shell was loaded and unloaded.</p>
+<pre><code>data.ELF_NAME = fastrpc_shell_3
+data.LOAD_ADDRESS = 0xe0d00000
+data.ELF_IDENTIFIER = 0x00000000
+data.LOAD_TIMESTAMP = 0x14b46e27fb1a
+data.UNLOAD_TIMESTAMP = 0x14b46e3abe76
+</code></pre>
+<p><strong><em>NOTE:</em></strong> A load address of 0x0 means the library was loaded statically (it is part of the DSP image).</p>
+<h4 id="etm-command">ETM command</h4>
+<p>The ETM command traces instruction and data memory on the cDSP. For information on how to retrieve and parse the generated trace file, see the documentation on the <a href="profile.html#hexagon-trace-analyzer">Hexagon Trace Analyzer</a>.</p>
+<p>There are three supported trace modes:</p>
+<table>
+<thead>
+<tr>
+<th>Trace mode</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td>ETM does not send any cycle information. Keeps the amount of data sent by ETM to a minimum. This mode is helpful in analyzing the flow trace but does not help for any performance analysis.</td>
+</tr>
+<tr>
+<td>cycle-accurate</td>
+<td>ETM sends cycle information for each packet. This results in emitting data at a higher rate per instruction and can occasionally lead to data loss due to buffer overlow. This mode is required to postprocess the trace with the <a href="profile.html#hexagon-trace-analyzer">Hexagon Trace Analyzer</a>.</td>
+</tr>
+<tr>
+<td>cycle-coarse</td>
+<td>ETM still tracks cycles but the tracking is not done per instruction, and thus it results in a lower data rate per instruction. It might be a good compromise for some performance analysis where the cycle-accurate mode overflows.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage_9">Usage</h3>
+<pre><code>sysMonApp etmTrace --command etm [--etmType &lt;etm_type&gt;]
+</code></pre>
+<p>Where the following values are supported for <etm_type>:</p>
+<table>
+<thead>
+<tr>
+<th>etm_type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pc_mem</td>
+<td>Trace instruction and data memory. (Default.)</td>
+</tr>
+<tr>
+<td>pc</td>
+<td>Trace instruction memory.</td>
+</tr>
+<tr>
+<td>mem</td>
+<td>Trace data memory.</td>
+</tr>
+<tr>
+<td>cc_pc</td>
+<td>Trace instruction memory with cycle-coarse mode.</td>
+</tr>
+<tr>
+<td>cc_mem</td>
+<td>Trace data memory with cycle-coarse mode.</td>
+</tr>
+<tr>
+<td>cc_pc_mem</td>
+<td>Trace instruction and data memory with cycle-coarse mode.</td>
+</tr>
+<tr>
+<td>ca_pc</td>
+<td>Trace instruction memory with cycle-accurate mode.</td>
+</tr>
+<tr>
+<td>ca_mem</td>
+<td>Trace data memory with cycle-accurate mode.</td>
+</tr>
+<tr>
+<td>ca_pc_mem</td>
+<td>Trace instruction and data memory with cycle-accurate mode.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hta-profiler-service">HTA profiler service</h2>
+<p>Use the HTA profiler service to profile services running on the HTA to gather the following information:</p>
+<ul>
+<li>Clocks voted for</li>
+<li>DDR read and write bandwidths</li>
+<li>HTA activity statistics like HTA active time</li>
+<li>Measured and maximum inferences per second</li>
+<li>Number of layers</li>
+<li>Bus bandwidth metrics</li>
+</ul>
+<p>These profiling metrics are useful in measuring performance, debugging performance-related issues, and identifying possible optimizations.</p>
+<h3 id="usage_10">Usage</h3>
+<pre><code>adb shell /data/local/tmp/sysMonApp profiler --q6 HTA [--cdsp 1]
+</code></pre>
+<p>Where the <code>--cdsp 1</code> option allows the cDSP to be profiled in parallel with the HTA.</p>
+<h3 id="data-collection_1">Data collection</h3>
+<p>The HTA profiler service stores raw profiling data in either the <code>sysmon_HTA.bin</code> or <code>sysmon_cdsp_HTA.bin</code> file, depending whether the cDSP was profiled in parallel with the HTA or not. These files are stored in the <code>/sdcard/</code> or <code>/data/</code> folders.</p>
+<p>The sysMonApp profiler also prints the output file path and file name in the standard output. When you are finished with profiling, pull the file from the device and postprocess it using the sysmon parser on a host machine.</p>
+<p>To pull the profiler output file using ADB:</p>
+<pre><code>adb pull /sdcard/sysmon[_cdsp]_HTA.bin &lt;destination directory&gt;
+</code></pre>
+<h3 id="data-postprocessing_1">Data postprocessing</h3>
+<p>To postprocess the HTA profiling data, see the instructions on how to use the <a href="sysmon_parser.html">sysmon parser</a>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../js/iframe-worker.js"></script>
+<script src="../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2092 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>About - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#release-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              About
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        About
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="releases.html" class="md-nav__link md-nav__link--active">
+      About
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#440" class="md-nav__link">
+    4.4.0
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hexagon-ide" class="md-nav__link">
+    Hexagon IDE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-support" class="md-nav__link">
+    Target support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libraries" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-system" class="md-nav__link">
+    Build system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#430" class="md-nav__link">
+    4.3.0
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools_1" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-support_1" class="md-nav__link">
+    Target support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libraries_1" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-system_1" class="md-nav__link">
+    Build system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_1" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    Limitations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other_1" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#420" class="md-nav__link">
+    4.2.0
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools_2" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-support_2" class="md-nav__link">
+    Target support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libraries_2" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-system_2" class="md-nav__link">
+    Build system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other_2" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#410" class="md-nav__link">
+    4.1.0
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools_3" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-support_3" class="md-nav__link">
+    Target support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libraries_3" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-system_3" class="md-nav__link">
+    Build system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_3" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_2" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other_3" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#400" class="md-nav__link">
+    4.0.0
+  </a>
+  
+    <nav class="md-nav" aria-label="4.0.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools_4" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-support_4" class="md-nav__link">
+    Target support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libraries_4" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-system_4" class="md-nav__link">
+    Build system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_4" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other_4" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#440" class="md-nav__link">
+    4.4.0
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hexagon-ide" class="md-nav__link">
+    Hexagon IDE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-support" class="md-nav__link">
+    Target support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libraries" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-system" class="md-nav__link">
+    Build system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#430" class="md-nav__link">
+    4.3.0
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools_1" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-support_1" class="md-nav__link">
+    Target support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libraries_1" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-system_1" class="md-nav__link">
+    Build system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_1" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    Limitations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other_1" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#420" class="md-nav__link">
+    4.2.0
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools_2" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-support_2" class="md-nav__link">
+    Target support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libraries_2" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-system_2" class="md-nav__link">
+    Build system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other_2" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#410" class="md-nav__link">
+    4.1.0
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools_3" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-support_3" class="md-nav__link">
+    Target support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libraries_3" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-system_3" class="md-nav__link">
+    Build system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_3" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_2" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other_3" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#400" class="md-nav__link">
+    4.0.0
+  </a>
+  
+    <nav class="md-nav" aria-label="4.0.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools_4" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-support_4" class="md-nav__link">
+    Target support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libraries_4" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-system_4" class="md-nav__link">
+    Build system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_4" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other_4" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="release-notes">Release notes</h1>
+<h2 id="440">4.4.0</h2>
+<h3 id="tools">Tools</h3>
+<ul>
+<li>Incorporates Hexagon tools release 8.4.12</li>
+<li>Incorporates Halide tools release 2.4</li>
+<li>
+<p>Incorporates QuRT release <code>VU_CORE_KERNEL_QURT04.01.16.07.02</code></p>
+</li>
+<li>
+<p>Resolves compilation error with QAIC compiler when <code>///</code> is used at the end of an interface in IDL file</p>
+</li>
+<li>
+<p>Fixes KW errors and known MISRA issues in QAIC compiler</p>
+</li>
+<li>
+<p>Enables setup of multiple targets for Hexagon-Trace-Analyzer</p>
+</li>
+<li>Combines <code>enable_trace.sh</code> and <code>one_time_setup.sh</code> scripts into <code>target_profile_setup.py</code> for HexTA setup</li>
+<li>
+<p>Automates generation of HexTA configuration files in run_profilers.py script</p>
+</li>
+<li>
+<p>Introduces Async mode support for target debugging</p>
+</li>
+<li>
+<p>Introduces remote debugger support on Strait</p>
+</li>
+<li>
+<p>Fixes the QHCG tool output Q-format issue in HVX code generation for <code>exp2</code> function</p>
+</li>
+<li>
+<p>Introduces HVX instruction visualization tool to <code>utils</code></p>
+</li>
+<li>
+<p>Improvements made to the installer's reliablility</p>
+</li>
+</ul>
+<h3 id="hexagon-ide">Hexagon IDE</h3>
+<ul>
+<li>Simplifies the IDE GUI for <code>new project</code> creation</li>
+<li>Introduces CMake-based build support for <code>new project</code> creation</li>
+<li>Adds <code>import project</code> support for CMake- and make.d-based projects</li>
+</ul>
+<h3 id="target-support">Target support</h3>
+<ul>
+<li>Introduces support for <code>QCS605</code>, <code>ENEL</code> and <code>Strait</code> targets</li>
+</ul>
+<h3 id="libraries">Libraries</h3>
+<ul>
+<li>Introduces static compilation in Worker pool library</li>
+<li>Updates to QHL HVX library:</li>
+<li>Adds BLAS operations for Cholesky decomposition and Matrix transpose for QF32</li>
+<li>Adds math operations for square root and inverse for QF32</li>
+<li>Adds benchmarks for <code>modexp</code> and <code>clipping</code> functions</li>
+<li>Updates IPC header files <code>remote_default.h</code> and <code>AEEStdErr.h</code></li>
+<li>Removes <code>FastCV</code> libraries and recommends to use dynamic loading of <code>FastCV</code> library available on the device</li>
+</ul>
+<h3 id="examples">Examples</h3>
+<ul>
+<li>Adds CMake-based build support for all examples and libraries with the exception of <code>qfe_library</code></li>
+<li>Runs compute examples by default on unsigned PD</li>
+<li>Adds multi-domains support for QoS in <code>profiling</code> example</li>
+<li>Updates to HAP example:</li>
+<li>Replaces HAP power DCVS v2 with DCVS v3 APIs</li>
+<li>Adds usage of <code>HAP_compute_res_attr_set_release_callback</code> API</li>
+<li>Introduces support for non-NULL context</li>
+<li>Fixes <code>calculator_c++</code> example and adds usage of each function in the example walkthrough</li>
+<li>Fixes known unsigned PD issue in <code>asyncdspq_example</code></li>
+<li>Updates <code>CMakeLists.txt</code> of <code>calculator_c++_apk</code> example</li>
+<li>Enhances the “gtest” example to use “googletest” framework APIs from Hexagon too</li>
+<li>Modifies <code>asyncdspq_example</code>, <code>corner_detect</code> and <code>camera_chi</code> to use <code>FastCV</code> APIs by dynamic loading of library on the device</li>
+<li>Renames output binary names built with CMake to make them same as that of Make.d</li>
+</ul>
+<h3 id="build-system">Build system</h3>
+<ul>
+<li>Enhances CMake to link pre-built libraries if available</li>
+<li>Enhances CMake build system to support APK building from Android Studio</li>
+<li>Introduces <code>ship</code> folder with CMake to save the built binaries</li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<ul>
+<li>Documents Async FastRPC APIs</li>
+<li>Updates remote header file and documentation</li>
+<li>Updates the <code>benchmark</code> example documentation on the recommended approach to run C++ examples on DSP</li>
+<li>Updates the <code>corner_detect</code> example documentation to demonstrate the recommended approach to use FastCV library APIs</li>
+<li>Updates <code>QHL</code> and <code>QHL_HVX</code> documentation describing the naming convention used for APIs</li>
+</ul>
+<h3 id="other">Other</h3>
+<ul>
+<li>Moves Hexagon debugger utils from <code>tools</code> to <code>utils/debugger</code></li>
+<li>Moves debug scripts to <code>utils/debugger</code></li>
+</ul>
+<h2 id="430">4.3.0</h2>
+<h3 id="tools_1">Tools</h3>
+<ul>
+<li>Incorporates Hexagon tools release 8.4.11</li>
+<li>Incorporates Halide tools release 2.3.03</li>
+<li>Incorporates QuRT release 04.01.09</li>
+<li>Fixes the boundary error in QHCG tool and error reports generated by tool</li>
+<li>Introduces new log filtering options to mini-dm</li>
+<li>Introduces remote debugger support for <code>Kodiak</code> target</li>
+<li>Fixes stability issue with assembly debugging</li>
+<li>Enables the support for debugging PD dumps with FRAMEKEY-enabled builds</li>
+<li>Resolves issues related to <code>target variable</code> command in lldb</li>
+<li>Resolves the issue of not hitting breakpoint for callback functions</li>
+<li>Adds <code>-o image search-path add .</code> when debugging examples on simulator</li>
+<li>Adds <code>googletest</code> framework library for robust unit testing</li>
+</ul>
+<h3 id="target-support_1">Target support</h3>
+<ul>
+<li>Introduces support for <code>Kodiak</code> target</li>
+</ul>
+<h3 id="libraries_1">Libraries</h3>
+<ul>
+<li>Enhances <code>run_main_on_hexagon</code> to accept executable names other than "run_main_on_hexagon_sim"</li>
+<li>Refactors <code>remote.h</code> to <code>remote_default.h</code></li>
+<li>Introduces getopt_custom library for custom implementation of getopt and getopt_long</li>
+<li>Adds support for custom stack size of worker threads for worker pool library</li>
+<li>QHL<ul>
+<li>Adds IEEE f32 &lt;-&gt; IEEE f16 conversion in HVX instructions</li>
+<li>Updates the qhmath_hvx accuracy and performance reports with qhcg tool fixes</li>
+<li>Adds support for Vector -&gt; Vector operations for the remaining QHL_HVX math and trigonometric   functions: "sqrt", "exp", "log", "pow", "fast_exp", "fast_log", "fast_inverse_sqrt", "floor", "ceil", "round", "trunc"</li>
+<li>Adds “qhblas_hvx_matrix_matrix_mpy_aqf32”, “qhblas_hvx_matrix_vector_mpy_aqf32”, “qhblas_hvx_qf32_vector_dot_aqf32”, “qhblas_hvx_vector_add_aqf32”, “qhblas_hvx_vector_scaling_aqf32” library functions and their test cases</li>
+</ul>
+</li>
+</ul>
+<h3 id="examples_1">Examples</h3>
+<ul>
+<li>Runs examples by default on the Unsigned PD</li>
+<li>Adds additional -U flag for supporting running on Unsigned PD or Signed PD</li>
+<li>Creates new file <code>rpcperf.h</code> in profiling example</li>
+<li>Adds support of older tools for <code>runprofilers.py</code> script</li>
+<li>Fixes SSR/PDR handling code in calculator example</li>
+<li>Enhances <code>HAP_example</code> to demonstrate the usage of "dmahandle” and “fastrpc mmap”</li>
+<li>Enhances profiling example to demonstrate the usage of  <code>HAP_send_early_signal</code> API</li>
+<li>Adds <code>gtest</code> example to demonstrate the usage of “googletest” framework</li>
+</ul>
+<h3 id="build-system_1">Build system</h3>
+<ul>
+<li>Modularizes CMake build system for better user experience</li>
+<li>Introduces CMake support for all base SDK and compute addon examples</li>
+<li>Removes redundancies from example <code>.min</code> files with the introduction of cpu.min</li>
+<li>Modifies build/cmake/cmake_configure.bash to use <code>os-release</code> instead of <code>lsb_release</code></li>
+<li>fixes bug of running simulator multiple times with <code>make hexagonsim</code></li>
+</ul>
+<h3 id="documentation_1">Documentation</h3>
+<ul>
+<li>Updates the cmake documentation as per the new changes and additions</li>
+<li>Adds the QHL library performance details for <code>Lahaina</code></li>
+<li>Adds QAIC user guide in the IDL documentation</li>
+<li>Adds include directives and code generation information in the IDL documentation</li>
+</ul>
+<h3 id="limitations">Limitations</h3>
+<ul>
+<li>Unsigned PD for <code>asyncdspq</code> example is not supported for Kona, Saipan, Bitra, QRB5165 and SXR2130</li>
+</ul>
+<h3 id="other_1">Other</h3>
+<ul>
+<li>Introduces <code>debug_exceptions.py</code> for debugging PD exceptions</li>
+<li>Introduces stubbed implementation of <code>HAP_setFARFRuntimeLoggingParams</code> for simulator</li>
+<li>Updates profiling numbers for <code>Lahaina</code> in documentation</li>
+<li>Adds cmake support to use any custom toolchain for cross compilation</li>
+<li>Includes utility source files for memory and timing related APIs abstracting the OS-specific information from example source files</li>
+<li>Enhances <code>setup_sdk_env</code> script to throw error if python, make and QAIC are not installed</li>
+</ul>
+<h2 id="420">4.2.0</h2>
+<h3 id="tools_2">Tools</h3>
+<ul>
+<li>Incorporates Hexagon tools release 8.4.09</li>
+<li>Incorporates Halide tools release 2.3.01</li>
+<li>Fixes bug with adding line breakpoint in Hexagon IDE</li>
+<li>Adds IDE support to set breakpoints automatically on all the IDL functions of project being debugged</li>
+<li>Adds versioning support to QAIC compiler</li>
+<li>Removes unnecessary GUI options in IDE</li>
+<li>Fixes bug with writing to a memory block in memory view of IDE</li>
+<li>Removes SysmonParser (deprecated) and updates the HTML parser (sysmon_parser) with STID and Marker profiling support.</li>
+<li>Enhances mini-dm to connect to device using usb bus number</li>
+</ul>
+<h3 id="target-support_2">Target support</h3>
+<ul>
+<li>Introduces support for Cedros, Mannar, QRB5165 (LE) and SXR2130 targets</li>
+</ul>
+<h3 id="libraries_2">Libraries</h3>
+<ul>
+<li>Removes the dspCV library, use <a href="../doxygen/worker_pool/index.html">worker pool library</a> and <a href="../doxygen/HAP_power/index.html">HAP_power_APIs</a> instead</li>
+<li>Adds QFE (Qfloat emulation Library) for emulating qf16/32 formats on x86 using libnative</li>
+<li>Extends qhl_hvx acos, atan and tanh input range by linear interpolation beyond the existing input range</li>
+<li>Extends qhl_hvx sinh and cosh input range by exponential approximation for intervals beyond existing input range</li>
+</ul>
+<h3 id="examples_2">Examples</h3>
+<ul>
+<li>Introduces UserDMA example in the compute addon</li>
+<li>Adds DSP Packet Queue support in benchmark example</li>
+<li>Adds simulator support for hap_example</li>
+<li>Adds inlane_gather operation to benchmark example to compare HVX gather performance across targets</li>
+<li>Adds self-minimum operation to benchmark example to get the minimum value and the index of its first occurrence over a 1D source signal</li>
+<li>Modifies benchmark gather kernel VTCM size requirement</li>
+</ul>
+<h3 id="build-system_2">Build system</h3>
+<ul>
+<li>Adds support for custom build output folder using <em>BUILD_OUTPUT_DIR</em> option</li>
+<li>Includes Qurt header files and libraries by default<ul>
+<li>Any new example created using 4.2.0 SDK will be a QuRT-based example by default unless the user sets <em>NO_QURT_INC</em> to 1 in the hexagon.min file</li>
+<li>This change breaks the backward compatibility of audio addon 1.0.x with 4.2.0 SDK, so please use audio addon with version 1.1.x or later when using 4.2.0 SDK</li>
+</ul>
+</li>
+</ul>
+<h3 id="other_2">Other</h3>
+<ul>
+<li>Adds new API (HAP_mem_available_stack()) to get the stack size (in bytes) available for current thread</li>
+<li>Fixes simulator crash with compute_resource_acquire APIs on v65</li>
+<li>Updates documentation contents</li>
+</ul>
+<h2 id="410">4.1.0</h2>
+<h3 id="tools_3">Tools</h3>
+<ul>
+<li>Incorporates Hexagon Tools release 8.4.05</li>
+<li>Incorporates HALIDE Tools release 2.3</li>
+<li>Updates mini-dm allowing all level logs from sensors subsystems</li>
+<li>Introduces PD Dumps for debugging dynamic PDs on the DSP</li>
+</ul>
+<h3 id="target-support_3">Target support</h3>
+<ul>
+<li>Introduces support for Bitra and Agatti targets</li>
+</ul>
+<h3 id="libraries_3">Libraries</h3>
+<ul>
+<li>Incorporates QuRT release 04.00.18.07.01</li>
+<li>Introduces Python version 3.7.8</li>
+<li>Adds Asynchronous DSP Packet Queue (dspqueue) support to the Image DSPQ library</li>
+<li>Updates Worker pool library to support Static worker pool</li>
+<li>Removes the QFXP library</li>
+<li>Adds V65 architecture support to QHL library</li>
+<li>Updates to QHL HVX library:<ul>
+<li>Fixes overflow issues in floating point power and exponent functions</li>
+<li>Adds conversion routines for {qf32, qf16} to {int8, uint8, int16, uint16, int32, uint32, qf16, qf32, float, __fp16}</li>
+<li>Adds 1-D block FIR filter function for qf32, int16 and int32 data formats</li>
+<li>Renames the library functions to follow the naming convention below:<ul>
+<li>Changes <code>v</code> to <code>a</code> for all QHL HVX functions processing arrays</li>
+<li>Functions operating on HVX vectors will have <code>v</code> in the name</li>
+<li>Functions operating on scalar data will not have any qualifier: <code>v</code> or `a’</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="build-system_3">Build system</h3>
+<ul>
+<li>Adds build support for Hexagon Tools version 8.2.x<ul>
+<li>Note: QuRT-based simulator tests are not supported with 8.2.x tools</li>
+</ul>
+</li>
+<li>Cleans the CMake helper function <code>runHexagonSim</code> to support run_main_on_hexagon and standard simulator examples</li>
+<li>Adds new make.d commands support for dependent libraries in the base SDK and compute add-on</li>
+<li>Adds support to load custom cosims onto the simulator</li>
+<li>Removes wrapping of _stack_chk_fail symbol in the build system to avoid undefined PLT symbol _wrap__stack_chk_fail error on target during dynamic loading</li>
+<li>Fixes parallel build issues with -jx option</li>
+</ul>
+<h3 id="examples_3">Examples</h3>
+<ul>
+<li>Updates <code>calculator_c++_apk</code> allowing unsigned offload to the cDSP</li>
+<li>Updates <code>capi_v2_gain_cpp</code> as a CPP-based on-target audio example</li>
+<li>Updates <code>corner_detect</code> and <code>image_dspq</code> to use FastRPC domains</li>
+<li>Updates <code>benchmark</code>:<ul>
+<li>Adds demonstration of the Compute resource manager API</li>
+<li>Adds VTCM inlane gather, matrix transpose and vector float 1-D block FIR filter functions</li>
+</ul>
+</li>
+<li>Updates <code>profiling</code>:<ul>
+<li>Adds support for sleep latency</li>
+<li>Enables option to run the example on ADSP</li>
+<li>Adds runtime test for HVX support on devices</li>
+<li>Uses <code>run_main_on_hexagon</code> to load and call the shared objects</li>
+</ul>
+</li>
+<li>Introduces <code>dspqueue</code>, a new example for Asynchronous DSP Packet Queue API<ul>
+<li>Adds new APIs for persistent FastRPC memory mapping</li>
+</ul>
+</li>
+</ul>
+<h3 id="documentation_2">Documentation</h3>
+<ul>
+<li>Merges qprintf documentation into Hexagon SDK HTML documentation</li>
+<li>Adds HAP_ps documentation</li>
+<li>Fixes broken links in documentation</li>
+<li>Documents approach for capturing the load address of a shared object when running on simulator</li>
+<li>Adds optimization guidelines for making efficient HVX memory accesses</li>
+<li>Documents new example for Asynchronous DSP Packet Queue ("dspqueue") API</li>
+<li>Adds DCVS duty cycling policy under DCVS_v2/v3 DCVS policies</li>
+</ul>
+<h3 id="other_3">Other</h3>
+<ul>
+<li>Cleans up setup_sdk_env.source script to not throw a warning when 32-bit compatibility libraries are not installed on Ubuntu</li>
+<li>Updates Compute resource manager API:<ul>
+<li>Register release callback, cached mode for VTCM allocation, application identifier for VTCM partition selection, minimum VTCM size selection</li>
+<li>Adds HMX as a resource. HMX lock and unlock API</li>
+<li>Adds VTCM query API with page layout information</li>
+<li>Adds simulator support</li>
+</ul>
+</li>
+<li>Updates UI, command line sysMon profiler and HTML based parser with Lahaina support</li>
+</ul>
+<h2 id="400">4.0.0</h2>
+<h3 id="tools_4">Tools</h3>
+<ul>
+<li>Incorporates Hexagon Tools release 8.4.04</li>
+<li>Incorporates HALIDE Tools release 2.2.06</li>
+<li>Incorporates mini-dm version 3.2</li>
+<li>Deprecates support of Hexagon Tools older than 8.3.x</li>
+<li>Introduces <a href="../tools/qhcg.html">QHCG</a>, a tool generating optimized HVX code for polynomial approximations of arbitrary function</li>
+<li>Renames testsig.py to <a href="../tools/sign.html#use-signerpy">signer.py</a> enhancing functionality to sign shared objects and the device</li>
+<li>Updates <a href="../tools/run.html#qurt-based-dynamic-tests">run_main_on_hexagon</a> to handle the registered TLS destructors and Exit Handlers in the user module</li>
+</ul>
+<h3 id="target-support_4">Target support</h3>
+<ul>
+<li>Introduces support for Lahaina, Kamorta and QRB5165 targets</li>
+</ul>
+<h3 id="libraries_4">Libraries</h3>
+<ul>
+<li>Incorporates QuRT release 04.00.09.07</li>
+<li>Removes support for machine learning and Hexagon NN<ul>
+<li>Refer to the QNN SDK for machine learning support</li>
+</ul>
+</li>
+<li>Introduces a new <a href="../doxygen/worker_pool/index.html">worker pool library</a> and modifies all SDK  examples using dspCV library to use the new worker pool library</li>
+<li>Allows Hexagon SDK clients to directly use <a href="../doxygen/rpcmem/index.html">rpcmem APIs</a> from FastRPC libraries available on target</li>
+<li>Adds unit tests and scripts to test, profile all the functions of the <a href="../doxygen/qhl/index.html">QHL</a> and <a href="../doxygen/qhl_hvx/index.html">QHL HVX</a></li>
+</ul>
+<h3 id="build-system_4">Build system</h3>
+<ul>
+<li>Introduces simplified <a href="../tools/build.html#build-goals">make commands</a></li>
+<li>Enhances CMake build support to enable target-based compilation and simplified usage</li>
+<li>Ships prebuilt binaries along with source for SDK libraries to allow the same SDK to be used by multiple users<ul>
+<li>Ships prebuilt binaries only for one variant (<code>ReleaseG</code> or <code>Release</code>) depending on the library</li>
+</ul>
+</li>
+<li>Makes <code>dynamic_</code> optional in the build command string and removes it from the generated folder names<ul>
+<li>All SDK examples are compiled for the dynamic variant by default</li>
+</ul>
+</li>
+</ul>
+<h3 id="examples_4">Examples</h3>
+<ul>
+<li>Cleans up and introduces new SDK examples<ul>
+<li>Adds <a href="../examples/profiling/index.html">profiling</a> example illustrating all techniques available to profile code</li>
+<li>Consolidates <em>qurt_multithread</em>, <em>qurt_mutexes</em> and <em>qurt_thread_t1</em> into one example <a href="../examples/multithreading/index.html">multithreading</a></li>
+<li>Adds <a href="../examples/lpi_example/index.html">lpi_example</a> to demonstrate how to build a shared object for LPI and non-LPI mode</li>
+<li>Adds <a href="../examples/hap_example/index.html">hap_example</a> to show the usage of <a href="../software/system_libraries/index.html">system libraries</a></li>
+<li>Adds <a href="../examples/qhl_hvx/index.html">qhl_hvx</a> example to showcase the usage of <a href="../doxygen/qhl_hvx/index.html" target="_blank">QHL HVX</a>, which includes Math, DSP and Image processing libraries optimized for HVX.</li>
+<li>Adds <em>camera_chi</em> example in the compute add-on. This example hooks up any DSP post processing algorithm into camera pipeline</li>
+<li>Removes <em>benchmark</em> example and renames <em>benchmark_v65</em> as <em>benchmark</em> in the compute add-on</li>
+<li>Consolidates <em>calculator_c++</em> and <em>calculator_c++14</em> into <a href="../examples/calculator_c%2B%2B/index.html">calculator_c++</a></li>
+<li>Consolidates <em>calculator</em> and <em>calculator_multi_domains</em> into <a href="../examples/calculator/index.html">calculator</a></li>
+<li>Uses <a href="../software/ipc/rpc.html#multi-domain">FastRPC domains</a> for all base SDK examples</li>
+<li>Renames <em>cornerApp</em> to <em>corner_detect</em> in the compute add-on</li>
+<li>Consolidates <em>histogram</em> into <em>benchmark</em> example in the compute add-on</li>
+<li>Renames <em>calculator_c++_app</em> as <a href="../examples/calculator_c%2B%2B_apk/index.html">calculator_c++_apk</a> and makes it compatible with Android R</li>
+<li>Removes the examples below (most of which are included in the compute add-on benchmark example)<ul>
+<li>conv3x3a16_v60</li>
+<li>conv3x3a32_v60</li>
+<li>dilate3x3_v60</li>
+<li>dilate5x5_v60</li>
+<li>downscaleBy2</li>
+<li>epsilon_v60</li>
+<li>fast9</li>
+<li>gaussian7x7</li>
+<li>sigma3x3_v60</li>
+<li>sobel3x3_v60</li>
+<li>rpcperf</li>
+<li>calculator_multi_legacy</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="other_4">Other</h3>
+<ul>
+<li>First release using Qualcomm Package Manager(QPM)</li>
+<li>Introduces add-on support<ul>
+<li>Uses QPM's add-on feature to install user-selectable components (for example Audio add-on, Minimal Android-NDK, Full Android-NDK, Python, CMake)</li>
+<li>Includes compute add-on by default</li>
+</ul>
+</li>
+<li>Introduces support for V68</li>
+<li>Removes support for older architectures v55, v60 and v62</li>
+<li>Updates SDK directory structure to reflect base SDK and add-on model<ul>
+<li>Moves Audio content to $(HEXAGON_SDK_ROOT)/addons/audio</li>
+<li>Moves Compute content to $(HEXAGON_SDK_ROOT)/addons/compute</li>
+<li>Moves QuRT libraries/headers to $(HEXAGON_SDK_ROOT)/rtos</li>
+<li>Moves FastRPC-related content to $(HEXAGON_SDK_ROOT)/ipc/fastrpc</li>
+</ul>
+</li>
+<li>Fixes multiple bugs</li>
+<li>Re-architects the Hexagon SDK documentation</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../examples/qprintf/index.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                QPRINTF
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="idl.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                IDL documentation
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../js/iframe-worker.js"></script>
+<script src="../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

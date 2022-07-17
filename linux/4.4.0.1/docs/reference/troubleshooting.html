@@ -1,0 +1,1608 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Trouble Shooting - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#troubleshooting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Trouble Shooting
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Trouble Shooting
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="troubleshooting.html" class="md-nav__link md-nav__link--active">
+      Trouble Shooting
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    Common issues
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eclipse-ide" class="md-nav__link">
+    Eclipse IDE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trouble-shooting-fastrpc-issues" class="md-nav__link">
+    Trouble shooting fastRPC issues
+  </a>
+  
+    <nav class="md-nav" aria-label="Trouble shooting fastRPC issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analyzing-errors" class="md-nav__link">
+    Analyzing errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-dsp-state" class="md-nav__link">
+    Checking DSP state
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    Common issues
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eclipse-ide" class="md-nav__link">
+    Eclipse IDE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trouble-shooting-fastrpc-issues" class="md-nav__link">
+    Trouble shooting fastRPC issues
+  </a>
+  
+    <nav class="md-nav" aria-label="Trouble shooting fastRPC issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analyzing-errors" class="md-nav__link">
+    Analyzing errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-dsp-state" class="md-nav__link">
+    Checking DSP state
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="troubleshooting">Troubleshooting</h1>
+<h2 id="common-issues">Common issues</h2>
+<p>This page provides inputs to resolve common issues seen during developement.</p>
+<ol>
+<li>
+<p>make is pulling the Hexagon Tools from the wrong location</p>
+<p>The environment variable "HEXAGON_TOOLS_ROOT" points to the default location for Hexagon Tools which is set to ${HEXAGON_SDK_ROOT}/tools/HEXAGON_Tools/<version></p>
+<p>You can override the default tools location by setting the environment variable HEXAGON_TOOLS_ROOT to the desired version of the Hexagon Tools.</p>
+</li>
+<li>
+<p>How to fix <code>undefined PLT symbol</code> errors seen during execution on the Hexagon simulator or the device?</p>
+<p>While running the application, this error is seen when any of the loaded libraries are unable to find the definition of the <code>symbol</code> in the set of loaded libraries, i.e the skeleton libraries and their dependencies. Hence, ensure that the symbol is defined in one of the libraries given as input to the linker before pushing the libraries to the target. To find out the symbols in a library, use Hexagon Tool <code>hexagon-llvm-readelf</code> as follows:</p>
+<pre><code>%DEFAULT_HEXAGON_TOOLS_ROOT%/Tools/bin/hexagon-llvm-readelf -a &lt;library_path&gt;
+</code></pre>
+<p>Look out for the <code>symbol</code> in this output to figure out if the symbol is defined or not (<code>UND</code>). Use the linker option <code>-u</code> or <code>-extern-list</code> to provide the symbol name as argument in the linker command to explicitly export the symbol in the output library. Refer to <a href="../pdf/80-N2040-1584_D_Hexagon_Utilities_User_Guide.pdf#44">linker doc</a> for complete details.</p>
+</li>
+<li>
+<p>Why is the Hexagon simulator <code>hexagon-sim</code> crashing?</p>
+<p>If you work with Windows, please make sure <strong><em>NOT</em></strong> to have the Hexagon tools as part of the path specified by the <code>PATH</code> environment variable.</p>
+</li>
+<li>
+<p>What should I do if I see the following error while building my application?</p>
+<pre><code>dlerror undefined symbol __gxx_personality_v0 in ./&lt;user_lib&gt;.so)
+</code></pre>
+<p>The symbol <code>__gxx_personality_v0</code> is part of libc++ and libc++abi libraries. The
+error is seen when these libraries are improperly linked with the user
+library. The libc++ standard library is distributed as two distinct libraries,
+libc++ and libc++abi. When <code>-stdlib=libc++</code> is used, the compiler/linker is
+configured to link these two libraries automatically. If
+<code>-nostdlib</code> argument is used to disable the automatic inclusion of libc++, then
+the C++ code will require linkage with both libc++ and libc++abi. Hence, the
+issue can be resolved by linking both libc++ and libc++abi libraries with the
+user library.</p>
+</li>
+<li>
+<p>What should I do if I see the following error while running my application?</p>
+<pre><code>Fatal: Current link configuration does not support relocation type `R_HEX_32_6_X' for symbol `_ZSt4clog' referred from C:/Qualcomm/Hexagon_Tools/8.3.04/Tools/target/hexagon/lib/v66/G0/libstdc++.a(iostream.o)[.text] , recompile with -fPIC hexagon-clang.exe: error: hexagon-link command failed with exit code 1 (use -v to see invocation)
+</code></pre>
+<p>This error is seen if libstdc++ is linked statically with the user library compiled
+as a shared object. The library libstdc++ residing in the <code>pic</code> folder has to be linked with the user shared object.
+For example, libstdc++ is to be picked from the directory %DEFAULT_HEXAGON_TOOLS_ROOT%/Tools/target/hexagon/lib/v66/G0/pic.</p>
+</li>
+<li>
+<p>Why is dynamic loading failing?</p>
+<p>This happens usually when the shared object is not found in the search path specified with [A]DSP_LIBRARY_PATH. Refer to <a href="../software/ipc/rpc.html">Remote file system</a>.
+To know about DSP messages during dynamic loading failure, refer to <a href="#trouble-shooting-fastrpc-issues">Trouble shooting fastRPC issues section</a></p>
+</li>
+<li>
+<p>Why does my FastRPC call not return?</p>
+<p>Capture and analyze the DSP logs with <a href="../tools/messaging.html">mini-dm or logcat</a>. If you do not
+see any logs from your own application, do you see log messages suggesting that your device
+is not <a href="../tools/sign.html">signed</a>, that your shared object cannot be found, or that no shared
+object is implementing the DSP function you are trying to call?</p>
+</li>
+<li>
+<p>What should I do if I notice high latency for RPC calls?</p>
+<p>Follow these steps to handle high FastRPC latency:</p>
+<ul>
+<li>
+<p>The primary boot image adds more than 1 ms overhead to a FastRPC call by
+   enabling extra logging in kernel modules. For best performance, use a
+   secondary boot image by either working with a production device or asking
+   your CE on how to flash a secondary boot image.</p>
+</li>
+<li>
+<p>Always use ION buffers in any remote call. Buffers allocated in heap or
+   stack would add an overhead due to extra memory copy. For more details
+   refer <a href="../doxygen/rpcmem/index.html" target="_blank">RPCMEM APIs</a></p>
+</li>
+<li>
+<p>Ensure voting for appropriate/max clocks on ARM &amp; DSP as shown in the <a href="../examples/profiling/index.html">profiling</a> benchmark.</p>
+</li>
+<li>
+<p>Skip first RPC call overhead. First call includes session open latency.</p>
+</li>
+<li>
+<p>Find average, minimum and maximum overhead over N iterations</p>
+</li>
+<li>
+<p>Enable FastRPC QoS using the <a href="../doxygen/remote/index.html" target="_blank">remote APIs</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Using incorrect array size with FastRPC</p>
+<p>When passing an array to the DSP using FastRPC, the array size must be specified as the number of elements in the array, not as its size in bytes.</p>
+</li>
+<li>
+<p>Missing the 128-byte compilation flag</p>
+<p>If you compile a function to be run with the 128-byte HVX mode, you must explicitly set the compilation flag.</p>
+<pre><code>-mhvx-length=128B
+</code></pre>
+</li>
+<li>
+<p>Using incorrect memory alignment for scalar accesses</p>
+<ul>
+<li>
+<p>in C programming, make sure you consistently use the correct data type for all memory allocations and memory de-references.</p>
+</li>
+<li>
+<p>in Assembly programming, make sure you use the correct mem instruction (e.g. memb, memh, memw, memd) for the desired data width, and that the addresses that you are using, matches the same alignment.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Compiling for the wrong target</p>
+<p>Ensure your compilation flag is compatible with the architecture you are targeting. For example, do not run code compiled for V68 on an SM8250 device.</p>
+</li>
+<li>
+<p>Making out-of-bound memory accesses</p>
+<p>Load and stores to unmapped/invalid addresses cause TLB-miss exceptions. Note that L2 prefetching also triggers a TLB-miss exception if the start address is unmapped/invalid in the calling PD. However, if a prefetch crosses into an invalid page, the remainder is simply dropped without failure.</p>
+</li>
+<li>
+<p>Missing a function implementation</p>
+<p>A missing function implementation does not result in a compilation error if the function is declared as extern but it results in a runtime dynamic linking error. Inspect the DSP logs for the presence of an undefined PLT  symbol i.e. funtion_name in your_library.so message. Also, remember that C++ mangles function names, so to access a function written in C or assembly from a C++ file, the function must be defined as extern “C”.</p>
+</li>
+<li>
+<p>Using an incorrect function declaration</p>
+<p>If you modify the parameters of an implementation, remember to modify the parameters of its declaration. Otherwise, your code might still compile but you end up passing incorrect parameters to a function and get an unexpected behavior.</p>
+</li>
+<li>
+<p>Modifying callee-saved registers</p>
+<p>The calling conventions specify which registers are the responsibility of the calling function to save, and which registers are the responsibility of the callee function to save. This is described in the <a href="../pdf/80-N2040-23_K_Hexagon_Application_Binary_Interface_User_Guide.pdf">Hexagon Application Binary Interface User_Guide</a>. When writing assembly code, it is important to save all callee-saved registers if you modify them in your implementation. These registers are R16-R27 and R29-R31. The following example shows how you do so with registers R16-R19, for example:</p>
+<pre><code>{
+  ALLOCFRAME(#2*8)    // enough space for 4 32-bit registers
+                      // Note: needs to be a multiple of 8
+} {
+  memd(r29 + #0) = r17:16
+  memd(r29 + #8) = r19:18
+} {
+  &lt;your code here may use and modify registers r16-r19 in addition to any caller-saved register&gt;
+} {
+  r17:16 = memd(r29 + #0)
+  r19:18 = memd(r29 + #8)
+} {
+  DEALLOC_RETURN
+}
+</code></pre>
+</li>
+<li>
+<p>Failing to make assembly code position-independent</p>
+<p>Code can compile properly when testing for the simulator, which builds a static library, but fail to compile when building a dynamic library. This might be caused by setting a register to an immediate address:</p>
+<pre><code>test_array:
+    .byte 0,1,2,3
+...
+r1 = #test_array // absolute addressing will only compile properly when building a static library
+r1 = ADD(PC,##test_array@PCREL) // PC-relative addressing is needed when building a dynamic library
+</code></pre>
+</li>
+<li>
+<p>Running out of memory on the stack</p>
+<p>FastRPC created user thread stacks are 16 KB currently. Do not use excessive local variables, and be especially careful with HVX intrinsics, which might spill onto the stack and quickly consume large amount of stack memory.</p>
+</li>
+<li>
+<p>When is <code>make: Command not found</code> error seen?</p>
+<p>If you have already run the <a href="../tools/setup.html#sdk-environment">Hexagon SDK setup script</a>, this error is seen when <code>gow</code> is not installed along with SDK installation. On Windows and after running the Hexagon SDK setup script, run the command <code>which make</code> in the console. If the Hexagon SDK is properly setup, this should point to the installed <code>gow</code> location.</p>
+<pre><code>which make
+C:\Qualcomm\Hexagon_SDK\4.4.0.0\tools\utils\gow-0.8.0\bin\make.EXE
+</code></pre>
+</li>
+<li>
+<p>Is it possible to run an application from <code>/data/app</code> instead of <code>/vendor/bin</code>?</p>
+<p>With the introduction of treble limitations starting with Android-P, it is not possible to run an application from <code>/data/app</code>. However, users can run the application from <code>/data/nativetest/vendor</code> or <code>/data/nativetest64/vendor</code>, depending on if it is a 32-bit or a 64-bit application. The executable can also be run from the location <code>/data/local/tmp</code>. An application run from any of these locations will have access to the libraries in the <code>vendor</code> partition.</p>
+</li>
+<li>
+<p>What to do to resolve the following loader issue on the Hexagon simulator?</p>
+<pre><code> _rtld_map_object_ex: cannot open libc++.so.1, errno 2 (no such file or directory)
+</code></pre>
+<p>This issue could be seen when the hexagon simulator executable is linked with the libraries libc++.so and libc++abi.so. These libraries have symbolic links as follows:</p>
+<pre><code>libc++.so -&gt; libc++.so.1 -&gt; libc++.so.1.0
+libc++abi.so -&gt; libc++abi.so.1 -&gt; libc++abi.so.1.0
+</code></pre>
+<p>When the simulator loads the executable, it also tries to load the dependent c++ libraries and looks for their symbolic links during this process. These symbolic links have to be available in the current directory to be available to be loaded by the simulator. The solution to this issue is illustrated in <code>hexagon.min</code> as part of the <a href="../examples/calculator_c%2B%2B/index.html">calculator C++</a> example.</p>
+</li>
+<li>
+<p>What to do when I see the following error message when running mini-dm?</p>
+<pre><code>Device open failed with error -3
+</code></pre>
+<p>This issue is seen if your device is not added to the udev rules. Please <a href="../tools/setup.html#install-usb-drivers-for-linux">add your device to the udev rules</a>. Only a user with sudo privilege can make changes to the udev rules. Alternatively, you can run mini-dm with sudo.</p>
+</li>
+<li>
+<p>What to do when building C++ examples and the build fails when linking pthread.h?</p>
+<pre><code>fatal error: 'pthread.h' file not found
+include &lt;pthread.h&gt;
+error generated.
+</code></pre>
+<p>The header file <code>pthread.h</code> is included with the QuRT libraries. This issue is seen when a C++ based library is built as a <a href="../tools/run.html#standalone-tests">standalone library</a> without linking to QuRT. Refer to the <a href="../examples/calculator_c%2B%2B/index.html">calculator_c++ example</a> for building the library with <code>pthread.h</code> from QuRT. Alternatively, if you do not want to link with QuRT, you can pass a compiler flag specifying a C++ standard, that has no build dependency on <code>pthread.h</code> such as C++03. The compiler flag can be passed to the <code>hexagon.min</code> file as follows:</p>
+<pre><code>CXX_FLAGS += -std=c++03
+</code></pre>
+<p>For CMake, the compiler flag can be passed to the <code>CMakeLists.txt</code> file as follows:</p>
+<pre><code>set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++03")
+</code></pre>
+</li>
+</ol>
+<h2 id="eclipse-ide">Eclipse IDE</h2>
+<ol>
+<li>
+<p>Why do errors appear in the C/C++ editor even though the code looks OK?</p>
+<p>There are three possible reasons for this:</p>
+<ul>
+<li>
+<p>The text strings for the project name, workspace name, or SDK root may contain space characters. Remove any spaces that appear in these strings and try again.</p>
+</li>
+<li>
+<p>Indexing of the project may not have occurred properly. To fix this, right-click on the project and choose <code>Index -&gt; Rebuild</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Why does the build log state "No such file or directory" even though the file is available and accessible to a newly-created template project?</p>
+<p>A possible reason for this error could be the presence of space characters in
+ the text strings specifying the project path or Hexagon SDK Root location.
+ Remove any spaces that appear in these strings and try again.</p>
+</li>
+<li>
+<p>Why do I get build errors in a project after integrating a library?</p>
+<p>This can happen if the pathname of the integrated library is incorrect:</p>
+<ul>
+<li>
+<p>Check if you integrated the library using the same configuration it was built with. For example, if a library is built using the ReleaseG configuration, you cannot integrate the library using the Debug configuration.</p>
+</li>
+<li>
+<p>Check the linker settings in the build configuration to see if the library that was integrated is actually present.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>While debugging or running a project, why aren't certain views visible?</p>
+<p>Choose <code>Show View</code> from the <code>Window</code> menu and select the required view. If the
+view you want is not listed, select Other and then choose it from there.</p>
+</li>
+<li>
+<p>When trying to start the debugger, why do I get the error "IDE taking too long to connect"?</p>
+<p>This happens when the application cannot attach to the debugger because the
+debug port is already being used.</p>
+<p>This can be resolved by changing the port number. Make sure that the ports in
+the application code match what is specified in the IDE configuration. Refer to
+<a href="../tools/ide.html#run-and-debug-on-target">target debugging using eclipse</a> for more details</p>
+</li>
+<li>
+<p>Why doesn't the debugger not break at a breakpoint?</p>
+<p>Switch to the Debug perspective to see the execution stopped at the breakpoint.</p>
+</li>
+</ol>
+<h2 id="trouble-shooting-fastrpc-issues">Trouble shooting fastRPC issues</h2>
+<p>If you run into errors when offloading an application onto a Hexagon DSP, you should be <a href="../tools/messaging.html">gathering the logs</a> generated by the DSP for more information. The rest of the page discusses some of the most common errors that you may encounter.</p>
+<p>If the error you run into is not discussed on this page, please refer to <code>$HEXAGON_SDK_ROOT/incs/stddef/AEEStdErr.h</code> for a complete list of error codes.</p>
+<h3 id="analyzing-errors">Analyzing errors</h3>
+<ol>
+<li>
+<p>Operation not permitted</p>
+<p><code>Error &lt;0xffffffff&gt;: apps_dev_init failed. &lt;domain 3&gt;, errno Operation not permitted</code></p>
+<p>This error is seen when FastRPC fails to open a session with DSP or fails to create a corresponding user process on DSP.</p>
+<ul>
+<li>Check whether the DSP is up and running by referring to <a href="#checking-dsp-state">Checking DSP State section</a>.</li>
+</ul>
+<p>If DSP is not up and running, then please contact Qualcomm customer engineering(CE) team.</p>
+<ul>
+<li>
+<p>Check whether the file fastrpc_shell_&lt;0/3&gt; loaded on target is same as the one in the DSP image.
+   You can check time stamps of these files.</p>
+<p>Location on the target for Android P onwards: <code>/vendor/dsp/&lt;adsp/cdsp&gt;</code></p>
+<p>Location in the DSP image: <code>&lt;adsp/cdsp&gt;_proc/build/ms/dynamic_modules/&lt;chip_number&gt;.&lt;adsp/cdsp&gt;.prod</code></p>
+<p>If timestamp doesn't match, then flash aDSP/cDSP image again properly. If you do not have access to the DSP image,contact Qualcomm customer engineering (CE) team.</p>
+</li>
+<li>
+<p>Check <a href="../tools/messaging.html">DSP logs</a> for any errors during user PD creation. PD creation can fail because of file read failures on HLOS.</p>
+</li>
+</ul>
+<p>Check if the user process has the required <a href="https://source.android.com/security/selinux">SELinux</a> policy enabled.
+Check for the Access Vector Cache(avc) denial errors in kernel logs.</p>
+<p>Here is an example of denial errors you might see when attempting to access the /dsp folder:</p>
+<p>dmesg: <code>avc: denied { open } for pid=10222 comm='XXXXXXXXX' path='/dsp/fastrpc_shell_0' dev='sdd7' ino=26 scontext=u:r:xxxxxxxx:s0 tcontext=u:object_r:unlabeled:s0 tclass=file permissive=1 SEPF_SECMOBILE_7.0_0002</code></p>
+<p>If above errors are found, check whether Selinux policy is defined properly for your process.</p>
+<p>For example: For cameraserver process to be able to access a particular directory, the following entry should be there in "<HLOS_Build>/device/qcom/sepolicy/vendor/common/cameraserver.te" file:</p>
+<p><code>r_dir_file(cameraserver, adsprpcd_file);</code> (#allow cameraserver to access/dsp)</p>
+</li>
+<li>
+<p>Sigverify failure</p>
+<p>The following messages indicate a signature verification failure error:</p>
+<ol>
+<li><code>CDSP: signature verify start failed for &lt;xxxx&gt;_skel.so</code></li>
+</ol>
+<p>This error is seen when a <a href="../tools/sign.html#test-signature">test signature</a>
+  <code>testsig-&lt;xxxx&gt;.so</code> for the target is not found in the designated location on the target. This file is needed to run
+  unsigned dynamic shared libraries on the DSP outside an
+  <a href="../tools/sign.html#unsigned-pd">unsigned protection domain</a>.</p>
+<p>Please review the <a href="../tools/sign.html">documentation about signing</a> and check the following:</p>
+<ul>
+<li>
+<p>Check whether testsig-<xxxx>.so is present on the paths specified by the <a href="../software/ipc/rpc.html#using-dsp_library_path">[A]DSP_LIBRARY_PATH</a> environment variable</p>
+</li>
+<li>
+<p>If testsig-<xxxx>.so is present on the DSP library path, then check whether the <a href="../tools/sign.html#retrieve-a-serial-number">serial number for the device</a> and the generated testsig match.</p>
+</li>
+<li>
+<p>If you do not want to use a test signature, please read more about the <a href="../tools/sign.html">signing process</a> to understand how to properly sign a single library object or run within an unsigned PD environment.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Exception in user process on DSP and the user process is killed (Error: 39/0x27)</p>
+<p><code>Error 27: remote handle invoke failed. &lt;domain 3, handle 3, sc 4020200, pra 0x72b7cc13f8&gt; AEE_ENOSUCH = 39 (0x27)</code></p>
+<p>Further FastRPC calls will return the same error code 39. Clients are expected to handle this error code and restart the session as discussed <a href="../software/ipc/rpc.html#handling-exceptions">here</a>.</p>
+<ul>
+<li>
+<p>You may also want to collect a crash dump to understand why this error occurred. Please refer to the <a href="../tools/debug.html">debugging instructions</a> for more information.</p>
+</li>
+<li>
+<p>Alternatively, you may want to use the <a href="../tools/debug.html">remote debugger</a> and step through your code to understand where your error occurs.</p>
+<p>This error may also be seen if you are using a shared object that is built for an architecture incompatible with the target on which your application is running.</p>
+<p>Call stack is printed when crash happens and user can try fixing the issue .</p>
+<p>The table below shows the latest Hexagon version supported by each target:</p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Hexagon Version on CDSP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SM8150</td>
+<td>V66</td>
+</tr>
+<tr>
+<td>SM8250</td>
+<td>V66</td>
+</tr>
+<tr>
+<td>Lahaina</td>
+<td>V68</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p>DSP Restart Error
+    A remote procedure call returns <code>AEE_ECONNRESET</code> when an <a href="../software/ipc/rpc.html#ssr">SSR</a> occurred and triggers a restart of the DSP.  The user then needs to wait for the DSP to complete its restart and reconnect to all the HLOS services before relaunching their own session.</p>
+<p>This approach is illustrated in <code>calculator_test.c</code> as part of the <a href="../examples/calculator/index.html">calculator</a> example.</p>
+</li>
+<li>
+<p>User Process failed to load the shared object on DSP</p>
+<p><code>Error 80000406: remote handle open domain failed.&lt;domain 2, name adspmsgd_adsp&gt;, dlerror cannot open &lt;xxxxx&gt;_skel.so AEE_EUNABLETOLOAD</code></p>
+<p>This error is seen when the process failed to load the shared object on DSP.</p>
+<ul>
+<li>
+<p>Ensure the shared object files are present on target in the directories defined by <a href="../software/ipc/rpc.html#using-dsp_library_path">[A]DSP_LIBRARY_PATH</a> environment variable.</p>
+</li>
+<li>
+<p>Make sure that either testsig is present on the target or the library and all its dependencies are signed.</p>
+</li>
+<li>
+<p>Check the <a href="../tools/messaging.html">DSP logs</a> logs for any dlopen errors. Most common reason for dlopen errors is <code>Undefined PLT symbol</code></p>
+<p><code>dlopen error:&lt;file:///libsysmondomain_skel.so?sysmondomain_skel_handle_invoke&amp;_modver=1.0&amp;_dom=sdsp&gt; undefined symbol PLT</code></p>
+</li>
+</ul>
+<p>This error comes from DSP, when a symbol is used in shared object but not exposed in FastRPC shell or not found in any of the dynamically linked libraries.</p>
+<ul>
+<li>Ensure SELinux policy is properly defined so that the process has access to load the shared object</li>
+</ul>
+</li>
+<li>
+<p>Error: 80000402. Failure due to not enough memory in FastRPC Heap</p>
+<p><code>Error 80000402: remote handle invoke failed. &lt;domain 3, handle b89040f0, sc 3020200, pra 0x85205698&gt; AEE_ENOMEMORY = 0x80000402</code></p>
+<p>This error indicates that there is not enough memory in FastRPC Heap to allocate memory for stack allocation and thread creation in the userPD on DSP.</p>
+<p>You can fix this error, by modifying the stack size using <a href="../doxygen/remote/index.html" target="_blank">remote_session_control API</a></p>
+</li>
+<li>
+<p>Error due to mismatch in stub &amp; skel Error: 8000040e</p>
+<p><code>CDSP: Error:8000040e open_mod_table_handle_invoke failed for &lt;handle 7d203f50 sc 8010000 0714&gt; mod_table.c</code>
+<code>AEE_EBADPARM = 0x8000040e</code></p>
+<p>These errors can be seen:</p>
+<ul>
+<li>when the parameters passed to the DSP function do not match those declared in its IDL definition.</li>
+<li>when the stub and the skel are not compiled against the same version of the IDL file.</li>
+</ul>
+<p>Hence make sure that:</p>
+<ul>
+<li>The parameters match the function signature</li>
+<li>The right version of the shared objects for DSP and application are pushed onto the device at the right <a href="../software/ipc/rpc.html">location specified</a></li>
+</ul>
+</li>
+<li>
+<p>Fopen failure</p>
+<p><code>Error 45: fopen failed for &lt;xxxxx&gt;_skel.so (No such file or directory)</code></p>
+<p>If you see an <code>fopen</code> failure message in the DSP logs, then follow the recommendations below:</p>
+<ul>
+<li>
+<p>Check that the file "<xxxxx>_skel.so" is present on target in the directories defined by <a href="../software/ipc/rpc.html#using-dsp_library_path">[A]DSP_LIBRARY_PATH</a> environment variable</p>
+</li>
+<li>
+<p>Check whether Selinux policy is defined properly for your process as mentioned above.</p>
+</li>
+</ul>
+<p>For example: For cameraserver process to be able to access a particular</p>
+</li>
+<li>
+<p>Untrusted application trying to offload to a signedPD on the DSP: Error AEE_ECONNREFUSED (0x72)</p>
+<pre><code>logcat: `Error 0x72: apps_dev_init: untrusted app trying to offload to signed remote process (errno 111, Connection refused). Try offloading to unsigned-PD using remote_session_control`
+
+dmesg: `Error: adsprpc (3400): calculator_mult: fastrpc_init_create_dynamic_process: untrusted app trying to offload to signed remote process`
+</code></pre>
+<p>If calling "<interface_name>_open" to spawn a new process on cDSP and obtain its handle fails with the error above, then request for unsigned-PD offload using the <a href="../doxygen/remote/index.html" target="_blank">remote_session_control API</a> and retry the handle open call. The code below demonstrates that approach:</p>
+<pre><code>```
+int err = 0;
+char *cDSPURI = calculator_URI CDSP_DOMAIN;
+remote_handle64 handle = 0;
+
+/* Try to open a signed PD on cDSP */
+err = calculator_open(cDSPURI, &amp;handle);
+if (err == AEE_ECONNREFUSED) {
+    /*
+     * Untrusted app has been denied offloading to a signed PD.
+     * Request for unsigned-PD offload.
+     */
+    struct remote_rpc_control_unsigned_module data = {1, CDSP_DOMAIN_ID};
+    err = remote_session_control(DSPRPC_CONTROL_UNSIGNED_MODULE, (void*)&amp;data, sizeof(data));
+    if (err) {
+        // unsigned-PD offload request failed
+        printf("Error 0x%x: unsigned-PD offload request using remote_session_control failed\n", err);
+        goto bail;
+    }
+    // Retry handle open
+    err = calculator_open(cDSPURI, &amp;handle);
+}
+```
+</code></pre>
+<p>If your application cannot run as unsigned, work with your <a href="../software/system_integration.html#oemintegrator-partners">OEM</a> to whitelist your application instead.</p>
+</li>
+<li>
+<p>Below error messages that are seen during process exit can be ignored.</p>
+<p>01-11 00:44:33.431 32220 32220 I <user service>: [Test Case] TestRandomGraph/SingleOperationTest.L2_POOL_2D_V1_2/49 BEGIN
+01-11 00:44:33.587   949 31916 D <user service>: vendor/qcom/proprietary/commonsys-intf/adsprpc/src/fastrpc_apps_user.c:931: Error 0xffffffff: remote_handle_invoke failed for handle 0x3, method 4 on domain 3 (sc 0x4020200)
+01-11 00:44:33.587   949 31916 E <user service>: vendor/qcom/proprietary/commonsys-intf/adsprpc/src/listener_android.c:244:listener protocol failure ffffffff
+01-11 00:44:33.587   949 31916 D <user service>: vendor/qcom/proprietary/commonsys-intf/adsprpc/src/fastrpc_apps_user.c:931: Error 0x8000040d: remote_handle_invoke failed for handle 0x3, method 4 on domain 3 (sc 0x4020200)
+01-11 00:44:33.587   949 31916 E <user service>: vendor/qcom/proprietary/commonsys-intf/adsprpc/src/listener_android.c:251::error: -2147482611: 0 == (nErr = __QAIC_HEADER(adsp_listener_next2)( ctx, nErr, 0, 0, &amp;ctx, &amp;handle, &amp;sc, inBufs, inBufsLen, &amp;inBufsLenReq))
+01-11 00:44:33.587   949 31916 E <user service>: vendor/qcom/proprietary/commonsys-intf/adsprpc/src/listener_android.c:333:Error 0x8000040d: listener2 thread exited
+01-11 00:44:33.588   949 31916 D <user service>: vendor/qcom/proprietary/commonsys-intf/adsprpc/src/fastrpc_apps_user.c:947: Error 0x8000040d: remote_handle64_invoke failed for handle 0x8905cc90, method 3 on domain 3 (sc 0x3000000)
+01-11 00:44:33.589   949 31917 E <user service>: vendor/qcom/proprietary/commonsys-intf/adsprpc/src/log_config.c:322:Received exit.</p>
+</li>
+</ol>
+<h3 id="checking-dsp-state">Checking DSP state</h3>
+<p>You can check for state of DSP with the help of below commands:</p>
+<p>Find the proper subsystem node for ADSP: <code>adb shell cat
+/sys/bus/msm_subsys/devices/subsys&lt;1/2/3/4&gt;/name</code> should show "adsp/cdsp".</p>
+<p>Then run <code>adb shell cat /sys/bus/msm_subsys/devices/subsys&lt;1/2/3/4&gt;/state</code> to
+find whether it is "ONLINE".</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="faq.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                FAQ
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="feature_matrix.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Feature matrix
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../js/iframe-worker.js"></script>
+<script src="../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

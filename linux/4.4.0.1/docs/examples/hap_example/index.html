@@ -1,0 +1,1392 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>HAP - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hap-example" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              HAP
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        HAP
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="index.html" class="md-nav__link md-nav__link--active">
+      HAP
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    Project structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    Building
+  </a>
+  
+    <nav class="md-nav" aria-label="Building">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-walkthrough-script" class="md-nav__link">
+    Using the walkthrough script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-make-commands" class="md-nav__link">
+    Using the make commands
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-on-target" class="md-nav__link">
+    Running on Target
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    Project structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    Building
+  </a>
+  
+    <nav class="md-nav" aria-label="Building">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-walkthrough-script" class="md-nav__link">
+    Using the walkthrough script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-make-commands" class="md-nav__link">
+    Using the make commands
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-on-target" class="md-nav__link">
+    Running on Target
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="hap-example">HAP example</h1>
+<h2 id="overview">Overview</h2>
+<p>The hap_example illustrates the usage of the <a href="../../doxygen/remote/index.html" target="_blank">remote APIs</a> API and the following HAP APIs:</p>
+<ul>
+<li><a href="../../doxygen/HAP_compute_res/index.html" target="_blank">HAP_compute_res</a></li>
+<li><a href="../../doxygen/HAP_farf/index.html" target="_blank">HAP_farf</a></li>
+<li><a href="../../doxygen/HAP_mem/index.html" target="_blank">HAP_mem</a></li>
+<li><a href="../../doxygen/HAP_perf/index.html" target="_blank">HAP_perf</a></li>
+<li><a href="../../doxygen/HAP_power/index.html" target="_blank">HAP_power</a></li>
+<li><a href="../../doxygen/sysmon_cachelock/index.html" target="_blank">sysmon_cachelock</a></li>
+<li><a href="../../doxygen/HAP_vtcm_mgr/index.html" target="_blank">HAP_vtcm_mgr</a></li>
+</ul>
+<h2 id="project-structure">Project structure</h2>
+<ul>
+<li><code>Makefile</code></li>
+</ul>
+<p>Root makefile that invokes variant-specific min files to either build the application processor source code or the Hexagon DSP source code.</p>
+<ul>
+<li><code>android.min</code>, <code>hexagon.min</code></li>
+</ul>
+<p>Contains the make.d directives used to build the application processor and Hexagon DSP source code.</p>
+<ul>
+<li><code>inc/hap_example.idl</code></li>
+</ul>
+<p>IDL interface that defines the hap_example API.</p>
+<p>This <a href="../../reference/idl.html">IDL</a> file is compiled by the QAIC IDL compiler into the following files:</p>
+<ul>
+<li><code>hap_example.h</code>: C/C++ header file</li>
+<li><code>hap_example_stub.c</code>: Stub source that needs to be built for the HLOS (Android, etc...)</li>
+<li>
+<p><code>hap_example_skel.c</code>: Skel source that needs to be built for the Hexagon DSP</p>
+</li>
+<li>
+<p><code>src_app/</code>  : Source files for the HLOS executable that offloads the task to DSP</p>
+</li>
+<li>
+<p><code>hap_example_main.c</code> : Contains main() function of the hap_example that runs on application processor</p>
+</li>
+<li><code>hap_example.c</code> :  Invokes call to DSP functions that demonstrate the HAP APIs</li>
+<li>
+<p><code>hap_unit_test.c</code> : Invokes unit test on DSP that validates some of the HAP APIs</p>
+</li>
+<li>
+<p><code>src_dsp/</code>: Source files for the Hexagon-side implementation of the hap_example that is compiled into a shared object. Demonstrates usage of the HAP APIs and contains a unit test.</p>
+</li>
+<li>
+<p><code>hap_example_imp.c</code> : Contains function to open and close handle to a cdsp domain</p>
+</li>
+<li>
+<p><code>hap_example_compute_res_imp.c</code> : <a href="../../doxygen/HAP_compute_res/index.html" target="_blank">Compute resource manager framework</a> APIs to request and release compute resources on CDSP</p>
+</li>
+<li>
+<p><code>hap_example_farf_runtime.c</code> : <a href="../../doxygen/HAP_farf/index.html" target="_blank">FARF API</a> to control compile-time and run-time logging</p>
+</li>
+<li>
+<p><code>hap_example_mem_imp.c</code> : <a href="../../doxygen/HAP_mem/index.html" target="_blank">HAP_mem</a>  APIs to control mapping of buffers to user PD heap memory</p>
+</li>
+<li>
+<p><code>hap_example_perf_imp.c</code> : <a href="../../doxygen/HAP_perf/index.html" target="_blank">HAP_perf</a> APIs to measure the execution time without RPC overhead</p>
+</li>
+<li>
+<p><code>hap_example_power_imp.c</code> : <a href="../../doxygen/HAP_power/index.html" target="_blank">HAP_power</a> APIs to vote for DSP core, bus clock frequencies and voltage corners</p>
+</li>
+<li>
+<p><code>hap_example_sysmon_cachelock_imp.c</code> : <a href="../../doxygen/sysmon_cachelock/index.html" target="_blank">Cache locking manager</a> to lock a section of CDSP L2 cache and release it</p>
+</li>
+<li>
+<p><code>hap_example_vtcm_mgr_imp.c</code> : <a href="../../doxygen/HAP_vtcm_mgr/index.html" target="_blank">VTCM Manager</a> to request or release VTCM memory on CDSP</p>
+</li>
+<li>
+<p><code>hap_example_unit_test_imp.c</code> : Unit test that validates some of the HAP APIs</p>
+</li>
+</ul>
+<h2 id="building">Building</h2>
+<h3 id="using-the-walkthrough-script">Using the walkthrough script</h3>
+<ul>
+<li>
+<p>The example comes with a walkthrough script called <code>hap_example_walkthrough.py</code> which builds the code and runs on target.</p>
+</li>
+<li>
+<p>The script must be run using the following command :</p>
+<p>python hap_example_walkthrough.py -T <Target Name></p>
+</li>
+</ul>
+<p>Please review the generic <a href="../index.html#setup">setup</a> and <a href="../index.html#walkthrough-scripts">walkthrough_scripts</a> instructions to learn more about setting up your device and using walkthrough scripts.</p>
+<h3 id="using-the-make-commands">Using the make commands</h3>
+<ul>
+<li>
+<p>To build your code without using the walkthrough script, you will need to build both the Android and Hexagon modules.  To build the Android module along with the dependencies, run the following command:</p>
+<pre><code>make android VERBOSE=1
+</code></pre>
+</li>
+<li>
+<p>To build the Hexagon module, run the following command:</p>
+<pre><code>make hexagon DSP_ARCH=v66 VERBOSE=1
+</code></pre>
+</li>
+</ul>
+<p>For more information on the build syntax, please refer to the <a href="../../tools/build.html">building reference instructions</a>.</p>
+<h2 id="running-on-target">Running on Target</h2>
+<p>If you want to run your code on target without using the walkthrough script, please use the following steps:</p>
+<ul>
+<li>
+<p>Use ADB as root and remount system read/write</p>
+<pre><code>adb root
+adb wait-for-device
+adb remount
+</code></pre>
+</li>
+<li>
+<p>Push the HLOS side hap_example executable and the supporting  stub library to the device</p>
+<pre><code>adb shell mkdir -p /vendor/bin/
+adb push android_ReleaseG_aarch64/hap_example /vendor/bin/
+adb shell chmod 777 /vendor/bin/hap_example
+adb push android_ReleaseG_aarch64/ship/libhap_example.so /vendor/lib64/
+</code></pre>
+</li>
+<li>
+<p>Push the Hexagon Shared Object to the device's file system</p>
+<pre><code>adb shell mkdir -p /vendor/lib/rfsa/dsp/sdk
+adb push hexagon_ReleaseG_toolv84_v66/ship/libhap_example_skel.so /vendor/lib/rfsa/dsp/sdk
+</code></pre>
+</li>
+<li>
+<p>Generate a device-specific test signature based on the device's serial number
+  Follow the steps listed in the <a href="../../tools/sign.html#use-signerpy">Use signer.py</a> section of the signing documentation.</p>
+</li>
+</ul>
+<p>Note: This step only needs to be done once as the same test signature will enable loading any module.</p>
+<ul>
+<li>
+<p>Redirect DSP FARF messages to ADB logcat by creating a farf file</p>
+<pre><code>adb shell "echo 0x1f &gt; /vendor/lib/rfsa/dsp/sdk/hap_example.farf"
+</code></pre>
+<p>Please refer to the page on <a href="../../tools/messaging.html">messaging resources</a> which discusses the tools available for logging debug messages from the DSP.</p>
+</li>
+<li>
+<p>Launch a new CLI shell to view the DSP's diagnostic messages using logcat</p>
+<p>Open a new shell or command window and execute :</p>
+<pre><code>adb logcat -s adsprpc
+</code></pre>
+</li>
+<li>
+<p>Execute the <code>hap_example</code> binary as follows :</p>
+<pre><code>adb shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH DSP_LIBRARY_PATH="/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;" /vendor/bin/hap_example &lt;0/1/2/3/4/5/6 select HAP API&gt;
+</code></pre>
+<p>The command-line argument must be an integer ranging from 0 to 5 and selects the HAP APIs to be demonstrated:</p>
+<ul>
+<li>0 - <a href="../../doxygen/HAP_compute_res/index.html" target="_blank">HAP_compute_res.h</a></li>
+<li>1 - <a href="../../doxygen/HAP_farf/index.html" target="_blank">HAP_farf.h</a></li>
+<li>2 - <a href="../../doxygen/HAP_mem/index.html" target="_blank">HAP_mem.h</a></li>
+<li>3 - <a href="../../doxygen/HAP_perf/index.html" target="_blank">HAP_perf.h</a></li>
+<li>4 - <a href="../../doxygen/HAP_power/index.html" target="_blank">HAP_power.h</a></li>
+<li>5 - <a href="../../doxygen/sysmon_cachelock/index.html" target="_blank">sysmon_cachelock.h</a></li>
+<li>6 - <a href="../../doxygen/HAP_vtcm_mgr/index.html" target="_blank">HAP_vtcm_mgr.h</a></li>
+</ul>
+</li>
+<li>
+<p>Analyze the output</p>
+<p>The command window or shell should contain messages returned by the application processor when using the <code>printf</code> command.</p>
+<p>For example when we run the example on an sm8250 target :</p>
+<pre><code>adb shell /vendor/bin/hap_example 1
+</code></pre>
+<p>demonstrates FARF run-time logging and the following output is printed in the shell:</p>
+<pre><code>-----Retrieving VTCM information of CDSP using FastRPC Capability API-----
+
+Result of capability query for VTCM_PAGE on CDSP is 262144 bytes
+Result of capability query for VTCM_COUNT on CDSP is 1
+
+-----------------------HAP API Example--------------------------------
+
+Demonstrating FARF run-time logging
+
+hap_example function PASSED
+
+Please look at the mini-dm logs or the adb logcat logs for DSP output
+
+--------------------------HAP Unit Test-------------------------------
+
+hap_unit_test PASSED
+
+hap_example PASSED
+</code></pre>
+<p>while the FARF logs redirected to the adb logcat are :</p>
+<pre><code>HAP_utils.c:303:0x1620ea:13: Logging mask set to 31
+mod_table.c:541:0x12f0d3:13: open_mod_table_open_dynamic: Module libhap_example_skel.so opened with handle 0xa52093d0
+HAP_utils.c:303:0x12f0d3:13: Logging mask set to 0
+HAP_utils.c:329:0x12f0d3:13: Logging enabled for file hap_example_farf_runtime.c
+hap_example_farf_runtime.c:67:0x12f0d3:13: Low    FARF message : Run-time logging disabled
+hap_example_farf_runtime.c:68:0x12f0d3:13: Medium FARF message : Run-time logging disabled
+hap_example_farf_runtime.c:69:0x12f0d3:13: High   FARF message : Run-time logging disabled
+hap_example_farf_runtime.c:70:0x12f0d3:13: Error  FARF message : Run-time logging disabled
+hap_example_farf_runtime.c:71:0x12f0d3:13: Fatal  FARF message : Run-time logging disabled
+HAP_utils.c:303:0x12f0d3:13: Logging mask set to 31
+HAP_utils.c:329:0x12f0d3:13: Logging enabled for file hap_example_farf_runtime.c
+hap_example_farf_runtime.c:44:0x12f0d3:13: Low    FARF message : Run-time logging enabled
+hap_example_farf_runtime.c:45:0x12f0d3:13: Medium FARF message : Run-time logging enabled
+hap_example_farf_runtime.c:46:0x12f0d3:13: High   FARF message : Run-time logging enabled
+hap_example_farf_runtime.c:47:0x12f0d3:13: Error  FARF message : Run-time logging enabled
+hap_example_farf_runtime.c:48:0x12f0d3:13: Fatal  FARF message : Run-time logging enabled
+hap_example_farf_runtime.c:50:0x12f0d3:13: Runtime Low FARF message    - Run-time logging enabled
+hap_example_farf_runtime.c:51:0x12f0d3:13: Runtime Medium FARF message - Run-time logging enabled
+hap_example_farf_runtime.c:52:0x12f0d3:13: Runtime High FARF message   - Run-time logging enabled
+hap_example_farf_runtime.c:53:0x12f0d3:13: Runtime Error FARF message  - Run-time logging enabled
+hap_example_farf_runtime.c:54:0x12f0d3:13: Runtime Fatal FARF message  - Run-time logging enabled
+mod_table.c:719:0x12f0d3:13: open_mod_table_close: unloaded libhap_example_skel.so
+HAP_utils.c:303:0x1380dd:13: Logging mask set to 31
+mod_table.c:541:0x1500e4:13: open_mod_table_open_dynamic: Module libhap_example_skel.so opened with handle 0x4c3093d0
+hap_unit_test_imp.c:108:0x1500e4:13: HAP_compute_res_attr_set_vtcm_param : TEST PASSED
+hap_unit_test_imp.c:109:0x1500e4:13: HAP_compute_res_acquire             : TEST PASSED
+hap_unit_test_imp.c:148:0x1500e4:13: HAP_compute_res_release             : TEST PASSED
+hap_unit_test_imp.c:194:0x1500e4:13: HAP_mmap                            : TEST PASSED
+hap_unit_test_imp.c:231:0x1500e4:13: HAP_query_request_VTCM              : TEST PASSED
+hap_unit_test_imp.c:266:0x1500e4:13: HAP_query_release_VTCM              : TEST PASSED
+hap_unit_test_imp.c:304:0x1500e4:13: HAP_query_request_async_VTCM        : TEST PASSED
+hap_unit_test_imp.c:326:0x1500e4:13:
+hap_example_unit_test PASSED
+</code></pre>
+</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../gtest/index.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                GTEST
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../lpi_example/index.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                LPI
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../../js/iframe-worker.js"></script>
+<script src="../../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

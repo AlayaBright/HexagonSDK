@@ -1,0 +1,143 @@
+#/* ============================================================================================== */
+#/*  QUALCOMM TECHNOLOGIES, INC.                                                                   */
+#/*                                                                                                */
+#/*  Halide Benchmarks/Examples in Device-standalone mode                                          */
+#/*                                                                                                */
+#/* ---------------------------------------------------------------------------------------------- */
+#/*          Copyright (c) 2016-2021 QUALCOMM Technologies, Inc. and/or its subsidiaries.          */
+#/*                           All Rights Reserved.                                                 */
+#/*                  QUALCOMM Confidential and Proprietary                                         */
+#/* ============================================================================================== */
+
+#/** This file is meant to be included by Makefiles inside subidirectories
+#*** of this directory. It is __NOT__ meant to be included by Makefiles in
+#*** any other directory. There are some variables here that depend on relative
+#*** paths that will point to garbage if this file is included by a Makefile not
+#*** in a child directory of halide_test/standalone/device/apps             ***/
+
+include $(DEVICE_STANDALONE_TEST_TOP_DIR)/Makefile.common
+
+
+ifndef DSPTYPE
+$(error DSPTYPE not set. Set to adsp or cdsp)
+endif
+
+HALIDE_ROOT ?= $(HEXAGON_SDK_ROOT)/tools/HEXAGON_Tools/$(HEXAGON_TOOLS_VER)/Tools/Halide
+
+UTILS = $(DEVICE_STANDALONE_TEST_TOP_DIR)/utils
+BLD_TOP ?= $(DEVICE_STANDALONE_TEST_TOP_DIR)/build
+BLD_DIR ?= $(BLD_TOP)/standalone/device/$(TESTNAME)
+BIN ?= $(BLD_DIR)/bin
+UTILS_BLD_TOP = $(BLD_TOP)/standalone/device/utils
+UTILS_BIN = $(UTILS_BLD_TOP)/bin
+# See https://jira-quic.qualcomm.com/jira/browse/QTOOL-45000 for the need for this.
+DEVICE_TEST_PATH ?= /data/nativetest64/vendor/$(TESTNAME)
+TEST_ARGS=1024 1024 128 100
+FEATURES ?= hvx_128
+
+include $(HALIDE_ROOT)/halide_config.make
+GENERATOR_DEPS ?= $(HALIDE_ROOT)/lib/libHalide.a $(HALIDE_ROOT)/include/Halide.h $(HALIDE_ROOT)/tools/GenGen.cpp
+GENERATOR_CXXFLAGS += -std=c++11 -I $(HALIDE_ROOT)/include  -fno-rtti -DLOG2VLEN=7 -DRUN=1
+GENERATOR_LDFLAGS += $(HALIDE_SYSTEM_LIBS)
+
+
+IDL_INCLUDES = -I$(HEXAGON_SDK_ROOT)/incs/stddef
+COMMON_INCLUDES = -I$(HEXAGON_SDK_ROOT)/incs -I$(HEXAGON_SDK_ROOT)/incs/stddef -I$(BLD_DIR)/bin/src -I$(UTILS)/host/include -I$(UTILS)/ion -I$(UTILS_BIN)/src
+IF_DMA=$(findstring hexagon_dma, $(FEATURES))
+Q6_VERSION ?= 65
+
+ifeq (hexagon_dma,$(IF_DMA))
+  ifeq ($(shell expr $(Q6_VERSION) \< 66), 1)
+    $(error Q6_VERSION should be at least 66)
+  endif
+endif
+
+HEXAGON_QAIC=$(HEXAGON_SDK_ROOT)/ipc/fastrpc/qaic/Ubuntu16/qaic
+HEXAGON_CC=$(HEXAGON_SDK_ROOT)/tools/HEXAGON_Tools/$(HEXAGON_TOOLS_VER)/Tools/bin/hexagon-clang
+HEXAGON_CXX=$(HEXAGON_SDK_ROOT)/tools/HEXAGON_Tools/$(HEXAGON_TOOLS_VER)/Tools/bin/hexagon-clang++
+HEXAGON_INCLUDES= $(COMMON_INCLUDES) -I$(HEXAGON_SDK_ROOT)/ipc/fastrpc/remote/ship/android  -I$(UTILS)/dsp/include -I$(HALIDE_ROOT)/include -I$(BIN)
+HEXAGON_LDFLAGS=-lhexagon
+
+QURT_PATH:= -I$(HEXAGON_SDK_ROOT)/rtos/qurt/computev$(Q6_VERSION)/include/qurt
+
+ifeq (hexagon_dma,$(IF_DMA))
+    DMA_LIB_PATH:= $(HEXAGON_SDK_ROOT)/addons/compute/libs/ubwcdma/fw/v$(Q6_VERSION)/ubwcdma_dynlib.so
+    HEXAGON_INCLUDES += -I$(HEXAGON_SDK_ROOT)/addons/compute/libs/ubwcdma/fw/v$(Q6_VERSION)/inc
+endif
+
+HEXAGON_INCLUDES += $(QURT_PATH)
+
+HALIDE_TARGET=hexagon-32-qurt-$(FEATURES)
+
+ifeq (,$(LOG2VLEN))
+  LOG2VLEN:=7
+endif
+
+ifeq (7,$(LOG2VLEN))
+  MHVX_LENGTH:=-mhvx-length=128B
+else
+  MHVX_LENGTH:=-mhvx-length=64B
+endif
+
+HEXAGON_CFLAGS=-mhvx $(MHVX_LENGTH) $(HEXAGON_INCLUDES) -mv$(Q6_VERSION) -O2
+
+ifeq ($(origin CXX),default)
+  CXX = clang++
+endif
+
+ifneq (,$(findstring clang,$(CXX)))
+LLVM_CXX_FLAGS_LIBCPP := -stdlib=libc++
+endif
+
+TESTSUITE_INCLUDE=-I$(DEVICE_STANDALONE_TEST_TOP_DIR)/../../include
+ARM_INCLUDES = $(COMMON_INCLUDES) -I$(HEXAGON_SDK_ROOT)/ipc/fastrpc/rpcmem/inc -I$(HEXAGON_SDK_ROOT)/ipc/fastrpc/remote/ship/android $(TESTSUITE_INCLUDE)
+ARM_CFLAGS= -target aarch64-linux-android21 $(ARM_INCLUDES) -fsigned-char -stdlib=libc++
+ARM_LDFLAGS = -llog -fPIE -pie -l$(DSPTYPE)rpc -L$(HEXAGON_SDK_ROOT)/ipc/fastrpc/remote/ship/android_aarch64
+
+EMIT_OPTIONS ?= o,h,bitcode,assembly
+
+RUNGEN_HEXAGON_STANDALONE_DIR = $(HALIDE_ROOT)/tools/hexagon_standalone
+
+PTHREAD_INC = $(HEXAGON_SDK_ROOT)/rtos/qurt/computev$(Q6_VERSION)/include/posix
+
+# If generators statically link to libHalide then, they must be
+# built with $(USE_EXPORT_DYNAMIC), otherwise autoscheduler can't
+# find the libHalide symbols that it needs.
+ifneq ($(OS),Windows_NT)
+UNAME ?= $(shell uname)
+ifeq ($(UNAME), Linux)
+USE_EXPORT_DYNAMIC=-rdynamic
+else
+ifeq ($(UNAME), Darwin)
+USE_EXPORT_DYNAMIC=-undefined dynamic_lookup
+else
+USE_EXPORT_DYNAMIC=
+endif
+endif
+endif
+
+AUTOSCHEDULE ?= false
+AUTOSCHED_BIN ?= $(HALIDE_ROOT)/lib
+AUTOSCHED_TOOLS ?= $(HALIDE_ROOT)/bin
+HL_WEIGHTS_DIR ?= $(AUTOSCHED_TOOLS)/baseline.weights
+
+ifeq (true,$(AUTOSCHEDULE))
+  AUTOSCHEDULE_OPTS ?= auto_schedule=true -p $(AUTOSCHED_BIN)/libauto_schedule.so -s Adams2019
+  export HL_PERMIT_FAILED_UNROLL = 1
+  EMIT_OPTIONS := $(EMIT_OPTIONS),schedule
+  # Set to 1 to tell Halide not to freak out if we try to unroll a loop that doesn't have a constant extent.
+endif
+
+USE_SCHEDULE ?= false
+
+# Convenience variable that can be set in environment pointing to the location of schedule files
+# to be used with USE_SCHEDULE. By default, includes pre-defined schedule files in halide_test.
+SCHEDULE_INCLUDES ?= includes
+
+ifeq (true,$(USE_SCHEDULE))
+  GENERATOR_CXXFLAGS += -DUSE_SCHEDULE -I $(SCHEDULE_INCLUDES)
+endif
+
+
+GENERATOR_CXXFLAGS += $(LLVM_CXX_FLAGS_LIBCPP)
+REPORT_TXT = report.txt

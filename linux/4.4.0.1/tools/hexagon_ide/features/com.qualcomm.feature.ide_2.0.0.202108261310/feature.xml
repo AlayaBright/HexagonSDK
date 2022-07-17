@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © 2013 Qualcomm Technologies, Inc.  All Rights Reserved.
+QTI Proprietary and Confidential.
+-->
+<feature
+      id="com.qualcomm.feature.ide"
+      label="IDE Base Components"
+      version="2.0.0.202108261310"
+      provider-name="QUALCOMM">
+
+   <description url="http://www.qualcomm.com">
+      This feature includes components common across platforms
+   </description>
+
+   <copyright url="http://www.qualcomm.com">
+      Copyright © 2013 Qualcomm Technologies, Inc.  All Rights Reserved.
+QTI Proprietary and Confidential.
+   </copyright>
+
+   <license url="http://www.qualcomm.com">
+      Qualcomm Technologies, Inc Software User Agreement
+2013
+
+BEFORE YOU CLICK ON THE ‘I AGREE’ BUTTON, CAREFULLY READ THE
+TERMS AND CONDITIONS SET FORTH BELOW. BY CLICKING ON THE ‘I AGREE’
+BUTTON, YOU ARE AGREEING TO AND CONSENTING TO BE BOUND BY THESE
+TERMS AND CONDITIONS. IF YOU DO NOT AGREE TO ALL OF THE TERMS
+AND CONDITIONS SET FORTH BELOW, CLICK THE ‘I DISAGREE’ BUTTON
+AND THE SOFTWARE WILL NOT BE ACCESSIBLE TO YOU.
+Confidentiality.
+The Software is provided to you in accordance with the terms
+of applicable Agreement(s) (Hexagon Access Tools Software License, AMSS agreement,  DSP Access Addendum, Nondisclosure Agreement, etc.) between Qualcomm Technologies, Inc and your company (the “Agreement”).
+The Software and supporting documentation or information to which
+you have access contains information that is confidential and
+proprietary to Qualcomm and is transmitted in accordance with
+the confidentiality provisions of such Agreements. In accessing
+the Software which contains Qualcomm confidential and proprietary
+information, you agree to hold such information in confidence
+and to disclose the information contained therein only to others
+who have a need to know as permitted under the terms of your
+Agreement with Qualcomm.
+Use. The Information contained herein is provided solely for
+internal use by you and your company in accordance with the use
+provisions outlined in the Agreement. You represent and warrant
+that your use of such Information shall be in accordance with
+the terms of the Agreements.
+Termination.
+All Software and supporting documentation or information shall
+remain the sole property of Qualcomm, and in the event of any
+termination or expiration of your Agreement with Qualcomm, you
+shall immediately (i) return to Qualcomm the Information, and
+any copies or updates thereof or certify in writing that all
+such materials have been destroyed, and (ii) cease using, or
+permitting to be used, the Software in accordance with the termination
+provisions set forth in the Agreement.
+This software may be subject to U.S. and international export,
+re-export, or transfer (“export”) laws. Diversion contrary to
+U.S. and international law is strictly prohibited.
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.cdt.core"/>
+      <import plugin="org.eclipse.cdt.managedbuilder.core"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.cdt.make.core"/>
+      <import plugin="com.qualcomm.ide.core"/>
+      <import plugin="org.eclipse.cdt.make.ui"/>
+      <import plugin="org.eclipse.cdt.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+   </requires>
+
+   <plugin
+         id="com.qualcomm.ide.ui"
+         download-size="81"
+         install-size="146"
+         version="2.0.0.202108261310"
+         unpack="false"/>
+
+   <plugin
+         id="com.qualcomm.ide.template"
+         download-size="11"
+         install-size="17"
+         version="2.0.0.202108261310"
+         unpack="false"/>
+
+   <plugin
+         id="com.qualcomm.ide.core"
+         download-size="109"
+         install-size="215"
+         version="2.0.0.202108261310"
+         unpack="false"/>
+
+   <plugin
+         id="com.qualcomm.ide"
+         download-size="391"
+         install-size="780"
+         version="2.0.0.202108261310"
+         unpack="false"/>
+
+</feature>

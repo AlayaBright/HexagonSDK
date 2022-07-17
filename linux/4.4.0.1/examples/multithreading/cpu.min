@@ -1,0 +1,25 @@
+# binary names
+DLL_NAME=libmultithreading
+EXE_NAME=multithreading
+
+UTILS_DIR=$(HEXAGON_SDK_ROOT)/utils/examples
+
+# stub library
+BUILD_DLLS += $(DLL_NAME)
+$(DLL_NAME)_QAICIDLS += inc/multithreading
+$(DLL_NAME)_C_SRCS += $(OBJ_DIR)/multithreading_stub
+$(DLL_NAME)_DLLS += $(LIB_DSPRPC)
+
+# stand-alone executable
+BUILD_EXES += $(EXE_NAME)
+$(EXE_NAME)_QAICIDLS += inc/multithreading
+$(EXE_NAME)_C_SRCS += src/multithreading \
+                      $(UTILS_DIR)/dsp_capabilities_utils
+$(EXE_NAME)_DEFINES += VERIFY_PRINT_ERROR
+
+# copy final build products to the ship directory
+BUILD_COPIES = \
+   $(DLLS) \
+   $(EXES) \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

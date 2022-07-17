@@ -1,0 +1,9 @@
+INCDIRS += inc \
+
+BUILD_LIBS += getopt_custom
+getopt_custom_C_SRCS += src/getopt_custom src/getopt_long_custom
+
+# copy final build products to the ship directory
+BUILD_COPIES = \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

@@ -1,0 +1,1373 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Profiling - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#profiling-resources" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Profiling
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Profiling
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="profile.html" class="md-nav__link md-nav__link--active">
+      Profiling
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#timers" class="md-nav__link">
+    Timers
+  </a>
+  
+    <nav class="md-nav" aria-label="Timers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#measuring-time" class="md-nav__link">
+    Measuring time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#measuring-processor-cycles" class="md-nav__link">
+    Measuring processor cycles
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simulator-profiling" class="md-nav__link">
+    Simulator profiling
+  </a>
+  
+    <nav class="md-nav" aria-label="Simulator profiling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-address-of-dynamic-libraries" class="md-nav__link">
+    Load address of dynamic libraries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hexagon-trace-analyzer" class="md-nav__link">
+    Hexagon Trace Analyzer
+  </a>
+  
+    <nav class="md-nav" aria-label="Hexagon Trace Analyzer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sysmon" class="md-nav__link">
+    sysMon
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#timers" class="md-nav__link">
+    Timers
+  </a>
+  
+    <nav class="md-nav" aria-label="Timers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#measuring-time" class="md-nav__link">
+    Measuring time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#measuring-processor-cycles" class="md-nav__link">
+    Measuring processor cycles
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simulator-profiling" class="md-nav__link">
+    Simulator profiling
+  </a>
+  
+    <nav class="md-nav" aria-label="Simulator profiling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-address-of-dynamic-libraries" class="md-nav__link">
+    Load address of dynamic libraries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hexagon-trace-analyzer" class="md-nav__link">
+    Hexagon Trace Analyzer
+  </a>
+  
+    <nav class="md-nav" aria-label="Hexagon Trace Analyzer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sysmon" class="md-nav__link">
+    sysMon
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="profiling-resources">Profiling resources</h1>
+<p>The Hexagon SDK provides a number of profiling tools serving different purposes. The table below summarizes these options and their availability on the Hexagon simulator, target devices, or both. The most common profiling tools and techniques are illustrated in the <a href="../examples/profiling/index.html">profiling</a> example.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+<th>Simulator</th>
+<th>Device</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#timers">HAP_perf timer APIs</a></td>
+<td>APIs to access elapsed cycles or time</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><a href="#simulator-profiling">Hexagon simulator and profiler</a></td>
+<td>Generate instruction and data cache analysis as well as function-level profiling reports</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td><a href="#hexagon-trace-analyzer">Hexagon Trace Analyzer</a></td>
+<td>A trace analyzer utility that generates various analysis reports for cDSP</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><a href="#sysmon">sysMon</a></td>
+<td>A set of monitoring tools that collect and display high-level DSP profiling information</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="timers">Timers</h2>
+<p>The <a href="../doxygen/HAP_perf/index.html" target="_blank">timer APIs</a> may be used to time a specific section of code by accessing the elapsed time or number of processor cycles.</p>
+<h3 id="measuring-time">Measuring time</h3>
+<p>The most accurate way of measuring time consists of accessing the Hexagon <code>UTIMERHI:UTIMERLO</code> registers. This pair of 32-bit register is a direct measure of the elapsed time reported in ticks. One tick is 1/19.2 MHz seconds.</p>
+<p>These registers can be accessed from C with the <code>HAP_perf_get_qtimer_count</code> API by including <code>HAP_perf.h</code>.</p>
+<p>Alternatively, you can invoke <code>HAP_perf_get_time_us</code> accessible from C by including <code>HAP_perf.h</code>. This API returns directly the elapsed time in microseconds by deriving the time from the number of ticks and performing a division, which consumes some extra cycles.</p>
+<p><strong><em>Note:</em></strong> Measuring time is only meaningful when running on device.</p>
+<h3 id="measuring-processor-cycles">Measuring processor cycles</h3>
+<p>For measuring elapsed processor cycles, access the <code>UPCYCLEHI:UPCYCLELO</code> registers using the <code>HAP_perf_get_pcycles</code> API available from C by including <code>HAP_perf.h</code>.</p>
+<h2 id="simulator-profiling">Simulator profiling</h2>
+<p>The simulator generates profiling data that help assess where the bottlenecks are in an application. This information is useful to identify which functions will lead the most saving if properly optimized.</p>
+<p>When profiling an application on the simulator, ensure that the simulator runs in its timing mode. That mode is enabled by using the <code>--timing</code> option. This option results in the simulator counting cycles accurately at the cost of increasing simulation time.</p>
+<p>The <code>--statsfile</code> and <code>--pmu_statsfile</code> options direct the simulator to gather statistics on instruction and cache utilization. For more information about these options, see the <a href="../pdf/80-N2040-1784_E_Hexagon_Simulator_User_Guide.pdf#46">Simulator statistics files</a> and <a href="../pdf/80-N2040-1784_E_Hexagon_Simulator_User_Guide.pdf#47">PMU statistics files</a> sections in the Hexagon Simulator User Guide (80-N2040-17).</p>
+<p>In addition, the simulator may also be used to understand how cycles are spent in specific code regions. In order to do so, you must first run the simulator with the option <code>--packet_analyze</code>. When run in timing mode and with this option, the simulator generates a packet analysis file, which can be postprocessed by the Hexagon profiler to generate a user-friendly HTML file displaying the following information:</p>
+<ul>
+<li>Total number of cycles executed</li>
+<li>Total number of stall cycles</li>
+<li>Highest cycle or stall counts (by function or instruction packet)</li>
+<li>Commit and stall statistics (by function or instruction packet)</li>
+<li><a href="sysmon_profiler.html#interface">PMU event</a> counts (by event type or instruction packet)</li>
+<li>Annotated disassembly of instruction packets</li>
+<li>Assembly instruction counts</li>
+</ul>
+<p>For more information about the Hexagon profiler, see the <a href="../pdf/80-N2040-10_D_Hexagon_Profiler_UG.pdf">Hexagon Profiler User Guide (80 N2040-10)</a>.</p>
+<h3 id="load-address-of-dynamic-libraries">Load address of dynamic libraries</h3>
+<p>The profiler takes a comma-separated list of ELF files, but for shared objects you need to provide the run-time load address of these objects using the [:reloc] option:</p>
+<pre><code>hexagon-profiler --help
+  --elf=&lt;file&gt;[:reloc][,&lt;file&gt;[:reloc],...]
+    Input one or more Hexagon elf/obj/lib files for  disassembly, with optional relocation offsets
+    to match their memory locations when the Hexagon  code was run by hexagon-sim
+</code></pre>
+<p>The relocation address is displayed by the SDK loader when executing the code on the simulator:</p>
+<pre><code>%DEFAULT_HEXAGON_TOOLS_ROOT%\Tools\bin\hexagon-sim -mv66g_1024 --packet_analyze calculator.json --simulated_returnval --usefs hexagon_ReleaseG_toolv84_v66 --pmu_statsfile hexagon_ReleaseG_toolv84_v66/pmu_stats.txt --cosim_file hexagon_ReleaseG_toolv84_v66/q6ss.cfg --l2tcm_base 0xd800 --rtos hexagon_ReleaseG_toolv84_v66\osam.cfg %HEXAGON_SDK_ROOT%\rtos\qurt\computev66\sdksim_bin\runelf.pbn -- %HEXAGON_SDK_ROOT%\libs\run_main_on_hexagon\ship\hexagon_toolv84_v66\run_main_on_hexagon_sim  -- calculator_q.so
+...
+try ./calculator_q.so:  HIGH:0x5A:81:search.c
+fs_region_create request with addr=0, size=1000
+fs_region_create map region with vaddr=d8041000, paddr=5009d000, size=1000, perm=b, region_handle=1e03fc90
+read headers 0x0 -&gt; d8041000 (0x1000 B):  HIGH:0x5A:539:map_object.c
+_rtld_map_object_ex: sigverify skipped for ./calculator_q.so, no function specified!:  HIGH:0x5A:598:map_object.c
+fs_region_create request with addr=0, size=9000
+fs_region_create map region with vaddr=d81f7000, paddr=500f7000, size=9000, perm=b, region_handle=1e03fcf0
+mapped  [d81f7000 - d8200000] (36864 Bytes):  HIGH:0x5A:729:map_object.c
+</code></pre>
+<p>This indicates that the load address of the <code>calculator_q.so</code> is <code>0xd81f7000</code>, which can then be passed to the <code>hexagon-profiler</code> as follows:</p>
+<pre><code>%DEFAULT_HEXAGON_TOOLS_ROOT%\Tools\bin\hexagon-profiler --packet_analyze --json=calculator.json --elf=%HEXAGON_SDK_ROOT%\libs\run_main_on_hexagon\ship\hexagon_toolv84_v66\run_main_on_hexagon_sim,hexagon_ReleaseG_toolv84_v66\ship\calculator_q.so:0xd81f7000 -o calculator.html
+</code></pre>
+<h2 id="hexagon-trace-analyzer">Hexagon Trace Analyzer</h2>
+<p>The Hexagon Trace Analyzer, or HexTA, is a software trace analysis tool. It processes Hexagon ETM (Embedded Trace Macrocell) traces generated by the software running on the cDSP and derives the flow of each thread of the processor. It is a valuable tool for giving insights into code execution, and allows in-depth analysis and optimization. It can process traces generated on target or by the simulator.</p>
+<p>Hexagon Trace Analyzer requires ETM traces to be collected from the cDSP. These traces are then parsed for the binaries that are loaded and post-processed to present data in a meaningful manner. The outputs of Hexagon Trace Analyzer include various <code>.csv</code> files that give per function, per instruction and per section statistics. It also generates <a href="http://www.brendangregg.com/flamegraphs.html" target="_blank">flame graphs</a>, which provide a graphical view of the execution tree.</p>
+<p>Hexagon Trace Analyzer can be found in the Hexagon SDK at the following location <code>$HEXAGON_SDK_ROOT/tools/debug/hexagon-trace-analyzer</code>.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Following are the prerequisites for using Hexagon Trace Analyzer:</p>
+<ul>
+<li>
+<p>Hexagon Trace Analyzer executable:</p>
+<pre><code>&lt;HEXAGON_SDK_ROOT&gt;/tools/debug/hexagon-trace-analyzer/hexagon-trace-analyzer
+</code></pre>
+</li>
+<li>
+<p>Linux</p>
+</li>
+<li>
+<p>Python 2.7 installed with required python packages listed under <code>$HEXAGON_SDK_ROOT/utils/scripts/python_requirements.txt</code></p>
+</li>
+<li>
+<p><a href="sysmon_app.html">sysMonApp</a></p>
+<p>This application is used to collect ETM traces and retrieve Hexagon shared object load addresses.</p>
+</li>
+<li>
+<p><a href="setup.html#adb-and-fastboot">ADB drivers</a></p>
+</li>
+<li>
+<p>Two visualizing tools, <a href="https://github.com/brendangregg/FlameGraph">Flame Graph</a> and <a href="https://github.com/catapult-project/catapult">Catapult</a>, are needed to display the output from the Hexagon Trace Analyzer. These tools should be installed in the <code>hexagon-trace-analyzer</code> directory as follows (using Linux instructions):</p>
+<pre><code>cd ${HEXAGON_SDK_ROOT}/tools/debug/hexagon-trace-analyzer
+wget https://github.com/brendangregg/FlameGraph/archive/master.zip &amp;&amp; unzip master.zip &amp;&amp; rm master.zip &amp;&amp; mv FlameGraph-master FlameGraph
+wget https://github.com/catapult-project/catapult/archive/master.zip &amp;&amp; unzip master.zip -x *.json "*tracing/test_data/*" &amp;&amp; rm master.zip &amp;&amp; mv catapult-master catapult
+</code></pre>
+</li>
+</ul>
+<h3 id="usage">Usage</h3>
+<p>Please refer to the <a href="../examples/profiling/index.html#hexagon-trace-analyzer">profiling example</a> for an example on how to collect a trace on simulator or device and process it with the Hexagon Trace Analyzer tool.  The example also describes the various files generated by the tool.</p>
+<h2 id="sysmon">sysMon</h2>
+<p>Qualcomm provides a set of tools for monitoring high-level statistics for an application running on target. These tools are:</p>
+<ul>
+<li>
+<p>The <a href="sysmon_app.html">sysMonApp</a>, which is an Android executable that provides user functionalities such as profiling DSP workload, getting or setting various core and bus clocks, or collecting various software thread information.</p>
+</li>
+<li>
+<p>The <a href="sysmon_profiler.html">sysMon DSP profiler</a>, which is an Android UI application using the <a href="sysmon_app.html#profiler-service">sysMonApp profiler service</a> to profile DSP workloads. This application is useful to monitor load distribution and bus activity over time.</p>
+</li>
+<li>
+<p>The <a href="sysmon_parser.html">sysMon Parser</a>, which is an executable used to postprocess profiling data collected by sysMonApp or the sysMon DSP profiler.</p>
+</li>
+<li>
+<p>The <a href="../doxygen/sysmon_marker/index.html" target="_blank">sysMon marker API</a>, which enables the collection of profiling data for a specific code region.</p>
+</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="debug.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Debugging
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="ide.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Using the IDE
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../js/iframe-worker.js"></script>
+<script src="../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

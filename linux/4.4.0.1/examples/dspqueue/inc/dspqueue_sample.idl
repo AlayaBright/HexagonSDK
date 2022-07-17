@@ -1,0 +1,25 @@
+/*
+  Copyright (c) 2020 Qualcomm Technologies, Inc.
+  All Rights Reserved.
+  Confidential and Proprietary - Qualcomm Technologies, Inc.
+*/
+
+/* FastRPC IDL interface for packet queue example */
+
+#ifndef DSPQUEUE_SAMPLE_IDL
+#define DSPQUEUE_SAMPLE_IDL
+
+#include "AEEStdDef.idl"
+#include "remote.idl"
+
+interface dspqueue_sample : remote_handle64 {
+
+    AEEResult start(in uint64 dsp_queue_id);
+
+    AEEResult stop(rout uint64 process_time);
+
+    AEEResult do_process(in sequence<uint8> input, rout sequence<uint8> output,
+                         rout uint64 process_time);
+};
+
+#endif /* DSPQUEUE_SAMPLE_IDL */

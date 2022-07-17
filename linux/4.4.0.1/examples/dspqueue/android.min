@@ -1,0 +1,20 @@
+INCDIRS += inc ../inc
+UTILS_DIR=$(HEXAGON_SDK_ROOT)/utils/examples
+
+# Test application
+BUILD_EXES += dspqueue_sample
+dspqueue_sample_QAICIDLS += inc/dspqueue_sample
+dspqueue_sample_C_SRCS += src/dspqueue_sample \
+                          $(OBJ_DIR)/dspqueue_sample_stub \
+                          $(UTILS_DIR)/dsp_capabilities_utils
+dspqueue_sample_DLLS += libcdsprpc
+dspqueue_sample_LIBS += rpcmem
+dspqueue_sample_LD_FLAGS += -llog -ldl
+dspqueue_sample_DEFINES += VERIFY_PRINT_ERROR
+
+# copy final build products to the ship directory
+BUILD_COPIES += \
+   $(DLLS) \
+   $(EXES) \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

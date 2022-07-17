@@ -1,0 +1,47 @@
+# binary names
+ST_EXE_NAME=queuetest
+FCVQUEUE_EXE_NAME=fcvqueuetest
+QUEUEPERF_EXE_NAME=queueperf
+
+INCDIRS += inc
+UTILS_DIR=$(HEXAGON_SDK_ROOT)/utils/examples
+
+# stand-alone queuetest executable
+BUILD_EXES+=$(ST_EXE_NAME)
+$(ST_EXE_NAME)_QAICIDLS += inc/queuetest
+$(ST_EXE_NAME)_C_SRCS += src/queuetest \
+                         $(OBJ_DIR)/queuetest_stub \
+                         $(UTILS_DIR)/dsp_capabilities_utils
+$(ST_EXE_NAME)_DLLS += libcdsprpc libasyncdspq
+$(ST_EXE_NAME)_LIBS += rpcmem
+$(ST_EXE_NAME)_DEFINES += VERIFY_PRINT_ERROR
+
+# fcvqueue test/example
+BUILD_EXES+=$(FCVQUEUE_EXE_NAME)
+$(FCVQUEUE_EXE_NAME)_QAICIDLS += inc/fcvqueuetest \
+                                 inc/fcvqueue_dsp
+$(FCVQUEUE_EXE_NAME)_C_SRCS += src/fcvqueuetest \
+                               $(OBJ_DIR)/fcvqueuetest_stub \
+                               src/fcvqueue \
+                               $(OBJ_DIR)/fcvqueue_dsp_stub \
+                               $(UTILS_DIR)/dsp_capabilities_utils
+$(FCVQUEUE_EXE_NAME)_DLLS += libcdsprpc libasyncdspq
+$(FCVQUEUE_EXE_NAME)_LIBS += rpcmem
+$(FCVQUEUE_EXE_NAME)_DEFINES += VERIFY_PRINT_ERROR
+
+# stand-alone queueperf executable
+BUILD_EXES+=$(QUEUEPERF_EXE_NAME)
+$(QUEUEPERF_EXE_NAME)_QAICIDLS += inc/queuetest
+$(QUEUEPERF_EXE_NAME)_C_SRCS += src/queueperf \
+                                $(OBJ_DIR)/queuetest_stub \
+                                $(UTILS_DIR)/dsp_capabilities_utils
+$(QUEUEPERF_EXE_NAME)_DLLS += libcdsprpc libasyncdspq
+$(QUEUEPERF_EXE_NAME)_LIBS += rpcmem
+$(QUEUEPERF_EXE_NAME)_DEFINES += VERIFY_PRINT_ERROR 
+
+# copy final build products to the ship directory
+BUILD_COPIES = \
+   $(DLLS) \
+   $(EXES) \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

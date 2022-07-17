@@ -1,0 +1,26 @@
+# binary names
+DLL_NAME=libprofiling
+EXE_NAME=profiling
+
+UTILS_DIR=$(HEXAGON_SDK_ROOT)/utils/examples
+
+# stub library
+BUILD_DLLS += $(DLL_NAME)
+$(DLL_NAME)_QAICIDLS += inc/profiling
+$(DLL_NAME)_C_SRCS += $(OBJ_DIR)/profiling_stub
+$(DLL_NAME)_DLLS += $(LIB_DSPRPC)
+
+# stand-alone executable
+BUILD_EXES += $(EXE_NAME)
+$(EXE_NAME)_QAICIDLS += inc/profiling
+$(EXE_NAME)_C_SRCS += src/profiling_main \
+                      src/rpcperf \
+                      $(UTILS_DIR)/dsp_capabilities_utils \
+                      $(UTILS_DIR)/time_utils
+
+# copy final build products to the ship directory
+BUILD_COPIES = \
+   $(DLLS) \
+   $(EXES) \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

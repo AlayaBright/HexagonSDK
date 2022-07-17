@@ -1,0 +1,35 @@
+# This builds the skel library
+BUILD_LIBS += libprofiling_skel
+BUILD_DLLS += libprofiling_skel
+
+#Workaround for link error with 8.2.0x tools
+ifeq (1,$(filter 1,$(V_toolv82)$(V_toolv81)))
+C_FLAGS += -mllvm -disable-nvjump
+endif
+
+INCDIRS += inc \
+    $(QURT_DIR)/api/qurt \
+    $(QURT_IMAGE_DIR)/compute$(V_ARCH)/include \
+    $(QURT_IMAGE_DIR)/compute$(V_ARCH)/include/qurt
+
+libprofiling_skel_QAICIDLS += inc/profiling
+libprofiling_skel_C_SRCS += $(OBJ_DIR)/profiling_skel \
+                            src/profiling_imp \
+                            src/rpcperf_imp
+libprofiling_skel_ASM_SRCS += asm_src/profiling_assembly
+
+# quality test
+BUILD_QEXES += profiling_q
+profiling_q_C_SRCS += src/profiling_main src/rpcperf $(HEXAGON_SDK_ROOT)/utils/examples/dsp_capabilities_utils
+profiling_q_C_SRCS += $(HEXAGON_SDK_ROOT)/utils/examples/time_utils
+profiling_q_LIBS += rpcmem libqprintf
+profiling_q_DLLS += libprofiling_skel
+
+QEXE_CMD_OPTIONS +=-f timers
+
+# copy final build products to the ship directory
+BUILD_COPIES += \
+   $(DLLS) \
+   $(EXES) \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

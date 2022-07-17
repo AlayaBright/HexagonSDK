@@ -1,0 +1,25 @@
+var annotated_dup =
+[
+    [ "HAP_bus_params_t", "structHAP__bus__params__t.html", "structHAP__bus__params__t" ],
+    [ "HAP_core_params_t", "structHAP__core__params__t.html", "structHAP__core__params__t" ],
+    [ "HAP_dcvs_params_t", "structHAP__dcvs__params__t.html", "structHAP__dcvs__params__t" ],
+    [ "HAP_dcvs_v3_params_t", "structHAP__dcvs__v3__params__t.html", "structHAP__dcvs__v3__params__t" ],
+    [ "HAP_power_bus_bw", "structHAP__power__bus__bw.html", "structHAP__power__bus__bw" ],
+    [ "HAP_power_dcvs_payload", "structHAP__power__dcvs__payload.html", "structHAP__power__dcvs__payload" ],
+    [ "HAP_power_dcvs_v2_payload", "structHAP__power__dcvs__v2__payload.html", "structHAP__power__dcvs__v2__payload" ],
+    [ "HAP_power_dcvs_v2_update_payload", "structHAP__power__dcvs__v2__update__payload.html", "structHAP__power__dcvs__v2__update__payload" ],
+    [ "HAP_power_dcvs_v3_payload", "structHAP__power__dcvs__v3__payload.html", "structHAP__power__dcvs__v3__payload" ],
+    [ "HAP_power_hmx_payload", "structHAP__power__hmx__payload.html", "structHAP__power__hmx__payload" ],
+    [ "HAP_power_hvx_payload", "structHAP__power__hvx__payload.html", "structHAP__power__hvx__payload" ],
+    [ "HAP_power_linelock_nothrottle_payload", "structHAP__power__linelock__nothrottle__payload.html", "structHAP__power__linelock__nothrottle__payload" ],
+    [ "HAP_power_linelock_payload", "structHAP__power__linelock__payload.html", "structHAP__power__linelock__payload" ],
+    [ "HAP_power_mips_bw_payload", "structHAP__power__mips__bw__payload.html", "structHAP__power__mips__bw__payload" ],
+    [ "HAP_power_request_t", "structHAP__power__request__t.html", "structHAP__power__request__t" ],
+    [ "HAP_power_response_t", "structHAP__power__response__t.html", "structHAP__power__response__t" ],
+    [ "HAP_power_streamer_payload", "structHAP__power__streamer__payload.html", "structHAP__power__streamer__payload" ],
+    [ "HAP_power_update_dcvs_params_t", "structHAP__power__update__dcvs__params__t.html", "structHAP__power__update__dcvs__params__t" ],
+    [ "HAP_power_update_dcvs_t", "structHAP__power__update__dcvs__t.html", "structHAP__power__update__dcvs__t" ],
+    [ "HAP_power_update_latency_t", "structHAP__power__update__latency__t.html", "structHAP__power__update__latency__t" ],
+    [ "HAP_power_vapss_payload", "structHAP__power__vapss__payload.html", "structHAP__power__vapss__payload" ],
+    [ "HAP_power_vapss_payload_v2", "structHAP__power__vapss__payload__v2.html", "structHAP__power__vapss__payload__v2" ]
+];

@@ -1,0 +1,9 @@
+ifeq ($(ADSP_FLAG), 1)
+	LIB_DSPRPC = libadsprpc
+else ifeq ($(MDSP_FLAG), 1)
+	LIB_DSPRPC = libmdsprpc
+else ifeq ($(SLPI_FLAG), 1)
+	LIB_DSPRPC = libsdsprpc
+else
+	LIB_DSPRPC = libcdsprpc
+endif

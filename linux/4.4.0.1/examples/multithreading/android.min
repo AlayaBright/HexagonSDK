@@ -1,0 +1,18 @@
+LIB_DSPRPC = libadsprpc
+
+include cpu.min
+
+
+
+# stand-alone benchmark executable
+BUILD_EXES += multithreading
+
+$(EXE_NAME)_QAICIDLS += inc/multithreading
+
+$(EXE_NAME)_C_SRCS += src/multithreading
+
+$(EXE_NAME)_DLLS += $(LIB_DSPRPC) \
+					   $(DLL_NAME)
+
+$(EXE_NAME)_LD_FLAGS += -llog -ldl
+

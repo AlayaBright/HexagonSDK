@@ -1,0 +1,3059 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>IDL documentation - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#interface-description-language-idl" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              IDL documentation
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        IDL documentation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="idl.html" class="md-nav__link md-nav__link--active">
+      IDL documentation
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-idl" class="md-nav__link">
+    Introduction to IDL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-to-omg-idl" class="md-nav__link">
+    Relationship to OMG IDL
+  </a>
+  
+    <nav class="md-nav" aria-label="Relationship to OMG IDL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bounded-output-parameters" class="md-nav__link">
+    Bounded output parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null-argument-semantics" class="md-nav__link">
+    NULL Argument Semantics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#return-values" class="md-nav__link">
+    Return Values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wire-format-limitations" class="md-nav__link">
+    Wire Format Limitations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-handles" class="md-nav__link">
+    Remote Handles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domains" class="md-nav__link">
+    Domains
+  </a>
+  
+    <nav class="md-nav" aria-label="Domains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#domain-restart" class="md-nav__link">
+    Domain restart
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domain-routing" class="md-nav__link">
+    Domain Routing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-fastrpc-support" class="md-nav__link">
+    Async FastRPC support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-idl" class="md-nav__link">
+    Sample IDL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#include-directives-and-code-generation" class="md-nav__link">
+    Include directives and code generation
+  </a>
+  
+    <nav class="md-nav" aria-label="Include directives and code generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#header-file-generation" class="md-nav__link">
+    Header file generation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapping-to-c" class="md-nav__link">
+    Mapping to C
+  </a>
+  
+    <nav class="md-nav" aria-label="Mapping to C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-built-in-types" class="md-nav__link">
+    Basic built-in types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constants" class="md-nav__link">
+    Constants
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identifiers" class="md-nav__link">
+    Identifiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces" class="md-nav__link">
+    Interfaces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-parameter" class="md-nav__link">
+    in parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rout-parameter" class="md-nav__link">
+    rout parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inrout-parameter" class="md-nav__link">
+    inrout parameter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structures" class="md-nav__link">
+    Structures
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumerations" class="md-nav__link">
+    Enumerations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unions" class="md-nav__link">
+    Unions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arrays" class="md-nav__link">
+    Arrays
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequences" class="md-nav__link">
+    Sequences
+  </a>
+  
+    <nav class="md-nav" aria-label="Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-parameter-of-a-method" class="md-nav__link">
+    in parameter of a method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rout-parameter-of-a-method" class="md-nav__link">
+    rout parameter of a method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inrout-parameter-of-a-method" class="md-nav__link">
+    inrout parameter of a method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#member-of-a-structure" class="md-nav__link">
+    Member of a structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#within-another-sequence-or-an-array" class="md-nav__link">
+    Within another sequence, or an array
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strings" class="md-nav__link">
+    Strings
+  </a>
+  
+    <nav class="md-nav" aria-label="Strings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-parameter-of-a-method_1" class="md-nav__link">
+    in parameter of a method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rout-parameter-of-a-method_1" class="md-nav__link">
+    rout parameter of a method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inrout-parameter-of-a-method_1" class="md-nav__link">
+    inrout parameter of a method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#member-of-a-structure_1" class="md-nav__link">
+    Member of a structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#within-a-sequence" class="md-nav__link">
+    Within a sequence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null-and-empty-strings" class="md-nav__link">
+    NULL and empty strings
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qaic" class="md-nav__link">
+    QAIC
+  </a>
+  
+    <nav class="md-nav" aria-label="QAIC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-usage" class="md-nav__link">
+    Command-line usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    Usage examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-other-preprocessors" class="md-nav__link">
+    Using other preprocessors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-messages" class="md-nav__link">
+    Error messages
+  </a>
+  
+    <nav class="md-nav" aria-label="Error messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identifier-abc-clashes-with-an-introduced-type" class="md-nav__link">
+    Identifier 'abc' clashes with an introduced type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comment-pass-through" class="md-nav__link">
+    Comment pass-through
+  </a>
+  
+    <nav class="md-nav" aria-label="Comment pass-through">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#doxygen-comments" class="md-nav__link">
+    Doxygen comments
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-idl" class="md-nav__link">
+    Introduction to IDL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-to-omg-idl" class="md-nav__link">
+    Relationship to OMG IDL
+  </a>
+  
+    <nav class="md-nav" aria-label="Relationship to OMG IDL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bounded-output-parameters" class="md-nav__link">
+    Bounded output parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null-argument-semantics" class="md-nav__link">
+    NULL Argument Semantics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#return-values" class="md-nav__link">
+    Return Values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wire-format-limitations" class="md-nav__link">
+    Wire Format Limitations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-handles" class="md-nav__link">
+    Remote Handles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domains" class="md-nav__link">
+    Domains
+  </a>
+  
+    <nav class="md-nav" aria-label="Domains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#domain-restart" class="md-nav__link">
+    Domain restart
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domain-routing" class="md-nav__link">
+    Domain Routing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-fastrpc-support" class="md-nav__link">
+    Async FastRPC support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-idl" class="md-nav__link">
+    Sample IDL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#include-directives-and-code-generation" class="md-nav__link">
+    Include directives and code generation
+  </a>
+  
+    <nav class="md-nav" aria-label="Include directives and code generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#header-file-generation" class="md-nav__link">
+    Header file generation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapping-to-c" class="md-nav__link">
+    Mapping to C
+  </a>
+  
+    <nav class="md-nav" aria-label="Mapping to C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-built-in-types" class="md-nav__link">
+    Basic built-in types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constants" class="md-nav__link">
+    Constants
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identifiers" class="md-nav__link">
+    Identifiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces" class="md-nav__link">
+    Interfaces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-parameter" class="md-nav__link">
+    in parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rout-parameter" class="md-nav__link">
+    rout parameter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inrout-parameter" class="md-nav__link">
+    inrout parameter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structures" class="md-nav__link">
+    Structures
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumerations" class="md-nav__link">
+    Enumerations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unions" class="md-nav__link">
+    Unions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arrays" class="md-nav__link">
+    Arrays
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequences" class="md-nav__link">
+    Sequences
+  </a>
+  
+    <nav class="md-nav" aria-label="Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-parameter-of-a-method" class="md-nav__link">
+    in parameter of a method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rout-parameter-of-a-method" class="md-nav__link">
+    rout parameter of a method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inrout-parameter-of-a-method" class="md-nav__link">
+    inrout parameter of a method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#member-of-a-structure" class="md-nav__link">
+    Member of a structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#within-another-sequence-or-an-array" class="md-nav__link">
+    Within another sequence, or an array
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strings" class="md-nav__link">
+    Strings
+  </a>
+  
+    <nav class="md-nav" aria-label="Strings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-parameter-of-a-method_1" class="md-nav__link">
+    in parameter of a method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rout-parameter-of-a-method_1" class="md-nav__link">
+    rout parameter of a method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inrout-parameter-of-a-method_1" class="md-nav__link">
+    inrout parameter of a method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#member-of-a-structure_1" class="md-nav__link">
+    Member of a structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#within-a-sequence" class="md-nav__link">
+    Within a sequence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null-and-empty-strings" class="md-nav__link">
+    NULL and empty strings
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qaic" class="md-nav__link">
+    QAIC
+  </a>
+  
+    <nav class="md-nav" aria-label="QAIC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-usage" class="md-nav__link">
+    Command-line usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    Usage examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-other-preprocessors" class="md-nav__link">
+    Using other preprocessors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-messages" class="md-nav__link">
+    Error messages
+  </a>
+  
+    <nav class="md-nav" aria-label="Error messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identifier-abc-clashes-with-an-introduced-type" class="md-nav__link">
+    Identifier 'abc' clashes with an introduced type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comment-pass-through" class="md-nav__link">
+    Comment pass-through
+  </a>
+  
+    <nav class="md-nav" aria-label="Comment pass-through">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#doxygen-comments" class="md-nav__link">
+    Doxygen comments
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="interface-description-language-idl">Interface Description Language (IDL)</h1>
+<h2 id="introduction-to-idl">Introduction to IDL</h2>
+<p>The IDL language is a generic language that describes an interface between two processors. The IDL version supported in the SDK is tuned to describe specifically the interface between the application processor and the Hexagon DSPs communicating using <a href="../software/ipc/rpc.html">FastRPC</a>.</p>
+<p>IDL files defining these CPU-DSP interfaces are compiled with the QAIC tool to produce C header files and stub and skeleton source files that are linked into the CPU and DSP modules to enable them to communicate via RPC calls.</p>
+<p>This document describes the syntax and semantics of IDL.  To learn how to build a project that includes IDL files, please refer to the <a href="../tools/build.html">build instructions</a>.  For a better understanding of how the CPU and DSP communicate together, please see the <a href="../software/ipc/rpc.html">RPC</a> documentation.</p>
+<h2 id="relationship-to-omg-idl">Relationship to OMG IDL</h2>
+<p>The IDL used in the Hexagon SDK is based on the <a href="http://www.omg.org/cgi-bin/doc?formal/08-01-04.pdf" target="_blank">OMG IDL specification</a> but differs in a few respects:</p>
+<ul>
+<li>
+<p>All interface methods must have an IDL return a type equivalent to IDL type long. The <a href="#return-values">value returned</a> must be 0 if the method is successful, or an error code on failure. Standard error codes are defined in <code>AEEStdErr.idl</code> which can be found under <code>${HEXAGON_SDK_ROOT}/incs/stddef</code>.</p>
+</li>
+<li>
+<p>Interfaces may not directly inherit from more than one base <code>interface</code>.</p>
+</li>
+<li>
+<p>The <code>rout</code> parameter modes are used instead of <code>out</code> as explained in the <a href="#bounded-output-parameters">next section</a>.</p>
+</li>
+<li>
+<p>The <code>inrout</code> parameter mode is used instead of <code>inout</code>.</p>
+<p>The parameter mode <code>inrout</code> supports all the basic data types including string and wstring, and structures containing these data types. <code>inrout</code> also supports sequences but not structures containing sequences. dmahandle is also not supported.</p>
+</li>
+<li>
+<p>The dmahandle type is not present in OMG IDL</p>
+<p>This type is used to persistently map buffers on the DSP and bypass cache maintenance for these buffers on the APPS. The user can independently map and unmap the file descriptors on the DSP using the <a href="../doxygen/HAP_mem/index.html" target="_blank">HAP_mem APIs</a>. During the remote call, the file descriptors are mapped on IOMMU and get unmapped when the user unregisters the dmahandle explicitly.</p>
+<p>The advantage of using a dmahandle data type is that users can control the life time of the mapping in DSP.  For more information about the dmahandle, please refer to the <a href="#mapping-to-c">description of supported IDL types and how they map to C</a>.</p>
+<p>Note: Cache maintenance for this mapping should be handled by the client.</p>
+</li>
+</ul>
+<h3 id="bounded-output-parameters">Bounded output parameters</h3>
+<p>OMG IDL supports three parameter attributes or modes that specify the direction the data flows: in (client to server), out (server to client), and inout (both directions). In OMG IDL, the semantics of out and inout is such that the size of a variable-length parameter cannot be known to or bounded by the client at run time. However, standard practice is for all buffers to be bounded by the client.</p>
+<p>The IDL compiler supports output semantics through the IDL keyword <code>rout</code>, which is the bounded analog of out. The "r" in each keyword refers to the UNIX read() system call, where the client provides a buffer and specifies at run time the maximum amount of data to be read into the buffer.</p>
+<p>For fixed-size types, there is no difference between the traditional out and the new <code>rout</code>, as the size is statically known and therefore needs not be specified by the client. However, for variable-size types, such as sequences and strings, <code>rout</code> implies an upper bound that is passed as an input parameter from client to server. For example, read() could be defined in IDL as follows:</p>
+<pre><code>typedef sequence&lt;octet&gt; SeqOctet;
+long read(rout SeqOctet buffer);
+</code></pre>
+<p>In IDL, only a single <code>rout</code> parameter is needed, as it implies the client providing to the server the maximum number of octets to return. See <a href="#rout-parameter-of-a-method">further below</a> for details on how this parameter would be mapped to the remote bindings.</p>
+<p>Note that the traditional OMG IDL <code>out</code> and <code>inout</code> parameter modes are not currently supported by the compiler.</p>
+<h3 id="null-argument-semantics">NULL Argument Semantics</h3>
+<p>These are the current rules for when <code>NULL</code> is passed as an argument.</p>
+<p><code>in</code> parameters:</p>
+<ul>
+<li>Sequence pointers may be <code>NULL</code> when the associated length is 0.</li>
+</ul>
+<p><code>rout</code> parameters:</p>
+<ul>
+<li>Sequence, string, and wstring pointers may be <code>NULL</code> when the associated length is 0.</li>
+</ul>
+<h3 id="return-values">Return Values</h3>
+<ul>
+<li>
+<p>must be equivalent type to long, such as AEEResult from AEEStdDef.idl</p>
+</li>
+<li>
+<p>value 0 indicates success</p>
+</li>
+<li>
+<p>a non-zero code indicates a failure. Any data in <code>rout</code> parameters is not propagated back when a non-zero code is returned.</p>
+</li>
+</ul>
+<h3 id="wire-format-limitations">Wire Format Limitations</h3>
+<p><code>in</code> parameters:</p>
+<ul>
+<li>maximum of 255 <code>in</code> buffers.</li>
+</ul>
+<p>The total number of buffers in all input arguments combined cannot exceed 255.</p>
+<p>For example</p>
+<pre><code>    typedef sequence&lt;octet&gt; buf;
+    interface foo
+    {
+        long bar(in sequence&lt;buf&gt; bufs);
+    };
+</code></pre>
+<p>maps to C as</p>
+<pre><code>    struct __seq_unsigned_char {
+       unsigned char* data;
+       int dataLen;
+    };
+    typedef struct __seq_unsigned_char __seq_unsigned_char;
+    typedef __seq_unsigned_char buf;
+    int foo_bar(buf* bufs, int bufsLen);
+</code></pre>
+<p>and it will fail for <code>bufsLen &gt; 254</code>.</p>
+<p><code>rout</code> parameters:</p>
+<ul>
+<li>maximum of 255 <code>rout</code> buffers</li>
+</ul>
+<p><code>in</code> handles:</p>
+<ul>
+<li>maximum of 15 <code>in dmahandle</code> handles</li>
+</ul>
+<p><code>rout</code> handles:</p>
+<ul>
+<li>maximum of 15 <code>rout dmahandle</code> handles</li>
+</ul>
+<h2 id="remote-handles">Remote Handles</h2>
+<p>The IDL compiler supports interfaces derived from <code>remote_handle64</code> which allow the user to maintain a context handle for the opened module.  For example, this allows to use a pointer to a local state structure, which holds information between RPC calls.</p>
+<p>Using a context handle also allows the client to specify which DSP to use at runtime, and, in the case of a crash on the DSP, to enable a restart of the session.</p>
+<pre><code>interface calculator : remote_handle64 {
+
+  // Compute a*b, where a and b are both complex
+  long fmult(in float a, in float b, rout float result);
+};
+</code></pre>
+<p>This is a special interface that tells the compiler to do the following</p>
+<ul>
+<li>
+<p>add a <code>remote_handle64</code> argument as the first argument of every function in the interface</p>
+<p>For example, with the IDL code above:</p>
+<pre><code>long calculator_fmult(remote_handle64 h, const float a, const float b, float *result);
+</code></pre>
+</li>
+<li>
+<p>add an <code>&lt;interface&gt;_open</code> method</p>
+<p>For example:</p>
+<pre><code>int calculator_open(const char *uri, remote_handle64 *h);
+</code></pre>
+<p>where the uri is a string that allows to specify the domain in which to execute the code.</p>
+</li>
+<li>
+<p>add an <code>&lt;interface&gt;_close</code> method</p>
+<p>For example:</p>
+<pre><code>int calculator_close(remote_handle64 h);
+</code></pre>
+</li>
+</ul>
+<p>With remote handles, users can open multiple instances of the handle as is illustrated in the next <a href="#domains">section</a>.</p>
+<p>In addition, implementors of DSP modules can allocate a local state structure to return as the handle. If there is no local state to maintain, the handle value can be any arbitrary number.</p>
+<p>The code example below illustrates both of these approaches:</p>
+<pre><code>int calculator_open(const char *uri, remote_handle64 *h) {
+   // This value will NOT be returned to the client
+   *h = (remote_handle64)0xdeadc0de;
+   // but this value will be passed to close when the handle is closed
+   // As such, it provides a mechanism to maintain a local structure. For example:
+   // *h = (remote_handle64)malloc(100);
+   return 0;
+}
+int calculator_close(remote_handle64 h) {
+   // The value returned by open will be presented to the module on close and any other function
+   assert(h == (remote_handle64)0xdeadc0de);
+   // If instead the remote handle held a valid pointer to a memory allocated in the calculator_open,
+   // this is where we could free the memory.
+   return 0;
+}
+</code></pre>
+<p><strong><em>Note: </em></strong> The handle value seen by the client on the CPU side is allocated by the framework and not related to the DSP-side handle:</p>
+<pre><code>* On the server side (DSP), the value assigned to *h in the `open()` implementation will be presented as the first argument to all subsequent function invocations to this interface and with this handle up until the handle is closed.
+
+* If the server has instance-specific state to maintain, a common approach consists of allocating the instance structure in the `open()` call, and use the address returned as the server-side handle.
+
+* If the server has no instance-specific state to maintain, it is free to return any garbage value that needs not necessarily be unique.
+
+* On the client side (CPU), the FastRPC framework will generate and return to the caller of open() a unique handle that is not derived from the server-side handle provided by the server open() implementation: the FastRPC retains a mapping internally from client-side to server-side handles, so that an invocation made on a client-side handle will be received on the server with the corresponding server-side handle, but neither side ever sees the other side's handles.
+</code></pre>
+<h2 id="domains">Domains</h2>
+<p>The term domain is used to refer to any of the DSPs that support FastRPC on a given target.</p>
+<p>Interfaces deriving from <code>remote_handle64</code> will provide the user with explicit
+control over the module lifetime. A DSP-side process will be open as long as
+there is at least one handle reference to it.</p>
+<pre><code>remote_handle64 h1 = -1, h2 = -1;
+float c1,c2,result;
+//open h1, if h1 is the first handle for the default domain it will instantiate a new DSP process
+assert(0 == calculator_open(calculator_URI, &amp;h1));
+
+//open h2, the process is still open
+assert(0 == calculator_open(calculator_URI, &amp;h2));
+
+//close h1, since we also opened h2, the process is still open
+assert(0 == calculator_close(h1));
+
+//call using h1 will fail
+assert(0 != calculator_fmult(h1, &amp;c1, &amp;c2, &amp;result));
+
+//call using h2 will pass
+assert(0 == calculator_fmult(h1, &amp;c1, &amp;c2, &amp;result));
+
+//close h2, this is the last handle to the process
+//it will shutdown the process on the DSP side and free all its resources
+(void)calculator_close(h2);
+</code></pre>
+<h4 id="domain-restart">Domain restart</h4>
+<p>Since users have explicit control over the handle lifetimes they can detect errors and re-open the handle.</p>
+<pre><code>assert(0 == calculator_open(calculator_URI, &amp;h1));
+int nErr=calculator_fmult(h1, &amp;c1, &amp;c2, &amp;result);
+if (nErr == AEE_ENOSUCH || nErr == AEE_EBADSTATE) {
+   /* AEE_ENOSUCH is returned when Protection Domain Restart (PDR) happens and
+    * AEE_EBADSTATE is returned when PD is exiting or crashing.*/
+   (void)calculator_close(h1);
+   h1 = -1;
+   // restart the DSP process
+   assert(0 == calculator_open(calculator_URI, &amp;h1));
+
+   //try fmult again
+   assert(0 == calculator_fmult(h1, &amp;c1, &amp;c2, &amp;result));
+}
+</code></pre>
+<p>For a full example illustrating that approach, please refer to the <a href="../examples/calculator/index.html">calculator example</a>.</p>
+<p>Typically once a DSP-side process is killed or crashes, all methods should return <code>AEE_ENOSUCH</code> as defined
+in <code>${HEXAGON_SDK_ROOT}/incs/stddef/AEEStdErr.h</code>.</p>
+<h4 id="domain-routing">Domain Routing</h4>
+<p>Users can explicitly specify the domain on which they need to execute their code. A session is opened on a particular domain by appending a static string representing that domain and defined in <code>$HEXAGON_SDK_ROOT\incs\remote.h</code> to the auto-generated interface URI:</p>
+<pre><code>#include "remote.h"
+...
+remote_handle cdsp, adsp;
+const char *uri_cdsp = calculator_URI CDSP_DOMAIN;
+const char *uri_adsp = calculator_URI ADSP_DOMAIN;
+assert(!calculator_open(uri_cdsp, &amp;cdsp));
+assert(!calculator_open(uri_adsp, &amp;adsp));
+assert(!calculator_sum(cdsp, buf, bufLen, &amp;val));
+assert(!calculator_sum(adsp, buf, bufLen, &amp;val));
+assert(!calculator_close(cdsp));  // kills the remote PD on aDSP if this is the last handle using the cDSP
+assert(!calculator_close(adsp));  // kills the remote PD on aDSP if this is the last handle using the aDSP
+</code></pre>
+<h2 id="async-fastrpc-support">Async FastRPC support</h2>
+<p>Please refer to the <a href="../software/ipc/rpc.html#asynchronous-fastrpc">Asynchronous FastRPC documentation</a> for more details on how to use an asynchronous FastRPC function.</p>
+<ul>
+<li>
+<p>To declare an asynchronous FastRPC function in IDL, use the syntax below:</p>
+<pre><code>interface lib : remote_handle64 {
+  // synchronous calls
+  long foo(in sequence&lt;octet&gt; inPtr, rout sequence&lt;unsigned long&gt; outPtr, in float alpha);
+
+  // declare an asynchronous-only RPC
+  async long foo_async(in sequence&lt;octet&gt; inPtr, rout sequence&lt;unsigned long&gt; outPtr, in float alpha);
+}
+</code></pre>
+<p>Corresponding method declaration in header file would have fastrpc_async_descriptor_t as a parameter:</p>
+<ol>
+<li>
+<p><a href="../software/ipc/rpc.html#multi-domain">Multi-domain</a> version of IDL generated method declarations for sync and async</p>
+<pre><code>int lib_foo(remote_handle64 h, const unsigned char* inPtr, int inPtrLen, unsigned int* outPtr, int outPtrLen, float alpha);
+int lib_foo_async(remote_handle64 h, fastrpc_async_descriptor_t* asyncDesc, const unsigned char* inPtr, int inPtrLen, unsigned int* outPtr, int outPtrLen, float alpha);
+</code></pre>
+</li>
+<li>
+<p>Single-domain version of IDL generated method declarations for sync and async</p>
+<pre><code>int lib_foo(const unsigned char* inPtr, int inPtrLen, unsigned int* outPtr, int outPtrLen, float alpha);
+int lib_foo_async(fastrpc_async_descriptor_t* asyncDesc, const unsigned char* inPtr, int inPtrLen, unsigned int* outPtr, int outPtrLen, float alpha);
+</code></pre>
+</li>
+</ol>
+<p><strong><em>Note:</em></strong> An async method can be forced to execute synchronously by passing a NULL async descriptor.</p>
+</li>
+<li>
+<p>Async stub methods are invoked like synchronous methods but include an additional descriptor as the first argument. Async calls will return 0 on successful submission of the job to DSP. A non-zero return value indicates the failure to make the async RPC call.</p>
+<pre><code>nErr = lib_foo_async(handle, &amp;desc, inbuf, inbufLen, outbuf, outbufLen, alpha);
+</code></pre>
+</li>
+<li>
+<p>The skeleton remains identical to the conventional (synchronous) FastRPC skeleton, with the exception that the second argument which follows the remote handle, is the descriptor.</p>
+</li>
+<li>
+<p>Only sequences can be output arguments (<code>inrout</code> or <code>rout</code>) when declaring an asynchronous function. All other argument types declared as <code>inrout</code> or <code>rout</code> will cause a compilation error:</p>
+<ol>
+<li>Primitive type</li>
+<li>Array</li>
+<li>Dmahandle</li>
+<li>Wide string</li>
+<li>String</li>
+<li>Enum</li>
+<li>Struct</li>
+</ol>
+<p><strong><em>Note: </em></strong> If an argument of any of these types needs to be specified as an output, it can be declared as a sequence with one element.</p>
+</li>
+<li>
+<p>The sequences created for async methods must be allocated and registered with FastRPC as shared <strong>ION buffers</strong>. Async call with non-ION buffers for  sequences will return <code>AEE_EBADPARM</code> error at runtime.</p>
+</li>
+<li>
+<p>RPC functions that need to be available synchronously and asynchronously must be declared twice in the IDL file, once with and once without the <code>async</code> keyword</p>
+<p><strong><em>Note: </em></strong>Clients can also call asynchronous RPC functions synchronously by using a NULL descriptor.</p>
+</li>
+</ul>
+<h2 id="sample-idl">Sample IDL</h2>
+<p>A sample IDL file is shown below to illustrate the use of common IDL
+constructs.</p>
+<pre><code>#include "AEEStdDef.idl"  // Needed for 'AEEResult'
+
+interface math_example
+{
+  // This structure is specific to this interface, so we scope it within the
+  // interface to avoid pollution of the global namespace.
+  struct Complex
+  {
+    float real; // Real part
+    float imag; // Imaginary part
+  };
+
+  // A vector, consisting of 0 or more Numbers.
+  typedef sequence&lt;Complex&gt; Vector;
+
+  // Compute a*b, where a and b are both complex
+  AEEResult Mult(in Complex a, in Complex b, rout Complex result);
+
+};
+</code></pre>
+<p>This IDL interface will result in the generation of the following C interface:</p>
+<pre><code>typedef struct math_example_Complex math_example_Complex;
+struct math_example_Complex {
+   float real;
+   float imag;
+};
+
+typedef struct _math_example_Vector__seq_math_example_Complex _math_example_Vector__seq_math_example_Complex;
+typedef _math_example_Vector__seq_math_example_Complex math_example_Vector;
+
+struct _math_example_Vector__seq_math_example_Complex {
+   math_example_Complex* data;
+   int dataLen;
+};
+
+__QAIC_HEADER_EXPORT AEEResult __QAIC_HEADER(math_example_Mult)(const math_example_Complex* a, const math_example_Complex* b, math_example_Complex* result) __QAIC_HEADER_ATTRIBUTE;
+</code></pre>
+<p><strong><em>Note: </em></strong> IDL sequences turn into pointers followed by a length value. The length of a sequence is defined as the <strong><em>number of elements</em></strong> and <strong><em>not</em></strong> the number of bytes in the array.</p>
+<h2 id="include-directives-and-code-generation">Include directives and code generation</h2>
+<p>Many IDL files include other IDL files in order to make use of types and interfaces declared externally. For example, when defining a Component Services <code>interface</code> in IDL, <code>AEEIQI.idl</code> needs to be included for the definition of <code>IQI</code>, from which all CS interfaces must be derived. However, one important difference between <code>#include</code> in IDL and <code>#include</code> in <code>C/C++</code> is that in IDL, code is not generated for modules, interfaces, and types included from other IDL files. For example, consider the following IDL:</p>
+<pre><code>interface foo { /* definition of foo here */ };
+interface bar : foo { /* definition of bar here */ };
+</code></pre>
+<p>If this IDL is compiled, the output will contain the appropriate code for both foo and bar. However, suppose the foo definition is moved to foo.idl, and the IDL being compiled is changed as follows:</p>
+<pre><code>#include "foo.idl"
+interface bar : foo { /* definition of bar here */ };
+</code></pre>
+<p>In this case, only code for bar will be generated. Although the contents of <code>foo.idl</code> are read by the compiler, no code is generated for foo because it is defined in an external (included) IDL file. Instead of generating code for foo, the compiler will translate the <code>#include</code> in the IDL to a <code>#include</code> in the output, with the extension changed from ".idl" to ".h".</p>
+<p>There can be two approaches to include an IDL file in another IDL file:</p>
+<ul>
+<li>
+<p>Create an interface in the parent IDL (foo) and inherit that interface in the child IDL (bar).</p>
+<p>foo.idl</p>
+<pre><code>interface foo{
+  long function1();
+  long function2(in long x);
+};
+</code></pre>
+<p>bar.idl</p>
+<pre><code>// foo.idl included outside bar interface
+#include "foo.idl"
+
+interface bar: foo{
+    long baz();
+};
+</code></pre>
+<p>Here <code>bar.h</code> will contain <code>bar_function1</code> and <code>bar_function2</code>, along with <code>bar_baz</code></p>
+<p>This approach gives the flexibility to bundle up some functions together to be inherited for a particular interface.</p>
+<p><code>struct</code>, <code>typedef</code>, etc., can be declared outside <code>foo</code> interface but functions must be declared inside <code>foo</code> interface.</p>
+<p>Multiple interfaces can be declared in <code>foo.idl</code>, but only one interface can be inherited in <code>bar.idl</code></p>
+<p>foo.idl</p>
+<pre><code>  interface foo{
+      long baz1();
+  };
+
+  interface foo1{
+      long baz2();
+  };
+</code></pre>
+<p>bar.idl</p>
+<p><strong><em>Either</em></strong> this is allowed</p>
+<pre><code>  interface bar : foo {
+      long baz();
+  };
+</code></pre>
+<p><strong><em>OR</em></strong> this is allowed</p>
+<pre><code>  interface bar : foo1 {
+      long baz();
+  };
+</code></pre>
+<p><strong><em>Note:</em></strong> An IDL having multiple interface declarations (here <code>foo.idl</code>) cannot be used for shared obejct creation, it can only work as parent IDL.</p>
+</li>
+<li>
+<p>Declaring in <code>foo.idl</code> without any interface and including "foo.idl" inside the interface of <code>bar.idl</code></p>
+<p>foo.idl</p>
+<pre><code>#include "AEEStdDef.idl"
+AEEResult func();
+</code></pre>
+<p>bar.idl</p>
+<pre><code>interface bar{
+  // foo.idl included inside bar interface
+  #include "foo.idl"
+  long baz();
+};
+</code></pre>
+<p>Here <code>bar.h</code> will contain <code>bar_func</code> along with <code>bar_baz</code>
+In this approach interface bar will have access to everything declared in <code>foo.idl</code>.</p>
+<p><strong><em>Note:</em></strong> You cannot define an interface in <code>foo.idl</code> in this case.</p>
+</li>
+</ul>
+<p>In addition, when an IDL file includes <code>#include "remote.idl"</code> and its interface inherits <code>remote_handle64</code>, the auto-generated header file will contain an <code>interface_open</code> and <code>interface_close</code> function declaration, and all other functions will have a <code>remote_handle64 h</code> as their first argument, as <a href="#remote-handles">described here</a></p>
+<h3 id="header-file-generation">Header file generation</h3>
+<p>The header files generated by QAIC are made to resemble hand-written C headers. For each <code>interface</code> name in IDL, for each <code>function</code> name in IDL; functions are generated in header file in the following format:</p>
+<pre><code>int `interface`_`function`(arg1, arg2, ... argN);
+</code></pre>
+<h2 id="mapping-to-c">Mapping to C</h2>
+<p>This section details the mapping of IDL constructs to <code>C</code> types.</p>
+<h3 id="basic-built-in-types">Basic built-in types</h3>
+<p>The following table lists the mapping of IDL basic types to <code>C</code>.</p>
+<table>
+<thead>
+<tr>
+<th>IDL Type</th>
+<th>C Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wchar</td>
+<td>_wchar_t</td>
+</tr>
+<tr>
+<td>octet</td>
+<td>unsigned char</td>
+</tr>
+<tr>
+<td>char</td>
+<td>char</td>
+</tr>
+<tr>
+<td>short</td>
+<td>short</td>
+</tr>
+<tr>
+<td>unsigned short</td>
+<td>unsigned short</td>
+</tr>
+<tr>
+<td>long</td>
+<td>int</td>
+</tr>
+<tr>
+<td>unsigned long</td>
+<td>unsigned int</td>
+</tr>
+<tr>
+<td>long long</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>unsigned long long</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>int8</td>
+<td>int8</td>
+</tr>
+<tr>
+<td>uint8</td>
+<td>uint8</td>
+</tr>
+<tr>
+<td>int16</td>
+<td>int16</td>
+</tr>
+<tr>
+<td>uint16</td>
+<td>uint16</td>
+</tr>
+<tr>
+<td>int32</td>
+<td>int32</td>
+</tr>
+<tr>
+<td>uint32</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>int64</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>uint64</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>int8_t</td>
+<td>int8_t</td>
+</tr>
+<tr>
+<td>uint8_t</td>
+<td>uint8_t</td>
+</tr>
+<tr>
+<td>int16_t</td>
+<td>int16_t</td>
+</tr>
+<tr>
+<td>uint16_t</td>
+<td>uint16_t</td>
+</tr>
+<tr>
+<td>int32_t</td>
+<td>int32_t</td>
+</tr>
+<tr>
+<td>uint32_t</td>
+<td>uint32_t</td>
+</tr>
+<tr>
+<td>int64_t</td>
+<td>int64_t</td>
+</tr>
+<tr>
+<td>uint64_t</td>
+<td>uint64_t</td>
+</tr>
+<tr>
+<td>float</td>
+<td>float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>double</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>dmahandle</td>
+<td>int (handle), uint32 (offset), uint32 (length)</td>
+</tr>
+</tbody>
+</table>
+<p>Definitions for _wchar_t, uint64 and int64 can be found in <a href="../doxygen/AEEStd/index.html" target="_blank">AEEStdDef.h</a></p>
+<p>The dmahandle type takes in three parameters: handle to the buffer, offset into the buffer and size of the buffer allowing to mapping, coherency, and cache operations.</p>
+<h3 id="constants">Constants</h3>
+<p>Constant declarations in IDL are mapped to <code>#defines</code> in <code>C</code>, with expressions
+evaluated.</p>
+<ul>
+<li>
+<p>Constant declaration in IDL:</p>
+<pre><code>const short MAX_TRIES = 5 + 10 - 4;
+</code></pre>
+</li>
+<li>
+<p>Corresponding C macro:</p>
+<pre><code>#define MAX_TRIES 11
+</code></pre>
+</li>
+</ul>
+<h3 id="identifiers">Identifiers</h3>
+<p>Declaring constant in IDL results in declaring a macro in C and C++.</p>
+<p>For example, the following IDL constant declaration:</p>
+<pre><code>const short MY_CONSTANT = 3;
+</code></pre>
+<p>will result in the following C/C++ code:</p>
+<pre><code>#define MY_CONSTANT 3
+</code></pre>
+<p>It is recommended that <code>C</code> and <code>C++</code> keywords not be used as identifiers in IDL. However, if a keyword is used as an identifier, it will be prefixed with <code>_cxx_</code> in the generated output.</p>
+<p>For example, the following constant declaration in IDL:</p>
+<pre><code>const short break = 3;
+</code></pre>
+<p>will result in the following C/C++ code:</p>
+<pre><code>#define _cxx_break 3
+</code></pre>
+<h3 id="interfaces">Interfaces</h3>
+<p>Types and functions declared within an <code>interface</code> must be scoped within that <code>interface</code>, any such types are prepended with the name of the enclosing <code>interface</code> and an underscore.</p>
+<p>Any type defined within an <code>interface</code> will be extracted and defined before the corresponding structure in the mapping.</p>
+<ul>
+<li>
+<p>IDL declaration
+        interface IFoo
+        {
+          struct inner
+          {
+          /<em> ... </em>/
+          };</p>
+<pre><code>  long process(in short a);
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>typedef struct IFoo_inner
+{
+  /* ... */
+} IFoo_inner;
+
+int IFoo_process(short int a);
+</code></pre>
+</li>
+</ul>
+<h3 id="methods">Methods</h3>
+<p>Each method of an <a href="#interfaces"><code>interface</code></a> is mapped as a function.</p>
+<h4 id="in-parameter"><code>in</code> parameter</h4>
+<p><code>in</code> parameters are passed by value. These input arguments are mapped as <code>const</code>. All user-defined types (struct, union) are passed as pointers to the defined type. Note that no <code>in</code> pointer may be <code>NULL</code>.</p>
+<p>An <code>in</code> parameter example is shown below.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>struct point
+{
+  short x;
+  float y;
+};
+
+interface ITest
+{
+};
+
+interface IFoo
+{
+
+  long process(in short id,
+  in string name,
+  in point origin);
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>typedef struct point
+{
+  short int x;
+  float y;
+} point;
+
+int IFoo_process(short int id,
+  const char* name,
+  const point* origin);
+</code></pre>
+</li>
+</ul>
+<h4 id="rout-parameter"><code>rout</code> parameter</h4>
+<p><code>rout</code> parameters are passed by reference as a pointer.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>interface IFoo
+{
+   long process(rout short id,
+     rout string name,
+     rout point origin);
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>int IFoo_process(short int* id,
+    char* name,
+    int nameLen,
+    point* origin);
+</code></pre>
+</li>
+</ul>
+<h4 id="inrout-parameter"><code>inrout</code> parameter</h4>
+<p><code>inrout</code> parameters are passed by reference as a pointer.</p>
+<p>This is very similar to rout parameter and an example of an <code>inrout</code> is shown
+below.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>interface IFoo
+{
+   long process(inrout short id,
+      inrout string name,
+      inrout point origin);
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>int IFoo_process(short int* id,
+      char* name,
+      int nameLen,
+      point* origin);
+</code></pre>
+</li>
+</ul>
+<h3 id="structures">Structures</h3>
+<p>IDL structures are mapped to <code>C</code> structures, with a typedef to allow the name
+of the structure to be used as a type. Note that types declared within a
+structure will have the name of the enclosing structure prepended to their
+names, as is done with definitions within interfaces.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>struct extended_point
+{
+  short x;
+  float y;
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>typedef struct extended_point
+{
+  short int x;
+  float y;
+} extended_point;
+</code></pre>
+</li>
+</ul>
+<h3 id="enumerations">Enumerations</h3>
+<p>IDL enumerated types are mapped to <code>C</code> enumerated types, with a typedef to
+allow the name of the enum to be used as a type. A placeholder enumerator is
+added to each enum to ensure binary compatibility across compilers.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>enum color
+{
+  RED,
+  ORANGE,
+  YELLOW,
+  GREEN,
+  BLUE
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>typedef enum color
+{
+  RED,
+  ORANGE,
+  YELLOW,
+  GREEN,
+  BLUE,
+  _32BIT_PLACEHOLDER_color = 0x7fffffff
+} color;
+</code></pre>
+</li>
+</ul>
+<p>The starting value for an <code>enum</code> is always 0.</p>
+<h3 id="unions">Unions</h3>
+<p>Unions are not supported at this time.</p>
+<h3 id="arrays">Arrays</h3>
+<p>IDL fixed-size arrays are mapped to <code>C</code> arrays.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>struct foo
+{
+  long sum[2];
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>typedef struct foo
+{
+  int sum[2];
+} foo;
+</code></pre>
+</li>
+</ul>
+<h3 id="sequences">Sequences</h3>
+<p>Sequences allow to represent arrays where the length is specified at runtime.</p>
+<p>For each sequence type <code>sequence&lt;T&gt;</code>, a corresponding structure __seq_T is
+generated with two members:</p>
+<pre><code>T* data;
+int dataLen;
+</code></pre>
+<p>The <code>dataLen</code> member specifies the <strong><em>number of elements</em></strong> in the array <code>data</code> (and <strong><em>not</em></strong> the number of bytes).
+Note that sequence lengths are always in terms of the number of elements in
+the sequence, not the number of bytes required to store the sequence.</p>
+<p>Consider the following mapping example for a sequence of <code>long</code> integers.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>typedef sequence&lt;long&gt; seqlong;
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>struct __seq_int
+{
+  int* data;
+  int dataLen;
+};
+
+typedef __seq_int seqlong;
+</code></pre>
+</li>
+</ul>
+<p>This structure is used when constructing sequences of sequence types.</p>
+<p><strong><em>Note: </em></strong> Memory buffers exchanged between the CPU and DSP should be declared as ION memory buffers using the <a href="../doxygen/rpcmem/index.html" target="_blank">RPC MEM APIs</a>.</p>
+<h4 id="in-parameter-of-a-method">in parameter of a method</h4>
+<p>When a <code>sequence&lt;T&gt;</code> is specified as an <code>in</code> parameter of a method of an
+<code>interface</code>, the mapping generates two arguments.</p>
+<p>The first argument is a constant array pointer.  It must be valid unless its length is 0, in which case the
+pointer may be <code>NULL</code>.</p>
+<p>The second argument specifies the total <strong><em>number of elements</em></strong> of the array and <strong><em>not</em></strong> the array size in bytes.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>typedef sequence&lt;long&gt; seqlong;
+
+interface IFoo
+{
+  long process(in seqlong sums);
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>int IFoo_process(
+    const int* sums,
+    int sumsLen);
+</code></pre>
+</li>
+</ul>
+<h4 id="rout-parameter-of-a-method">rout parameter of a method</h4>
+<p>An <code>rout</code> sequence is similar to an <code>in</code> sequence with the exception that the array pointer is not declared as a constant:</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>typedef sequence&lt;long&gt; seqlong;
+
+interface IFoo
+{
+  long process(rout seqlong sums);
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>int IFoo_process(
+     int* sums,
+     int sumsLen);
+</code></pre>
+</li>
+</ul>
+<h4 id="inrout-parameter-of-a-method">inrout parameter of a method</h4>
+<p>An <code>inrout</code> sequence is declared in C in the same way  an <code>rout</code> sequence.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>typedef sequence&lt;long&gt; seqlong;
+
+interface IFoo
+{
+  long process(inrout seqlong sums);
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>// see seqlong above
+int IFoo_process(
+     int* sums,
+     int sumsLen);
+</code></pre>
+</li>
+</ul>
+<h4 id="member-of-a-structure">Member of a structure</h4>
+<p>A sequence may also be declared as a member of a structure:</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>typedef sequence&lt;long&gt; seqlong;
+
+struct Atm
+{
+  seqlong sums;
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>typedef struct Atm Atm;
+struct Atm
+{
+  int* sums;
+  int sumsLen;
+};
+</code></pre>
+</li>
+</ul>
+<h4 id="within-another-sequence-or-an-array">Within another sequence, or an array</h4>
+<p>Sequences may also be used within another sequence or as part of an array:</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>typedef sequence&lt;long&gt; seqlong;
+
+typedef sequence&lt;seqlong&gt; long2d;
+
+struct s
+{
+  seqlong five_sequences[5];
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>struct __seq_int
+{
+  int* data;
+  int dataLen;
+};
+
+typedef __seq_int seqlong;
+
+struct __seq_seqlong
+{
+  seqlong* data;
+  int dataLen;
+};
+
+typedef __seq_seqlong long2d;
+
+typedef struct s s;
+
+struct s
+{
+  seqlong five_sequences[5];
+};
+</code></pre>
+</li>
+</ul>
+<h3 id="strings">Strings</h3>
+<p>The IDL string type is mapped as <code>char*</code>, and <code>wstring</code> as <code>_wchar_t*</code> (where
+<code>_wchar_t</code> is typedef-ed to <code>unsigned short</code>). When used anywhere other than
+an <code>in</code> parameter, the pointer is accompanied by a size, which allows the
+client to specify the number of characters (<code>char</code> for <code>string</code>, <code>_wchar_t</code>
+for <code>wstring</code>) allocated for the string or wstring. This is the length of the
+buffer in characters, not the length of the string -- since strings are null-
+terminated in <code>C</code>, the length of the string is computable. All length
+associated with a string or wstring include the null-terminator.</p>
+<p>Note: In this section, characters should be interpreted as meaning one-byte
+chars for string types, and a two-byte _wchar_ts for wstring types. The term
+"character" is not used here in the lexical sense -- when storing text,
+character set and encoding considerations are left to the application, and it
+is therefore possible for a lexical character to require more than one IDL
+character (non-zero byte) to represent it.</p>
+<h4 id="in-parameter-of-a-method_1">in parameter of a method</h4>
+<p><code>string</code> is mapped as <code>const char*</code> and <code>wstring</code> as <code>const _wchar_t*</code>.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>interface IFoo
+{
+  long process(in string name);
+  long process_w(in wstring name);
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>int IFoo_process(const char* name);
+int IFoo_process_w(const _wchar_t* name);
+</code></pre>
+</li>
+</ul>
+<h4 id="rout-parameter-of-a-method_1">rout parameter of a method</h4>
+<p>The client must provide a valid buffer, <code>dcl</code>, which can hold up to <code>dclLen</code>
+characters (including the null terminator). However, when <code>dclLen</code> is 0, <code>dcl</code>
+may be <code>NULL</code>. On successful return, the returned string <code>dcl</code> will always be
+null terminated at the <code>dclLen - 1</code> character.</p>
+<p>An example of an <code>rout</code> string is shown below.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>interface IFoo
+{
+  long process(rout string name);
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>int IFoo_process(char* name,
+  int nameLen);
+</code></pre>
+</li>
+</ul>
+<h4 id="inrout-parameter-of-a-method_1">inrout parameter of a method</h4>
+<p>This is very similar to rout parameter and an example of an <code>inrout</code> string is
+shown below.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>interface IFoo
+{
+  long process(inrout string name);
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>int IFoo_process(char* name,
+  int nameLen);
+</code></pre>
+</li>
+</ul>
+<p>Note: For both types, the length parameters refer to the length of the buffer
+in characters (one-byte chars for strings, and two-byte _wchar_ts for
+wstrings), not the length of the string. The lengths are inclusive of a null
+terminator.</p>
+<h4 id="member-of-a-structure_1">Member of a structure</h4>
+<p>Within a structure, a string is mapped as though it were a <code>sequence&lt;char&gt;</code>,
+and a wstring as though it were a <code>sequence&lt;wchar&gt;</code>. However, as with strings
+and wstrings, the buffers are always required to be null terminated. The
+mapping for sequences within structures is detailed in Sequence, part of which
+is duplicated here for clarity.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>struct Atm
+{
+  string ssn;
+};
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>typedef struct Atm Atm;
+struct Atm
+{
+  char* ssn;
+  int ssnLen;
+};
+</code></pre>
+</li>
+</ul>
+<p>The second field <code>ssnLen</code> specifies the total size of the buffer <code>ssn,</code> in
+characters.</p>
+<h4 id="within-a-sequence">Within a sequence</h4>
+<p>When a string or wstring is used within a union or a sequence, it is mapped as
+a _cstring_t or _wstring_t. Both of these types are structures containing a
+pointer to a buffer and a buffer length. This structure is the same as the
+structure that would be generated for a <code>sequence&lt;char&gt;</code> in the case of
+string, or <code>sequence&lt;wchar&gt;</code> in the case of wstring. See Sequence for details
+on the structure generated for each sequence.</p>
+<p>The semantics of the <code>dataLen</code> field are the same as those for a string when
+it used as the member of a structure; see Member of a structure for details.</p>
+<ul>
+<li>
+<p>IDL declaration</p>
+<pre><code>typedef sequence&lt;string&gt; seqstring;
+</code></pre>
+</li>
+<li>
+<p>Corresponding C prototype</p>
+<pre><code>// Note: this struct is only defined
+// once, at the top of each file
+struct _cstring_t
+{
+  char* data;
+  int dataLen;
+};
+
+struct __seq_string
+{
+  _cstring_t* data;
+  int dataLen;
+};
+
+typedef __seq_string seqstring;
+</code></pre>
+</li>
+</ul>
+<h4 id="null-and-empty-strings">NULL and empty strings</h4>
+<p>Strings in IDL interfaces are never NULL pointers. Strings in IDL are never
+absent or omitted by being NULL because they can't be. They either have a
+value or they are the empty string.</p>
+<p>An empty string is a valid pointer to a buffer with a single byte of value 0.
+("" is an empty string)</p>
+<h2 id="qaic">QAIC</h2>
+<p><code>qaic</code>, Qaic's Another Idl Compiler, is a command-line executable used to implement remote shared objects for the DSP Platform. A shared object is called remote if its methods can be invoked from outside the <a href="#domains">domain</a> it resides in. The user of a remote object does not need to know where the object is hosted, or what language the object is implemented in. Instead, the user calls methods on a stub object generated by <code>qaic</code>. The stub marshals the input into a shared wire format, and ships the data off to the domain where the object is hosted. The host domain implements a skel object, also generated by <code>qaic</code>, that unmarshals the data, and invokes the requested method on the native object. The <a href="../software/ipc/rpc.html">FastRPC framework description</a> provides more information on the framework enabling this remote communication on Qualcomm devices.</p>
+<p>To generate stubs and skels, <code>qaic</code> requires the interface to an object be strictly defined. The syntax for defining an object interface is called IDL and covered in the previous sections. <code>qaic</code> compiles IDL files into headers, stubs, and skels. The generated header can be used to implement the native object, and for users to call methods on the object. The stub and skel are compiled into a shared object.</p>
+<p><code>qaic</code> is invoked automatically when <a href="../tools/build.html">building</a> a project. This section discusses how to run and use the compiler separately, including details of the various command-line options.</p>
+<h3 id="command-line-usage">Command-line usage</h3>
+<p>The basic command-line syntax of the tool is:</p>
+<pre><code>qaic [options] file1.idl [file2.idl ... fileN.idl]
+</code></pre>
+<p>Each file specified on the command-line will be compiled by the tool according to the options specified. The available options are:</p>
+<ul>
+<li>
+<p><code>-mdll</code> or <code>--map-dll</code></p>
+<p>Generate DLL mapping</p>
+</li>
+<li>
+<p><code>-o=PATH</code></p>
+<p>Use path as the output path. All generated files will be output to the specified path. The default is the current directory ('.').</p>
+</li>
+<li>
+<p><code>--cpp</code> or <code>-p=CPP</code></p>
+<p>Use CPP as the C preprocessor. The value CPP must name an executable program, and cannot contain any arguments. To pass arguments to the preprocessor, use <code>--arg-cpp</code> (<code>-pa</code>).</p>
+</li>
+<li>
+<p><code>--arg-cpp=ARG</code> or <code>-pa=ARG</code></p>
+<p>Pass additional argument arg to the preprocessor. To specify arguments that are themselves options, use the form <code>-pa=ARG</code> (for example, <code>-pa=-E</code>). Specifying <code>-pa -E</code> will cause the <code>-E</code> to be interpreted as an option to <code>qaic</code> instead of to the preprocessor. Note that for Comment pass-through to work properly, the preprocessor must be set to not strip comments from the source. Typically the flag to do this is <code>-C</code>, making the appropriate argument to <code>qaic -pa=-C</code>.</p>
+</li>
+<li>
+<p><code>--include-path=PATH</code> or <code>-I=PATH</code></p>
+<p>Include path in the search path for included files. May be used multiple times.</p>
+</li>
+<li>
+<p><code>--indent=WIDTH</code> or <code>-i=WIDTH</code></p>
+<p>Use an indentation width of width spaces in the generated code.</p>
+</li>
+<li>
+<p><code>--warn-undefined</code> or <code>-Wu</code></p>
+<p>Issue warning for forward-declared interfaces that are never defined.</p>
+</li>
+<li>
+<p><code>--define=SYMBOL</code> or <code>-D=SYMBOL</code></p>
+<p>Predefine macro for the preprocessor.</p>
+</li>
+<li>
+<p><code>--header-only</code> or <code>-ho</code></p>
+<p>Only generate a header. Stub and skeleton code is not generated if this option is specified.</p>
+</li>
+<li>
+<p><code>--remoting-only</code> or <code>-ro</code></p>
+<p>Only generate stub and skeleton code. The corresponding header is not generated if this option is specified.</p>
+</li>
+<li>
+<p><code>--parse-only</code> or <code>-s</code></p>
+<p>Parse the IDL and perform semantic checking, but do not generate any output. Note that IDL files accepted without errors by the compiler with <code>-s</code> are not guaranteed to work without errors when code generation is enabled.</p>
+</li>
+<li>
+<p><code>-v</code></p>
+<p>Print the version of the compiler.</p>
+</li>
+<li>
+<p><code>-h</code></p>
+<p>Print a brief help message.</p>
+</li>
+</ul>
+<h3 id="usage-examples">Usage examples</h3>
+<p>The examples below illustrate typical usage of the IDL compiler.</p>
+<p><code>qaic --header-only foo.idl bar.idl</code></p>
+<p>The above command compiles foo.idl to the remote header file foo.h, and bar.idl to the remote header file bar.h. No remoting code is generated.</p>
+<p><code>qaic foo.idl</code></p>
+<p>The above command compiles foo.idl to a remote header file foo.h, along with the following remoting code:</p>
+<table>
+<thead>
+<tr>
+<th>File Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>foo_stub.c</td>
+<td>C stub implementation</td>
+</tr>
+<tr>
+<td>foo_skel.c</td>
+<td>C skeleton implementation</td>
+</tr>
+<tr>
+<td>foo.h</td>
+<td>Common header for stub and skel</td>
+</tr>
+</tbody>
+</table>
+<p><code>qaic -I../bar -I../far -o out foo.idl</code></p>
+<p>The above command compiles <code>foo.idl</code>. It uses <code>../bar</code> and <code>../far</code> as the search path for any include files. It uses <code>out</code> as the result directory, and generates <code>out/foo.h</code>, <code>out/foo_stub.c</code> and <code>out/foo_skel.c</code> files.</p>
+<h3 id="using-other-preprocessors">Using other preprocessors</h3>
+<p>By default, <code>qaic</code> uses an internal preprocessor. It may be desirable to use a different preprocessor instead. The Microsoft <code>C</code> preprocessor can be used by having the compiler invoke <code>cl /E /C</code>, which is done with the following command-line. Note that for this to work, <code>cl</code> must be in the <code>PATH</code>.</p>
+<p><code>qaic -p=cl -pa=/E -pa=/C file1.idl [file2.idl ... fileN.idl]</code></p>
+<p>The ARM <code>C/C++</code> compiler can also be used to preprocess IDL. Provided <code>armcc</code> is in the <code>PATH</code>, this can be done with the following command-line.</p>
+<p><code>qaic -p=armcc -pa=-E -pa=-C file1.idl [file2.idl ... fileN.idl]</code></p>
+<p>Note that <code>-pa=-E</code> must be used instead of <code>-pa -E</code>, since in the latter case the <code>-E</code> is interpreted by <code>qaic</code> as being an option to <code>qaic</code>, not to the preprocessor.</p>
+<h3 id="error-messages">Error messages</h3>
+<p>Any output printed by the compiler is due to either an error or a warning. Warnings include the text <code>warning:</code> at the beginning of the message, and do not abort code generation. Any message not preceded by <code>warning:</code> is an error, which causes compilation to abort. Both errors and warnings include a reference to the file, line, and position within that line (starting at 0) where the error or warning occurred. Additional details on select errors are given in the following subsections.</p>
+<h4 id="identifier-abc-clashes-with-an-introduced-type">Identifier 'abc' clashes with an introduced type</h4>
+<p>The <a href="http://www.omg.org/cgi-bin/doc?formal/08-01-04.pdf">OMG IDL specification</a> includes complex scoping rules based not only on where types are defined, but also on where they are used. Specifically, the first component (identifier) of a qualified type name is introduced into the scope where it is used, preventing the use of any identifier with the same name in that scope. Fully-qualified names, which start with ::, are considered to have an empty first component, and thus result in no type introduction.</p>
+<p>Consider the following example, which illustrates the basic type introduction rules. For full details, see the  "Names and Scoping" section of OMG IDL
+Syntax &amp; Semantics.</p>
+<pre><code>struct Name
+{
+    string first, last;
+};
+
+struct Address
+{
+   string street, city, state, country;
+};
+
+module M
+{
+   typedef long Age;
+};
+
+struct Person
+{
+   Name   name;    // invalid IDL: 'name' clashes with 'Name'
+   string address; // OK: 'Address' not introduced in this scope
+   M::Age age;     // OK: only 'M', not 'Age', is introduced
+};
+</code></pre>
+<p>In the Person structure above, the use of the Name type introduces it into the scope of Person, which prevents the member from being called name. The second member, address, is fine because the Address type is not defined within the scope of Person and has not been introduced. The reference to <code>M::Age</code> only causes the first component, M, to be introduced into the scope of Person, thus the age member is also without error.</p>
+<p>Clashes with introduced types can generally be resolved by changing the qualification to avoid the type introduction. For instance, if in the above example the type of the name member of the Person structure were written ::Name, no type introduction would occur, which would avoid the name clash.</p>
+<h2 id="comment-pass-through">Comment pass-through</h2>
+<p>When <code>qaic</code> identifies code comments as a Doxygen comments, or ordinary comments. Doxygen comments are passed through to generated header files. When
+documenting interface methods, Doxygen comments are generally preferred.</p>
+<h3 id="doxygen-comments">Doxygen comments</h3>
+<p>When a method is documented with the Doxygen syntax, <code>qaic</code> will attempt to translate the documentation to the target language in any output files.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="releases.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                About
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="manuals.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Reference manuals
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../js/iframe-worker.js"></script>
+<script src="../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

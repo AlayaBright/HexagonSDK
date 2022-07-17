@@ -1,0 +1,21 @@
+
+
+BUILD_DLLS += libmultithreading_skel
+
+libmultithreading_skel_QAICIDLS += inc/multithreading
+
+libmultithreading_skel_C_SRCS += $(OBJ_DIR)/multithreading_skel \
+                                 src/multithreading_imp
+
+
+BUILD_QEXES += multithreading_q
+multithreading_q_C_SRCS += src/multithreading $(HEXAGON_SDK_ROOT)/utils/examples/dsp_capabilities_utils
+multithreading_q_DLLS += libmultithreading_skel
+
+QEXE_SIM_OPTIONS += --dsp_clock 1000 --ahb:lowaddr 0xc0000000 --ahb:highaddr 0xc0ffffff
+
+
+BUILD_COPIES += \
+   $(QEXES) \
+   $(DLLS) \
+   $(SHIP_DIR)/ ;

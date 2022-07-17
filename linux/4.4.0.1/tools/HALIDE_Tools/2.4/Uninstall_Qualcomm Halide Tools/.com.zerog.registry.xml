@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registry install_date="2021-07-16 21:14:04" version="1.1" last_modified="2021-07-16 21:14:10">
+	<products>
+		<product name="Qualcomm Halide Tools" id="a2c9e8f3-1efb-11b2-9a0b-fe549a6e1d29" upgrade_id="a2c9e8f3-1efb-11b2-9a0b-fe549a6e1d29" version="2.4.0.0" copyright="2015" info_url="" support_url="" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4" last_modified="2021-07-16 21:14:05">
+		<![CDATA[]]>
+			<vendor name="Qualcomm Inc." id="a2c7aeff-1efb-11b2-9a03-fe549a6e1d29" home_page="http://www.qualcomm.com" email=""/>
+			<feature short_name="Application" name="Application" last_modified="2021-07-16 21:14:05">
+			<![CDATA[This installs the application feature.]]>
+				<component ref_id="9f9ef910-1efc-11b2-ab4c-ae241ac9bf5a" version="1.0.0.0" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools/Uninstall_Qualcomm Halide Tools"/>
+				<component ref_id="9f9ef911-1efc-11b2-ab4e-ae241ac9bf5a" version="1.0.0.0" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/java/jre"/>
+				<component ref_id="9f9ef911-1efc-11b2-ab49-ae241ac9bf5a" version="1.0.0.0" location="/tmp/618366.tmp/linux_links.sh"/>
+			</feature>
+		</product>
+	</products>
+	<components>
+		<component id="9f9ef911-1efc-11b2-ab4e-ae241ac9bf5a" version="1.0.0.0" name="InstallAnywhere VM Component" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/java/jre" vendor="Qualcomm Inc.">
+			<resource keyfile="true" name="jre" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/java/jre" type="post_processed_dir" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[true]]>
+			</resource>
+		</component>
+		<component id="9f9ef910-1efc-11b2-ab4c-ae241ac9bf5a" version="1.0.0.0" name="InstallAnywhere Uninstall Component" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools/Uninstall_Qualcomm Halide Tools" vendor="Qualcomm Inc.">
+			<resource keyfile="false" name="Qualcomm_Halide_Tools_Install_07_16_2021_21_14_04.log" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools/Logs/Qualcomm_Halide_Tools_Install_07_16_2021_21_14_04.log" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="2.4" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="Halide" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="tools" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="java" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/java" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="jre" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/java/jre" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="Uninstall_Qualcomm Halide Tools" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="Logs" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools/Logs" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="uninstaller.jar" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools/uninstaller.jar" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="true" name="Uninstall_Qualcomm Halide Tools" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools/Uninstall_Qualcomm Halide Tools" type="executable" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Uninstall_Qualcomm Halide Tools.lax" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools/Uninstall_Qualcomm Halide Tools.lax" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="resource" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools/resource" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name=".com.zerog.registry.xml" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools/.com.zerog.registry.xml" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+		</component>
+		<component id="9f9ef911-1efc-11b2-ab49-ae241ac9bf5a" version="1.0.0.0" name="Common" location="/tmp/618366.tmp/linux_links.sh" vendor="Qualcomm Inc.">
+			<resource keyfile="false" name="Uninstall_Qualcomm Halide Tools" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="lib" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="v65" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/v65" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="libhalide_hexagon_remote_skel.so" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/v65/libhalide_hexagon_remote_skel.so" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="hexagon_sim_remote" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/v65/hexagon_sim_remote" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="libsim_qurt.a" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/v65/libsim_qurt.a" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide.cpython-36m-x86_64-linux-gnu.so" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/halide.cpython-36m-x86_64-linux-gnu.so" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="arm-64-android" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/arm-64-android" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="libhalide_hexagon_host.so" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/arm-64-android/libhalide_hexagon_host.so" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="adsp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/adsp" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="arm-64-android" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/adsp/arm-64-android" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="libhalide_hexagon_host.so" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/adsp/arm-64-android/libhalide_hexagon_host.so" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="arm-32-android" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/adsp/arm-32-android" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="libhalide_hexagon_host.so" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/adsp/arm-32-android/libhalide_hexagon_host.so" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="arm-32-android" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/arm-32-android" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="libhalide_hexagon_host.so" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/arm-32-android/libhalide_hexagon_host.so" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="host" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/host" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="libhalide_hexagon_host.so" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/host/libhalide_hexagon_host.so" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="cdsp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/cdsp" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="arm-64-android" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/cdsp/arm-64-android" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="libhalide_hexagon_host.so" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/cdsp/arm-64-android/libhalide_hexagon_host.so" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="arm-32-android" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/cdsp/arm-32-android" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="libhalide_hexagon_host.so" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/cdsp/arm-32-android/libhalide_hexagon_host.so" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="libHalide.so" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/libHalide.so" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="libHalide.a" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/libHalide.a" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="libautoschedule_adams2019.so" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/libautoschedule_adams2019.so" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide_config.make" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/halide_config.make" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Halide_2.4" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Halide_2.4" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="release_notes.rst" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/release_notes.rst" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/bin" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="featurization_to_sample" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/bin/featurization_to_sample" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="baseline.weights" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/bin/baseline.weights" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="retrain_cost_model" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/bin/retrain_cost_model" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="autotune_loop.py" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/bin/autotune_loop.py" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="support" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/support" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="halide_benchmark.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/support/halide_benchmark.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="NOTICE.txt" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/NOTICE.txt" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Examples" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="include" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/include" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="test_report.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/include/test_report.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="setup-env.sh" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/setup-env.sh" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="offload" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="Makefile.common" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/Makefile.common" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="apps" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="hexagon_benchmarks" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="median3x3_generator.py" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/median3x3_generator.py" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="process.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/process.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="conv3x3_generator.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/conv3x3_generator.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="morph_edge_generator.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/morph_edge_generator.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="sobel_generator.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/sobel_generator.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="includes" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/includes" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="dilate3x3.schedule.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/includes/dilate3x3.schedule.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="conv3x3.schedule.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/includes/conv3x3.schedule.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="sobel.schedule.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/includes/sobel.schedule.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="gaussian5x5.schedule.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/includes/gaussian5x5.schedule.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="morph_edge.schedule.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/includes/morph_edge.schedule.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="median3x3.schedule.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/includes/median3x3.schedule.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="dilate3x3_generator.py" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/dilate3x3_generator.py" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="median3x3_generator.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/median3x3_generator.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="subtests.yml" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/subtests.yml" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="dilate3x3_generator.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/dilate3x3_generator.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="sobel_generator.py" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/sobel_generator.py" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="conv3x3_generator.py" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/conv3x3_generator.py" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="gaussian5x5_generator.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/gaussian5x5_generator.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="gaussian5x5_generator.py" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/gaussian5x5_generator.py" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="morph_edge_generator.py" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/morph_edge_generator.py" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="process.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/process.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="vtcm" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="small_lut" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="pipeline.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/pipeline.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-small_lut" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/test-app-small_lut" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-small_lut-android" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/test-app-small_lut-android" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-small_lut-android.cmd" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/test-app-small_lut-android.cmd" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-small_lut.cmd" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/test-app-small_lut.cmd" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="process.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/process.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="includes" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/includes" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="process.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/includes/process.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="gather" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="test-app-gather" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/test-app-gather" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-gather.cmd" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/test-app-gather.cmd" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="process.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/process.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="includes" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/includes" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="process.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/includes/process.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-gather-android.cmd" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/test-app-gather-android.cmd" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-gather-android" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/test-app-gather-android" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="pipeline.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/pipeline.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="vtcm_alloc" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="test-app-vtcm_alloc-android" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/test-app-vtcm_alloc-android" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-vtcm_alloc" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/test-app-vtcm_alloc" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-vtcm_alloc.cmd" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/test-app-vtcm_alloc.cmd" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="process.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/process.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="includes" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/includes" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="process.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/includes/process.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-vtcm_alloc-android.cmd" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/test-app-vtcm_alloc-android.cmd" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="pipeline.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/pipeline.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="sg_chain" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="includes" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/includes" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="process.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/includes/process.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="pipeline.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/pipeline.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-sg_chain.cmd" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/test-app-sg_chain.cmd" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-sg_chain-android.cmd" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/test-app-sg_chain-android.cmd" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-sg_chain" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/test-app-sg_chain" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="process.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/process.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-sg_chain-android" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/test-app-sg_chain-android" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="scatter" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="test-app-scatter.cmd" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/test-app-scatter.cmd" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-scatter-android" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/test-app-scatter-android" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-scatter" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/test-app-scatter" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="process.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/process.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-scatter-android.cmd" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/test-app-scatter-android.cmd" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="includes" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/includes" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="process.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/includes/process.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="pipeline.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/pipeline.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="subtests.yml" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/subtests.yml" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="histogram" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="test-app-histogram-android.cmd" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/test-app-histogram-android.cmd" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-histogram.cmd" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/test-app-histogram.cmd" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-histogram-android" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/test-app-histogram-android" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="process.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/process.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="includes" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/includes" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="process.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/includes/process.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-app-histogram" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/test-app-histogram" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="pipeline.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/pipeline.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/bin" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="unsetup-env.sh" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/unsetup-env.sh" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="README.rst" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/README.rst" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="sdk_setup-env.sh" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/sdk_setup-env.sh" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="standalone" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="simulator" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="Makefile.common" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/Makefile.common" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="include" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/include" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="io.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/include/io.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="simulator_benchmark.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/include/simulator_benchmark.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="testvectors" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/testvectors" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="football1920x1080.bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/testvectors/football1920x1080.bin" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="utils" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/utils" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="stubs.c" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/utils/stubs.c" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="apps" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="Makefile.common" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/Makefile.common" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile.rules" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/Makefile.rules" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="conv3x3a32" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="golden_out.no_borders.bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/golden_out.no_borders.bin" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="conv3x3a32_generator.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/conv3x3a32_generator.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="baseline" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/baseline" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="conv3x3a32_borders_i.c" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/baseline/conv3x3a32_borders_i.c" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="conv3x3a32_i.c" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/baseline/conv3x3a32_i.c" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="conv3x3a32.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/baseline/conv3x3a32.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="conv3x3a32_run.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/conv3x3a32_run.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="golden_out.borders.bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/golden_out.borders.bin" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="gaussian5x5" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="baseline" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/baseline" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="gaussian5x5_i.c" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/baseline/gaussian5x5_i.c" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="gaussian5x5.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/baseline/gaussian5x5.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="gaussian5x5_borders_i.c" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/baseline/gaussian5x5_borders_i.c" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="golden_out.borders.bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/golden_out.borders.bin" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="golden_out.no_borders.bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/golden_out.no_borders.bin" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="gaussian5x5_run.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/gaussian5x5_run.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="gaussian5x5_generator.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/gaussian5x5_generator.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="sobel" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="golden_out.borders.bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/golden_out.borders.bin" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="golden_out.no_borders.bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/golden_out.no_borders.bin" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="sobel_run.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/sobel_run.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="sobel_generator.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/sobel_generator.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="baseline" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/baseline" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="sobel_borders_i.c" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/baseline/sobel_borders_i.c" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="sobel_i.c" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/baseline/sobel_i.c" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="sobel.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/baseline/sobel.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="device" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="Makefile.common" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Makefile.common" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Images" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="in_ubwc_NV12_1024x544.bits" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/in_ubwc_NV12_1024x544.bits" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="img11_p010_ubwc_hana.bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/img11_p010_ubwc_hana.bin" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="img11_p010.bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/img11_p010.bin" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="adb_raw.bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/adb_raw.bin" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="adb.bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/adb.bin" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="adb_ubwc_hana.bin" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/adb_ubwc_hana.bin" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="linear_1024x544.bits" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/linear_1024x544.bits" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="apps" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="conv3x3" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="host" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/host" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="main.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/host/main.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="dsp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/dsp" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="print.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/dsp/print.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="conv3x3_run.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/dsp/conv3x3_run.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/halide" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="conv3x3_generator.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/halide/conv3x3_generator.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="rpc" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/rpc" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="conv3x3.idl" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/rpc/conv3x3.idl" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="includes" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/includes" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="conv3x3_halide.schedule.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/includes/conv3x3_halide.schedule.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="dma_raw_blur_rw_async" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="dsp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/dsp" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="print.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/dsp/print.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="dma_raw_blur_rw_async_run.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/dsp/dma_raw_blur_rw_async_run.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="test-dma" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/test-dma" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/halide" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="dma_raw_blur_rw_async_generator.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/halide/dma_raw_blur_rw_async_generator.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="rpc" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/rpc" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="dma_raw_blur_rw_async.idl" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/rpc/dma_raw_blur_rw_async.idl" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="myrun_test.sh" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/myrun_test.sh" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="host" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/host" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="main.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/host/main.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile.common" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/Makefile.common" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile.rules" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/Makefile.rules" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="dma_nv12_blur_stencil" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="host" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/host" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="main.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/host/main.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="dsp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/dsp" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="print.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/dsp/print.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="dma_nv12_blur_stencil_run.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/dsp/dma_nv12_blur_stencil_run.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/halide" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="dma_nv12_blur_stencil_generator.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/halide/dma_nv12_blur_stencil_generator.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="rpc" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/rpc" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="dma_nv12_blur_stencil.idl" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/rpc/dma_nv12_blur_stencil.idl" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="dma_p010_rw_async" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="host" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/host" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="main.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/host/main.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="dsp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/dsp" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="print.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/dsp/print.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="dma_p010_rw_async_run.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/dsp/dma_p010_rw_async_run.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/halide" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="dma_p010_rw_async_generator.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/halide/dma_p010_rw_async_generator.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="rpc" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/rpc" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="dma_p010_rw_async.idl" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/rpc/dma_p010_rw_async.idl" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="utils" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="host" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/host" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="include" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/host/include" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="buffer.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/host/include/buffer.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="dsp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/dsp" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="include" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/dsp/include" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="hexagon_benchmark.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/dsp/include/hexagon_benchmark.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="hvx_interface.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/dsp/include/hvx_interface.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="ubwcdma_utils.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/dsp/include/ubwcdma_utils.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Makefile" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/Makefile" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="ion" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/ion" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="ion_allocation.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/ion/ion_allocation.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="ion_allocation.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/ion/ion_allocation.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="docs" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="_static" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="comment-bright.png" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/comment-bright.png" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="basic.css" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/basic.css" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="down.png" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/down.png" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="jquery-3.2.1.js" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/jquery-3.2.1.js" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="up-pressed.png" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/up-pressed.png" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="comment.png" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/comment.png" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="websupport.js" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/websupport.js" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="minus.png" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/minus.png" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="file.png" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/file.png" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="language_data.js" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/language_data.js" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="searchtools.js" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/searchtools.js" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="documentation_options.js" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/documentation_options.js" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="underscore-1.3.1.js" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/underscore-1.3.1.js" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="comment-close.png" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/comment-close.png" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="plus.png" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/plus.png" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="ajax-loader.gif" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/ajax-loader.gif" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="pygments.css" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/pygments.css" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="underscore.js" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/underscore.js" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="jquery.js" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/jquery.js" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="up.png" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/up.png" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="alabaster.css" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/alabaster.css" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="doctools.js" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/doctools.js" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="down-pressed.png" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/down-pressed.png" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="custom.css" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/custom.css" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="objects.inv" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/objects.inv" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="docs" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="ubwcdma.html" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/ubwcdma.html" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide.html" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/halide.html" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="autoscheduler.html" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/autoscheduler.html" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="examples.html" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/examples.html" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="python_bindings.html" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/python_bindings.html" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="getting_started.html" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/getting_started.html" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide_for_hvx.html" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/halide_for_hvx.html" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="index.html" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/index.html" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="search.html" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/search.html" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="searchindex.js" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/searchindex.js" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="genindex.html" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/genindex.html" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="_sources" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="docs" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="ubwcdma.rst.txt" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/ubwcdma.rst.txt" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="python_bindings.rst.txt" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/python_bindings.rst.txt" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide_for_hvx.rst.txt" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/halide_for_hvx.rst.txt" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="getting_started.rst.txt" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/getting_started.rst.txt" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide.rst.txt" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/halide.rst.txt" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="examples.rst.txt" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/examples.rst.txt" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="autoscheduler.rst.txt" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/autoscheduler.rst.txt" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="index.rst.txt" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/index.rst.txt" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="include" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="HalideRuntimeOpenCL.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeOpenCL.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="HalideRuntimeQurt.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeQurt.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="HalideRuntimeD3D12Compute.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeD3D12Compute.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="simulator_benchmark.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/simulator_benchmark.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="HalideRuntimeHexagonDma.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeHexagonDma.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="HalideRuntime.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntime.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide_malloc_trace.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/halide_malloc_trace.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide_image_info.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/halide_image_info.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide_image.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/halide_image.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="HalideRuntimeCuda.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeCuda.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="HalideRuntimeHexagonHost.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeHexagonHost.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="Halide.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/Halide.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide_image_io.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/halide_image_io.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="HalideRuntimeMetal.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeMetal.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="HalideBuffer.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideBuffer.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="halide-hexagon-setup.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/halide-hexagon-setup.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="HalideRuntimeOpenGLCompute.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeOpenGLCompute.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="io.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/io.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="hvx.cfg.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/hvx.cfg.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="asm_to_older_compat.pl" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/asm_to_older_compat.pl" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="hl_signnow" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hl_signnow" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="hl_signsav" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hl_signsav" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="hl_signuse" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hl_signuse" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="RunGenMain.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/RunGenMain.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="GenGen.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/GenGen.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="pygen.py" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/pygen.py" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="hl_signall" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hl_signall" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="RunGen.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/RunGen.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="hl_sign-notes.txt" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hl_sign-notes.txt" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="hexagon_standalone" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="hvx_interface.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/hvx_interface.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="rungen_interface.h" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/rungen_interface.h" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="host" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/host" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="librungen_stub.so" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/host/librungen_stub.so" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="rungen_skel.c" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/rungen_skel.c" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="cdsp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/cdsp" type="directory" uninstall="true" rollbackEnabledCancel="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="rungen_host" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/cdsp/rungen_host" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="false" name="RunGenHost.cpp" location="/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/RunGenHost.cpp" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+			<resource keyfile="true" name="linux_links.sh" location="/tmp/618366.tmp/linux_links.sh" type="file" uninstall="true" rollbackEnabledCancel="true"/>
+		</component>
+	</components>
+</registry>

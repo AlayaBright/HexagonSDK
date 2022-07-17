@@ -1,0 +1,1464 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>QHCG - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#qualcomm-hvx-code-generator-qhcg" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              QHCG
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        QHCG
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="qhcg.html" class="md-nav__link md-nav__link--active">
+      QHCG
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    Limitations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-setup" class="md-nav__link">
+    Linux setup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-setup" class="md-nav__link">
+    Windows setup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-tool" class="md-nav__link">
+    Running the tool
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the tool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tool-output" class="md-nav__link">
+    Tool output
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    Limitations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-setup" class="md-nav__link">
+    Linux setup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-setup" class="md-nav__link">
+    Windows setup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-tool" class="md-nav__link">
+    Running the tool
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the tool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tool-output" class="md-nav__link">
+    Tool output
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="qualcomm-hvx-code-generator-qhcg">Qualcomm HVX Code Generator (QHCG)</h1>
+<p>Qualcomm HVX code generator (QHCG) is a tool generating optimized HVX code for polynomial approximations of arbitrary functions over a fixed number of intervals.</p>
+<h2 id="overview">Overview</h2>
+<p>QHCG is available under <code>$HEXAGON_SDK_ROOT/tools/qhcg</code>.</p>
+<p>QHCG is a tool that generates automatically an optimized HVX implementation of any arbitrary function. The QHCG user specifies an arithmetic function to be approximated, the range over which to approximate it, and the desired data type to use to represent the input and output data.  The desired accuracy or polynomial order may also be provided and will be the same for all 16 evenly-spaced intervals on which the function is approximated. The default desired accuracy of the reference polynomial approximation, when not specified by the user, is 1 LSB for fixed-point implementations and 2 ULP for floating-point implementations.</p>
+<p>QHCG finds the reference polynomial approximation of the lowest order that satisfies the desired accuracy. This polynomial approximation is then automatically implemented as optimized HVX code. QHCG also generates reports containing accuracy test results of HVX code, in which the output from the reference implementation in numpy is used as reference.</p>
+<h2 id="limitations">Limitations</h2>
+<ul>
+<li>
+<p>The QHCG approximation tool doesn't always manage to produce an approximation that is accurate enough.</p>
+<p>Some functions lend themselves better to polynomial approximations than others. In particular, function with high derivative values may not be approximated as accurately as other functions.  For example, since the derivative of sqrt(x) is infinite for x=0, requesting a polynomial approximation of the function starting at the origin will result in a polynomial approximation with poor accuracy in the first segment.</p>
+</li>
+<li>
+<p>The tool guarantees that the reference polynomial approximation meets the desired accuracy.  However, the conversion of that polynomial into an HVX implementation degrades the accuracy further.  It may therefore be necessary to experiment with the <code>polynomial_order</code> option to see directly the impact of a higher or lower order on the HVX implementation accuracy.</p>
+</li>
+<li>
+<p>In some cases, the approximation may generate an incorrect value at one of the interval boundaries.  Please review carefully the <a href="#tool-output">output pdf report</a> to make sure the approximation is correct on the entire range of interest.  If facing this bug, simply specify a slightly larger input interval than desired.</p>
+</li>
+</ul>
+<h2 id="setup">Setup</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Python 3 and pip3 are required to use QHCG.</p>
+<p>The minimal supported version of Python is 3.4. Python 3.7 is recommended.</p>
+<h3 id="linux-setup">Linux setup</h3>
+<p>The setup script automates the steps of setting up a virtual environment <code>venv3</code> in which all python dependencies needed to run the QHCG tool will be installed.  To run the script, simply run:</p>
+<pre><code>cd setup
+source setup.sh
+</code></pre>
+<ul>
+<li>
+<p>During the QHCG setup, the Python module for creating a virtual environment should be automatically installed. If this step fails during the setup, try to install the virtual environment venv module manually:</p>
+<p>With Python 3.4, install venv module with:</p>
+<pre><code>sudo apt install python3.4-venv
+</code></pre>
+<p>With Python version 3.5 or later, install venv module with:</p>
+<pre><code>sudo apt install python3-venv
+</code></pre>
+</li>
+<li>
+<p>With Python 3.4, the Tkinter Python module is required and is expected to be installed automatically during QHCG setup. If this step fails during the setup, install it manually:</p>
+<pre><code>sudo apt install python3-tk
+</code></pre>
+</li>
+</ul>
+<h3 id="windows-setup">Windows setup</h3>
+<p>The setup script automates the steps of setting up a virtual environment <code>venv</code> in which all python dependencies needed to run the QHCG tool will be installed.  To run the script, simply run:</p>
+<pre><code>cd setup
+setup.cmd
+</code></pre>
+<ul>
+<li>
+<p>If Python 3 is installed through the Windows Store, no additional setup is required.</p>
+</li>
+<li>
+<p>If Python 3 is installed manually, do the following before running the QHCG setup or using QHCG:</p>
+<ul>
+<li>In the Python 3 installation directory, copy python.exe to python3.exe</li>
+<li>Make sure this directory is in the <code>PATH</code> and that no Python 2 directory is in the <code>PATH</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="running-the-tool">Running the tool</h2>
+<h3 id="usage">Usage</h3>
+<p>If the user wants to generate a report that measures the accuracy of the generated HVX implementation, he or she should first run the <a href="setup.html#sdk-environment">setup_sdk_env script</a>.</p>
+<p>The user can start QHCG by using run_qhcg.cmd on Windows and run_qhcg.sh on Linux.</p>
+<p>Both scripts have the same arguments.  Some of the arguments are required, while other are optional.</p>
+<p>Required arguments:</p>
+<pre><code>--input_range &lt;input_range_start&gt; &lt;input_range_end&gt;
+    Float input range on which the function needs to be approximated.
+      &lt;input_range_start&gt; Start value of function input range
+      &lt;input_range_end&gt;   End value of function input range
+
+--function &lt;input_function&gt;
+      "&lt;input_function&gt;"  String description of the function to approximate.
+
+--input_type &lt;in_type&gt;
+    HVX input vector type to use to generate an approximation.
+      &lt;in_type&gt;           Supported values: int16, int32, float16, float32
+      The HVX output vector will be of the same type as HVX input vector.
+      Float HVX implementations will only run on Lahaina.
+</code></pre>
+<p>Optional arguments:
+    -h, --help
+        Show help message and exit</p>
+<pre><code>--tolerance &lt;desired_accuracy&gt;
+    Desired accuracy in LSB for fixed-point approximations and ULP for the
+    floating-point python polynomial approximation.
+      &lt;desired_accuracy&gt;  Float value describing the desired accuracy.
+
+--toolchain &lt;hexagon_toolchain_path&gt;
+    Set custom toolchain root path for Hexagon Tools.  By default, QHCG will
+    search for the Hexagon tools included in the SDK once the setup_sdk_env
+    script has been run. If no toolchain is found, an HVX implementation will
+    still be generated but without an accuracy report.
+      &lt;hexagon_toolchain_path&gt; Hexagon tools path
+
+--output_path &lt;output_path&gt;
+    Set custom output directory path. By default, `output` is used. Each new
+    execution overwrites any existing contents.
+      &lt;output_path&gt;       Output folder. Both relative and absolute paths are supported.
+
+--func_name &lt;func_name&gt;
+    Set custom function name. By default, `qhcg_approximation` will be used.
+      &lt;func_name&gt;         Desired custom function name.
+
+--optimize_by &lt;mode&gt;
+    Supported values: `accuracy` or `speed`. Default value is `accuracy`.
+    The `speed` option allows to produce a faster HVX implementation but with
+    some degradation on the accuracy.  This option is currently supported for
+    input types int16 and float16.  For int32 and float32 input types, the
+    speed option is ignored and defaults to accuracy.
+
+--polynomial_order &lt;order&gt;
+    Positive integer representing the order of the polynomial approximation to use.
+    By default, QHCG searches for the lowest polynomial order that meets the accuracy
+    requirements of the reference floating-point python polynomial approximation.
+
+--exec_bench
+    Run the HVX approximation on the Hexagon simulator to estimate the cycle count performance
+    element of the generated HVX approximation.  This option increases the processing time.
+
+--bundle
+    Execute QHCG in bundle mode. The destination folder will not be deleted initially
+    and new HVX implementations will be added to the same destination folder.
+
+--summary
+    Generate a shorter accuracy report that does not generate an error graph for each
+    approximation interval.
+</code></pre>
+<h3 id="example">Example</h3>
+<p>The following command will generate an HVX implementation comprised of 16-bit input and output fixed-point elements.  This implementation will approximate the inverse function over the range [-2;-0.5] within 1 LSB.</p>
+<pre><code>./run_qhcg.sh --input_range -2 -0.5 --function "1/x" --input_type int16
+</code></pre>
+<p><strong><em>Note:</em></strong> If this is the first time QHCG is run, the setup script introduced in the <a href="#setup">previous section</a> will be invoked automatically.</p>
+<h2 id="tool-output">Tool output</h2>
+<p>The structure of the output directory that QHCG generates is as follows.</p>
+<p><strong><em>Note:</em></strong> The example is given here for a 16-bit fixed-point implementation. Names will vary slightly for other requested data types.</p>
+<pre><code>.
+├── qhcg_approximation_coefficients.txt
+├── HVX_code
+│   ├── build
+│   │   ├── bench_qhcg_approximation.elf
+│   │   ├── bench_qhcg_approximation.o
+│   │   ├── qhcg_approximation.o
+│   │   ├── test_qhcg_approximation.elf
+│   │   └── test_qhcg_approximation.o
+│   ├── inc
+│   │   └── qhcg_approximation.h
+│   ├── Makefile
+│   ├── src
+│   │   ├── disassembly
+│   │   │   └── qhcg_approximation.S.dump
+│   │   └── c
+│   │       └── qhcg_approximation.c
+│   └── test
+│       ├── bench_qhcg_approximation.c
+│       ├── test_data
+│       │   ├── inputs_16f.txt
+│       │   ├── outputs_16f_hvx.txt
+│       │   └── outputs_16f_np.txt
+│       └── test_qhcg_approximation.c
+├── qhcg_args.tapproximation_args.txt
+├── qhcg_consolapproximation_console.log
+├── README
+├── report
+│   ├── qhcg_approximation_acc_report.txt
+│   ├── qhcg_approximation_detailed_report.pdf
+│   └── qhcg_approximation_summary_report.pdf
+└── versions.log
+</code></pre>
+<p>The <code>HVX_code</code> directory contains source C code with intrinsics, header files, and disassembly of the generated HVX code as well as accuracy and performance tests.</p>
+<p>The <code>report</code> directory contains results of accuracy and performance tests. Performance tests indicating how many cycles it takes to process one element on average are only generated when the <code>exec_bench</code> option is used. The report also provides various graphical reports, including:</p>
+<ul>
+<li>
+<p>a graphical representation of the reference function and its approximations on the requested interval</p>
+<p><img alt="svg" src="../images/qhcg_ref.png" /></p>
+</li>
+<li>
+<p>a graphical comparison between the reference function and the generated Python polynomial approximation in IEEE floating-point</p>
+<p><img alt="svg" src="../images/qhcg_python_approximation.png" /></p>
+</li>
+<li>
+<p>a graphical comparison between the reference function and the generated HVX implementation (with 16-bit fixed-point data in the present example)</p>
+<p><img alt="svg" src="../images/qhcg_HVX_approximation.png" /></p>
+</li>
+</ul>
+<p><strong><em> Note: </em></strong></p>
+<p>As shown in the graph above, the error on the HVX implementation is either 6.1 10^-5 or very small. This means that the error generated by the polynomial approximation is much smaller than the error generated with the HVX implementation, which works on fixed-point data in this example.  If the error of the HVX implementation is smaller than required by the end user, it is then worth reducing the polynomial order of the approximation to find an implementation for which the error caused by the floating-point polynomial approximation is in the same range as the error caused by the data conversion performed in the HVX implementation.  (If instead the error of the HVX implementation is larger than required by the end user, the user will need to use a different data type, such as int32 or qf32.)</p>
+<p>For example, reducing to a polynomial order of degree 2 using the option <code>--polynomial_order 2</code>, we increase the maximum error of the polynomial approximation in floating-point format to 3 10^-4:</p>
+<p><img alt="svg" src="../images/qhcg_python_approximation_order2.png" /></p>
+<p>In that case, the additional error introduced by manipulating fixed-point data in HVX has a only a small impact on the error caused by the polynomial approximation: max error of 3.6 10^-4 instead of 3 10^-4:</p>
+<p><img alt="svg" src="../images/qhcg_HVX_approximation_order2.png" /></p>
+<p>The HVX output directory also contains the polynomial coefficients, the QHCG arguments that were used, and the console log generated when running the tool.</p>
+<p>The console log output provides various information including:</p>
+<ul>
+<li>
+<p>the accuracy achieved by the polynomial approximation in floating-point using python</p>
+<pre><code>Python polynomial approximation (NumPy polynomials package):
+Accuracy:
+Max error [float]: 2.6212205517239795e-08
+RMS error [float]: 4.358666622225132e-09
+Mean error [float]: 1.4734534072136096e-09
+</code></pre>
+</li>
+<li>
+<p>the selected polynomial order,</p>
+<pre><code>Chosen polynomial order: 5
+</code></pre>
+</li>
+<li>
+<p>the accuracy of the HVX polynomial approximation implementation:</p>
+<pre><code>HVX polynomial approximation:
+
+Accuracy:
+Max error [float]: 6.103515625e-05
+RMS error [float]: 3.0517498897803145e-05
+Mean error [float]: 3.0448039372762043e-05
+Max error [ULP]: 0.125
+RMS error [ULP]: 0.05625569552185018
+Mean error [ULP]: 0.05219268798828125
+</code></pre>
+</li>
+</ul>
+<p>A detailed explanation of each of the generated file can be found in the README file generated by QHCG in the output directory.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="clone.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Project cloning
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../software/os/os_support_cpu.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                CPU OS build support
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../js/iframe-worker.js"></script>
+<script src="../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,27 @@
+# builds the static/dynamic skel
+BUILD_DLLS += libqprintf_example_skel
+
+# Use -O0 temporarily when trying to debug C code.
+#_OPT = -O0
+
+INCDIRS += inc
+
+libqprintf_example_skel_QAICIDLS += inc/qprintf_example
+libqprintf_example_skel_C_SRCS += $(OBJ_DIR)/qprintf_example_skel \
+                                src/qprintf_example_imp
+libqprintf_example_skel_ASM_SRCS += asm_src/qprintf_example_asm
+libqprintf_example_skel_DLLS += libworker_pool
+libqprintf_example_skel_DLLS += libqprintf
+
+BUILD_QEXES += qprintf_example_q
+qprintf_example_q_C_SRCS+= src/qprintf_example $(HEXAGON_SDK_ROOT)/utils/examples/dsp_capabilities_utils
+qprintf_example_q_DLLS += libqprintf_example_skel
+
+QEXE_EXEC+=--dsp_clock 800
+
+# copy final build products to the ship directory
+BUILD_COPIES += \
+   $(DLLS) \
+   $(EXES) \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

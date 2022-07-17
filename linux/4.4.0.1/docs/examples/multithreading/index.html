@@ -1,0 +1,1790 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Multithreading - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#multithreading-example" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Multithreading
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Multithreading
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="index.html" class="md-nav__link md-nav__link--active">
+      Multithreading
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    Project structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    Building
+  </a>
+  
+    <nav class="md-nav" aria-label="Building">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-walkthrough-script" class="md-nav__link">
+    Using the walkthrough script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-make-commands" class="md-nav__link">
+    Using the make commands
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-on-simulator" class="md-nav__link">
+    Running on simulator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-on-target" class="md-nav__link">
+    Running on target
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    Debugging
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-debugging-on-the-simulator" class="md-nav__link">
+    Command-line debugging on the simulator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eclipse-debugging-with-the-simulator" class="md-nav__link">
+    Eclipse debugging with the simulator
+  </a>
+  
+    <nav class="md-nav" aria-label="Eclipse debugging with the simulator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-the-example-project-to-the-workspace" class="md-nav__link">
+    Import the example project to the workspace :
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-the-imported-project" class="md-nav__link">
+    Build the imported project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-project-on-simulator" class="md-nav__link">
+    Run the project on simulator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-lldb_hexagon_booter_path" class="md-nav__link">
+    Define LLDB_HEXAGON_BOOTER_PATH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-the-project" class="md-nav__link">
+    Debug the project
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    Project structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    Building
+  </a>
+  
+    <nav class="md-nav" aria-label="Building">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-walkthrough-script" class="md-nav__link">
+    Using the walkthrough script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-make-commands" class="md-nav__link">
+    Using the make commands
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-on-simulator" class="md-nav__link">
+    Running on simulator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-on-target" class="md-nav__link">
+    Running on target
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    Debugging
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-debugging-on-the-simulator" class="md-nav__link">
+    Command-line debugging on the simulator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eclipse-debugging-with-the-simulator" class="md-nav__link">
+    Eclipse debugging with the simulator
+  </a>
+  
+    <nav class="md-nav" aria-label="Eclipse debugging with the simulator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-the-example-project-to-the-workspace" class="md-nav__link">
+    Import the example project to the workspace :
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-the-imported-project" class="md-nav__link">
+    Build the imported project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-project-on-simulator" class="md-nav__link">
+    Run the project on simulator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-lldb_hexagon_booter_path" class="md-nav__link">
+    Define LLDB_HEXAGON_BOOTER_PATH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-the-project" class="md-nav__link">
+    Debug the project
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="multithreading-example">Multithreading example</h1>
+<h2 id="overview">Overview</h2>
+<p>The multithreading example illustrates the following features:</p>
+<ul>
+<li>QuRT APIs:<ul>
+<li>Threads</li>
+<li>Barriers</li>
+<li>Mutexes</li>
+</ul>
+</li>
+<li>Benefits of using multithreading and L2 prefetching</li>
+<li>Using the command line or the Eclipse IDE to perform the following steps:<ul>
+<li>Building</li>
+<li>Simulating</li>
+<li>Running on target device</li>
+<li>Debugging on simulator</li>
+</ul>
+</li>
+</ul>
+<p>For more information on the usage of QuRT APIs, please refer to the  <a href="../../software/os/os_support_dsp.html#qurt">OS section introducing QuRT.</a></p>
+<h2 id="project-structure">Project structure</h2>
+<p>The example demonstrates the usage of QuRT APIs for launching multiple threads, synchronizing threads with mutexes and barriers, and L2 prefetching.
+Here is the project flow for the multithreading example:</p>
+<p><img alt="svg" src="../../images/compute_offload_multithreading.png" /></p>
+<ul>
+<li>
+<p><code>Makefile</code></p>
+<p>Root makefile that invokes variant-specific min files to either build the application processor source code or the Hexagon DSP source code.</p>
+</li>
+<li>
+<p><code>hexagon.min</code>, <code>android.min</code></p>
+<p>Contain the make.d directives used to build the application processor and Hexagon DSP source code.</p>
+</li>
+<li>
+<p><code>inc/multithreading.idl</code></p>
+<p>IDL interface that defines the multithreading API.</p>
+<p>This <a href="../../reference/idl.html">IDL</a> file is compiled by the QAIC IDL compiler into the following files:</p>
+<ul>
+<li><code>multithreading.h</code>: C/C++ header file</li>
+<li><code>multithreading_stub.c</code>: Stub source that needs to be built for the HLOS (Android, etc...)</li>
+<li><code>multithreading_skel.c</code>: Skel source that needs to be built for the Hexagon DSP</li>
+</ul>
+</li>
+<li>
+<p><code>src/multithreading.c</code></p>
+<p>Source for the Android executable that calls the multithreading stub on the HLOS side to offload the compute task onto the DSP.</p>
+</li>
+<li>
+<p><code>src/multithreading_imp.c</code></p>
+<p>Source for the Hexagon side implementation of the multithreading interface and is compiled into a shared object.</p>
+</li>
+</ul>
+<h2 id="building">Building</h2>
+<h3 id="using-the-walkthrough-script">Using the walkthrough script</h3>
+<ul>
+<li>
+<p>The example comes with a walkthrough script called <code>multithreading_walkthrough.py</code> which builds the code and runs on target.</p>
+</li>
+<li>
+<p>The script must be run using the following command :</p>
+<pre><code>python multithreading_walkthrough.py -T &lt;Target Name&gt;
+</code></pre>
+</li>
+</ul>
+<p>Please review the generic <a href="../index.html#setup">setup</a> and <a href="../index.html#walkthrough-scripts">walkthrough_scripts</a> instructions to learn more about setting up your device and using walkthrough scripts.</p>
+<h3 id="using-the-make-commands">Using the make commands</h3>
+<ul>
+<li>
+<p>To build your code without using the walkthrough script, you will need to build both the Android and Hexagon modules.  To build the android module along with the dependencies, run the following command:</p>
+<pre><code>make android VERBOSE=1
+</code></pre>
+</li>
+<li>
+<p>To build the hexagon module and run the example on the simulator, run the following command:</p>
+<pre><code>make hexagon DSP_ARCH=v66 VERBOSE=1
+</code></pre>
+</li>
+</ul>
+<p>For more information on the build syntax, please refer to the <a href="../../tools/build.html">building reference instructions.</a>.</p>
+<h2 id="running-on-simulator">Running on simulator</h2>
+<p>The following command builds the necessary hexagon modules using the Hexagon toolchain 8.4.12 for the v66 architecture and runs the example on the hexagon simulator :</p>
+<pre><code>make hexagonsim DSP_ARCH=v66
+</code></pre>
+<h2 id="running-on-target">Running on target</h2>
+<p>If you want to run your code on target without using the walkthrough script, please use the following steps:</p>
+<ul>
+<li>
+<p>Use ADB as root and remount system read/write</p>
+<pre><code>adb root
+adb wait-for-device
+adb remount
+</code></pre>
+</li>
+<li>
+<p>Push the HLOS side multithreading test executable and supporting multithreading stub library to the device</p>
+<pre><code>adb shell mkdir -p /vendor/bin/
+adb push android_ReleaseG_aarch64/multithreading /vendor/bin/
+adb shell chmod 777 /vendor/bin/multithreading
+adb push android_ReleaseG_aarch64/ship/libmultithreading.so /vendor/lib64/
+</code></pre>
+</li>
+<li>
+<p>Push the Hexagon Shared Object to the device's file system</p>
+<pre><code>adb shell mkdir -p /vendor/lib/rfsa/dsp/sdk
+adb push hexagon_ReleaseG_toolv84_v66/ship/libmultithreading_skel.so /vendor/lib/rfsa/dsp/sdk
+</code></pre>
+</li>
+<li>
+<p>Generate a device-specific test signature based on the device's serial number</p>
+<p>Follow the steps listed in the <a href="../../tools/sign.html#use-signerpy">Use signer.py</a> section of the signing documentation.</p>
+<p>Note: This step only needs to be done once as the same test signature will enable loading any module.</p>
+</li>
+<li>
+<p>Redirect DSP FARF messages to ADB logcat by creating a farf file</p>
+<pre><code>adb shell "echo 0x1f &gt; /vendor/lib/rfsa/dsp/sdk/multithreading.farf"
+</code></pre>
+<p>Please refer to the page on <a href="../../tools/messaging.html">messaging resources</a> which discusses the tools available for logging debug messages from the DSP.</p>
+</li>
+<li>
+<p>Launch a new CLI shell to view the DSP's diagnostic messages using logcat</p>
+<p>Open a new shell or command window and execute :</p>
+<pre><code>adb logcat -s adsprpc
+</code></pre>
+</li>
+<li>
+<p>Execute the multithreading example binary as follows :</p>
+<pre><code>adb shell /vendor/bin/multithreading
+</code></pre>
+</li>
+<li>
+<p>Analyze the output</p>
+<p>The command window or shell should contain messages returned by the application processor when using the <code>printf</code> command.</p>
+<pre><code>Retrieving CDSP information using FastRPC Capability API
+    DOMAIN_SUPPORT : 1
+    UNSIGNED_PD_SUPPORT : 1
+Result of capability query for VTCM_PAGE on CDSP is 262144 bytes
+Result of capability query for VTCM_PAGE on ADSP is 0 bytes
+
+Starting multithreading test
+Test PASSED
+Please look at the mini-dm logs or the adb logcat logs for DSP output
+</code></pre>
+</li>
+</ul>
+<h2 id="debugging">Debugging</h2>
+<p>This section covers the steps to debug the multithreading program.</p>
+<h3 id="command-line-debugging-on-the-simulator">Command-line debugging on the simulator</h3>
+<ul>
+<li>
+<p>Build the hexagon module using the following command:</p>
+<pre><code>make hexagon BUILD=Debug DSP_ARCH=v66
+</code></pre>
+<p>This generates the <code>multithreading_q.so</code> file.</p>
+</li>
+<li>
+<p>Define the LLDB_HEXAGON_BOOTER_PATH environment variable :</p>
+<ul>
+<li>
+<p>Linux:</p>
+<pre><code>export LLDB_HEXAGON_BOOTER_PATH=$HEXAGON_SDK_ROOT/rtos/qurt/computev66/sdksim_bin/runelf.pbn
+</code></pre>
+</li>
+<li>
+<p>Windows:</p>
+<pre><code>set LLDB_HEXAGON_BOOTER_PATH=%HEXAGON_SDK_ROOT%\rtos\qurt\computev66\sdksim_bin\runelf.pbn
+</code></pre>
+</li>
+</ul>
+<p>When <code>hexagon-lldb</code> reaches the simulator launch, it checks for this environment variable and if it exists, treats the <code>runelf.pbn</code> in this path as the main target and picks <code>multithreading_q.so</code> file as its first argument to it.</p>
+</li>
+<li>
+<p>Launch the debugger <code>hexagon-lldb</code> with the <code>run_main_on_hexagon_sim</code> binary along with the arguments as follows:</p>
+<ul>
+<li>
+<p>Linux:</p>
+<pre><code>$HEXAGON_SDK_ROOT/tools/HEXAGON_Tools/8.4.12/Tools/bin/hexagon-lldb $HEXAGON_SDK_ROOT/libs/run_main_on_hexagon/ship/hexagon_toolv84_v66/run_main_on_hexagon_sim  -- -mv66 --simulated_returnval --usefs hexagon_Debug_toolv84_v66 --pmu_statsfile hexagon_Debug_toolv84_v66/pmu_stats.txt --cosim_file hexagon_Debug_toolv84_v66/q6ss.cfg --l2tcm_base 0xd800 --rtos hexagon_Debug_toolv84_v66/osam.cfg -- -- $HEXAGON_SDK_ROOT/examples/multithreading/hexagon_Debug_toolv84_v66/multithreading_q.so
+</code></pre>
+</li>
+<li>
+<p>Windows:</p>
+<pre><code>%HEXAGON_SDK_ROOT%\tools\HEXAGON_Tools\8.4.12\Tools\bin\hexagon-lldb.exe %HEXAGON_SDK_ROOT%\libs\run_main_on_hexagon\ship\hexagon_toolv84_v66\run_main_on_hexagon_sim  -- -mv66 --simulated_returnval --usefs hexagon_Debug_toolv84_v66  --pmu_statsfile hexagon_Debug_toolv84_v66\pmu_stats.txt --cosim_file hexagon_Debug_toolv84_v66\q6ss.cfg --l2tcm_base 0xd800 --rtos hexagon_Debug_toolv84_v66\osam.cfg -- --  hexagon_Debug_toolv84_v66\multithreading_q.so
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>The output of the above command must be :</p>
+<pre><code>Hexagon utilities (pagetable, tlb, pv) loaded
+Hexagon SDK device_connect command loaded
+(lldb) target create
+"/path/to/SDK_ROOT/libs/run_main_on_hexagon/ship/hexagon_toolv84_v66/run_main_on_hexagon_sim"
+Current executable set to /path/to/SDK_ROOT/libs/run_main_on_hexagon/ship/hexagon_toolv84_v66/run_main_on_hexagon_sim' (hexagon).
+(lldb) settings set -- target.run-args  "-mv66" "--simulated_returnval" "--usefs" "hexagon_Debug_toolv84_v66" "--pmu_statsfile" "hexagon_Debug_toolv84_v66/pmu_stats.txt" "--cosim_file" "hexagon_Debug_toolv84_v66/q6ss.cfg" "--l2tcm_base" "0xd800" "--rtos" "hexagon_Debug_toolv84_v66/osam.cfg" "--" "--"
+"/path/to/SDK_ROOT/examples/multithreading/hexagon_Debug_toolv84_v66/multithreading_q.so"
+</code></pre>
+</li>
+<li>
+<p>Breakpoints can be set using the following command :</p>
+<pre><code>b multithreading_parallel_sum
+</code></pre>
+<p>This sets the breakpoint at the entry point of the function <code>multithreading_parallel_sum</code></p>
+</li>
+<li>
+<p>Use 'r' to start running the program :</p>
+<pre><code>r
+</code></pre>
+</li>
+<li>
+<p>The debugger stops the process at the given breakpoint and the output looks as follows :</p>
+<pre><code>Starting multithreading test
+Process 1 stopped
+* thread #16, name = 'ribbon', stop reason = breakpoint 1.1
+  frame #0: 0xd8044934 multithreading_q.so`multithreading_parallel_sum(h=14593280) at multithreading_imp.c:90:5
+    87    * We initialize all threads with an equal priority value of: QURT_THREAD_ATTR_PRIORITY_DEFAULT/2 (127)
+    88    */
+    89
+ -&gt; 90       qurt_thread_attr_init(&amp;attr1);
+    91       qurt_thread_attr_set_name(&amp;attr1, (char *)"cntr1");
+    92       qurt_thread_attr_set_stack_addr(&amp;attr1, malloc(1024));
+    93       qurt_thread_attr_set_stack_size(&amp;attr1, 1024);
+</code></pre>
+</li>
+<li>
+<p>You can step into, step over, continue the process, obtain the register information, print the variable values and perform other functions. Some useful debugger commands are:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>breakpoint list</td>
+<td>Lists the breakpoints</td>
+</tr>
+<tr>
+<td>register read</td>
+<td>Show general purpose registers for current thread</td>
+</tr>
+<tr>
+<td>thread list</td>
+<td>Lists the threads along with the thread ID and name</td>
+</tr>
+<tr>
+<td>thread backtrace</td>
+<td>Prints the stack backtrace for current thread</td>
+</tr>
+<tr>
+<td>frame info</td>
+<td>List information about the selected frame in current thread</td>
+</tr>
+<tr>
+<td>up</td>
+<td>Select stack frame that has called the current stack frame</td>
+</tr>
+<tr>
+<td>down</td>
+<td>Select stack frame that is called by the current stack frame</td>
+</tr>
+<tr>
+<td>frame variable</td>
+<td>Display a stack frame's arguments and local variables</td>
+</tr>
+<tr>
+<td>target variable</td>
+<td>Display global/static variables defined in current source file</td>
+</tr>
+<tr>
+<td>step</td>
+<td>Do a source level single step in current thread</td>
+</tr>
+<tr>
+<td>next</td>
+<td>Do a source level single step over in current thread</td>
+</tr>
+<tr>
+<td>si</td>
+<td>Do an instruction level single step in current thread</td>
+</tr>
+<tr>
+<td>ni</td>
+<td>Do an instruction level single step over in current thread</td>
+</tr>
+<tr>
+<td>finish</td>
+<td>Step out of current selected frame</td>
+</tr>
+<tr>
+<td>tlb</td>
+<td>Display the values for TLB in current thread</td>
+</tr>
+<tr>
+<td>pagetable</td>
+<td>Display the values for the pagetable in current thread</td>
+</tr>
+<tr>
+<td>memory read --size "n" "addr"  --outfile "file.txt"</td>
+<td>Read "n" number of bytes from memory starting from the hexadecimal address "addr" and save the results to "file.txt"</td>
+</tr>
+<tr>
+<td>disassemble --frame</td>
+<td>Disassemble current function for the current frame</td>
+</tr>
+<tr>
+<td>image list</td>
+<td>Display the main executable and all dependent shared libraries</td>
+</tr>
+<tr>
+<td>exit</td>
+<td>To quit the hexagon-lldb debugger</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<p>Please refer to the Hexagon LLDB Debugger User Guide for more information on  <code>hexagon-lldb</code>.</p>
+<h3 id="eclipse-debugging-with-the-simulator">Eclipse debugging with the simulator</h3>
+<p>This section explains how to build, run and debug the code on the simulator using the Eclipse IDE. The paths used and the diagrams shown assume
+ the Operating System to be Windows, but similar rules apply for Linux and the paths must be adjusted accordingly.</p>
+<h5 id="import-the-example-project-to-the-workspace">Import the example project to the workspace :</h5>
+<ul>
+<li>
+<p>To import the <code>multithreading</code> example, right-click in <code>Project Explorer</code> and select :
+     <code>Import -&gt; Hexagon C/C++ -&gt; Import Hexagon Project  &gt;  Next</code></p>
+<p><img alt="svg" src="../../images/import_Hexagon_project.png" /></p>
+</li>
+<li>
+<p>In the next dialogue box, set the following project properties :</p>
+<ul>
+<li>Project type : <code>Makefile Project</code></li>
+<li>Project Name : <code>multithreading</code></li>
+<li>Existing Code Location : <code>\path\to\SDK_ROOT\examples\multithreading</code></li>
+</ul>
+<p><img alt="svg" src="../../images/import_existing_code_multithreading.png" /></p>
+<p>Click on <code>Finish</code> button to import the <code>multithreading</code> code as a <code>Makefile Project</code>.</p>
+</li>
+</ul>
+<h5 id="build-the-imported-project">Build the imported project</h5>
+<ul>
+<li>
+<p>To build the imported project, right-click on the <code>multithreading</code> project and select  :</p>
+<p><code>Properties  &gt;  C/C++ Build</code></p>
+<p>In the <code>Builder Settings</code> tab, set the build command :</p>
+<ul>
+<li>Build command : <code>make BUILD=Debug DSP_ARCH=v66</code></li>
+</ul>
+<p><img alt="svg" src="../../images/properties_for_multithreading.png" /></p>
+</li>
+<li>
+<p>In the <code>Behavior</code> tab, set the flags :</p>
+<ul>
+<li>Build  : <code>hexagon</code></li>
+<li>Clean : <code>hexagon_clean</code></li>
+</ul>
+<p><img alt="svg" src="../../images/properties_for_multithreading_behavior.png" /></p>
+<p>Click the <code>Apply and Close</code> button.</p>
+</li>
+<li>
+<p>To build the project, right-click on the <code>multithreading</code> project and select <code>Build Project</code>.</p>
+<p><img alt="svg" src="../../images/build_project_multithreading.png" /></p>
+</li>
+</ul>
+<h5 id="run-the-project-on-simulator">Run the project on simulator</h5>
+<ul>
+<li>
+<p>To run the project, right-click on the <code>multithreading</code> project and select :</p>
+<p><code>Run As  &gt;  Run Configurations...</code></p>
+<p>In the <code>Run Configurations</code> dialog box, select <code>Hexagon C/C++ Application</code> and under the <code>Main</code> tab, set the simulator target :</p>
+<ul>
+<li>C/C++ Application : <code>\path\to\SDK_ROOT\rtos\qurt\computev66\sdksim_bin\runelf.pbn</code></li>
+</ul>
+<p><img alt="svg" src="../../images/run_configurations_main_multithreading.png" /></p>
+</li>
+<li>
+<p>Under the <code>Simulator</code> tab, set the simulator arguments :</p>
+<ul>
+<li>
+<p>CPU Architecture : <code>v66</code></p>
+</li>
+<li>
+<p>Miscellaneous Flags :</p>
+<pre><code>--simulated_returnval --usefs hexagon_Debug_toolv84_v66  --l2tcm_base 0xd800 --rtos hexagon_Debug_toolv84_v66\osam.cfg
+</code></pre>
+</li>
+</ul>
+<p><img alt="svg" src="../../images/run_configurations_simulator.png" /></p>
+</li>
+<li>
+<p>Under the <code>Arguments</code> tab, set the program arguments :</p>
+<ul>
+<li>Program arguments :<pre><code>\path\to\SDK_ROOT\libs\run_main_on_hexagon\ship\hexagon_toolv84_v66\run_main_on_hexagon_sim -- hexagon_Debug_toolv84_v66\multithreading_q.so
+</code></pre>
+</li>
+</ul>
+<p><img alt="svg" src="../../images/run_configurations_arguments_multithreading.png" /></p>
+<p>To execute the program, click the <code>Run</code> button.</p>
+</li>
+</ul>
+<h5 id="define-lldb_hexagon_booter_path">Define LLDB_HEXAGON_BOOTER_PATH</h5>
+<ul>
+<li>
+<p>The <code>LLDB_HEXAGON_BOOTER_PATH</code> environment variable needs to be defined before the start of debugging on the simulator</p>
+<p>Right-click on the project and select :</p>
+<p><code>Properties  &gt;  C/C++ Build  &gt;  Environment  &gt;  Add...</code></p>
+<p>In the dialog-box that opens, set the environment variable :</p>
+<ul>
+<li>Name : <code>LLDB_HEXAGON_BOOTER_PATH</code></li>
+<li>Value  : <code>\path\to\SDK_ROOT\rtos\qurt\computev66\sdksim_bin\runelf.pbn</code></li>
+</ul>
+<p><img alt="svg" src="../../images/lldb_booter_path_multithreading.png" /></p>
+<p>Click <code>Apply and Close</code> to finish setting the <code>LLDB_HEXAGON_BOOTER_PATH</code> environment variable.</p>
+</li>
+</ul>
+<h5 id="debug-the-project">Debug the project</h5>
+<ul>
+<li>
+<p>To configure the debug environment, right-click on project and select :</p>
+<p><code>Debug As  &gt;  Debug Configurations...</code></p>
+<p>In the <code>Main</code> tab, set :</p>
+<ul>
+<li>C/C++ Application :<pre><code>\path\to\SDK_ROOT\libs\run_main_on_hexagon\ship\hexagon_toolv84_v66\run_main_on_hexagon_sim
+</code></pre>
+</li>
+</ul>
+<p><img alt="svg" src="../../images/debug_configuration_main_multithreading.png" /></p>
+</li>
+<li>
+<p>An error message <code>Multiple launchers available - Select one...</code> appears. Please click on <code>Select one...</code></p>
+<p><img alt="svg" src="../../images/debug_process_launcher_multithreading.png" /></p>
+<p>Tick the <code>Use configuration specific settings</code> box and select</p>
+<p>Launchers : <code>Standard Create LLDB Debug Process Launcher</code></p>
+</li>
+<li>
+<p>Under the <code>Arguments</code> tab, set the program arguments :</p>
+<ul>
+<li>Program arguments : <code>--hexagon_Debug_toolv84_v66\multithreading_q.so</code></li>
+</ul>
+<p><img alt="svg" src="../../images/debug_process_arguments_multithreading.png" /></p>
+</li>
+<li>
+<p>Some breakpoints may already be set by default. To read more about breakpoints set by default or how to set them manually, refer to the <a href="../../tools/ide.html#debug">debug section</a> of the IDE documentation.</p>
+</li>
+<li>
+<p>Under the <code>Debugger</code> tab, set the breakpoint :</p>
+<ul>
+<li>Stop on startup at : <code>multithreading_parallel_sum</code></li>
+</ul>
+<p><img alt="svg" src="../../images/debug_breakpoint_multithreading.png" /></p>
+<p>This sets the breakpoint at the entry point of the function <code>multithreading_parallel_sum</code>.</p>
+<p>Click on <code>Apply</code> and <code>Debug</code> to start debugging the program on simulator.</p>
+</li>
+<li>
+<p>Eclipse now asks for a perspective switch prompt to switch to <code>Debug perspective</code>. Select <code>Switch</code> and the executable is launched and the breakpoint is hit at the <code>multithreading_parallel_sum</code> function</p>
+<p><img alt="svg" src="../../images/debug_perspective_multithreading.png" /></p>
+</li>
+<li>
+<p>The debug perspective enables you to perform debugging operations such as step, disassembly, set breakpoints, view/modify variables, and view registers.</p>
+<p><img alt="svg" src="../../images/debug_variables_multithreading.png" /></p>
+</li>
+<li>
+<p>For example, clicking on the Registers tab of the debug perspective displays the contents of the Hexagon processor registers.</p>
+<p><img alt="svg" src="../../images/debug_registers_multithreading.png" /></p>
+</li>
+<li>
+<p>If any debug-related information is not displayed, you can display it by choosing Show View from the Window menu.</p>
+</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../lpi_example/index.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                LPI
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../profiling/index.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Profiling
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../../js/iframe-worker.js"></script>
+<script src="../../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

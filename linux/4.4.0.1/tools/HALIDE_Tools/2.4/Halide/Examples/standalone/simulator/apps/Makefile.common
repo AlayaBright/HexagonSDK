@@ -1,0 +1,105 @@
+#/* ============================================================================================== */
+#/*  QUALCOMM TECHNOLOGIES, INC.                                                                   */
+#/*                                                                                                */
+#/*  Halide for HVX Image Processing Example                                                       */
+#/*                                                                                                */
+#/* ---------------------------------------------------------------------------------------------- */
+#/*          Copyright (c) 2016-2021 QUALCOMM Technologies, Inc. and/or its subsidiaries.          */
+#/*                           All Rights Reserved.                                                 */
+#/*                  QUALCOMM Confidential and Proprietary                                         */
+#/* ============================================================================================== */
+
+#/** This file is meant to be included by Makefiles inside subidirectories
+#*** of this directory. It is __NOT__ meant to be included by Makefiles in
+#*** any other directory. There are some variables here that depend on relative
+#*** paths that will point to garbage if this file is included by a Makefile not
+#*** in a child directory of halide_test/standalone/simulator/apps          ***/
+
+# A file that includes Makefile.common should set these variables
+
+ifndef SIMULATOR_STANDALONE_TOP_DIR
+$(error SIMULATOR_STANDALONE_TOP_DIR not set)
+endif
+
+ifndef TESTNAME
+$(error TESTNAME not set)
+endif
+
+include $(SIMULATOR_STANDALONE_TOP_DIR)/Makefile.common
+
+ifndef HEXAGON_SDK_ROOT
+$(error HEXAGON_SDK_ROOT not set)
+endif
+
+ifndef HEXAGON_TOOLS_VER
+$(error HEXAGON_TOOLS_VER not set)
+endif
+
+ifneq (,$(findstring clang,$(CXX)))
+LLVM_CXX_FLAGS_LIBCPP := -stdlib=libc++
+endif
+
+HALIDE_TEST_TOP_DIR ?= $(shell pwd)/..
+HALIDE_ROOT ?= $(HEXAGON_SDK_ROOT)/tools/HEXAGON_Tools/$(HEXAGON_TOOLS_VER)/Tools/Halide
+HALIDE_INCLUDE = $(HALIDE_ROOT)/include
+SIMULATOR_STANDALONE_APPS_DIR=$(SIMULATOR_STANDALONE_TOP_DIR)/apps
+TEST_INCLUDE = $(SIMULATOR_STANDALONE_TOP_DIR)/include
+SRC ?= $(shell pwd)
+BASELINE_SRC = $(SRC)/baseline
+BLD_TOP ?= $(shell pwd)
+BLD_DIR ?= $(BLD_TOP)/standalone/simulator/$(TESTNAME)
+BIN ?= $(BLD_DIR)/bin
+BASELINE_BIN ?= $(BLD_DIR)/baseline
+UTILS = $(SIMULATOR_STANDALONE_TOP_DIR)/utils
+UTILS_BLD_TOP = $(BLD_TOP)/standalone/simulator/utils
+UTILS_BIN = $(UTILS_BLD_TOP)/bin
+
+INCLUDES = -I $(HALIDE_INCLUDE)
+INCLUDES += -I $(TEST_INCLUDE)
+INCLUDES += -I $(SRC)/../../../../include
+
+HEXAGON_CC ?= $(HEXAGON_SDK_ROOT)/tools/HEXAGON_Tools/$(HEXAGON_TOOLS_VER)/Tools/bin/hexagon-clang
+HEXAGON_CXX ?= $(HEXAGON_SDK_ROOT)/tools/HEXAGON_Tools/$(HEXAGON_TOOLS_VER)/Tools/bin/hexagon-clang++
+HEXAGON_SIM ?= $(HEXAGON_SDK_ROOT)/tools/HEXAGON_Tools/$(HEXAGON_TOOLS_VER)/Tools/bin/hexagon-sim
+HEXAGON_PROF ?= $(HEXAGON_SDK_ROOT)/tools/HEXAGON_Tools/$(HEXAGON_TOOLS_VER)/Tools/bin/hexagon-profiler
+
+include $(HALIDE_ROOT)/halide_config.make
+GENERATOR_DEPS ?= $(HALIDE_ROOT)/lib/libHalide.a $(HALIDE_ROOT)/include/Halide.h $(HALIDE_ROOT)/tools/GenGen.cpp
+GENERATOR_CXXFLAGS += -std=c++11 -I $(HALIDE_ROOT)/include  $(LLVM_CXX_FLAGS_LIBCPP)
+GENERATOR_LDFLAGS += $(HALIDE_SYSTEM_LIBS)
+
+
+Q6_VERSION ?= 65
+FEATURES ?= hvx_128
+
+MHVX:=-mhvx -mhvx-length=128B
+
+BORDERS ?= 0
+ifeq ($(BORDERS), 0)
+ TARGET=hexagon-32-noos-no_bounds_query-no_asserts
+ GOLDEN_FILE=$(CURR_DIR)/golden_out.no_borders.bin
+ BORDER_DEFINES=
+ REF_SRC_SUFFIX=_i.c
+else
+ TARGET=hexagon-32-noos
+ GOLDEN_FILE=$(CURR_DIR)/golden_out.borders.bin
+ BORDER_DEFINES=-DBORDERS=1
+ REF_SRC_SUFFIX=_borders_i.c
+endif
+
+OPT_LEVEL=-O2
+HALIDE_OUTPUT = o,h
+CXXFLAGS += $(INCLUDES) $(BORDER_DEFINES) $(OPT_LEVEL)
+HEXAGON_CXXFLAGS = $(MHVX) -Wno-deprecated $(CXXFLAGS) -mv$(Q6_VERSION) $(BORDER_DEFINES)  $(OPT_LEVEL)
+HEXAGON_CCFLAGS = $(INCLUDES) $(BORDER_DEFINES) -mv$(Q6_VERSION) $(BORDER_DEFINES)  $(OPT_LEVEL)
+LDFLAGS = -ldl -lpthread -lz
+HEXAGON_LDFLAGS =-lhexagon -L$(HALIDE_ROOT)/lib -lsim_qurt
+TIMING= --timing
+SIM_ARGS = --memfill 0x0 --simulated_returnval $(TIMING) --nullptr=2
+OUTPUT_BIN_FILE=$(BIN)/$(TESTNAME)_out.bin
+BASELINE_OUTPUT_BIN_FILE=$(BASELINE_BIN)/$(TESTNAME)_out.bin
+TEST_ARGS = 1920 1080 $(SIMULATOR_STANDALONE_TOP_DIR)/testvectors/football1920x1080.bin $(OUTPUT_BIN_FILE)
+BASELINE_TEST_ARGS = 1920 1080 $(SIMULATOR_STANDALONE_TOP_DIR)/testvectors/football1920x1080.bin $(BASELINE_OUTPUT_BIN_FILE)
+PACK_ANLZ = --packet_analyze process.json
+PROF_ARGS =  --packet_analyze --json=process.json -o process.html
+REPORT_TXT = report.txt

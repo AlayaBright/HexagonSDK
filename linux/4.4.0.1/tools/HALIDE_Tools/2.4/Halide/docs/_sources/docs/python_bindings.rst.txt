@@ -1,0 +1,262 @@
+****************************
+Python bindings (Linux only)
+****************************
+
+.. versionadded:: 2.3.0
+
+Python bindings for Halide provide a way to build and compile Halide pipelines
+from Python.
+We ship a Halide Python library
+(halide.cpython-36m-x86_64-linux-gnu.so) that is available at ``Halide/lib``
+in your Halide installation.
+
+.. note::
+
+    Currently, we support this library on Linux only, and the library is
+    compatible with Python version 3.6.x.
+
+
+======================
+Dependencies and setup
+======================
+
+Because this library depends on ``libHalide.so`` (available at ``Halide/lib``),
+the path to this file must be added to ``LD_LIBRARY_PATH``. To import this library
+in Python, you must also add ``Halide/lib`` to the ``PYTHONPATH`` environment
+variable.
+
+
+====================================
+Defining a Halide pipeline in Python
+====================================
+
+A Halide pipeline written in Python follows the same ahead-of-time compilation
+approach described in (:ref:`AheadOfTimeCompilation`). However, we do not use
+generators (:ref:`Generators`).
+
+The following example shows a 3x3 dilate filter written as a Halide pipeline in
+Python:
+
+.. code-block:: python
+    :linenos:
+    :emphasize-lines: 11,12,24,29,30
+
+    import Halide as hl
+    input_img = hl.ImageParam(hl.UInt(8), 2)
+    x, y, yo = hl.Var("x"), hl.Var("y"), hl.Var("yo")
+    bounded_input, max_y, output = hl.Func("bounded_input"), hl.Func("max_y"), hl.Func("output")
+
+    # Algorithm
+    height = input_img.height()
+    width = input_img.dim(0).extent()
+    x_min = input_img.dim(0).min()
+
+    bounded_input[x, y] = hl.BoundaryConditions.repeat_edge(
+        input_img, [(x_min, width), (hl.Expr(), hl.Expr())])[x, y]
+
+    max_y[x, y] = hl.max(bounded_input[x, hl.clamp(y - 1, 0, height - 1)],
+                        bounded_input[x, hl.clamp(y, 0, height - 1)],
+                        bounded_input[x, hl.clamp(y + 1, 0, height - 1)])
+
+    output[x, y] = hl.max(max_y[x - 1, y], max_y[x, y], max_y[x + 1, y])
+
+    # Schedule
+    output.hexagon()
+
+    # Compile the pipeline to an executable
+    target = hl.Target()
+    target.os = hl.TargetOS.Android
+    target.arch = hl.TargetArch.ARM
+    target.bits = 64
+    target.set_features([hl.TargetFeature.HVX])
+    args = [input_img]
+    output.compile_to_file("dilate3x3", args, "dilate3x3", target)
+
+The algorithm and schedule are written in a similar way to the algorithm and
+schedule in C++. However, as seen in this example, ``Func`` is accessed using
+``[]`` in Python instead of ``()`` in C++. For example, ``max_y[x, y]`` in Python
+instead of ``max_y(x, y)`` in C++.
+
+For cross-compilation, define a ``target`` to compile the pipeline and a list
+of inputs (``ImageParam`` or ``Param``), and pass it to ``Func.compile_to_file()``
+with the name of the pipeline and output file. Running this Python program
+generates a host object file of the Halide pipeline, which is same as the output
+produced by AOT compilation of Halide in C++.
+
+.. note::
+
+    This document is simply an introduction to getting started writing Halide
+    pipelines in Python. More resources can be found at
+    https://halide-lang.org/docs and
+    https://github.com/halide/Halide/tree/master/python_bindings/tutorial.
+
+
+--------------------
+Generators in Python
+--------------------
+
+Generators (:ref:`Generators`), which are used to define a Halide pipeline in
+C++, are not available when writing a Halide pipeline in Python. However, we
+provide a utility called ``pygen``, which gives you some of the conveniences of
+generators.
+
+The following example shows how the dilate filter is modified to use ``pygen``.
+
+.. code-block:: python
+    :linenos:
+    :emphasize-lines: 2,4,5,26,27,30
+
+    import Halide as hl
+    import pygen
+
+    params = pygen.get_params()
+    target = params["target"]
+
+    input_img = hl.ImageParam(hl.UInt(8), 2)
+    x, y, yo = hl.Var("x"), hl.Var("y"), hl.Var("yo")
+    bounded_input, max_y, output = hl.Func("bounded_input"), hl.Func("max_y"), hl.Func("output")
+
+    # Algorithm
+    height = input_img.height()
+    width = input_img.dim(0).extent()
+    x_min = input_img.dim(0).min()
+
+    bounded_input[x, y] = hl.BoundaryConditions.repeat_edge(
+        input_img, [(x_min, width), (hl.Expr(), hl.Expr())])[x, y]
+
+    max_y[x, y] = hl.max(bounded_input[x, hl.clamp(y - 1, 0, height - 1)],
+                        bounded_input[x, hl.clamp(y, 0, height - 1)],
+                        bounded_input[x, hl.clamp(y + 1, 0, height - 1)])
+
+    output[x, y] = hl.max(max_y[x - 1, y], max_y[x, y], max_y[x + 1, y])
+
+    # Schedule
+    if target.has_feature(hl.TargetFeature.HVX):
+        output.hexagon()
+
+    # Compile
+    pygen.compile(output, [input_img])
+
+
+.. note::
+
+    ``pygen`` is located at ``Halide/tools``. To import this utility, add this
+    location to the ``PYTHONPATH`` environment variable.
+
+The ``pygen`` utility enables the pipeline to be used as a command-line program
+that is similar to a C++ generator, which takes target and other user-defined
+parameters as arguments and generates object code for the host. This utility
+supports flags exposed by a C++ generator with their typical meanings.
+For example:
+
+- Use ``-o`` to specify the location of the output files.
+- Use ``-e`` to specify the type of output files to be generated.
+
+The ``pygen.get_params()`` method returns a dictionary of parameters as received
+from the command line.
+
+The ``pygen.add_params()`` method can be used to add user-defined parameters, as
+shown in the following example.
+
+.. code-block:: python
+
+    pygen.add_param("use_parallel_sched", bool, True)
+
+This method adds a Halide parameter called ``use_parallel_sched``, which is a
+Boolean with a default value of ``True``. The target string supplied at the
+command line can be queried as one of the parameters to make target-dependent
+choices in the pipeline.
+
+The ``pygen.compile()`` method takes the output ``Func`` to be compiled and a list
+of inputs to the pipeline as arguments, and it generates an object file for the
+target obtained from command line.
+
+Run this Python program as follows:
+
+.. code-block:: shell
+
+    dilate3x3.py -g dilate3x3 -o ./dilate3x3.o -e o,h -f dilate3x3 target=arm-64-android-hvx
+
+
+===================================================
+Differences between Python bindings and the C++ API
+===================================================
+
+The Python bindings attempt to mimic the Halide C++ API as closely as possible,
+with some differences where the C++ idiom is either inappropriate or impossible.
+
+- Most APIs that take a variadic argument list of integers in C++ take an explicit
+  list in Python. For example, the typical version of the ``Buffer`` constructor in C++
+  offers variadic and list versions:
+
+  ``Buffer<>(Type t, int extent_dim_0, int extent_dim_1, ...., extent_dim_N, string name = "")``
+
+  ``Buffer<>(Type t, vector<int> extents, string name = "")``
+
+  In Python, only the second variant is provided.
+
+- ``Func`` and ``Buffer`` access is performed using ``[]`` rather than ``()``.
+
+- Some classes in the Halide API are not provided because they are wrapped with
+  standard Python idioms:
+
+  - ``Halide::Tuple`` does not exist in the Python bindings; an ordinary Python
+    tuple of ``Halide::Expr`` is used instead.
+  - ``Halide::Realization`` does not exist in the Python bindings; an ordinary
+    Python tuple of ``Halide::Buffer`` is used instead.
+  - ``Halide::Error`` and others do not exist; standard Python error handling
+    is used instead.
+
+- Static and instance method overloads with the same name in the same class
+  are not allowed. Thus, some convenience methods are missing from
+  ``Halide::Var``.
+
+- Templated types (notably ``Halide::Buffer<>`` and ``Halide::Param<>``) are not
+  provided, for obvious reasons. Only the equivalents of ``Halide::Buffer<void>``
+  and ``Halide::Param<void>`` are supported.
+
+- Only symbols in the ``Halide`` namespace are supported. Classes and methods
+  that involve using the ``Halide::Internal`` namespace are not provided.
+
+- The functions in ``Halide::ConciseCasts`` are present in the top-level Halide
+  module in Python, rather than a submodule. For example, use ``hl.i8_sat()``, not
+  ``hl.ConciseCasts.i8_sat()``.
+
+- No mechanism is provided for overriding any runtime functions from Python.
+
+- No mechanism is provided for supporting ``Func::define_extern``.
+
+- ``Buffer::for_each_value()`` is hard to implement well in Python; it is omitted
+  entirely for now.
+
+- ``Func::in`` becomes ``Func.in_`` because ``in`` is a Python keyword.
+
+
+---------------------------
+Enhancements to the C++ API
+---------------------------
+
+The ``Buffer`` class supports the Python Buffer Protocol
+(https://www.python.org/dev/peps/pep-3118/), and thus it is easily and cheaply
+converted to and from other compatible objects (such as NumPy's ``ndarray``),
+with storage being shared.
+
+
+=======================
+Halide Python examples
+=======================
+
+Example Halide pipelines written in Python can be found at
+``Examples/offload/apps/hexagon_benchmarks`` along with their C++ counterparts.
+
+Before running the examples, ensure that correct Python version is installed
+(currently supported Python 3.6.x). Also, if multiple Python v3 versions are
+present, set the ``PYTHON`` environment variable to point to the location of the
+Python version to be used.
+
+Set up the environment as described in (:ref:`ExamplesSetUp`). Then, set
+``USE_PYTHON`` to 1 for running the Python examples:
+
+.. code-block:: shell
+
+    USE_PYTHON=1 make run

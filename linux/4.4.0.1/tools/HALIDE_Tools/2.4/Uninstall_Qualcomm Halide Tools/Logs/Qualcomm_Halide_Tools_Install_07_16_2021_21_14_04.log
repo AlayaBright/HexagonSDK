@@ -1,0 +1,933 @@
+__________________________________________________________________________
+
+Fri Jul 16 09:14:15 IST 2021
+
+Free Memory: 24237 kB
+Total Memory: 79872 kB
+
+java.class.path:
+    /tmp/install.dir.27462/InstallerData
+    /tmp/install.dir.27462/InstallerData/installer.zip
+
+ZGUtil.CLASS_PATH:
+    /tmp/install.dir.27462/InstallerData
+    /tmp/install.dir.27462/InstallerData/installer.zip
+
+sun.boot.class.path:
+    /tmp/install.dir.27462/Linux/resource/jre/lib/resources.jar
+    /tmp/install.dir.27462/Linux/resource/jre/lib/rt.jar
+    /tmp/install.dir.27462/Linux/resource/jre/lib/sunrsasign.jar
+    /tmp/install.dir.27462/Linux/resource/jre/lib/jsse.jar
+    /tmp/install.dir.27462/Linux/resource/jre/lib/jce.jar
+    /tmp/install.dir.27462/Linux/resource/jre/lib/charsets.jar
+    /tmp/install.dir.27462/Linux/resource/jre/lib/jfr.jar
+    /tmp/install.dir.27462/Linux/resource/jre/classes
+
+java.ext.dirs:
+    /tmp/install.dir.27462/Linux/resource/jre/lib/ext
+    /usr/java/packages/lib/ext
+
+java.version                  == 1.8.0_92 (Java 1)
+java.vm.name                  == Java HotSpot(TM) 64-Bit Server VM
+java.vm.vendor                == Oracle Corporation
+java.vm.version               == 25.92-b14
+java.vm.specification.name    == Java Virtual Machine Specification
+java.vm.specification.vendor  == Oracle Corporation
+java.vm.specification.version == 1.8
+java.specification.name       == Java Platform API Specification
+java.specification.vendor     == Oracle Corporation
+java.specification.version    == 1.8
+java.vendor                   == Oracle Corporation
+java.vendor.url               == http://java.oracle.com/
+java.class.version            == 52.0
+java.library.path             == /usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+java.compiler                 == null
+java.home                     == /tmp/install.dir.27462/Linux/resource/jre
+java.io.tmpdir                == /tmp
+os.name                       == Linux
+os.arch                       == amd64
+os.version                    == 4.4.0-184-generic
+path.separator                == :
+file.separator                == /
+file.encoding                 == UTF-8
+user.name                     == vgundlur
+user.home                     == /usr2/vgundlur
+user.dir                      == /tmp/install.dir.27462
+user.language                 == en
+user.region                   == null
+__________________________________________________________________________
+
+Installed Feature(s) Application of Qualcomm Halide Tools
+
+Install Begin: JULY 16, 2021 9:13:35 PM IST
+Install End: JULY 16, 2021 9:14:11 PM IST
+
+Installed by InstallAnywhere 18.0 Premier Build 5431
+
+
+User Interactions
+-----------------
+
+
+#Choose Install Folder
+#---------------------
+USER_INSTALL_DIR=/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4
+
+#Install
+#-------
+-fileOverwrite_/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools/Uninstall_Qualcomm Halide Tools.lax=Yes
+-fileOverwrite_/tmp/618366.tmp/linux_links.sh=Yes
+
+Summary
+-------
+
+Installation: Successful.
+
+281 Successes
+0 Warnings
+0 NonFatalErrors
+0 FatalErrors
+
+Action Notes:
+
+None
+
+Install Log Detail:
+
+Check Disk Space:         /usr2/vgundlur/Qualcomm/HALIDE_Tools/2.4
+                          Status: SUCCESSFUL
+                          Additional Notes: NOTE - Required Disk Space:672,431,257 Bytes Free Disk Space:12,895,965,184 Bytes 
+
+Check Disk Space:         /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4
+                          Status: SUCCESSFUL
+                          Additional Notes: NOTE - Required Disk Space:672,431,257 Bytes Free Disk Space:12,895,961,088 Bytes 
+
+
+
+
+Install Directory:        /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/java/jre
+                          Status: SUCCESSFUL
+
+Install JRE:              /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/java/jre
+                          Status: SUCCESSFUL
+
+Install Directory:        /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/
+                          Status: SUCCESSFUL
+                          Additional Notes: NOTE - Directory already existed
+
+Install Directory:        /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools/
+                          Status: SUCCESSFUL
+
+Install Uninstaller:      Qualcomm Halide Tools(Install All Uninstaller Components)
+                          Status: SUCCESSFUL
+
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools/Uninstall_Qualcomm Halide Tools.lax
+                          Status: SUCCESSFUL
+
+Install Uninstaller:      Qualcomm Halide Tools(Install All Uninstaller Components)
+                          Status: SUCCESSFUL
+
+Install Directory:        /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Uninstall_Qualcomm Halide Tools/resource/
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/v65/libhalide_hexagon_remote_skel.so
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/v65/hexagon_sim_remote
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/v65/libsim_qurt.a
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/halide.cpython-36m-x86_64-linux-gnu.so
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/arm-64-android/libhalide_hexagon_host.so
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/adsp/arm-64-android/libhalide_hexagon_host.so
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/adsp/arm-32-android/libhalide_hexagon_host.so
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/arm-32-android/libhalide_hexagon_host.so
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/host/libhalide_hexagon_host.so
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/cdsp/arm-64-android/libhalide_hexagon_host.so
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/cdsp/arm-32-android/libhalide_hexagon_host.so
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/libHalide.so
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/libHalide.a
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/lib/libautoschedule_adams2019.so
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/halide_config.make
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Halide_2.4
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/release_notes.rst
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/bin/featurization_to_sample
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/bin/baseline.weights
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/bin/retrain_cost_model
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/bin/autotune_loop.py
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/support/halide_benchmark.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/NOTICE.txt
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/include/test_report.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/setup-env.sh
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/Makefile.common
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/median3x3_generator.py
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/process.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/conv3x3_generator.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/morph_edge_generator.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/sobel_generator.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/includes/dilate3x3.schedule.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/includes/conv3x3.schedule.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/includes/sobel.schedule.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/includes/gaussian5x5.schedule.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/includes/morph_edge.schedule.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/includes/median3x3.schedule.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/dilate3x3_generator.py
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/median3x3_generator.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/subtests.yml
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/dilate3x3_generator.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/sobel_generator.py
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/conv3x3_generator.py
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/gaussian5x5_generator.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/gaussian5x5_generator.py
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/morph_edge_generator.py
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/hexagon_benchmarks/process.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/pipeline.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/test-app-small_lut
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/test-app-small_lut-android
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/test-app-small_lut-android.cmd
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/test-app-small_lut.cmd
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/process.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/small_lut/includes/process.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/test-app-gather
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/test-app-gather.cmd
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/process.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/includes/process.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/test-app-gather-android.cmd
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/test-app-gather-android
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/gather/pipeline.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/test-app-vtcm_alloc-android
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/test-app-vtcm_alloc
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/test-app-vtcm_alloc.cmd
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/process.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/includes/process.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/test-app-vtcm_alloc-android.cmd
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/vtcm_alloc/pipeline.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/includes/process.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/pipeline.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/test-app-sg_chain.cmd
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/test-app-sg_chain-android.cmd
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/test-app-sg_chain
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/process.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/sg_chain/test-app-sg_chain-android
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/test-app-scatter.cmd
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/test-app-scatter-android
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/test-app-scatter
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/process.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/test-app-scatter-android.cmd
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/includes/process.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/scatter/pipeline.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/subtests.yml
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/test-app-histogram-android.cmd
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/test-app-histogram.cmd
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/test-app-histogram-android
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/process.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/includes/process.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/test-app-histogram
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/offload/apps/vtcm/histogram/pipeline.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/unsetup-env.sh
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/README.rst
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/sdk_setup-env.sh
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/Makefile.common
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/include/io.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/include/simulator_benchmark.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/testvectors/football1920x1080.bin
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/utils/stubs.c
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/Makefile.common
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/Makefile.rules
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/golden_out.no_borders.bin
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/conv3x3a32_generator.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/baseline/conv3x3a32_borders_i.c
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/baseline/conv3x3a32_i.c
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/baseline/conv3x3a32.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/conv3x3a32_run.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/conv3x3a32/golden_out.borders.bin
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/baseline/gaussian5x5_i.c
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/baseline/gaussian5x5.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/baseline/gaussian5x5_borders_i.c
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/golden_out.borders.bin
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/golden_out.no_borders.bin
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/gaussian5x5_run.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/gaussian5x5_generator.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/gaussian5x5/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/golden_out.borders.bin
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/golden_out.no_borders.bin
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/sobel_run.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/sobel_generator.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/baseline/sobel_borders_i.c
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/baseline/sobel_i.c
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/simulator/apps/sobel/baseline/sobel.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Makefile.common
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/in_ubwc_NV12_1024x544.bits
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/img11_p010_ubwc_hana.bin
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/img11_p010.bin
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/adb_raw.bin
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/adb.bin
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/adb_ubwc_hana.bin
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Images/linear_1024x544.bits
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/host/main.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/dsp/print.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/dsp/conv3x3_run.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/halide/conv3x3_generator.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/rpc/conv3x3.idl
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/conv3x3/includes/conv3x3_halide.schedule.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/dsp/print.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/dsp/dma_raw_blur_rw_async_run.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/test-dma
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/halide/dma_raw_blur_rw_async_generator.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/rpc/dma_raw_blur_rw_async.idl
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/myrun_test.sh
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_raw_blur_rw_async/host/main.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/Makefile.common
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/Makefile.rules
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/host/main.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/dsp/print.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/dsp/dma_nv12_blur_stencil_run.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/halide/dma_nv12_blur_stencil_generator.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/rpc/dma_nv12_blur_stencil.idl
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_nv12_blur_stencil/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/host/main.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/dsp/print.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/dsp/dma_p010_rw_async_run.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/halide/dma_p010_rw_async_generator.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/rpc/dma_p010_rw_async.idl
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/apps/dma_p010_rw_async/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/host/include/buffer.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/dsp/include/hexagon_benchmark.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/dsp/include/hvx_interface.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/dsp/include/ubwcdma_utils.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/Makefile
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/ion/ion_allocation.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/Examples/standalone/device/utils/ion/ion_allocation.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/comment-bright.png
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/basic.css
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/down.png
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/jquery-3.2.1.js
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/up-pressed.png
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/comment.png
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/websupport.js
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/minus.png
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/file.png
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/language_data.js
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/searchtools.js
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/documentation_options.js
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/underscore-1.3.1.js
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/comment-close.png
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/plus.png
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/ajax-loader.gif
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/pygments.css
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/underscore.js
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/jquery.js
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/up.png
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/alabaster.css
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/doctools.js
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/down-pressed.png
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_static/custom.css
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/objects.inv
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/ubwcdma.html
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/halide.html
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/autoscheduler.html
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/examples.html
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/python_bindings.html
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/getting_started.html
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/docs/halide_for_hvx.html
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/index.html
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/search.html
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/searchindex.js
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/genindex.html
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/ubwcdma.rst.txt
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/python_bindings.rst.txt
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/halide_for_hvx.rst.txt
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/getting_started.rst.txt
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/halide.rst.txt
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/examples.rst.txt
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/docs/autoscheduler.rst.txt
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/docs/_sources/index.rst.txt
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeOpenCL.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeQurt.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeD3D12Compute.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/simulator_benchmark.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeHexagonDma.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntime.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/halide_malloc_trace.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/halide_image_info.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/halide_image.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeCuda.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeHexagonHost.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/Halide.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/halide_image_io.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeMetal.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideBuffer.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/halide-hexagon-setup.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/HalideRuntimeOpenGLCompute.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/io.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/include/hvx.cfg.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/asm_to_older_compat.pl
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hl_signnow
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hl_signsav
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hl_signuse
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/RunGenMain.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/GenGen.cpp
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/pygen.py
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hl_signall
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/RunGen.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hl_sign-notes.txt
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/hvx_interface.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/rungen_interface.h
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/host/librungen_stub.so
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/rungen_skel.c
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/cdsp/rungen_host
+                          Status: SUCCESSFUL
+
+Install File:             /local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4/Halide/tools/hexagon_standalone/RunGenHost.cpp
+                          Status: SUCCESSFUL
+
+Install Directory:        /tmp/618366.tmp/
+                          Status: SUCCESSFUL
+                          Additional Notes: NOTE - Directory already existed
+
+Install File:             /tmp/618366.tmp/linux_links.sh
+                          Status: SUCCESSFUL
+
+
+Execute Command:          /tmp/618366.tmp/linux_links.sh "/local/mnt/workspace/Qualcomm/HALIDE_Tools/2.4"
+                          Status: SUCCESSFUL
+

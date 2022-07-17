@@ -1,0 +1,38 @@
+CC={cc}
+SIM={sim}
+ifeq ($(OS),Windows_NT)
+	RM = del
+else
+	RM = rm -f
+endif
+
+INCLUDE = -I inc
+CFLAGS = -m{hvx_arch} -O2 -G0 -Wall -mhvx -c $(INCLUDE)
+LDFLAGS = -m{hvx_arch} -mhvx
+LIBS = -lhexagon
+
+.PHONY: all c_func c_test c_bench test bench
+
+all: c_func c_test c_bench test bench
+
+c_func :
+	$(CC) $(CFLAGS) src/c/{name}.c -o build/{name}.o
+	# disassemble:
+
+c_test:
+	$(CC) $(CFLAGS) test/test_{name}.c -o build/test_{name}.o
+	$(CC) $(LDFLAGS) build/test_{name}.o build/{name}.o -o test_{name}.elf $(LIBS)
+
+c_bench:
+	$(CC) $(CFLAGS) test/bench_{name}.c -o build/bench_{name}.o
+	$(CC) $(LDFLAGS) build/bench_{name}.o build/{name}.o -o bench_{name}.elf $(LIBS)
+
+test:
+	$(SIM) test_{name}.elf
+
+bench:
+	$(SIM) -timing bench_{name}.elf
+
+clean:
+	$(RM) build/{name}.o build/test_{name}.o build/bench_{name}.o
+	$(RM) test_{name}.elf bench_{name}.elf

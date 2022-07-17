@@ -1,0 +1,15 @@
+V_ARCH=v65
+
+ifeq (1,$(V_v65))
+V_ARCH=v65
+endif
+
+ifeq (1,$(V_v66))
+V_ARCH=v66
+endif
+
+ifeq (1,$(V_v68))
+V_ARCH=v68
+endif
+
+include $(thisDir)/defines_hexagon.min

@@ -1,0 +1,1647 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Calculator - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#calculator-example" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Calculator
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Calculator
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="index.html" class="md-nav__link md-nav__link--active">
+      Calculator
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-command-line" class="md-nav__link">
+    Using command line
+  </a>
+  
+    <nav class="md-nav" aria-label="Using command line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    Building
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulator-testing" class="md-nav__link">
+    Simulator testing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-target-testing" class="md-nav__link">
+    On-target testing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-ide" class="md-nav__link">
+    Using the IDE
+  </a>
+  
+    <nav class="md-nav" aria-label="Using the IDE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#importing-project" class="md-nav__link">
+    Importing project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building_1" class="md-nav__link">
+    Building
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulator-testing_1" class="md-nav__link">
+    Simulator testing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifying-the-example" class="md-nav__link">
+    Modifying the example
+  </a>
+  
+    <nav class="md-nav" aria-label="Modifying the example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    Project structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customizing-the-calculator-example" class="md-nav__link">
+    Customizing the calculator example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-command-line" class="md-nav__link">
+    Using command line
+  </a>
+  
+    <nav class="md-nav" aria-label="Using command line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    Building
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulator-testing" class="md-nav__link">
+    Simulator testing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-target-testing" class="md-nav__link">
+    On-target testing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-ide" class="md-nav__link">
+    Using the IDE
+  </a>
+  
+    <nav class="md-nav" aria-label="Using the IDE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#importing-project" class="md-nav__link">
+    Importing project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building_1" class="md-nav__link">
+    Building
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulator-testing_1" class="md-nav__link">
+    Simulator testing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifying-the-example" class="md-nav__link">
+    Modifying the example
+  </a>
+  
+    <nav class="md-nav" aria-label="Modifying the example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    Project structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customizing-the-calculator-example" class="md-nav__link">
+    Customizing the calculator example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="calculator-example">Calculator example</h1>
+<h2 id="overview">Overview</h2>
+<p>The calculator example illustrates the following features:</p>
+<ul>
+<li>Using the <a href="#using-command-line">command line</a>, perform the following steps<ul>
+<li>Building</li>
+<li>Simulator testing</li>
+<li>On-target testing</li>
+</ul>
+</li>
+<li>Using the <a href="#using-the-ide">IDE</a>, perform following steps<ul>
+<li>Import project</li>
+<li>Building</li>
+<li>Simulator testing</li>
+</ul>
+</li>
+<li><a href="#modifying-the-example">Modifying the example</a><ul>
+<li>Project structure</li>
+<li>Customizing the calculator example</li>
+</ul>
+</li>
+</ul>
+<p>Please note that in this document we are discussing procedures for Android targets only. For LE targets refer <a href="../../software/os/os_support_cpu.html">OS support CPU</a>.</p>
+<p>The calculator example consumes an array of integers and returns both the sum and the maximum value of that array.</p>
+<h2 id="using-command-line">Using command line</h2>
+<h3 id="building">Building</h3>
+<p>The example comes with a walkthrough script called <code>calculator_walkthrough.py</code>.  Please review the generic <a href="../index.html#setup">setup</a> and <a href="../index.html#walkthrough-scripts">walkthrough_scripts</a> instructions to learn more about setting up your device and using walkthrough scripts. Walkthrough script automates building, running and signing the device steps mentioned in this section. You can run walkthrough script if you are suck at any step in this section and examine the output of script and/or script itself for better understanding.</p>
+<p>Without the walkthrough script, you will need to build both the Android and Hexagon modules.  This is accomplished by running the following make commands (assuming your desired Hexagon architecture version is v65):</p>
+<pre><code>make android BUILD=Debug
+make hexagon BUILD=Debug DSP_ARCH=v65
+</code></pre>
+<p>For more information on the build syntax, please refer to the <a href="../../tools/build.html">building reference instructions</a>.</p>
+<p>Alternatively, you can build the same Android and Hexagon modules with CMake.</p>
+<ul>
+<li>
+<p>For Windows:</p>
+<pre><code>cmake_build.cmd hexagon BUILD=Debug
+cmake_build.cmd android BUILD=Debug
+</code></pre>
+</li>
+<li>
+<p>For Linux:</p>
+<pre><code>source cmake_build.bash hexagon BUILD=Debug
+source cmake_build.bash android BUILD=Debug
+</code></pre>
+</li>
+</ul>
+<p>To target a different DSP architecture than the default one (V65), simply use the <code>DSP_ARCH</code> option when using the <code>hexagon</code> target. For more information on CMake usage, see the <a href="../../tools/build.html#using-cmake-build-system">CMake documentation</a>.</p>
+<h3 id="simulator-testing">Simulator testing</h3>
+<p>Now that we have built the code, we will discuss how to run the code on the simulator.</p>
+<p>The Hexagon Simulator, <code>hexagon-sim</code>, is found in <code>%DEFAULT_HEXAGON_TOOLS_ROOT% \Tools\bin\</code>. For reference documentation on the Hexagon simulator, please refer to <a href="../../pdf/80-N2040-1784_E_Hexagon_Simulator_User_Guide.pdf">hexagon simulator</a> document.  For general instructions on the process of running code on the simulator and on device, please refer to the <a href="../../tools/run.html">run</a> instructions.</p>
+<p>The following command will build the Debug Hexagon variant of the calculator example targeting the v65 instruction set:</p>
+<pre><code>make hexagon BUILD=Debug DSP_ARCH=v65
+</code></pre>
+<p>This command will result in creating a binary ELF <code>calculator_q</code>. The simulator command generated by the build system to run <code>calculator_q</code> can be found in the the last section <code>Command line used to invoke simulator</code> of the generated file <code>hexagon_Debug_toolv84_v65\pmu_stats.txt</code>. You can reuse this command directly and/or modify it as desired for running additional simulations.</p>
+<p>The main simulator command line options are as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Simulator option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--mv*</code></td>
+<td>Simulate for a particular architecture version of Hexagon. E.g. <code>-mv65</code>.</td>
+</tr>
+<tr>
+<td><code>--simulated_returnval</code></td>
+<td>Cause the simulator to return a value to its caller indicating the final execution status of the target application.</td>
+</tr>
+<tr>
+<td><code>--usefs &lt;path&gt;</code></td>
+<td>Cause the simulator to search for required files in the directory with the specified path.</td>
+</tr>
+<tr>
+<td><code>--pmu_statsfile &lt;filename&gt;</code></td>
+<td>Generate a PMU statistics file with the specified name. See the <a href="../../tools/sysmon_profiler.html">SysMon Profiler</a> for more information about PMU events.</td>
+</tr>
+<tr>
+<td><code>--help</code></td>
+<td>Print available simulator options.</td>
+</tr>
+</tbody>
+</table>
+<p>As an example, here is how the <code>calculator_q</code> ELF file might be run on the simulator:</p>
+<pre><code>$DEFAULT_HEXAGON_TOOLS_ROOT/Tools/bin/hexagon-sim -mv65 --simulated_returnval --usefs hexagon_Debug_toolv84_v65 --pmu_statsfile hexagon_Debug_toolv84_v65/pmu_stats.txt hexagon_Debug_toolv84_v65/calculator_q --
+</code></pre>
+<p>This command should generate the following output, which highlights that two tests were executed and completed successfully.</p>
+<div class="highlight"><pre><span></span><code>hexagon-sim INFO: The rev_id used in the simulation is 0x00004065 (v65a_512)
+- allocate 1024 bytes from ION heap
+- creating sequence of numbers from 0 to 255
+- compute sum on domain 0
+
+- call calculator_sum on the DSP
+- sum = 32640
+
+- call calculator_max on the DSP
+===============     DSP: maximum result 255 ==============:  HIGH:0x0:55:calculator_imp.c
+- max value = 255
+- allocate 1024 bytes from ION heap
+- creating sequence of numbers from 0 to 255
+- compute sum locally
+===============     DSP: local sum result 32640 ===============
+- find max locally
+===============     DSP: local max result 255 ===============
+############################################################
+Summary Report
+############################################################
+Pass: 2
+Undetermined: 0
+Fail: 0
+Did not run: 0
+</code></pre></div>
+
+<h3 id="on-target-testing">On-target testing</h3>
+<p>Now that we have run the code on the simulator, let's discuss the process of running the code on target.</p>
+<p>If you want to run your code on target without using the walkthrough script, please use the following steps:</p>
+<ul>
+<li>
+<p>Use ADB as root and remount system read/write</p>
+<pre><code>adb root
+adb wait-for-device
+adb remount
+</code></pre>
+</li>
+<li>
+<p>Push the HLOS side calculator test executable and supporting calculator stub library onto the device's file system</p>
+<pre><code>adb shell mkdir -p /vendor/bin/
+adb push android_Debug_aarch64/ship/calculator /vendor/bin/
+adb shell chmod 777 /vendor/bin/calculator
+adb push android_Debug_aarch64/ship/libcalculator.so /vendor/lib64/
+</code></pre>
+</li>
+<li>
+<p>Push the Hexagon Shared Object to the device's file system</p>
+<pre><code>adb shell mkdir -p /vendor/lib/rfsa/dsp/sdk
+adb push hexagon_Debug_toolv84_v65/ship/libcalculator_skel.so /vendor/lib/rfsa/dsp/sdk/
+</code></pre>
+</li>
+<li>
+<p>Generate and push a device-specific test signature based on the device's serial number.</p>
+<p>Follow the steps listed in the <a href="../../tools/sign.html#use-signerpy">Use signer.py</a> section of the signing documentation.</p>
+<p>Note: This step only needs to be done once as the same test signature will enable loading any module.</p>
+</li>
+<li>
+<p>Redirect DSP FARF messages to ADB logcat by creating a farf file. For more information on logcat please refer to the logcat section of <a href="../../tools/messaging.html#logcat">messaging</a>.</p>
+<pre><code>adb shell echo "0x1f &gt; /vendor/lib/rfsa/dsp/sdk/calculator.farf"
+</code></pre>
+</li>
+<li>
+<p>Launch a new CLI shell to view the DSP's diagnostic messages via logcat</p>
+<p>Open a new shell or command window and type:</p>
+<pre><code>adb logcat -s adsprpc
+</code></pre>
+<p>NOTE:  This adsprpc filter captures messages from any of the DSPs (e.g aDSP, cDSP, or sDSP).</p>
+</li>
+<li>
+<p>Execute the example</p>
+<p>Please note that following two environment variables are to be passed along with example binary and its arguments</p>
+<ul>
+<li>LD_LIBRARY_PATH :  Location of HLOS-side stub library on device.</li>
+<li>ADSP_LIBRARY_PATH (or DSP_LIBRARY_PATH for SM8250 and later devices): Location of DSP libraries and <a href="../../tools/sign.html#test-signature">TestSig</a> on device.</li>
+</ul>
+<p>For example:</p>
+<pre><code># run example with 1000 array size on CPU
+adb shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH ADSP_LIBRARY_PATH="/vendor/lib/rfsa/dsp/sdk;" calculator  1 3 1000
+
+# run example with 1000 array size on aDSP
+adb shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH ADSP_LIBRARY_PATH="/vendor/lib/rfsa/dsp/sdk;" calculator  0 0 1000
+
+# run example with 1000 array size on sDSP
+adb shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH ADSP_LIBRARY_PATH="/vendor/lib/rfsa/dsp/sdk;" calculator  0 2 1000
+
+# run example with 1000 array size on cDSP
+adb shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH ADSP_LIBRARY_PATH="/vendor/lib/rfsa/dsp/sdk;" calculator  0 3 1000
+
+# run example with 1000 array size on cDSP Unsigned PD
+adb shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH ADSP_LIBRARY_PATH="/vendor/lib/rfsa/dsp/sdk;" calculator  0 3 1000 1
+</code></pre>
+<p><strong><em> NOTE: </em></strong> The above commands will run successfully only on a signed device. The last command executes the example using an <a href="../../software/ipc/rpc.html#signed-and-unsigned-pds">unsigned PD</a>, and as such, will work properly even if the <a href="../../tools/sign.html#test-signature">TestSig</a> is removed from the <a href="../../software/ipc/rpc.html#remote-file-system">DSP search path</a>.</p>
+</li>
+</ul>
+<p>These commands should generate the following output.</p>
+<p>Every block starts with <code>--- Run Calculator Example on ...</code>  and should end with <code>success</code>.</p>
+<pre><code>---- Run Calculator Example Locally on Android ----
+adb wait-for-device shell export LD_LIBRARY_PATH="/vendor/lib64/;" /vendor/bin//calculator 1 0 1000
+
+- starting calculator multi domains test
+- allocate 4000 bytes from ION heap
+- creating sequence of numbers from 0 to 999
+- compute sum locally
+===============     DSP: local sum result 499500 ===============
+- find max locally
+===============     DSP: local max result 999 ===============
+- success
+
+---- Run Calculator Example on aDSP ----
+adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH ADSP_LIBRARY_PATH="/vendor/lib/rfsa/dsp/sdk;" /vendor/bin//calculator 0 0 1000
+
+- starting calculator multi domains test
+- allocate 4000 bytes from ION heap
+- creating sequence of numbers from 0 to 999
+- compute sum on domain 0
+
+- call calculator_sum on the DSP
+- sum = 499500
+
+- call calculator_max on the DSP
+- max value = 999
+- success
+
+---- Run Calculator Example on sDSP ----
+adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH ADSP_LIBRARY_PATH="/vendor/lib/rfsa/dsp/sdk;" /vendor/bin//calculator 0 2 1000 0
+
+- starting calculator multi domains test
+- allocate 4000 bytes from ION heap
+- creating sequence of numbers from 0 to 999
+- compute sum on domain 2
+
+- call calculator_sum on the DSP
+- sum = 499500
+
+- call calculator_max on the DSP
+- max value = 999
+- success
+
+---- Run Calculator Example on cDSP ----
+adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH ADSP_LIBRARY_PATH="/vendor/lib/rfsa/dsp/sdk;" /vendor/bin//calculator 0 3 1000
+
+- starting calculator multi domains test
+- allocate 4000 bytes from ION heap
+- creating sequence of numbers from 0 to 999
+- compute sum on domain 3
+
+- call calculator_sum on the DSP
+- sum = 499500
+
+- call calculator_max on the DSP
+- max value = 999
+- success
+
+---- Run Calculator Example on cDSP Unsigned PD ----
+adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH ADSP_LIBRARY_PATH="/vendor/lib/rfsa/dsp/sdk;" /vendor/bin//calculator 0 3 1000 1
+
+- starting calculator multi domains test
+- allocate 4000 bytes from ION heap
+- creating sequence of numbers from 0 to 999
+- compute sum on domain 3
+- requested signature-free dynamic module offload
+
+- call calculator_sum on the DSP
+- sum = 499500
+
+- call calculator_max on the DSP
+- max value = 999
+- success
+</code></pre>
+<h2 id="using-the-ide">Using the IDE</h2>
+<p>The previous sections described how to build and run the code on simulator or on target using the command line.
+This section explains how to perform the same steps using the IDE. Before following these instructions, please ensure that you have already created a <a href="../../tools/ide.html#start-the-ide">workspace</a> for your IDE.</p>
+<h3 id="importing-project">Importing project</h3>
+<p>Once in the IDE, import calculator into your IDE workspace by right-clicking in Project Explorer and selecting <code>Import -&gt; Hexagon C/C++ -&gt; Import Hexagon Project &gt; Next</code>.</p>
+<p><img alt="svg" src="../../images/import_Hexagon_project.png" /></p>
+<p>In the dialog box, specify the following project properties:</p>
+<ul>
+<li><strong>Project type</strong> – <code>Makefile Project</code></li>
+<li><strong>Project name</strong> – <code>calculator</code></li>
+<li><strong>Project location</strong> – <code>%HEXAGON_SDK_ROOT%\examples\calculator</code></li>
+</ul>
+<p>Click on the <code>Finish</code> button to finish importing the project</p>
+<p><img alt="" src="../../images/calculator_import.png" /></p>
+<h3 id="building_1">Building</h3>
+<p>To build the imported project, right-click on the project , select <code>properties</code> and then <code>C/C++ Build</code> . Under <code>Builder Settings</code>, enter the build command as <code>make hexagon BUILD=Debug DSP_ARCH=v65 VERBOSE=1</code> (or enter your target-appropriate build flavor).</p>
+<p>While debugging, Debug build flavors are recommended when possible over ReleaseG. When ReleaseG is selected, the compiler will apply optimizations that will result in the disassembly interleaving various C instructions, which makes the code harder to understand while stepping through it.</p>
+<p>Click on <code>Apply and Close</code> to apply setting and close the window.</p>
+<p><img alt="" src="../../images/calculator_build_settings.png" /></p>
+<p>Build the project by right-clicking on the project and select <code>Build Project</code>.</p>
+<p><img alt="" src="../../images/calculator_build_project.png" /></p>
+<p>Once building is done, you should see 0 errors, 0 warnings in the console window.</p>
+<p><img alt="" src="../../images/calculator_build_result.png" /></p>
+<h3 id="simulator-testing_1">Simulator testing</h3>
+<p>To run the project on simulator, right-click on the project in Project Explorer and choose <code>Run As -&gt; Run Configuration</code>.</p>
+<p>This command displays the <code>Run Configurations</code> dialog box, which enables you to configure the simulator, program arguments, and runtime environment.</p>
+<p>In order to debug on the simulator, the user must select the target-specific QuRT image <code>runelf.pbn</code> file for the desired architecture version by specifying the QuRT image path in the <code>C/C++ Application</code> field.  This approach is illustrated below and will result in the debugger loading the user ELF, calculator_q, and calling <code>main()</code>.</p>
+<p><img alt="" src="../../images/calculator_ide_runelf.png" /></p>
+<p>The dialog box displays tabs for configuring the simulator, program arguments, and runtime environment.</p>
+<p>(Note that the left-side pane in the dialog box includes a newly-created runtime configuration named <code>calculator Default</code>, which appears under the item <code>Hexagon C/C++ Application</code>.)</p>
+<p>To specify the simulator arguments, click on the <code>Simulator</code> tab in the dialog box. For this example please give following options in the miscellaneous flags section. The brief explanations of these flags is given <a href="#simulator-testing">above</a>.</p>
+<div class="highlight"><pre><span></span><code> -mv65 --simulated_returnval --usefs hexagon_Debug_toolv84_v65 --pmu_statsfile hexagon_Debug_toolv84_v65/pmu_stats.txt hexagon_Debug_toolv84_v65/calculator_q --
+</code></pre></div>
+
+<p><img alt="" src="../../images/calculator_ide_sim_arguments.png" /></p>
+<p>To execute the program, click on the <code>Run</code> button at the bottom of the dialog box.</p>
+<p>The dialog box closes and the following output is displayed in the console of the main IDE window.</p>
+<p><img alt="" src="../../images/calculator_ide_sim_run.png" /></p>
+<h2 id="modifying-the-example">Modifying the example</h2>
+<h3 id="project-structure">Project structure</h3>
+<p>Now that you are able to build and run the code, let's understand how the code is organized.</p>
+<p>The Hexagon SDK's calculator example demonstrates the ability to offload computation on the DSP by calling a function on the HLOS and have it executed on the DSP. This is done via <a href="../../software/ipc/rpc.html">FastRPC</a> in which the complexity of the remote procedure call is made transparent to the caller by only requiring the client to call a library function on the HLOS. That library on the HLOS is referred to as a stub and its corresponding implementation on the DSP is referred to as a skel.</p>
+<ul>
+<li>
+<p><code>Makefile</code></p>
+<p>Root makefile that invokes variant-specific <code>.min</code> files to either build the application processor source code or the Hexagon DSP source code.</p>
+</li>
+<li>
+<p><code>hexagon.min</code>, <code>android.min</code>, <code>UbuntuARM.min</code></p>
+<p>Contains the make.d directives used to build the application processor and Hexagon DSP source code.</p>
+</li>
+<li>
+<p><code>inc/calculator.idl</code></p>
+<p><a href="../../reference/idl.html">IDL interface</a> that defines the calculator API.</p>
+<p>This IDL is compiled by the <a href="../../reference/idl.html">QAIC IDL compiler</a> into the following files:</p>
+<ul>
+<li><code>calculator.h</code>: C/C++ header file</li>
+<li><code>calculator_stub.c</code>: Stub source that needs to be built for the HLOS (Android, Embedded Linux etc...)</li>
+<li><code>calculator_skel.c</code>: Skel source that needs to be built for the Hexagon DSP</li>
+</ul>
+</li>
+<li>
+<p><code>src/calculator_main.c</code></p>
+<p>Source for the Android executable that calls the calculator stub on the HLOS side to offload the compute task onto the DSP.</p>
+</li>
+<li>
+<p><code>src/calculator_test.c</code></p>
+<p>Source for the HLOS-side test function.</p>
+</li>
+<li>
+<p><code>src/calculator_imp.c</code></p>
+<p>Source for the Hexagon-side implementation of the calculator interface and is compiled into a shared object.</p>
+</li>
+<li>
+<p><code>src/calculator_test_main.c</code></p>
+<p>Source for simulator executable which calls DSP side compute task on simulator.</p>
+</li>
+</ul>
+<h3 id="customizing-the-calculator-example">Customizing the calculator example</h3>
+<p>The following steps will show you how you can declare and implement a new method on the DSP and invoke it from the application processor:</p>
+<ul>
+<li>
+<p>Add a new method to the calculator interface in inc/calculator.idl</p>
+<pre><code>long diff(in sequence&lt;long&gt; vec, rout long long res);
+</code></pre>
+</li>
+<li>
+<p>Add a new implementation of that function in <code>src/calculator_imp.c</code></p>
+<pre><code>int calculator_diff(remote_handle64 h, const int* vec, int vecLen, int64* res) {
+    int ii = 0;
+    *res = vec[0];
+    for(ii = 1; ii &lt; vecLen; ++ii) {
+        *res = *res - vec[ii];
+    }
+    FARF(HIGH, "=============== DSP: diff result %lld ===============", *res);
+    return 0;
+}
+</code></pre>
+</li>
+<li>
+<p>Call the new function from the executable (<code>src/calculator_main.c</code>).</p>
+<pre><code>assert(0 == calculator_diff(h, test, num, &amp;result));
+</code></pre>
+</li>
+<li>
+<p>Both android and hexagon binaries are to be rebuilt once modification is done.</p>
+</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../asyncdspq_example/index.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Asyncdspq
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../calculator_c%2B%2B/index.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Calculator C++
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../../js/iframe-worker.js"></script>
+<script src="../../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

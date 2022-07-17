@@ -1,0 +1,500 @@
+
+[*======================= COPYRIGHT NOTICE ======================*]
+[* Copyright 2021 QUALCOMM Incorporated.                         *]
+[* All rights reserved.                                          *]
+[*                                                               *]
+[* All data and information contained in or disclosed by this    *]
+[* document is confidential and proprietary information of        *]
+[* QUALCOMM Incorporated and all rights therein are expressly    *]
+[* reserved. By accepting this material the recipient agrees     *]
+[* that this material and the information contained therein is   *]
+[* held in confidence and in trust and will not be used, copied, *]
+[* reproduced in whole or in part, nor its contents revealed in  *]
+[* any manner to others without the express written permission   *]
+[* of QUALCOMM.                                                  *]
+[*===============================================================*]
+
+Hexagon LLVM Tools Release version 8.4.12 - Release Notes
+
+----------------------------------------------------------------------
+
+#### Overview ####
+- Overview
+- General
+- Requirements
+- Known Issues
+- Changes
+- Notices
+
+#### General ####
+
+The Hexagon LLVM Tools Release version 8.4 is the first release with
+support for Hexagon v68 and v68 HVX architecture. Hexagon Architectures
+supported in this release include V62, V62 HVX, V65, V65 HVX, V66,
+V66 HVX, V67, V67t, V68 and V68 HVX
+
+This release is based on LLVM.org enhanced with optimizations from the
+Qualcomm LLVM team.  As a cross compiler, it runs on x86-64 Linux or
+Windows host and generates code for Hexagon targets.
+
+Notes:
+
+LLDB:
+- Linux LLDB is built with Python 2.7.8.
+- Windows LLDB is built with Python 3.5.1.
+- LLDB will ignore the PYTHONHOME variable, and use PYTHONPATH as expected.
+- To use LLDB with booter, define the environment variable
+  LLDB_HEXAGON_BOOTER_PATH with the path to the booter (bootimg.pbn,
+  runelf.pbn, etc.) executable. Load the
+  target to debug in LLDB. When you run the program, LLDB will launch
+  hexagon-sim with the correct flags to run your target under booter.
+- By default, LLDB launches hexagon-sim from <install>/Tools/bin. If you wish
+  to use a different hexagon-sim, define LLDB_HEXAGON_SIM_PATH with the path
+  to the simulator binary you wish to use.
+
+Please send all support questions and bug reports to your local
+Qualcomm Hexagon Customer Support office.
+
+#### Requirements ####
+  Minimum memory requirement: 16Gbytes RAM
+
+Windows:
+- Microsoft Windows Server 2008 R2 or newer, Windows 8, and Windows 10.
+- 64 bit versions are required.
+- If you are compiling cosims, you should use MSVC 2015 to ensure
+  compatibility with the simulator.
+
+Linux:
+
+- 64 bit installation of SuSe Linux Enterprise 11 SP3 or newer, or Ubuntu
+  14.04 or newer.
+- Ubuntu 14.04 requires updates. These commands will
+  normally be adequate to install them:
+    sudo apt-get install python-software-properties
+    sudo apt-get update
+    sudo apt-get install gcc-4.8
+    sudo apt-get install g++-4.8
+    sudo apt-get install libc6 libc6-dev
+
+#### Known Issues / Limitations ####
+
+LLDB:
+- Windows command line editing is not as advanced due to absence of
+  libedit.  It is on par with a cmd shell.
+
+C++11/14:
+- Full compliance for C++11/14 is dependent on support from QuRT.
+
+C++17:
+- Parallelism TS is not yet supported upstream in libc++.
+- constexpr std::hardware_ {constructive,destructive} is implementation dependent.
+- Filesystem is an optional C++17 feature.
+    See https://en.cppreference.com/w/cpp/filesystem:
+    "The filesystem library facilities may be unavailable if a hierarchical file system is not accessible to the implementation, or if it does not provide the necessary capabilities."
+
+#### Changes ####
+
+---- 8.4.12 ----
+
+LLVM
+44731 Add QuRT stub support to 8.4 HITE tests.
+53545 Avoid "Use of uninitialized value" warnings in post process script.
+59542 Clang throws fatal error: error in backend: Broken function found, compilation aborted!
+63822 Clang throws "Assertion `Inc.size() <= 2' failed".
+64062 Remove curses dependency from lldb cmake.
+65405 Assert the relocation type used for J2_callm pseudo.
+65608 Support hexmsgabi5 diag optimization for HI 4.3.
+67282 Attempt to load sdk utils file from environment variable.
+
+MCLINKER
+55330 CMake Format QCLDFindProtobufWin.cmake.
+66274 Ensure MsgParser.py is available in install and can run under cce.
+66669 Remove paths from MsgParser.py.
+66886 Install protobuf under python2.7 for 8.4.
+
+SIMULATOR
+(maint) bring in newest arch tags.
+63733 Simulator new flag -fast-profile to support coverage.
+64304 Simulator improves build tag extraction.
+64929 B84 part of small changes.
+65179 Use correct bit-mask to compare revid.
+
+
+---- 8.4.11 ----
+
+LLVM
+44731 Changes to HITE scripts for LLDB testing.
+51014 MISRA checker for rule 14.4.
+51598 Fix invalid instruction packet error when msg diag feature is enabled.
+58779 Fix register operand classification.
+62917 Fix reading PC/LR for different cases when framekey is set.
+62935 Handle L2_loadbszw24_io in HII::isValidOffset.
+63690 Fix hexagon_utils loading secondary python files.
+LLDB Let DataExtractor deal with two-byte addresses.
+
+LIBNATIVE
+60765 Embed source repo hash positions into libnative binary.
+
+MCLINKER
+62126 Do not relocate garbage collected symbols.
+62909 Test that the linker can insert a trampoline for PLT style relocation.
+
+SIMULATOR
+(maint) to bring in tools/libs for B84 to the tip.
+52797 Fix the problem again.
+61122 Simulator uses CFG table to deal with double HVX.
+61988 Simulator fixes revid for V66M_2048.
+62133 Update number of TLB entries for v66m_2048.
+62148 Simulator reports bad thread id.
+
+
+---- 8.4.10 ----
+
+LLVM
+57800 Support large stack allocation for HI 4.0.
+60538 Comment out lldb->gdbr Hc optimization.
+
+LIBNATIVE
+59909 Put wrapper around hvx routines.
+
+PROFTOOL
+59650 Workaround for simulator issue.
+
+SIMULATOR
+59661 Simulator removes support for V68G_1024.
+
+
+---- 8.4.09 ----
+
+LLVM
+50873 Remove r0 copy and emit J2_callm opcode for diag optimization.
+51014 Update to MISRA checker suite (re-naming options to match misra rule numbers).
+51073 Replace msg_v3_send function calls with calls to uid/mask specific msg_v3_send wrapper functions.
+57800 Support large stack allocation for HI 4.0.
+59590 Fix assert when vector register size is 256b
+
+SIMULATOR
+(maint) hide a warning message behind the verbose flag.
+56534 Change JSON file command_line display.
+57572 extra processing in JSON file for command_line.
+57797 Simulator adds support for --mv67v.
+58776 Fix breakpoint operation in SDK.
+59581 Scrub v66g variations supported by the hexagon-sim.
+59588 hard-wire v66g_1024 to 128-byte wide.
+
+
+---- 8.4.08 ----
+
+LLVM
+56232 Fix PD base address for addr < _rtld_debug file addr.
+56501 Fix symbol resolution when loading Hexagon core dumps.
+55954 ClangCodeGen fix failed assertion.
+
+SIMULATOR
+56245 Fix coredump output ELF format problem.
+56558 Coredump fix.
+
+
+---- 8.4.07 ----
+
+LLVM
+29540 Fix the address delta for labels at the same packet.
+51014 Adding checker to MISRA clang-tidy suite.
+51645 Do not packetize a volatile Store followed by a volatile load together.
+53365 Fix perfect shuffle generation for single vectors.
+53571 Ensure Stmt pointer is valid when getting last part of condition.
+53753 Update LLDB's build/test configuration for HITE.
+54089 Refactor addr2src.
+54860 clang-tidy checker to insert obfuscation-related pragmas.
+54864 Minor improvement to clang-tidy unused variables checker.
+55060 Emit help messages for all the options present in addr2src.
+56057 Add missing llvmint markers.
+Addr2src Add script file to generate HTML files for padding reports.
+Addr2src changes for Klocwork integration.
+Fix crashes with Addr2struct in the modem codebase.
+
+DINKUMWARE
+56301 memmove fails at some addresses.
+
+MCLINKER
+55446 Get LTO to work with TLS extern symbols.
+
+PROFILER
+33974 Improve gprof accuracy.
+54814 Improve coverage packet counts.
+
+SIMULATOR
+34386 Simulator adds ability to print OSAM version.
+46665 release 8.4 series clang 800 changing to 701.
+47375 Simulator clang-linux build changes default compiler.
+47427 Simulator adds self-Id in response to RSP query.
+47718 Disable 3 warnings for Qurt when --quiet flag is used.
+48399 Simulator reports DM<n> to Trace32.
+48600 Simulator plugs a corner case when VA2PA fails.
+50092 Fix simulator internal buffer for qurt_model interaction.
+50666 Clear buffer before requesting service from qurt_model.
+51195 threads parking during LLDB interaction.
+51975 Simulator adds new --extra_flags.
+52225 Add short-hands for interactive commands.
+52741 Simulator should differentiate Hg and Hc commands.
+52797 Simulator reports wrong thread before Qurt switches over.
+53433 Simulator should not reply "OK" to LLDB "c" and "s".
+54550 Simulator fixes Hc handling for T32.
+55286 Simulator drops use of 32b OSAM V2P function.
+55725 simulator adds support for 2 more v68 revid.
+56245 Fix simulator CoreDump creation.
+
+
+---- 8.4.06 ----
+
+LLVM
+51014 Update to MISRA Comment style checker
+51742 Add hite scripts to lldb
+52544 use itinerary for assembler HVX resource checking
+53123 Add config_site to cxx/abi build
+53125 Investigate libc++ using dynamic array
+53159 Check that the newified instruction still fits in the target packet.
+53363 Disable partitioning of llvmint symbols.
+53427 Skip hanging part of reproducer test
+53497 Skip flaky test in TestEvents.py
+53549 Fix a corner case exposed by stack protector and over-aligned VLA
+53940 Fix for linker test failed in hexagon-clang-84san
+860 fix path to configure file
+Entropy feature included
+Json format support
+Performance improvement
+libc++ Fix the LIBCXX_HAS_MERGED_TYPEINFO_NAMES_DEFAULT setting
+optimal padding produced along with original padding
+
+MCLINKER
+48371 Link with shared objects
+49744 Add API to fetch the address of the Symbol and Use
+49990 Adding DiagOpt Plugin
+52627 Add Operators for all Plugin ADT's.
+52878 Add Protobuf support to 8.4 mclinker
+addr2src Added test cases for optimal padding and entropy feature.
+
+PROFILER
+33974 Improve gprof accuracy
+
+SIMULATOR
+46665 release 8.4 series clang 800 changing to 701
+47375 Simulator clang-linux build changes default compiler
+47427 Simulator adds self-Id in response to RSP query
+47718 Disable 3 warnings for Qurt when --quiet flag is used.
+48399 Simulator adds access support for DM<n> registers
+48600 Simulator plugs a corner case when VA2PA fails
+50092 Fix simulator internal buffer for qurt_model interaction
+50666 Clear buffer before requesting service from qurt_model
+51195 threads parking during LLDB interaction
+52741 Simulator should differentiate Hg and Hc commands
+52865 Changes default display for stall cycles
+53433 Simulator should not reply "OK" to LLDB "c" and "s"
+53487 Update clade2 simple inside simulator/test/prebuilt
+
+
+---- 8.4.05 ----
+
+LLVM
+40581 Stack to Heap pass should emit a call to malloc wrapper instead of malloc.
+41459 Add variable location information to llvm-addr2struct.
+41811 Fix stepping over harware loop at O2
+44731 packet retry with a 1 second delay on error
+45394 Add support for optimal padding information for global nested structures
+45771 Added flag for specifying output file name
+46913 hexagon: add J2_callm pseudo
+48190 Create AST fingerprint for functions.
+48429 Split cold and coldir.
+48613 Better error message for unsupported types
+48864 Use GNU LD to build plugins
+49211 Add a flag to selectively display blame list.
+49368 Use fingerprint from PGO to reject stale PGO samples.
+49377 Add an option to dump all fingerprints from elf.
+49427 Teach PGO reader to accept multiple records.
+49628 Do not generate select with vector predicate parameters
+4977 change posix sleep() to c++ lib sleep
+49822 Assertion `I->valno != std::next(I)->valno' failed
+49949 HMX Activation and weight instructions must be packetized together
+50343 NFC Clean up comments in QC specific file.
+51014 Creating new clang-tidy checker suite for MISRA compliance
+51039 Don't allow a bias HMX instruction with a store
+51350 Add support for new NOTE segment to PD dump
+51415 Change lldb to use socketpair instead of meta port
+51501 unsupported value greater than or equal to SHN_LORESERVE: 65281
+51870 Fix "stop" flag on PD dump signals
+51989 Fix for PD dump load address issue
+52274 LLVM SA hangs with duplicate filenames
+52383 Fix simulator command line for non-stub tests
+52662 add support for iconst0-iconst3 and their relocations
+795 Extend libcxx static timeout
+800 Qurt team change to nspv68 linker script
+812 Fix libcxx cust_config.xml
+Add binary support for Hexagon.
+Find structure padding in nested structures with HTML generation
+
+DINKUMWARE
+49688 Crash when simulating hvx code on v68
+50597 Mutex lock issue in standalone
+
+LIBNATIVE
+4967 fix cmpile error with branch 8.4
+
+MCLINKER
+47690 Fragment getOutputSection to getOutputELFSection.
+47692 Remove BranchIsland from Input ELFSection.
+47732 Show archive member name for Undefined symbol errors
+47919 Remove v62 dependencies from linker lit tests.
+48051 Add a progress bar during Linking.
+48183 SectionMap code cleanup.
+48234 Fix for ambiguous reference to IRBuilder.
+48377 Add support for PT_GNU_STACK segment.
+48974 Support At sections with relocations/--emit-relocs
+49029 Fix relocations being read multiple times with OptimalPreserveList
+49253 Remove dead code for best fit section.
+49632 Fix sanitizer builds to link with LW
+49744 Cleanup Plugin API
+49775 Improve Linker plugin API to know if the linker is Multi-Threaded
+50232 Use should return both source and destination Chunks
+50236 Print proper timing information in the Map file
+50325 Map file doesnot show history for rules for some sections
+50464 Linker creates an invalid segment with RELRO option
+50543 Add getPluginConfig to Linker exports
+50872 Improve reporting for budgeting plugin.
+52536 Use appropriate API to report errors.
+52627 Add comparison operators for Chunk
+ADT Make StringRef's std::string conversion operator explicit
+Modify test case to support location output in the addr2struct output
+
+SIMULATOR
+33974 Improve gprof accuracy
+46665 release 8.4 series clang 800 changing to 701
+47375 Simulator clang-linux build changes default compiler
+47427 Simulator adds self-Id in response to RSP query
+47718 Disable 3 warnings for Qurt when --quiet flag is used.
+48399 Simulator adds access support to DM<n>
+49799 Simulator changes usage of tempnam to mkstemp
+49892 Simulator adds support for v67c_pine
+50092 Fix simulator internal buffer for qurt_model interaction
+50666 Clear buffer before requesting service from qurt_model
+51195 threads parking during LLDB interaction
+52506 Fix simulator interactive mode HVX reg print out
+
+
+---- 8.4.04 ----
+
+LLVM
+Fix unused-variable warning
+Initialize IsFast* values
+693 Adjust for new qurt build process
+44731 Add lldb support for QuRT stub testing
+47980 Lower READCYCLECOUNTER instruction for i64
+48170 Add HVX patterns for logical ops on v1024i1 types
+48535 DIAG Improvements for core / mtrace
+49020 Add requested-addresses-only and version flags for addr2src
+49031 Handle SA --analyzer-Werror option
+49128 Handle debug label in hexagon global scheduler pass
+49130 LLVM 8.4: Add -fwarning-compat flag for HI 4.0
+49211 Improving functionality of post-process script for SA
+
+MCLINKER
+48864 Use GNU LD to build plugins
+4674 Update test string
+
+SIMULATOR
+49409 Scrub v66j_512 behavior
+46665 Fix simulator/Makefile for clang701
+47375 Simulator clang-linux build changes default compiler
+47427 Simulator adds self-Id in response to RSP query
+47718 Disable 3 warnings for Qurt when --quiet flag is used
+48511 simulator adds support for v67V_3072
+48995 Port clip_cores.pl for pre-processing to B84
+
+
+---- 8.4.03 ----
+
+LLVM
+45214 Handle *_coldir symbols properly
+46044 Conditional loading of GD::Graph modules
+46547 Handle target malloc returning 0
+47035 More sophisiticated fingerprint generation, passes sanitizer; also fixes SateMLit lit test failure
+48044 libcxx "try_lock_shared.pass.cpp" tests time out
+48140 Automatically load hexagon_sdk_utils.py
+
+MCLINKER
+42871 Support SHF_LINK_ORDER and create a new API for plugin
+46219 Make YAMLMapParser.py python 3 compatible
+46676 Fail link if linker script parsing failed to find include files
+47016 Expanding Timing Stats for Create Trampolines
+47147 Linker should not emit symbols from rejected section groups
+47178 Dont merge COMDAT sections with other sections
+47219 Need to pass data between plugins
+47272 Add support for Plugin profiling
+47495 Fix BranchIsland segfault when symbol is absolute
+47909 Handle sections that contain no fragments
+48114 Show RuleOrigin in Map file when annotating Rules
+48182 Return LDSymbol in place of name string from GNUArchiveReader
+48200 LinkStats : Add a space for readability
+
+SIMULATOR
+use clang 701 rather than 800 for CLANG=1
+47927 Fix Simulator AssertReset implementation
+
+
+---- 8.4.02 ----
+
+LLVM
+Fix deprecation warnings in libc++ testsuite
+45846 Switch order of gp and ugp in register list
+46191 Add nspv68 to libcxx qurt configs
+46360 Support both -analyzer-Werror and -analyzer-werror
+46550 Add help to hexagon_utils.py
+47035 AST Fingerprint generator initial commit
+46191 Add nspv68 to libcxx qurt configs
+
+DINKUMWARE
+47028 init.S doesn't save r26
+
+LIBNATIVE
+47759 fix hmx windows test case by extern log2
+
+MCLINKER
+47016 Expanding Timing Stats for Establish Layout
+47862 Allow map files to be diff'ed
+47909 Handle sections that contain no fragments
+
+PROFTOOL
+46814 Fix windows handling of HMX args
+47029 Handle utf8 symbol names
+
+SIMULATOR
+Fix v68nb display name in -h -v68 output
+47375 Simulator clang-linux build changes default compiler
+47427 Simulator adds self-Id in response to RSP query
+47577 Windows simulator v67 fails to generate JSON file
+47718 Disable 3 warnings for Qurt when --quiet flag is used
+47927 Fix Simulator AssertReset() implementation
+
+TRACE32
+47769 Fix the proper slot id in Breakpoint array
+
+
+---- 8.4.01 ----
+
+Never released
+
+
+---- 8.4 ----
+
+- Support for Hexagon v68 and v68 HVX architecture.
+- Additional bug fixes.
+
+#### Notices ####
+This product includes software developed by John Polstra.
+
+This product includes software developed by the NetBSD
+Foundation, Inc. and its contributors.
+
+This product includes software developed for the
+NetBSD Project.  See http://www.NetBSD.org/ for
+information about NetBSD.
+

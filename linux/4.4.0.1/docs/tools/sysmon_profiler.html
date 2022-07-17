@@ -1,0 +1,1314 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>sysMon DSP Profiler - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sysmon-dsp-profiler" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              sysMon DSP Profiler
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interface" class="md-nav__link">
+    Interface
+  </a>
+  
+    <nav class="md-nav" aria-label="Interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dcvs-mode-option" class="md-nav__link">
+    DCVS Mode option
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-mode-option" class="md-nav__link">
+    Default Mode option
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-mode-option" class="md-nav__link">
+    User Mode option
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-pmu-mode-option" class="md-nav__link">
+    8-PMU Mode option
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-collection" class="md-nav__link">
+    Data collection
+  </a>
+  
+    <nav class="md-nav" aria-label="Data collection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-postprocessing" class="md-nav__link">
+    Data postprocessing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-usage" class="md-nav__link">
+    Command line usage
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="sysmon-dsp-profiler">sysMon DSP Profiler</h1>
+<p>The sysMon DSP Profiler is an Android UI application used to profile the DSP workload.</p>
+<p>This UI application uses FastRPC to communicate with the <a href="sysmon_app.html#profiler-service">SysMon profiler service</a> on the targeted DSP. This application can assist with measuring performance, debugging performance related issues, and identifying possible optimizations by collecting the following metrics:</p>
+<ul>
+<li>Clocks voted for</li>
+<li>Resource usage</li>
+<li>Load distribution across available hardware threads</li>
+<li>Load on processor</li>
+<li>Bus bandwidth metrics</li>
+<li>Other profiling metrics</li>
+</ul>
+<p>This page captures the steps to set up and use the sysMon DSP Profiler and ways to analyze the captured profiling data.</p>
+<p>Please refer <a href="../reference/feature_matrix.html">feature matrix</a> for targets supporting the sysMon profiler.</p>
+<h2 id="setup">Setup</h2>
+<p>Install <code>$HEXAGON_SDK_ROOT/tools/utils/sysmon/sysMon_DSP_Profiler_V2.apk</code> on the device connected to the host machine by running following ADB command:</p>
+<pre><code>adb install -g sysMon_DSP_Profiler_V2.apk
+</code></pre>
+<h2 id="interface">Interface</h2>
+<p>The home page of the sysMon profiler displays as follows:</p>
+<p><img alt="screenshot" src="../images/hp_profiler_UI_adsp.png" /></p>
+<p>You can choose from different modes of profiling. All these options map to the options supported and described for the <a href="sysmon_app.html#profiler-service">sysMonApp profiler service</a>.</p>
+<h3 id="dcvs-mode-option">DCVS Mode option</h3>
+<p>Select this checkbox to enable the DSP DCVS mode, which can adjust DSP core and bus clocks dynamically for the profiling duration.</p>
+<h3 id="default-mode-option">Default Mode option</h3>
+<p>In this mode, a fixed set of performance metrics (eight PMU events) will be monitored. By default, the sampling period is either 1 or 50 milliseconds. The profiler generates a packet at the end of each sampling period with the performance metrics captured in the window.</p>
+<p>You can also specify a sampling period in multiples of one millisecond to override the sampling period for a fixed set of performance metrics (eight PMU events). If DCVS mode is selected, specifying a sampling period smaller than 50 milliseconds will result in a 1 millisecond sampling interval; specifying a sampling period greater or equal to 50 milliseconds will result in a 1 or 50 millisecond sampling interval as dictated by the DCVS algorithm. </p>
+<p>For more details about the Default mode, see the <a href="sysmon_app.html#profiler-service">sysMonApp profiler service documentation</a>.</p>
+<h3 id="user-mode-option">User Mode option</h3>
+<p>If the Default mode is not selected, User mode is enabled instead. In User mode, specify the PMU events to be captured by clicking the Configuration button:</p>
+<p><img alt="screenshot" src="../images/hp_profiler_pmu_config_button.png" /></p>
+<p>The following table provides a brief description of all supported PMU events:</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>PMU event</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x03</td>
+<td>MPPS</td>
+</tr>
+<tr>
+<td>0x03</td>
+<td>pCPP</td>
+</tr>
+<tr>
+<td>0x04</td>
+<td>DMTV2</td>
+</tr>
+<tr>
+<td>0x07</td>
+<td>DMTV3</td>
+</tr>
+<tr>
+<td>0x08</td>
+<td>SMT</td>
+</tr>
+<tr>
+<td>0x2A</td>
+<td>Instructions executed Per Second(IPS)</td>
+</tr>
+<tr>
+<td>0x03</td>
+<td>Packets executed Per Second(PPS)</td>
+</tr>
+<tr>
+<td>0x7F</td>
+<td>L2 Fetch Miss</td>
+</tr>
+<tr>
+<td>0x11</td>
+<td>IU Stall</td>
+</tr>
+<tr>
+<td>0xE9</td>
+<td>DU Cache Stall</td>
+</tr>
+<tr>
+<td>0x41</td>
+<td>AXI 32-Byte Line Read</td>
+</tr>
+<tr>
+<td>0x43</td>
+<td>AXI 32-Byte Line Write</td>
+</tr>
+<tr>
+<td>0xCE</td>
+<td>AXI 64-Byte Line Read</td>
+</tr>
+<tr>
+<td>0xCF</td>
+<td>AXI 64-Byte Line Write</td>
+</tr>
+<tr>
+<td>0x3F</td>
+<td>AXI 128-Byte Line Read ( V66 and beyond only)</td>
+</tr>
+<tr>
+<td>0x46</td>
+<td>AXI 128-Byte Line Write ( V66 and beyond only)</td>
+</tr>
+<tr>
+<td>0x44</td>
+<td>AHB Read BW</td>
+</tr>
+<tr>
+<td>0x45</td>
+<td>AHB Write BW</td>
+</tr>
+<tr>
+<td>0x3B</td>
+<td>1-Thread Active(%)</td>
+</tr>
+<tr>
+<td>0x3C</td>
+<td>2-Thread Active(%)</td>
+</tr>
+<tr>
+<td>0x3D</td>
+<td>3-Thread Active(%)</td>
+</tr>
+<tr>
+<td>0x3E</td>
+<td>4-Thread Active(%)</td>
+</tr>
+<tr>
+<td>0x25</td>
+<td>1-Thread CPP</td>
+</tr>
+<tr>
+<td>0x26</td>
+<td>2-Thread CPP</td>
+</tr>
+<tr>
+<td>0x27</td>
+<td>3-Thread CPP</td>
+</tr>
+<tr>
+<td>0x2F</td>
+<td>4-Thread CPP</td>
+</tr>
+<tr>
+<td>0x118(v66), 0x112(v68)</td>
+<td>HVX Thread MPPS</td>
+</tr>
+<tr>
+<td>0x11D(v66), 0x11A(v68)</td>
+<td>HVX L2 Load Miss</td>
+</tr>
+<tr>
+<td>0x106(v66), 0x103(v68)</td>
+<td>HVX Stall Cycles</td>
+</tr>
+</tbody>
+</table>
+<p>Captured performance metrics are postprocessed and displayed on the UI continuously with a refresh rate of one second.</p>
+<p>For more details about the User mode, see the <a href="sysmon_app.html#profiler-service">sysMonApp profiler service documentation</a>.</p>
+<h3 id="8-pmu-mode-option">8-PMU Mode option</h3>
+<p>This option allows you to configure four PMU events or eight PMU events.</p>
+<ul>
+<li>If the checkbox is not selected, the option is set for four PMU events (default).</li>
+<li>Select the checkbox for eight PMU events.</li>
+</ul>
+<p>Also, the 8-PMU Mode checkbox is selected automatically if both the Default and DCVS modes are not selected.</p>
+<h2 id="data-collection">Data collection</h2>
+<p>As explained in the <a href="sysmon_app.html#profiler-service">sysMonApp profiler service documentation</a>, the sysMonApp profiler stores raw profiling data in the <code>/sdcard</code> or <code>/data</code> folder on the device:</p>
+<ul>
+<li>For the aDSP, the file name is `sysmon.bin</li>
+<li>For the cDSP, the file name is <code>sysmon_cdsp.bin</code></li>
+<li>For the sDSP, the file name <code>sysmon_sdsp.bin</code></li>
+</ul>
+<p>You can retrieve these files with an <code>adb pull</code> command. For example, the following command retrieves aDSP profiling data:</p>
+<pre><code>adb pull /sdcard/sysmon.bin &lt;destination directory&gt;
+</code></pre>
+<h3 id="data-postprocessing">Data postprocessing</h3>
+<p>To postprocess the profiling data, see the instructions on how to use the <a href="sysmon_parser.html">sysmon parser</a>.</p>
+<h2 id="command-line-usage">Command line usage</h2>
+<p>The sysMon DSP Profiler can be invoked from the command line:</p>
+<pre><code>adb shell am start -n com.qualcomm.qti.sysmonappExternal/com.qualcomm.qti.sysmonappExternal.AdspProfiler [-e &lt;option&gt; &lt;value&gt;]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q6</td>
+<td>Select the DSP to profile. 0 (default) for aDSP, 2 for sDSP, 3 for cDSP.</td>
+</tr>
+<tr>
+<td>defaultMode</td>
+<td>Select profiling mode. 0 for User mode, 1 (default) for Default mode.</td>
+</tr>
+<tr>
+<td>samplingPeriod</td>
+<td>Specified sampling period in milliseconds. By default, 1 ms in User mode, and a combination of 1 ms and 50 ms in Default mode.</td>
+</tr>
+<tr>
+<td>dcvsMode</td>
+<td>Set DCVS mode. 0 to disable DCVS during profiling, and 1 to enable DCVS. By default, DCVS is enabled when Default mode is selected; otherwise, it is disabled.</td>
+</tr>
+<tr>
+<td>pmuMode</td>
+<td>Set PMU mode. 0 to run in 4-PMU mode, and 1 to run in 8-PMU mode.</td>
+</tr>
+</tbody>
+</table>
+<p>For example, the following command will open the sysMon DSP Profiler application with the Profiler UI displayed on the screen:</p>
+<pre><code>adb shell am start -n com.qualcomm.qti.sysmonappExternal/com.qualcomm.qti.sysmonappExternal.AdspProfiler -e q6 2
+</code></pre>
+<p>Once the sysMon DSP Profiler application is opened, run the pair of start and stop commands any number of times on the given DSP.</p>
+<ul>
+<li>
+<p>The following command will start the profiler and also allow you to set options:</p>
+<pre><code>adb shell am broadcast -a com.qualcomm.qti.sysmonapp.RUN_EXT_FROM_ADB -e startProfiler 1 -e q6 2 -e defaultMode 1 -e samplingPeriod 10 -e dcvsMode 0 -n com.qualcomm.qti.sysmonappExternal/com.qualcomm.qti.sysmonappExternal.BootCompleteReceiverExternal`
+</code></pre>
+</li>
+<li>
+<p>The following command will stop the profiler:</p>
+<p>adb shell am broadcast -a com.qualcomm.qti.sysmonapp.RUN_EXT_FROM_ADB -e stopProfiler 1 -e q6 2 -n com.qualcomm.qti.sysmonappExternal/com.qualcomm.qti.sysmonappExternal.BootCompleteReceiverExternal</p>
+</li>
+</ul>
+<p>Finally, you can close the sysMon DSP Profiler application with the following command:</p>
+<pre><code>adb shell am force-stop com.qualcomm.qti.sysmonappExternal
+</code></pre>
+<p><strong><em> NOTE:</em></strong> To run the profiler on a different DSP, close the application and re-open it with a different DSP value. The start and stop commands also must use the same new DSP value.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../js/iframe-worker.js"></script>
+<script src="../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

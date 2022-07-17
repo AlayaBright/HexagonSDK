@@ -1,0 +1,1811 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>System integration - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#system-integration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              System integration
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        System integration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="system_integration.html" class="md-nav__link md-nav__link--active">
+      System integration
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#roles-and-responsibilities" class="md-nav__link">
+    Roles and responsibilities
+  </a>
+  
+    <nav class="md-nav" aria-label="Roles and responsibilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-integrators" class="md-nav__link">
+    System integrators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oemintegrator-partners" class="md-nav__link">
+    OEM/integrator partners
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#independent-developers" class="md-nav__link">
+    Independent developers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privileged-and-unprivileged-clients" class="md-nav__link">
+    Privileged and unprivileged clients
+  </a>
+  
+    <nav class="md-nav" aria-label="Privileged and unprivileged clients">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#marking-clients-as-privileged" class="md-nav__link">
+    Marking clients as privileged
+  </a>
+  
+    <nav class="md-nav" aria-label="Marking clients as privileged">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-services" class="md-nav__link">
+    System services
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#built-in-applications" class="md-nav__link">
+    Built-in applications
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-applications" class="md-nav__link">
+    Test applications
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority-levels" class="md-nav__link">
+    Priority levels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vtcm-partitions" class="md-nav__link">
+    VTCM partitions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signed-and-unsigned-pds" class="md-nav__link">
+    Signed and unsigned PDs
+  </a>
+  
+    <nav class="md-nav" aria-label="Signed and unsigned PDs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unsigned-pds" class="md-nav__link">
+    Unsigned PDs
+  </a>
+  
+    <nav class="md-nav" aria-label="Unsigned PDs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unsigned-pd-support" class="md-nav__link">
+    Unsigned PD support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsigned-pd-services-and-limitations" class="md-nav__link">
+    Unsigned PD services and limitations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activate-unsigned-pd" class="md-nav__link">
+    Activate Unsigned PD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signed-pds" class="md-nav__link">
+    Signed PDs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cpz" class="md-nav__link">
+    CPZ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secure-pd" class="md-nav__link">
+    Secure PD
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dsp-rebuildinghashing" class="md-nav__link">
+    DSP rebuilding/hashing
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#roles-and-responsibilities" class="md-nav__link">
+    Roles and responsibilities
+  </a>
+  
+    <nav class="md-nav" aria-label="Roles and responsibilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-integrators" class="md-nav__link">
+    System integrators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oemintegrator-partners" class="md-nav__link">
+    OEM/integrator partners
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#independent-developers" class="md-nav__link">
+    Independent developers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privileged-and-unprivileged-clients" class="md-nav__link">
+    Privileged and unprivileged clients
+  </a>
+  
+    <nav class="md-nav" aria-label="Privileged and unprivileged clients">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#marking-clients-as-privileged" class="md-nav__link">
+    Marking clients as privileged
+  </a>
+  
+    <nav class="md-nav" aria-label="Marking clients as privileged">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-services" class="md-nav__link">
+    System services
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#built-in-applications" class="md-nav__link">
+    Built-in applications
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-applications" class="md-nav__link">
+    Test applications
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority-levels" class="md-nav__link">
+    Priority levels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vtcm-partitions" class="md-nav__link">
+    VTCM partitions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signed-and-unsigned-pds" class="md-nav__link">
+    Signed and unsigned PDs
+  </a>
+  
+    <nav class="md-nav" aria-label="Signed and unsigned PDs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unsigned-pds" class="md-nav__link">
+    Unsigned PDs
+  </a>
+  
+    <nav class="md-nav" aria-label="Unsigned PDs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unsigned-pd-support" class="md-nav__link">
+    Unsigned PD support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsigned-pd-services-and-limitations" class="md-nav__link">
+    Unsigned PD services and limitations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activate-unsigned-pd" class="md-nav__link">
+    Activate Unsigned PD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signed-pds" class="md-nav__link">
+    Signed PDs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cpz" class="md-nav__link">
+    CPZ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secure-pd" class="md-nav__link">
+    Secure PD
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dsp-rebuildinghashing" class="md-nav__link">
+    DSP rebuilding/hashing
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="system-integration">System integration</h1>
+<h2 id="roles-and-responsibilities">Roles and responsibilities</h2>
+<p>This section discusses the different participants in the Hexagon
+software ecosystem, their roles and responsibilities. This SDK is
+primarily targeted towards <a href="#independent-developers">independent
+developers</a> and <a href="#oemintegrator-partners">OEM/integrator
+partners</a>.</p>
+<h3 id="system-integrators">System integrators</h3>
+<p>"System integrators" in this document refers to organizations building
+and integrating complete software packages for Qualcomm Snapdragon SoC
+based devices. In the mobile phone ecosystem the device manufacturer
+typically acts as the system integrator; in other cases the integrator
+may be a third-party solution provider or a subsystem
+vendor. Regardless, the system integrator has capabilities and
+responsibilities beyond independent developers, and is ultimately
+responsible for the software running on their product.</p>
+<p>As part of building the application CPU software image, system
+integrators can manage which applications can run on the DSPs and the
+resource access privileges:</p>
+<ul>
+<li>Starting with Lahaina, integrators can mark selected cDSP client
+  applications or system services as privileged clients. See <a href="#marking-clients-as-privileged">Marking
+  clients as privileged</a> for more
+  details.</li>
+<li>Starting with Lahaina, integrators can create additional VTCM
+  partitions for use by privileged clients in specific use cases. See
+  <a href="#vtcm-partitions">VTCM partitions</a> for more details. Before partitioning
+  VTCM, integrators should ensure that the functional and performance requirements
+  of their applications and dependent libraries are met.
+  They can work with Qualcomm Customer Engineering(CE) to determine an appropriate configuration for their device.</li>
+<li>System integrators can sign dynamically-loaded DSP modules for
+  running in <a href="#signed-pds">Signed PDs</a>. See <a href="../tools/sign.html">Device
+  signing</a> for more details. However, to improve
+  product security, all DSP applications should run as <a href="#unsigned-pds">unsigned
+  PDs</a> unless they require services not available in
+  them.</li>
+<li>System integrators can whitelist clients to enable them to create
+  <a href="#signed-pds">Signed PDs</a> on the cDSP in Lahaina and later
+  products. Starting with Lahaina, other clients can only create
+  <a href="#unsigned-pds">Unsigned PDs</a>.</li>
+<li>System integrators can build and integrate software running in
+  <a href="#cpz">CPZ PDs</a> or a <a href="#secure-pd">secure PD</a></li>
+<li>System integrators must ensure application priority levels are set
+  appropriately: Critical system services typically need higher
+  priority than integrated applications, which may also be given
+  higher priority than downloaded third-party applications. Note that
+  prior to Lahaina, <a href="#signed-pds">Signed PDs</a> have access to a higher
+  priority range than <a href="#unsigned-pd-services-and-limitations">unsigned
+  PDs</a>. Starting with Lahaina,
+  higher priorities are available to <a href="#priority-levels">privileged
+  clients</a>, regardless of whether they use signed or
+  unsigned PDs.</li>
+</ul>
+<h3 id="oemintegrator-partners">OEM/integrator partners</h3>
+<p>"OEM/integrator partners" in this document refers to organizations
+developing custom DSP software to be integrated by a device
+manufacturer or a <a href="#system-integrators">System integrator</a>. A common
+example would be an independent company developing camera algorithms
+that a phone OEM integrates into their camera application. Such
+developers can work as <a href="#independent-developers">independent
+developers</a> to develop their software using
+stand-alone test applications, but will need to work with their system
+integrator partners to determine how the software is ultimately
+integrated in the product.</p>
+<p>Since <a href="#system-integrators">system integrators</a> have the ability to
+sign dynamically loadable modules, software designed for integration
+directly into a product can run in a <a href="#signed-pds">signed
+PD</a>. Developers can install <a href="../tools/sign.html#test-signature">test
+signatures</a> on test devices to facilitate
+testing their software in signed PDs before integration to the
+product.</p>
+<h3 id="independent-developers">Independent developers</h3>
+<p>"Independent developers" or ISVs (Independent Software Vendors) in
+this document refers to people or organizations developing installable
+applications that have a DSP component. This includes applications
+deployed on mobile devices via application stores, internal
+applications within organizations, and possibly other deployment
+models in other markets. Independent developers are not expected to
+require direct support from <a href="#system-integrators">system integrators</a>
+or Qualcomm.</p>
+<p>Independent developers can use the SDK to develop and test software
+running on the Hexagon Compute DSP in <a href="#unsigned-pds">Unsigned
+PDs</a>. They can distribute their DSP modules as a part
+of their application and call
+directly to the DSP module using <a href="ipc/rpc.html">FastRPC</a> calls from native code. Such
+applications always act as <a href="#privileged-and-unprivileged-clients">unprivileged
+clients</a> on Lahaina and later
+products that make such distinction.</p>
+<p>Independent developers cannot easily sign modules for loading into
+<a href="#signed-pds">signed PDs</a> on production devices. Doing so requires
+working with <a href="#system-integrators">system integrators</a> to sign the
+modules or install the appropriate credentials on devices at build
+time. Developers can however install <a href="../tools/sign.html#test-signature">test
+signatures</a> on test devices to facilitate
+testing code in signed PDs.</p>
+<p>Independent developers may also achieve DSP acceleration through
+existing CPU software libraries and frameworks that internally offload
+to the system's DSPs, such as SNPE, QNN, FastCV, etc. Such usage is
+outside of the scope of this SDK.</p>
+<h2 id="privileged-and-unprivileged-clients">Privileged and unprivileged clients</h2>
+<p>Starting with Lahaina, CPU-side client processes for the cDSP are categorized as
+privileged and unprivileged clients. Privileged clients can have
+access to higher priority levels and resources unprivileged clients do
+not have. This mechanism is designed to ensure system services and
+critical pre-installed applications can access the cDSP with
+priority over installable third-party applications while still
+keeping the cDSP open for all clients.</p>
+<p>The distinction between privileged and unprivileged clients currently
+only applies to the Compute DSP (cDSP). Other DSPs are not widely open
+for installable applications.</p>
+<h3 id="marking-clients-as-privileged">Marking clients as privileged</h3>
+<h4 id="system-services">System services</h4>
+<p>System services are identified as privileged based on the Group ID
+(GID) of the process. The GID used may vary between products. The
+current GIDs are:</p>
+<ul>
+<li>Lahaina: 2908</li>
+</ul>
+<p>On Android, <a href="#system-integrators">System integrators</a> can set system
+services as privileged by adding the correct group (here <code>oem_2908</code>)
+to the service's <code>.rc</code> file. For example, <code>vppservice</code> is configured as
+privileged as follows (assuming it needs also to be in the <code>camera</code> group):</p>
+<pre><code>service vendor.vppservice /vendor/bin/vppservice
+    class hal
+    user media
+    group camera oem_2908
+</code></pre>
+<p>See <code>$ANDROID_BUILD_TOP/system/core/init/README.md</code> in the Android
+source tree for a discussion on the Android Init language and <code>.rc</code>
+files.</p>
+<h4 id="built-in-applications">Built-in applications</h4>
+<p><a href="#system-integrators">System integrators</a> can configure built-in
+device applications as privileged clients by using the
+<code>com.qualcomm.permission.qti.FASTRPCPRIVILEGE</code> permission in the
+application's AndroidManifest XML file:</p>
+<pre><code>&lt;uses-permission android:name="com.qualcomm.permission.qti.FASTRPCPRIVILEGE"/&gt;
+...
+&lt;permission android:name="com.qualcomm.permission.qti.FASTRPCPRIVILEGE"
+    android:protectionLevel="signatureOrSystem" /&gt;
+</code></pre>
+<h4 id="test-applications">Test applications</h4>
+<p>Test applications can also use the <code>setgid()</code> system call to change
+their group. The process must call <code>setgid(2908)</code> before opening a
+session on the DSP and making any FastRPC calls, including memory
+mapping operations. This can be useful for testing code intended for
+privileged clients before system integration. Calling <code>setgid()</code>
+requires root privileges and is not available for regular applications
+on production devices.</p>
+<h3 id="priority-levels">Priority levels</h3>
+<p>The system caps DSP thread priority levels for unprivileged
+processes. This ensures critical system services can use the DSP at a
+higher priority than installable applications. The priority ranges may
+be changed, but are currently:</p>
+<ul>
+<li>Unprivileged clients: 64 through 254</li>
+<li>Privileged clients: 1 through 254</li>
+</ul>
+<p>Note that <a href="os/os_support_dsp.html">QuRT, the DSP RTOS,</a> uses lower priority values for higher priorities. In
+other words, a thread at priority 1 has higher execution priority than
+one at priority 2.</p>
+<p>The priority limits apply both to the priority used for FastRPC
+threads (set with the <code>FASTRPC_THREAD_PARAMS</code> or
+<code>FASTRPC_RELATIVE_THREAD_PRIORITY</code> session control requests) and
+threads created locally on the DSP.</p>
+<p>The process can query its thread priority ceiling using the
+<code>HAP_get_thread_priority_ceiling()</code> API defined in <code>HAP_ps.h</code>.</p>
+<p>Thread priorities are also used as the resource reservation priority
+with the <a href="../doxygen/HAP_compute_res/index.html" target="_blank">Compute Resource
+Manager</a>.</p>
+<p>Prior to Lahaina priority limits are based on whether the process is
+running as a signed or unsigned PD. See <a href="#unsigned-pd-services-and-limitations">Unsigned PD services and
+limitations</a>.</p>
+<h3 id="vtcm-partitions">VTCM partitions</h3>
+<p>Lahaina introduces the ability to create multiple partitions within
+the CDSP's VTCM. Multiple partitions are intended for device-specific
+use cases such as camera streaming which may require guaranteed
+parallel VTCM allocations to succeed while other applications use
+VTCM; most applications should continue to use the default partition,
+and many devices will ship with a single default VTCM partition only.</p>
+<p>Some VTCM partitions in the system can be restricted to privileged
+clients only. All clients can access regular non-privileged
+partitions.</p>
+<p>Note that some CDSP libraries, notably neural network runtimes, may
+run at reduced performance levels or have functional limitations if
+they do not get access to the whole VTCM in the system. System integrators
+should discuss their partitioning requirements and plans with Qualcomm
+CE as part of designing their products.</p>
+<p><a href="#system-integrators">System integrators</a> configure VTCM partitions in
+the Linux Kernel Device Tree under the <code>RPMSG</code> section of the appropriate
+DSP:</p>
+<pre><code>qcom,msm_cdsprm_rpmsg {
+    qcom,msm_cdsp_rm {
+        qcom,vtcm-partition-info = &lt;0 2048 0x1&gt;,
+                                   &lt;1 1024 0x2&gt;,
+                                   &lt;2 512 0x4&gt;,
+                                   &lt;3 512 0x4&gt;;
+        qcom,vtcm-partition-map = &lt;0 0&gt;,
+                                  &lt;1 0&gt;,
+                                  &lt;2 1&gt;,
+                                  &lt;30 2&gt;,
+                                  &lt;31 3&gt;;
+    };
+};
+</code></pre>
+<p>The configuration has two parts:</p>
+<ul>
+<li>
+<p><code>qcom,vtcm-partition-info</code> specifies the partitions, their sizes and
+  flags in <code>&lt;index size_in_KB flags&gt;</code> format.</p>
+<ul>
+<li><code>index</code><ul>
+<li>Partitions must be defined with a linear partition index
+  starting with 0 till (Number of VTCM partitions - 1).</li>
+<li>VTCM memory will be partitioned in the order provided
+  (0 being the first partition).</li>
+</ul>
+</li>
+<li><code>size_in_KB</code><ul>
+<li>Size of each partition should be a multiple of 256KB.</li>
+<li>Given 256KB is the minimum VTCM allocation size,
+  256K, 1M, 4M are supported page sizes.
+  Specifying a 3MB partition will allow maximum of 1MB page (3x).
+  Similarly, a 512KB partition will be of 256KB pages (2x).</li>
+</ul>
+</li>
+<li><code>flags</code><ul>
+<li>Flags can be used to set some partitions as privileged,
+  i.e. only available to privileged clients.
+  Currently 0x1 (PRIMARY), 0x2 (SECONDARY) and
+  0x4 (PRIVILEGED) are the supported flags per partition
+  (only one per partition).</li>
+<li>PRIMARY and SECONDARY partitions are available to all the clients
+  while the PRIMARY partition is used by default. Partition selection
+  is controlled by the vtcm-partition-map information.</li>
+<li>There must be only one PRIMARY partition.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>qcom,vtcm-partition-map</code> maps application type identifiers to
+  partitions using <code>&lt;Application_ID partition_ID&gt;</code>. Clients use
+  application type IDs to request non-default
+  partitions. The application identifier is specified as a value [0...31]
+  in the device tree.</p>
+</li>
+</ul>
+<p>Client applications use the <a href="../doxygen/HAP_compute_res/index.html" target="_blank"><code>HAP_compute_res_attr_set_app_type()</code></a> API
+to select a non-default VTCM partition for their allocation. The
+application type ID must match the values configured in the device
+tree. Developers wishing to use non-default VTCM partitions must work
+with their <a href="#system-integrators">System integrator</a> partners to
+determine appropriate application types to use.</p>
+<p>VTCM partitioning can be temporarily disabled at runtime. This will
+treat the entire VTCM as a single default partition, and may be useful
+for testing purposes or to implement device-wide "performance mode"
+settings. There are two options available:</p>
+<ul>
+<li><code>debugfs</code> node: <code>/d/compute/vtcm_partition_state</code><ul>
+<li>A read would return '0' if VTCM partitioning is disabled, '1' if enabled.</li>
+<li>Write '0' to disable partition.</li>
+<li>Write '1' to switch back to the default partition table
+  specified in the device tree.</li>
+</ul>
+</li>
+<li>Kernel API: <code>int cdsprm_compute_vtcm_set_partition_map(unsigned int b_vtcm_partitioning);</code><ul>
+<li><code>b_vtcm_partitioning = 0</code> disables partition if already enabled via device tree configuration.</li>
+<li><code>b_vtcm_partitioning = 1</code> resets the configuration to the default specified
+  in device tree.</li>
+<li>Returns 0 on success.</li>
+<li>Available via <code>include/linux/soc/qcom/cdsprm.h</code></li>
+<li>List <code>QCOM_CDSP_RM</code> as a dependency for using the API.
+  Access will be restricted to only dynamically loadable kernel modules when <code>QCOM_CDSP_RM</code> is compiled as a module (default).</li>
+</ul>
+</li>
+</ul>
+<h2 id="signed-and-unsigned-pds">Signed and unsigned PDs</h2>
+<p>Most Hexagon DSPs in the system require code running on the DSP to be
+cryptographically signed. This includes libraries built with the
+Hexagon SDK and installed to the device at runtime, such as most
+examples shipped in the SDK. To avoid having to separately sign
+software for the Hexagon DSP, the Compute DSP (cDSP) supports
+dedicated sandboxed Unsigned PDs that can load and execute unsigned
+code.</p>
+<h3 id="unsigned-pds">Unsigned PDs</h3>
+<p>Unsigned PDs are sandboxed DSP processes used to offload computation
+workloads to the cDSP. From a system security point of view they are
+considered extensions to their CPU client processes: They operate in
+memory provided by the client process and do not have access to
+drivers or other resources the client could not access directly. Since
+code running in unsigned PDs does not need to be signed, it can be
+easily shipped with installable applications - application
+developers not working directly with OEMs or system integrators should
+design their DSP software to run in unsigned PDs on the cDSP.</p>
+<h4 id="unsigned-pd-support">Unsigned PD support</h4>
+<p>Unsigned PDs are only supported on the cDSP and not available on other
+DSPs. To check if a DSP supports Unsigned PD, perform a capability
+query using the <a href="../doxygen/remote/index.html" target="_blank">remote APIs</a> using DSP
+attribute <code>UNSIGNED_PD_SUPPORT</code>.</p>
+<p>Note that all devices supported by this SDK support unsigned PDs on
+the cDSP. Other system DSPs only support <a href="#signed-pds">Signed PDs</a> and
+are not available for third-party application use.</p>
+<h4 id="unsigned-pd-services-and-limitations">Unsigned PD services and limitations</h4>
+<p>To allow running unsigned code, unsigned PDs are more tightly
+sandboxed than regular PDs and have fewer services available. The
+intent is to support all system services required by compute offload,
+and while the list can change in the future the current list includes:</p>
+<ul>
+<li>Inter-processor communication with FastRPC</li>
+<li>Thread creation and thread services - mutexes, semaphores, signals, etc,
+  including lock/wait operations with timeouts.</li>
+<li>Memory allocation, mapping, and memory management</li>
+<li>Full DSP instruction set, including HVX and HMX</li>
+<li>Cache management operations</li>
+<li>Clock and power management</li>
+<li>VTCM allocation and usage</li>
+</ul>
+<p>The most notable omissions are drivers such as UBWC/DMA and the camera
+streamer and access to cache locking and timer APIs.</p>
+<p>Prior to Lahaina unsigned PD thread and resource management priorities
+are limited to a pre-defined range (64-254). For Lahaina and later
+products priorities are determined by the client privilege level
+instead; see section <a href="#priority-levels">Priority levels</a>
+above. Additionally, unsigned PDs can create a maximum of 128
+threads.</p>
+<h4 id="activate-unsigned-pd">Activate Unsigned PD</h4>
+<p>All DSP processes are started as signed PDs by default. To request an
+unsigned PD instead, clients must use the <a href="../doxygen/remote/index.html" target="_blank"><code>remote_session_control</code></a> API
+as follows before starting to use the DSP:</p>
+<pre><code>#pragma weak remote_session_control
+int unsigned_pd = 0;
+if ( remote_session_control ) {
+    struct remote_rpc_control_unsigned_module data;
+    data.enable = 1;
+    data.domain = CDSP_DOMAIN_ID;
+    err = remote_session_control(DSPRPC_CONTROL_UNSIGNED_MODULE, (void*)&amp;data, sizeof(data));
+}
+</code></pre>
+<p>The <a href="../examples/calculator/index.html">calculator</a> example illustrates
+how to run code in an unsigned PD using this approach.</p>
+<p>The client's DSP process is instantiated as a signed or unsigned PD
+when it is first launched and cannot be changed. Because of this the
+call to <a href="../doxygen/remote/index.html" target="_blank"><code>remote_session_control</code></a> must be made before using the DSP -
+before making any FastRPC calls, mapping memory to the DSP, etc.</p>
+<h3 id="signed-pds">Signed PDs</h3>
+<p>Signed PDs execute as regular DSP processes and can have access to
+drivers and resources not available to Unsigned PDs. They are intended
+to be used as extensions to the underlying operating system and
+frameworks, and are isolated from their CPU-side client
+processes. Only signed libraries can be loaded to signed PDs.</p>
+<p>On the cDSP Signed PDs are used for system services such as camera
+processing: The camera streamer cannot be accessed from Unsigned
+PDs. Other DSPs in the system only support signed PDs, and all code
+must be signed before it can be loaded on them.</p>
+<p>Most Hexagon system libraries are shipped as signed so that they can
+be loaded to both signed and unsigned PDs.</p>
+<p>Lahaina and later products restrict launching signed PDs to specified
+whitelisted applications only. To avoid issues, all clients should use
+<a href="#activate-unsigned-pd">unsigned PDs</a> for their cDSP offload if
+possible.</p>
+<p>All code loaded into Signed PDs must be signed unless the device has a
+test signature installed. See <a href="../tools/sign.html">Device signing</a> for
+discussion on how to install test signatures on test devices. For
+production devices <a href="#system-integrators">System integrators</a> can hash
+libraries as part of the <a href="#dsp-rebuildinghashing">image build
+process</a> or create and install new Trusted Code Groups (TCGs)
+used to sign modules for multiple builds. System integrators
+should contact Qualcomm Customer Engineering for documentation and
+support on signing software for production devices.</p>
+<h2 id="cpz">CPZ</h2>
+<p>Content Protection Zone (CPZ) PDs are sandboxed user processes that
+can be used to post-process DRM-protected video content. Only <a href="#system-integrators">System
+integrators</a> can develop or integrate software
+that runs in CPZ PDs, and CPZ processing can only be used as part of
+the system video processing framework. For more details contact
+Qualcomm Customer Engineering.</p>
+<h2 id="secure-pd">Secure PD</h2>
+<p>The cDSP supports a sandboxed Secure PD that can be used to
+improve the performance of secure use cases such as face authentication
+by offloading algorithms from secure execution environments on the
+application CPU to the cDSP. Only
+<a href="#system-integrators">System integrators</a> can develop or integrate
+software that runs in the secure PD. For more details contact Qualcomm
+Customer Engineering.</p>
+<h2 id="dsp-rebuildinghashing">DSP rebuilding/hashing</h2>
+<p><a href="#system-integrators">System integrators</a> can rebuild the DSP
+image. This may be necessary to add or modify code running in static
+processes, or to change certain configuration settings. This SDK
+focuses on developing dynamically loadable DSP modules that can be
+installed separately, and rebuilding the image is outside of the
+scope. System integrators should work with their Qualcomm Customer
+Engineering contacts to get more information.</p>
+<p>As part of the image build process system integrators can statically
+hash dynamically loadable modules so that they can be loaded in
+<a href="#signed-pds">Signed PDs</a> for the corresponding DSP build.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="system_performance/dsp_optimizations.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                DSP optimizations
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../examples/index.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Overview
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../js/iframe-worker.js"></script>
+<script src="../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

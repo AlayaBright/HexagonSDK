@@ -1,0 +1,1534 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Home - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/mermaid.css">
+    
+      <link rel="stylesheet" href="css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hexagon-sdk-overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Home
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="index.html" class="md-nav__link md-nav__link--active">
+      Home
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting started
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk-components" class="md-nav__link">
+    SDK components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    Directory Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-process" class="md-nav__link">
+    Development process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    Architecture overview
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qualcomm-snapdragon-processors" class="md-nav__link">
+    Qualcomm Snapdragon processors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chip-and-dsp-variants" class="md-nav__link">
+    Chip and DSP variants
+  </a>
+  
+    <nav class="md-nav" aria-label="Chip and DSP variants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hexagon-core" class="md-nav__link">
+    Hexagon core
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hexagon-hvx-unit" class="md-nav__link">
+    Hexagon HVX unit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hexagon-hmx-unit" class="md-nav__link">
+    Hexagon HMX unit
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-subsystem" class="md-nav__link">
+    Memory subsystem
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-boards" class="md-nav__link">
+    Development boards
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting started
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk-components" class="md-nav__link">
+    SDK components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    Directory Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-process" class="md-nav__link">
+    Development process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    Architecture overview
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qualcomm-snapdragon-processors" class="md-nav__link">
+    Qualcomm Snapdragon processors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chip-and-dsp-variants" class="md-nav__link">
+    Chip and DSP variants
+  </a>
+  
+    <nav class="md-nav" aria-label="Chip and DSP variants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hexagon-core" class="md-nav__link">
+    Hexagon core
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hexagon-hvx-unit" class="md-nav__link">
+    Hexagon HVX unit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hexagon-hmx-unit" class="md-nav__link">
+    Hexagon HMX unit
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-subsystem" class="md-nav__link">
+    Memory subsystem
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-boards" class="md-nav__link">
+    Development boards
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="hexagon-sdk-overview">Hexagon SDK overview</h1>
+<p>The Qualcomm Hexagon™ SDK provides a set of tools, software, and documentation that assist developers in running applications on Qualcomm devices and leveraging the Hexagon DSPs.</p>
+<p>This page provides a brief overview of the Qualcomm embedded compute devices that this Hexagon SDK supports, the process of writing applications running on the CPU and offloading tasks onto the DSP, and how the Hexagon SDK tools and documentation facilitate this process.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>The Hexagon SDK installer requires the following:</p>
+<ul>
+<li>64-bit Windows 7, Windows 8, or Windows 10</li>
+<li>64-bit Ubuntu 16.x or later</li>
+</ul>
+<h2 id="getting-started">Getting started</h2>
+<p>For a quick start, browse through the <a href="examples/index.html">base SDK examples</a> and run some of the examples on simulator and on target. Each of these examples illustrate a few tools or software features as explained in the <a href="examples/index.html#list-of-examples">list of examples</a> table. The <a href="examples/calculator/index.html">calculator</a> example is a good example to start with as it introduces a number of basic concepts.</p>
+<p>To gain a more solid understanding of the SDK and cDSP that it supports, review the rest of this section. Then browse through the Tools and Software tabs to learn about the development tools and software components available in the SDK. For detailed documentation on a specific topic, see the <a href="reference/manuals.html">reference manuals</a> and use the examples for a better understanding.</p>
+<h2 id="sdk-components">SDK components</h2>
+<p>The Hexagon SDK includes the following components, each covered in one of the documentation tabs and intended to help software developers as follows:</p>
+<ul>
+<li>Development <strong><em>Tools</em></strong>: Building, running, debugging, and profiling Hexagon-based applications</li>
+<li><strong><em>Software</em></strong> Developing Hexagon-based applications for the run-time ecosystem on Qualcomm devices</li>
+<li>Code <strong><em>Examples</em></strong>: Source projects illustrating different aspects of developing Hexagon-based applications</li>
+<li><strong><em>Reference</em></strong> Documentation:  Additional resources with in-depth information</li>
+<li><strong><em>Add-ons</em></strong>: Additional packages available for installation into this SDK</li>
+</ul>
+<h2 id="directory-structure">Directory Structure</h2>
+<p>The Hexagon SDK tree structure is as follows:</p>
+<p><code>/docs</code>     Hexagon SDK documentation</p>
+<p><code>/examples</code> <a href="examples/index.html">Code examples</a></p>
+<p><code>/utils</code>    Helper scripts to automate tasks commonly performed by developers</p>
+<p><code>/inc</code>      Public header files needed to access <a href="software/system_libraries/index.html">system-level software libraries</a></p>
+<p><code>/libs</code>     <a href="software/system_libraries/index.html">System-level software libraries</a> and <a href="software/hexagon_libraries/index.html">Hexagon libraries</a></p>
+<p><code>/ipc</code>  Inter-processor communication libraries providing <a href="software/ipc/rpc.html">FastRPC</a> support</p>
+<p><code>/rtos</code> <a href="pdf/80-VB419-178_B_QuRT_User_Guide.pdf">Real-time DSP OS</a></p>
+<p><code>/tools</code>    Development tools (see <strong><em>Tools</em></strong> tab)</p>
+<p><code>/add-ons</code>  SDK add-ons (see <strong><em>Add-ons</em></strong> tab)</p>
+<h2 id="development-process">Development process</h2>
+<p>The process of developing a Hexagon-based feature for a Qualcomm device typically involves several of the following steps (not necessarily always in this order).</p>
+<ol>
+<li>
+<p>Develop the core algorithm of interest in C/C++ (for example, in an x86 environment).</p>
+</li>
+<li>
+<p>Once the workload is functional and the top-level API's are defined, build it as a Hexagon shared library and an executable test driver that exports main(), as is done with the examples in this SDK.</p>
+</li>
+<li>
+<p><a href="tools/build.html">Build</a>, <a href="tools/run.html">execute</a>, <a href="tools/debug.html">debug</a>, and <a href="tools/profile.html">profile</a> the test driver on the Hexagon ISS (Instruction Set Simulator) and/or target device.</p>
+</li>
+<li>
+<p>Prepare to integrate the shared Hexagon library into a run-time HLOS application or multimedia framework. To do this, build an inter-processor interface for the shared Hexagon library by using the SDK's <a href="software/ipc/rpc.html">FastRPC framework</a>. This might require updating your shared library and test driver to use the RPC interface.</p>
+</li>
+<li>
+<p>Optimize and enhance the Hexagon shared library using the techniques documented in this SDK, such as:</p>
+<ul>
+<li>Multi-threading the Hexagon workload</li>
+<li>Utilizing the <a href="software/system_libraries/index.html">System Libraries</a> and <a href="software/hexagon_libraries/index.html">Hexagon DSP libraries</a> of this SDK</li>
+<li><a href="software/system_performance/dsp_optimizations.html">Optimizing the core loops</a> by implementing cache pre-fetching, tiling, writing intrinsics or assembly, or in applicable cases, Halide, TVM, or other compiler-based frameworks.</li>
+<li>Iterating the optimizations with <a href="tools/profile.html">profiling and tracing</a> to reduce cache misses and other stalls until satisfactory performance is reached.</li>
+</ul>
+</li>
+</ol>
+<h2 id="architecture-overview">Architecture overview</h2>
+<p>This section provides an overview of Hexagon processors supported by this SDK and used for embedded advanced computing applications.</p>
+<h3 id="qualcomm-snapdragon-processors">Qualcomm Snapdragon processors</h3>
+<p>Qualcomm Technologies, Inc. (QTI) offers a large and increasing number of variants of the Snapdragon chipset solution. The Snapdragon mobile product family is organized into five product tiers. The highest tier includes the SM8xxx series (premium) and SM7xxx series (high tier). Lower tiers include the SM6xx, SM4xx and SM2xx series.</p>
+<p>These product tiers are differentiated by scalable computing resources for the CPU, GPU, and DSP processors. When moving from low to premium tiers, these processor resource changes are characterized by an increasing number of processors, increasing processor complexity, and increasing clock speeds. For a full list of products, visit the space on <a href="https://www.qualcomm.com/products/mobile-processors">mobile processors</a> on our website.</p>
+<p>The following diagram provides an overview of one representative premium tier product: the SM8150 chipset. The processing units include a Kryo CPU, an Adreno 640 GPU, and four Hexagon DSPs, each devoted to a specific application space: sensor (sDSP), modem (mDSP), audio (aDSP), and compute (cDSP).</p>
+<p><img alt="svg" src="images/SM8150_block_diagram.png" /></p>
+<h3 id="chip-and-dsp-variants">Chip and DSP variants</h3>
+<p>Each Qualcomm chip includes multiple Hexagon DSPs such as the compute DSP (cDSP), audio DSP (aDSP), and sensor DSP (SLPI -- Sensor Low Power Island). Each of these DSPs implement a specific Instruction Set Architecture (ISA) version. The ISAs supported by this Hexagon SDK are the following:</p>
+<ul>
+<li>V65</li>
+<li>V66</li>
+<li>V68</li>
+</ul>
+<p>The compute DSP, which is intended for compute-intensive tasks such as image processing, computer vision, and camera streaming, also includes an instruction set extension for fixed-point vector operations called Hexagon Vector eXtensions (HVX). Starting with Lahaina, the cDSP is being referred to as Qualcomm® Hexagon™ Tensor Processor to reflect its ability to process neural network tensor data efficiently. In the Hexagon SDK, all references to cDSP apply to Hexagon Tensor Processor also.</p>
+<p>The <a href="reference/manuals.html">reference documentation</a> contains a <a href="reference/manuals.html#programming-languages">section</a> that lists the various reference manuals for each of these ISA versions, with or without HVX extensions.</p>
+<p>Compared to the host CPU, the DSP typically runs at a lower clock speed but provides more parallelism opportunities at the instruction level. This often makes the DSP a better alternative in terms of throughput and/or power consumption. As a result, it is preferable to offload as many large compute-intensive tasks as possible onto the DSP to reduce power consumption of the device and free up cycles on the CPU for additional features. <a href="software/ipc/rpc.html">RPC</a> is the main mechanisms allowing to offload tasks onto the DSP.</p>
+<p>The following table provides a quick summary of some of the devices supported by the current Hexagon SDK and the key cDSP features available in these devices.</p>
+<table>
+<thead>
+<tr>
+<th>Chip number</th>
+<th>Chip name</th>
+<th>cDSP</th>
+<th>Turbo L1</th>
+<th>Turbo</th>
+<th>Nominal</th>
+<th>HVX</th>
+<th>HMX</th>
+<th>L2</th>
+<th>VTCM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SM8350</td>
+<td>Lahaina</td>
+<td>V68</td>
+<td>1.5 GHz</td>
+<td>1.4 GHz</td>
+<td>1.2 GHz</td>
+<td>4</td>
+<td>1</td>
+<td>1 MB</td>
+<td>4 MB</td>
+</tr>
+<tr>
+<td>SM8250</td>
+<td>Kona</td>
+<td>V66</td>
+<td>1.5 GHz</td>
+<td>1.4 GHz</td>
+<td>1.2 GHz</td>
+<td>4</td>
+<td>0</td>
+<td>1 MB</td>
+<td>256 KB</td>
+</tr>
+<tr>
+<td>SM8150</td>
+<td>Hana</td>
+<td>V66</td>
+<td>1.5 GHz</td>
+<td>1.3 GHz</td>
+<td>1.2 GHz</td>
+<td>4</td>
+<td>0</td>
+<td>1 MB</td>
+<td>256 KB</td>
+</tr>
+<tr>
+<td>SM7250</td>
+<td>Saipan</td>
+<td>V66</td>
+<td>1.5 GHz</td>
+<td>1.4 GHz</td>
+<td>1.2 GHz</td>
+<td>4</td>
+<td>0</td>
+<td>1 MB</td>
+<td>256 KB</td>
+</tr>
+<tr>
+<td>SM6250</td>
+<td>Rennell</td>
+<td>V66</td>
+<td>1.2 GHz</td>
+<td>1.2 GHz</td>
+<td>.95 GHz</td>
+<td>2</td>
+<td>0</td>
+<td>512 KB</td>
+<td>256 KB</td>
+</tr>
+<tr>
+<td>SM4250</td>
+<td>Kamorta</td>
+<td>V66</td>
+<td>-</td>
+<td>1.0 GHz</td>
+<td>.83 GHz</td>
+<td>2</td>
+<td>0</td>
+<td>512 KB</td>
+<td>256 KB</td>
+</tr>
+</tbody>
+</table>
+<p>Devices are grouped in families identified by the highest tier device in that family.  For example, the Lahaina family includes the Lahaina, Cedros, and Bitra.</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Hana family</th>
+<th>Kona family</th>
+<th>Lahaina family</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8xxx</td>
+<td>Hana (SM8150)</td>
+<td>Kona (SM8250)</td>
+<td>Lahaina (SM8350)</td>
+</tr>
+<tr>
+<td>7xxx</td>
+<td>Moorea (SM7150)</td>
+<td>Saipan (SM7250)</td>
+<td>Cedros (SM7xxx)</td>
+</tr>
+<tr>
+<td>6xxx</td>
+<td></td>
+<td>Rennell (SM6250)</td>
+<td>Bitra (SM6xxx)</td>
+</tr>
+<tr>
+<td>4xxx</td>
+<td></td>
+<td>Kamorta (SM4250)</td>
+<td></td>
+</tr>
+<tr>
+<td>### cDSP</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The following diagram provides an overview of the processing units within the cDSP and how they connect to the memory cache.</p>
+<p><img alt="svg" src="images/V66_block_diagram.png" /></p>
+<h4 id="hexagon-core">Hexagon core</h4>
+<p>The Hexagon core is made of several DSP hardware threads — four or six on most current cDSPs. Each DSP hardware thread has access to the Hexagon scalar instructions, which perform fixed-point and floating-point operations on single or pairs of 32-bit registers.</p>
+<p>Each data unit is capable of performing a load or store up to 64-bit wide, or 32-bit scalar ALU operation.</p>
+<p>Each execution unit is capable of 16/32/64-bit vectorized multiply, ALU, bit manipulation, shift or floating-point operations.</p>
+<p>Prior to V66, the scalar floating-point and multiplier resources were shared by all execution units. This meant that all combined hardware threads performed a maximum of one of each operation every processor cycle. Starting with V66, each cluster has its own floating-point and multiplier resources.</p>
+<p>As shown on the diagram above, a cluster refers to a pair of threads (Thread 0&amp;1 and Thread 2&amp;3). Within a cluster, the two threads typically commit instruction packets on alternating clock cycles because most instructions require at least two clock cycles to complete. In the best case, each cluster completes one instruction packet on every DSP clock cycle, yielding a total throughput of (2 * DSP Clock) instruction packets per second as long as stalls are avoided. (For guidelines on minimizing latencies, see the discussion on <a href="software/system_performance/dsp_optimizations.html">DSP optimization techniques</a>.)</p>
+<h4 id="hexagon-hvx-unit">Hexagon HVX unit</h4>
+<p>HVX is a coprocessor that adds 128-byte vector processing capabilities to the cDSP. Scalar hardware threads use the HVX coprocessor by accessing an HVX register file, also referred as HVX context.</p>
+<p>As shown in the V66 block diagram above, instruction packets flow through the scalar Hexagon pipeline, where any included scalar instructions are processed. Instructions then continue onto the HVX Vector FIFO. As such, HVX instructions can be intermixed with scalar instructions, even within the same instruction packet.</p>
+<h4 id="hexagon-hmx-unit">Hexagon HMX unit</h4>
+<p>HMX is a matrix engine introduced with Lahaina. It provides very high throughput for convolution operations.</p>
+<p>HMX instructions are not directly exposed by this SDK. HMX acceleration is only made available through machine learning libraries and tools such as the QNN SDK, which allows Neural Networks to run on Lahaina and makes heavy use of the HMX engine.</p>
+<h3 id="memory-subsystem">Memory subsystem</h3>
+<p>The following diagram provides an overview of the DSP memory subsystem.</p>
+<p><img alt="svg" src="images/memory_subsystem.png" /></p>
+<p>The cDSP has a two-level cache memory subsystem. L1 is only accessible to the scalar unit, making L2 the second level memory for the scalar unit and the first level memory for the HVX coprocessor.</p>
+<p>L1 is write-through only. This allows the caches to be hardware coherent. To maintain coherency, if an HVX store hits in L1, the L1 line is invalidated.</p>
+<p>The vector units support a variety of load/store instructions, including support for unaligned vectors and per-byte conditional stores.</p>
+<p>A pipelined vector FIFO is in place for the HVX hardware to read L2 contents and hide L2 read latencies from the programmer. For a more in-depth discussion on memory latencies, see the <a href="software/system_performance/dsp_optimizations.html#memory-latencies">memory section</a> in the optimization guidelines.</p>
+<p>The cDSP also includes a Tightly Coupled Memory (TCM) called VTCM (Vector TCM). VTCM is a low-power memory that provides approximately twice the bandwidth of L2 and reduces store-to-load latencies. VTCM is required for performing <a href="software/system_performance/dsp_optimizations.html#vtcmlookup">scatter-gather lookup operations</a> and for using the HMX engine.</p>
+<h2 id="development-boards">Development boards</h2>
+<p>This section provides a high-level overview of board options that are available to developers working with the Hexagon compute DSP. For more details, see the websites of each provider.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Provider</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open-Q<br>For example: SDM660</td>
+<td>Qualcomm</td>
+<td>HDK made of two components:<br>SOM powered by Snapdragon processor and including a 64-bit multicore CPU, Qualcomm Adreno GPU, Hexagon DSP along with Android OS.<br>Carrier board to provide additional connectivity and display capabilities.</td>
+</tr>
+<tr>
+<td>DragonBoard™ development kit<br>For example: SM8150</td>
+<td>Arrow Electronics</td>
+<td>Single small development board</td>
+</tr>
+<tr>
+<td>MTP<br>For example: MTP8250, MTP8350</td>
+<td>Qualcomm</td>
+<td>Earliest reference platforms to become available after new processors come out. Limited supply. Only provided through direct engagements.</td>
+</tr>
+<tr>
+<td>QRD<br>For example: QRD8350</td>
+<td>Qualcomm</td>
+<td>Qualcomm reference design in mobile phone form factor.</td>
+</tr>
+<tr>
+<td>IP Camera<br>For example: SDA626, SA8155P, RB3</td>
+<td>Thundercomm</td>
+<td>IP Camera Reference Design, Automotive Development Platform, Robotics Platform, VR development kit, and so on.</td>
+</tr>
+</tbody>
+</table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+        
+          <a href="tools/setup.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Setup
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="js/iframe-worker.js"></script>
+<script src="search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: ".",
+          features: [],
+          search: Object.assign({
+            worker: "assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

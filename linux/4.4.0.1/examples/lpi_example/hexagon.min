@@ -1,0 +1,31 @@
+ifeq (1,$(LPI))
+
+#create LPI shared object
+BUILD_DLLS += libLPI
+
+#src/uimage_v2.lcs is used as linker script to add new note section in the LPI shared object.
+
+libLPI_LD_FLAGS += --script=src/uimage_v2.lcs
+
+#src/uimage_dl_v2.c is compiled as part of shared object to put constant string "uimg.dl.ver.2.0.0" \
+in the new section created using uimage_v2.lcs.
+
+libLPI.C_SRCS += src/so_source.c src/uimg_dl_v2.c
+
+else
+
+#create non-LPI shared object
+BUILD_DLLS += libNon-LPI
+
+libNon-LPI.C_SRCS += src/so_source.c
+
+endif
+
+
+BUILD_COPIES += \
+   $(DLLS) \
+   $(SHIP_DIR)/ ;
+
+# always last
+include $(RULES_MIN)
+

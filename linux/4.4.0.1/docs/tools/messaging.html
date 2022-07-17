@@ -1,0 +1,1683 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Message logging - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#messaging-resources" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Message logging
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Message logging
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="messaging.html" class="md-nav__link md-nav__link--active">
+      Message logging
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-messages" class="md-nav__link">
+    Generating messages
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-farf" class="md-nav__link">
+    Static FARF
+  </a>
+  
+    <nav class="md-nav" aria-label="Static FARF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#farf-api" class="md-nav__link">
+    FARF API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compile-time-enablement-of-static-farf" class="md-nav__link">
+    Compile-time enablement of static FARF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-levels" class="md-nav__link">
+    Custom levels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-file-enablement-of-static-farf" class="md-nav__link">
+    Config file enablement of static FARF
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#printf" class="md-nav__link">
+    printf
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-time-farf" class="md-nav__link">
+    Run-time FARF
+  </a>
+  
+    <nav class="md-nav" aria-label="Run-time FARF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#config-file-enablement-of-run-time-farf" class="md-nav__link">
+    Config file enablement of run-time FARF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatic-enablement-of-run-time-farf" class="md-nav__link">
+    Programmatic enablement of run-time FARF
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capturing-messages" class="md-nav__link">
+    Capturing messages
+  </a>
+  
+    <nav class="md-nav" aria-label="Capturing messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mini-dm" class="md-nav__link">
+    mini-dm
+  </a>
+  
+    <nav class="md-nav" aria-label="mini-dm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connecting-mini-dm-on-linux" class="md-nav__link">
+    Connecting mini-dm on Linux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connecting-mini-dm-on-windows" class="md-nav__link">
+    Connecting mini-dm on Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-options" class="md-nav__link">
+    Logging options
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logcat" class="md-nav__link">
+    logcat
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-messages" class="md-nav__link">
+    Generating messages
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-farf" class="md-nav__link">
+    Static FARF
+  </a>
+  
+    <nav class="md-nav" aria-label="Static FARF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#farf-api" class="md-nav__link">
+    FARF API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compile-time-enablement-of-static-farf" class="md-nav__link">
+    Compile-time enablement of static FARF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-levels" class="md-nav__link">
+    Custom levels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-file-enablement-of-static-farf" class="md-nav__link">
+    Config file enablement of static FARF
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#printf" class="md-nav__link">
+    printf
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-time-farf" class="md-nav__link">
+    Run-time FARF
+  </a>
+  
+    <nav class="md-nav" aria-label="Run-time FARF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#config-file-enablement-of-run-time-farf" class="md-nav__link">
+    Config file enablement of run-time FARF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatic-enablement-of-run-time-farf" class="md-nav__link">
+    Programmatic enablement of run-time FARF
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capturing-messages" class="md-nav__link">
+    Capturing messages
+  </a>
+  
+    <nav class="md-nav" aria-label="Capturing messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mini-dm" class="md-nav__link">
+    mini-dm
+  </a>
+  
+    <nav class="md-nav" aria-label="mini-dm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connecting-mini-dm-on-linux" class="md-nav__link">
+    Connecting mini-dm on Linux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connecting-mini-dm-on-windows" class="md-nav__link">
+    Connecting mini-dm on Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-options" class="md-nav__link">
+    Logging options
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logcat" class="md-nav__link">
+    logcat
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="messaging-resources">Messaging resources</h1>
+<h2 id="overview">Overview</h2>
+<p>This page discusses the tools available for logging debug messages from the DSP.</p>
+<p>The DSP can <a href="#generating-messages">generate messages</a> using the <a href="../doxygen/HAP_farf/index.html">Hexagon SDK's FARF API</a> or through regular IO functions like <code>printf</code>.  These messages are sent to a diagnostic (or DIAG) framework present on the DSP, from which they can be collected. They can also be collected via USB with a tool called <a href="#mini-dm">mini-dm</a> running on the host computer. If the USB port is not connected to collect these messages, the DIAG framework has very low run-time overhead.</p>
+<p>The DIAG framework also includes a circular buffer, which allows the most recent messages to be read from crash dumps during debugging.</p>
+<p><img alt="svg" src="../images/mini-dm.png" /></p>
+<p>Optionally, DSP messages can be routed to the CPU in parallel with the DIAG framework, thus allowing <a href="#logcat">logcat</a> to collect DSP messages from the CPU.  Routing DSP messages to the CPU has a small but measurable impact on power and thus is not enabled by default.</p>
+<p>Depending on the types of FARF messages being used, the user can enable or disable messages at different priority levels, at compile time or run time.</p>
+<h2 id="generating-messages">Generating messages</h2>
+<h3 id="static-farf">Static FARF</h3>
+<h4 id="farf-api">FARF API</h4>
+<p>The FARF API is defined in ${HEXAGON_SDK_ROOT}/inc/HAP_farf.h.  It allows the caller to send diagnostic messages:</p>
+<pre><code>FARF(level, msg, ...)
+</code></pre>
+<p>The FARF level allows the user to selectively enable or disable certain types of messages according to their priority level.  The following levels are supported and listed in increasing priority:</p>
+<ul>
+<li><code>LOW</code></li>
+<li><code>MEDIUM</code></li>
+<li><code>HIGH</code></li>
+<li><code>ERROR</code></li>
+<li><code>FATAL</code></li>
+<li><code>ALWAYS</code></li>
+</ul>
+<h4 id="compile-time-enablement-of-static-farf">Compile-time enablement of static FARF</h4>
+<p>FARF messages whose compilation is controlled via conditional compilation using the FARF levels are referred as static FARF messages as opposed to <a href="#run-time-farf">run-time FARF</a>, which are always compiled in but activated at runtime, as explained further below.</p>
+<p>A FARF level must be set to 1 for FARF macros to be compiled in. For example:</p>
+<pre><code>#define FARF_LOW 1
+#include &lt;HAP_farf.h&gt;
+
+FARF(LOW, "something happened: %s", (const char*)string);
+</code></pre>
+<p>will result in enabling <code>LOW</code> FARF messages and thus compiling the line above.  Executing this line on the cDSP will result in sending a diagnostic message.</p>
+<p>The code snipped above generates the following output:</p>
+<pre><code> QDSP6/Low               [  &lt;source file name&gt;.c    147] 00dd:0c: CDSP: something happened: Example String
+</code></pre>
+<p>In the output above, the portion after <code>CDSP:</code> is the actual string logged by the user. The portion before <code>CDSP:</code> i.e. <code>00dd:0c:</code> represents 'ThreadId:ProcessID' on the DSP.</p>
+<p>Note that FARF_LOW needs to be defined <strong><em>before</em></strong> <code>HAP_farf.h</code> is included.  The reason for this approach is that including <code>HAP_farf.h</code> will result in setting default values for each FARF level not already defined.  Setting a FARF level after including the header file will result in a warning or error (depending on the compilation flags) for redefining a macro value without undefining it first.</p>
+<p>If FARF_LOW is set to 0, as it is by default, the above FARF command will not be compiled in.</p>
+<p>When building the Debug variant or with any build defining _DEBUG, the following FARF levels are enabled:</p>
+<ul>
+<li><code>HIGH</code></li>
+<li><code>ERROR</code></li>
+<li><code>FATAL</code></li>
+<li><code>ALWAYS</code></li>
+</ul>
+<p>When building a Release variant, the FARF <code>HIGH</code> level is disabled by default: only <code>ERROR</code>, <code>FATAL</code>, and <code>ALWAYS</code> are enabled by default.</p>
+<h4 id="custom-levels">Custom levels</h4>
+<p>The FARF mechanism also allows users to define their own custom levels. For example:</p>
+<pre><code>#include &lt;HAP_farf.h&gt;
+#define FARF_MYTRACE 1
+#define FARF_MYTRACE_LEVEL HAP_LEVEL_LOW
+
+FARF(MYTRACE, "custom trace in file %s on line %d", __FILE__, __LINE__);
+</code></pre>
+<p>will send this message whenever the FARF LOW level is enabled.</p>
+<h4 id="config-file-enablement-of-static-farf">Config file enablement of static FARF</h4>
+<p>Static FARF messages that are enabled on the DSP can be sent to <code>logcat</code> by following the steps below:</p>
+<ol>
+<li>
+<p>Create a <code>&lt;rpc_hlos_process_name&gt;.farf</code> configuration file</p>
+<p>An empty file is sufficient to send to logcat any FARF message that was compiled following the <a href="#compile-time-enablement-of-static-farf">approach described above</a>.</p>
+</li>
+<li>
+<p>Push this file on device on the path specified by <a href="../software/ipc/rpc.html#using-dsp_library_path">[A]DSP_LIBRARY_PATH</a></p>
+</li>
+</ol>
+<p>For example, if your CPU executable name is <code>calculator</code>, you need to create a <code>calculator.farf</code> file in the path specified by <code>DSP_LIBRARY_PATH</code>.  Concretely, assuming <code>DSP_LIBRARY_PATH</code> includes <code>/vendor/lib/rfsa/dsp/sdk/</code>, a file enabling FARF messages at all levels to be routed to logcat can be created with just one command line on your connected host:</p>
+<pre><code>adb shell "touch /vendor/lib/rfsa/dsp/sdk/calculator.farf"
+</code></pre>
+<h3 id="printf">printf</h3>
+<p><code>printf</code> is supported in its standard prototype.</p>
+<p><code>printf</code> messages sent to <code>stdout</code> are converted by the Hexagon run-time into static FARF messages of <code>HIGH</code> priority.  <code>printf</code> messages sent to <code>stderr</code> are converted to static FARF messages of <code>ERROR</code> priority.</p>
+<h3 id="run-time-farf">Run-time FARF</h3>
+<p>In addition to static FARF messages that are enabled or disabled at compile time, the SDK supports run-time FARF messages, which are always compiled in, but not sent to the DIAG framework unless enabled at run-time.  Run-time FARF messages that are not enabled add negligible run-time overhead.</p>
+<p>Run-time FARF messages are used in a similar way to static FARF messages, but with "RUNTIME_" prefixed to the message level in the FARF invocation:</p>
+<pre><code>#include &lt;HAP_farf.h&gt;
+
+FARF(RUNTIME_LOW,"Run-time Low FARF message");
+FARF(RUNTIME_MEDIUM,"Run-time Medium FARF message");
+FARF(RUNTIME_HIGH,"Run-time High FARF message");
+FARF(RUNTIME_ERROR,"Run-time Error FARF message");
+FARF(RUNTIME_FATAL,"Run-time Fatal FARF message");
+</code></pre>
+<p>Just as with static FARF, the level allows to specify which FARF messages to enable or not.  The user can set run-time FARF levels in one of two ways:</p>
+<ul>
+<li><a href="#config-file-enablement-of-run-time-farf">Adding a config file to the HLOS file system in the [A]DSP_LIBRARY_PATH</a></li>
+<li><a href="#programmatic-enablement-of-run-time-farf">Calling an API from the HLOS application code</a></li>
+</ul>
+<h4 id="config-file-enablement-of-run-time-farf">Config file enablement of run-time FARF</h4>
+<p>The process for enabling run-time FARF messages via config files is similar to the process for <a href="#config-file-enablement-of-static-farf">routing static messages to logcat using config files</a> but the contents of the config <code>&lt;rpc_hlos_process_name&gt;.farf</code> file is also relevant as is explained further below.  The presence of the file will result, for the levels enabled, in:</p>
+<ul>
+<li>enabling run-time FARF messages</li>
+<li>routing run-time (as well as static) FARF messages to logcat (in addition to sending them to the DIAG framework)</li>
+</ul>
+<p>Run-time FARF messages can be sent to <code>logcat</code> by following the steps below:</p>
+<ol>
+<li>
+<p>Create a <code>&lt;rpc_hlos_process_name&gt;.farf</code> configuration file</p>
+</li>
+<li>
+<p>Edit this file with a mask value to enable specific run-time FARF levels</p>
+</li>
+<li>
+<p>Push this file on device on the path specified by <a href="../software/ipc/rpc.html#using-dsp_library_path">[A]DSP_LIBRARY_PATH</a></p>
+</li>
+</ol>
+<p>For example, if your CPU executable name is <code>calculator</code>, you need to create a <code>calculator.farf</code> file in the path specified by <code>DSP_LIBRARY_PATH</code>.  Concretely, assuming <code>DSP_LIBRARY_PATH</code> includes <code>/vendor/lib/rfsa/dsp/sdk/</code>, a file enabling run-time FARF messages at all levels to be routed to logcat can be created with just one command line on your connected host:</p>
+<pre><code>adb shell "echo 0x1f &gt; /vendor/lib/rfsa/dsp/sdk/calculator.farf"
+</code></pre>
+<p>The content of the config file is formatted as follows:</p>
+<pre><code>&lt;hex_mask&gt; [comma-separated filenames (optional)]
+</code></pre>
+<p>The mask has one bit for each level:</p>
+<ul>
+<li><code>0x01 - LOW</code></li>
+<li><code>0x02 - MEDIUM</code></li>
+<li><code>0x04 - HIGH</code></li>
+<li><code>0x08 - ERROR</code></li>
+<li><code>0x10 - FATAL</code></li>
+</ul>
+<p>For example</p>
+<ul>
+<li>
+<p>To route all levels of run-time messages to logcat (in addition to the DIAG framework) for all files in the process, use:</p>
+<pre><code>0x1f
+</code></pre>
+</li>
+<li>
+<p>To route all levels of run-time messages but <code>LOW</code> to logcat for the file <code>test.c</code> only, use:</p>
+<pre><code>0x1e test.c
+</code></pre>
+</li>
+<li>
+<p>To route all levels of run-time messages to logcat for the files <code>test.c</code> and <code>foo.c</code>, use:</p>
+<pre><code>0x1f test.c,foo.c
+</code></pre>
+</li>
+</ul>
+<h4 id="programmatic-enablement-of-run-time-farf">Programmatic enablement of run-time FARF</h4>
+<p>You can also enable run-time FARF programmatically with the following API available from <code>HAP_farf.h</code>:</p>
+<pre><code>int HAP_setFARFRuntimeLoggingParams(unsigned int mask, const char* files[], short numberOfFiles);
+</code></pre>
+<p>This approach follows the same format as that used in <code>&lt;rpc_hlos_process_name&gt;.farf</code> config files:</p>
+<ul>
+<li>a mask must be provided to enable or disable specific FARF levels</li>
+<li>a list of file names may be provided to only enable FARF messages for specific files<ul>
+<li>to enable FARF for all files, use a <code>NULL</code> pointer for the file array and <code>0</code> for the number of files being specified</li>
+</ul>
+</li>
+</ul>
+<p>Unlike the enablement of run-time messages via config file, this approach enables messages to be routed to the DIAG framework but not to logcat.</p>
+<p>To see an illustration of this approach, please refer to the <a href="../examples/hap_example/index.html">HAP example</a>.</p>
+<h2 id="capturing-messages">Capturing messages</h2>
+<h3 id="mini-dm">mini-dm</h3>
+<p><code>mini-dm</code> is a tool that queries and displays diagnostic messages generated by the Hexagon DSP.  The tool is located under <code>tools/debug/mini-dm</code>.</p>
+<h4 id="connecting-mini-dm-on-linux">Connecting mini-dm on Linux</h4>
+<p>The SDK includes versions of mini-dm for Ubuntu versions 16 and 18.</p>
+<p>If you only have one connected device, simply running <code>mini-dm</code> will connect the tool to your device automatically:</p>
+<pre><code>$ mini-dm
+Running mini-dm version: 3.3
+Completed processing command line ---
+Connecting to the only usbport connected
+mini-dm is waiting for a DMSS connection...
+DMSS is connected. Running mini-dm...
+------------Mini-dm is ready to log-------------
+</code></pre>
+<p>If you have multiple connected devices, you need to indicate which device to connect mini-dm to, by using the <code>--usbport</code> option followed by the relevant port number.  In order to figure out which port to use, simply run <code>adb devices -l</code>:</p>
+<pre><code>$ adb devices -l
+List of devices attached
+5449b015               device usb:1-10 product:msmnile model:msmnile_for_arm64 device:msmnile transport_id:11
+f09566c8               device usb:2-7 product:kona model:Kona_for_arm64 device:kona transport_id:12
+</code></pre>
+<p>In the example above, port 1-10 should be used to connect to device <code>5449b015</code> (an SM8150), and port 2-7 should be used to connect to device <code>f09566c8</code> (Kona).  To connect to the Kona device for example, simply run:</p>
+<pre><code>$ mini-dm --usbport 2-7
+Running mini-dm version: 3.3
+Completed processing command line ---
+Connecting to usbport 2-7
+mini-dm is waiting for a DMSS connection...
+DMSS is connected. Running mini-dm...
+------------Mini-dm is ready to log-------------
+</code></pre>
+<p><strong><em>Note: </em></strong> The usbport will be expressed differently if the device is connected to Linux via one or more USB hubs. A <code>.</code> in a port number represents a USB hub. For example, if the device is connected via two USB hubs, its USB port number be reported as follows:</p>
+<pre><code>device usb:a-b.c.d product:&lt;device&gt;
+</code></pre>
+<p>This representation is interpreted as follows:</p>
+<pre><code>* First USB hub is connected to port `b` of USB bus `a`
+* Second USB hub is connected to port `c` of first USB hub
+* Device is connected to port `d` of the second USB hub
+</code></pre>
+<p>In this case, mini-dm will expect the port <code>a-b.c.d</code> to be passed as an argument to connect to this device.</p>
+<p>For example, if <code>adb devices -l</code> prints the port number in the format <code>device usb:2-10.1</code>, run mini-dm as follows:</p>
+<pre><code>$ mini-dm --usbport 2-10.1
+</code></pre>
+<h4 id="connecting-mini-dm-on-windows">Connecting mini-dm on Windows</h4>
+<p>mini-dm on Windows differs from Linux in that it cannot detect automatically the port to connect to and that adb doesn't return the port numbers of the connected devices either.</p>
+<p>Instead, the SDK includes the <code>%HEXAGON_SDK_ROOT%\utils\scripts\com_finder.py</code> script that prints a listing of all the active USB ports to which a Qualcomm device is connected:</p>
+<pre><code>usage: com_finder.py [-h] [-v] [-i]
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -v          prints verbose information
+  -i          enable debugging info
+</code></pre>
+<p>For example:</p>
+<pre><code>&gt; scripts\com_finder.py
+Qualcomm HS-USB Com ports found:
+COM15
+</code></pre>
+<p>You would then connect mini-dm to the device using the following command:</p>
+<pre><code>&gt; mini-dm --usbport 15
+</code></pre>
+<h4 id="logging-options">Logging options</h4>
+<p>Many mini-dm command line options are specific to the sensor subsystem, and should not be used by the general SDK user. Following are the options useful to the general SDK user.</p>
+<ul>
+<li>
+<p><code>--format</code></p>
+<p>Control the output format of diagnostic messages. Default: <code>"[%05d{SS}/%02d{MASK}] %02d{M}:%02d{S}.%03d{MS} %s{STR} %04d{L} %s{F}"</code></p>
+</li>
+<li>
+<p><code>--show_color_schemes</code></p>
+<p>Show the available color schemes for diagnostic messages. Default: false</p>
+<p>Note that colors are only supported on Windows.</p>
+</li>
+<li>
+<p><code>--color_scheme  &lt;color_scheme_number&gt;</code></p>
+<p>Set color scheme for diag message output. Default: 0 (no color)</p>
+<p>Color schemes 1-5 highlight FARF messages in different colors depending on their levels.</p>
+<p>Note that colors are only supported on Windows.</p>
+</li>
+</ul>
+<p>To enable filtering of logs, mini-dm supports the following options which can be used along with other logging options. The search pattern may include one or more strings separated by the <code>&amp;</code> or <code>|</code>.  The <code>&amp;</code> operator defines a pattern where all strings must be present and the <code>|</code> operator a pattern where only one of the strings must be present. No filter is applied by default.</p>
+<ul>
+<li>
+<p><code>--filter-in "pattern"</code></p>
+<p>Only keep log messages matching the pattern.</p>
+</li>
+<li>
+<p><code>--filter-out "pattern"</code></p>
+<p>Discard log messages matching the pattern.</p>
+</li>
+</ul>
+<p>For example:</p>
+<ul>
+<li>
+<p>To use filter-in and filter-out options, use:</p>
+<pre><code>&gt; mini-dm --usbport 7 --filter-in "cdsp" --filter-out "power"
+</code></pre>
+<p>This will display logs containing keyword <code>cdsp</code> and not keyword <code>power</code>.</p>
+</li>
+<li>
+<p>To use filter-in option with <code>&amp;</code>, use:</p>
+<pre><code>&gt; mini-dm --usbport 7 --filter-in "cdsp &amp; power"
+</code></pre>
+<p>This will display only the logs containing both keywords <code>cdsp</code> and <code>power</code>.</p>
+</li>
+</ul>
+<p>The following mini-dm options can be used to enable/disable logging from the sensor subsystem.</p>
+<ul>
+<li>
+<p><code>--enable_sensor_ssids &lt;true/false&gt;</code></p>
+<p>Enable logging from sensor subsystems. If true, logging from extended SNS subsystems (FRAMEWORK, PLATFORM, SENSOR INT and SENSOR EXT) are enabled, along with the default subsystems, QDSP6 and SNS.</p>
+</li>
+<li>
+<p><code>--subsystem_masks: &lt;mask_value1,mask_value2,...&gt;</code></p>
+<p>Control the logging mask for the subsystems enabled with <code>--enable_sensor_ssids</code>. This options accepts 6 comma-separated log mask values for the 6 subsystems respectively.</p>
+</li>
+<li>
+<p><code>--default_ss_mask: &lt;mask_value&gt;</code></p>
+<p>Configure the default log mask for all subsystems using this option. Default value of default log mask for all subsystems is <code>0x1F</code>, which enables all log levels. This option can also be used to configure the log mask for the default subsystems.</p>
+</li>
+</ul>
+<p>For example:</p>
+<ul>
+<li>
+<p>To configure default log mask for default subsystems, use:</p>
+<pre><code>&gt; mini-dm --usbport 7 --subsystem_masks 0x7,0x7
+</code></pre>
+<p>This will allow messages from the default subsystems, only with log levels LOW, MEDIUM and HIGH.</p>
+</li>
+<li>
+<p>To enable sensor subsystems and configure default log masks for all, use:</p>
+<pre><code>&gt; mini-dm --usbport 7 --enable_sensor_ssids --default_ss_mask 0x7
+</code></pre>
+<p>This will allow messages from all sensor and default subsystems, only with log levels LOW, MEDIUM and HIGH.</p>
+</li>
+<li>
+<p>To enable sensor subsystems and configure different log masks for different subsystems, use:</p>
+<pre><code>&gt; mini-dm --usbport 7 --enable_sensor_ssids --subsystem_masks 0x0,0x1,0x2,0x4,0x8,0x10,0x1F
+</code></pre>
+<p>This will allow the following messages from the different subsystems.</p>
+<ul>
+<li><code>QDSP6 - No messages</code></li>
+<li><code>SNS -  LOW</code></li>
+<li><code>SNS FRAMEWORK - MEDIUM</code></li>
+<li><code>SNS PLATFORM - HIGH</code></li>
+<li><code>SNS SENSOR INT - ERROR</code></li>
+<li><code>SNS SENSOR EXT - FATAL</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="logcat">logcat</h3>
+<p>Once messages are <a href="#config-file-enablement-of-static-farf">enabled to be routed to logcat</a>, the FARF and printf messages are visible with logcat.  The logcat filtering option <code>-s adsprpc</code> allows to display only those messages generated using FARF or printf from any DSP (ADSP/CDSP/SLPI/MDSP) since all these messages are tagged with <code>adsprpc</code>:</p>
+<pre><code>adb logcat -s adsprpc
+</code></pre>
+<p>A sample output should look like this:</p>
+<pre><code>05-25 19:25:57.275 4442 4443 W adsprpc :
+calculator_imp.c:17:0x40a6:=============== DSP: sum result 499500 ===============
+</code></pre>
+<p><strong><em>Note: </em></strong> The FastRPC logging framework may not flush the last few messages during a crash or exit when the application opens a remote session without domains. To avoid this, follow the approach used by all Hexagon SDK examples and use the <a href="../software/ipc/rpc.html#multi-domain">multi-domain feature</a> when initiating FastRPC calls.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="run.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Running
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="debug.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Debugging
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../js/iframe-worker.js"></script>
+<script src="../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

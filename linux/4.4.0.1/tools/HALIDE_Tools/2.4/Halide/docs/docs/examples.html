@@ -1,0 +1,183 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Halide examples &#8212; Halide for HVX 2.4.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Python bindings (Linux only)" href="python_bindings.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="python_bindings.html" title="previous chapter">Python bindings (Linux only)</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="halide.html">The Halide programming language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="halide_for_hvx.html">Halide for HVX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoscheduler.html">Autoscheduler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubwcdma.html">Halide with UBWCDMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_bindings.html">Python bindings (Linux only)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Halide examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-examples">Run examples</a></li>
+</ul>
+</li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="halide-examples">
+<span id="halideexamples"></span><h1>Halide examples<a class="headerlink" href="#halide-examples" title="Permalink to this headline">¶</a></h1>
+<p>The Halide directory provides some sample pipelines that demonstrate the use of
+Halide.</p>
+<p>The examples are structured in the following manner</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Halide/
+     Examples/
+     ├── include
+     │   └── test_report.h
+     ├── Makefile
+     ├── offload
+     │   ├── apps
+     │   ├── Makefile
+     │   └── Makefile.common
+     ├── setup-env.sh
+     ├── standalone
+     │   ├── device
+     │   ├── Makefile
+     │   └── simulator
+     └── unsetup-env.sh
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Halide/Examples/offload</span></code> has pipelines that demonstrate the use of Device
+and Simulator Offload modes.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Halide/Examples/standalone</span></code> has pipelines that demonstrate the use of Device
+and Simulator Standalone modes.</p>
+<p>The following sections provide steps for running examples on Linux. For Windows usage, see <code class="docutils literal notranslate"><span class="pre">Halide/Examples.txt</span></code>.</p>
+<div class="section" id="setup">
+<span id="examplessetup"></span><h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>First, set up the environment for the examples by editing
+<code class="docutils literal notranslate"><span class="pre">Halide/Examples/setup-env.sh</span></code>. In particular, set up the path to
+<code class="docutils literal notranslate"><span class="pre">HEXAGON_SDK_ROOT</span></code>, and then set up the environment as follows:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; <span class="nb">source</span> setup-env.sh
+</pre></div>
+</div>
+<p>This process sets up a variable called <code class="docutils literal notranslate"><span class="pre">RUN_DEVICE_ID</span></code> in your environment.
+This variable is a list of the DEVICE IDs of all the devices connected to the
+host. All device-based examples (Device Standalone and Device Offload modes)
+will now run on all the devices in <code class="docutils literal notranslate"><span class="pre">RUN_DEVICE_ID</span></code>.</p>
+<p>To limit the list to a subset of all the devices connected to your machine,
+reset <code class="docutils literal notranslate"><span class="pre">RUN_DEVICE_ID</span></code> to the DEVICE ID of a specific device.</p>
+<p>To unset the environment that was set up via <code class="docutils literal notranslate"><span class="pre">setup-env.sh</span></code>, use
+<code class="docutils literal notranslate"><span class="pre">unsetup-env.sh</span></code>.</p>
+<div class="section" id="device-setup">
+<h3>Device setup<a class="headerlink" href="#device-setup" title="Permalink to this headline">¶</a></h3>
+<p>To run examples in Device Standalone or Device Offload mode, set up Halide
+runtime libraries on all the devices in <code class="docutils literal notranslate"><span class="pre">RUN_DEVICE_ID</span></code>. Run the following
+commands:</p>
+<div class="highlight-shell-sm notranslate"><div class="highlight"><pre><span></span>$&gt; adb push $HALIDE_ROOT/lib/arm-32-android/libhalide_hexagon_host.so /system/lib/
+$&gt; adb push $HALIDE_ROOT/lib/arm-64-android/libhalide_hexagon_host.so /system/lib64/
+$&gt; adb shell mkdir -p /system/lib/rfsa/adsp/
+$&gt; adb push $HALIDE_ROOT/lib/v65/libhalide_hexagon_remote_skel.so /system/lib/rfsa/adsp/
+
+$&gt; adb push $HALIDE_ROOT/lib/arm-32-android/libhalide_hexagon_host.so /vendor/lib/
+$&gt; adb push $HALIDE_ROOT/lib/arm-64-android/libhalide_hexagon_host.so /vendor/lib64/
+$&gt; adb shell mkdir -p /vendor/lib/rfsa/adsp/
+$&gt; adb push $HALIDE_ROOT/lib/v65/libhalide_hexagon_remote_skel.so /vendor/lib/rfsa/adsp/
+
+$&gt; sysroot=$HEXAGON_SDK_ROOT/tools/android-ndk-r19c/toolchains/llvm/prebuilt/linux-x86_64/sysroot
+$&gt; adb push $sysroot/usr/lib/arm-linux-androideabi/libc++_shared.so /system/lib/
+$&gt; adb push $sysroot/usr/lib/aarch64-linux-android/libc++_shared.so /system/lib64/
+$&gt; adb push $sysroot/usr/lib/arm-linux-androideabi/libc++_shared.so /vendor/lib/
+$&gt; adb push $sysroot/usr/lib/aarch64-linux-android/libc++_shared.so /vendor/lib64/
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="run-examples">
+<h2>Run examples<a class="headerlink" href="#run-examples" title="Permalink to this headline">¶</a></h2>
+<p>All examples can now be run from the command line by executing the following
+command from the <code class="docutils literal notranslate"><span class="pre">Examples</span></code> directory.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; make all
+</pre></div>
+</div>
+<div class="section" id="run-only-a-single-execution-mode">
+<h3>Run only a single execution mode<a class="headerlink" href="#run-only-a-single-execution-mode" title="Permalink to this headline">¶</a></h3>
+<p>Instead of running all the examples, you can run each execution mode
+individually as follows:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt;  make &lt;mode&gt;
+</pre></div>
+</div>
+<p>In this case, <code class="docutils literal notranslate"><span class="pre">mode</span></code> can be <code class="docutils literal notranslate"><span class="pre">sim-standalone</span></code>, <code class="docutils literal notranslate"><span class="pre">sim-offload</span></code>,
+<code class="docutils literal notranslate"><span class="pre">dev-standalone</span></code>, or <code class="docutils literal notranslate"><span class="pre">dev-offload</span></code>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2020, Qualcomm Technologies, Inc. All rights reserved..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/docs/examples.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,2455 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Building - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#build-resources" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Building
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Building
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="build.html" class="md-nav__link md-nav__link--active">
+      Building
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maked" class="md-nav__link">
+    make.d
+  </a>
+  
+    <nav class="md-nav" aria-label="make.d">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maked-user-project-files" class="md-nav__link">
+    make.d user-project files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-goals" class="md-nav__link">
+    Build goals
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    Usage examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-targets" class="md-nav__link">
+    Build targets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-variables" class="md-nav__link">
+    Tool variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-specific-variables" class="md-nav__link">
+    Target-specific variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-specification" class="md-nav__link">
+    Dependency specification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customizing-build-rules" class="md-nav__link">
+    Customizing build rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-information" class="md-nav__link">
+    Additional Information
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-sources" class="md-nav__link">
+    Build Sources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exporting-build-outputs" class="md-nav__link">
+    Exporting build outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toolchain-support-in-android-ndk" class="md-nav__link">
+    Toolchain Support in Android NDK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cmake" class="md-nav__link">
+    CMake
+  </a>
+  
+    <nav class="md-nav" aria-label="CMake">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cmake-configuration-files" class="md-nav__link">
+    CMake configuration files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-cmake-build-system" class="md-nav__link">
+    Using CMake build system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-examples_1" class="md-nav__link">
+    Usage examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mixing-cmake-and-maked-build-systems" class="md-nav__link">
+    Mixing CMake and make.d build systems
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmake-helper-functions" class="md-nav__link">
+    CMake helper functions
+  </a>
+  
+    <nav class="md-nav" aria-label="CMake helper functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hexagon-cmake-helper-functions" class="md-nav__link">
+    Hexagon Cmake helper functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-toolchain" class="md-nav__link">
+    Custom Toolchain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-notes" class="md-nav__link">
+    Additional Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gnu-make" class="md-nav__link">
+    GNU make
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-android-application" class="md-nav__link">
+    Building Android application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-libraries-residing-on-target" class="md-nav__link">
+    Using libraries residing on target
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-documents" class="md-nav__link">
+    Reference documents
+  </a>
+  
+    <nav class="md-nav" aria-label="Reference documents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reference-documents-for-compiler-and-linker" class="md-nav__link">
+    Reference documents for compiler and linker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-description-language-idl" class="md-nav__link">
+    Interface Description Language (IDL)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maked" class="md-nav__link">
+    make.d
+  </a>
+  
+    <nav class="md-nav" aria-label="make.d">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maked-user-project-files" class="md-nav__link">
+    make.d user-project files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-goals" class="md-nav__link">
+    Build goals
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    Usage examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-targets" class="md-nav__link">
+    Build targets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-variables" class="md-nav__link">
+    Tool variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-specific-variables" class="md-nav__link">
+    Target-specific variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-specification" class="md-nav__link">
+    Dependency specification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customizing-build-rules" class="md-nav__link">
+    Customizing build rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-information" class="md-nav__link">
+    Additional Information
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-sources" class="md-nav__link">
+    Build Sources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exporting-build-outputs" class="md-nav__link">
+    Exporting build outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toolchain-support-in-android-ndk" class="md-nav__link">
+    Toolchain Support in Android NDK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cmake" class="md-nav__link">
+    CMake
+  </a>
+  
+    <nav class="md-nav" aria-label="CMake">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cmake-configuration-files" class="md-nav__link">
+    CMake configuration files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-cmake-build-system" class="md-nav__link">
+    Using CMake build system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-examples_1" class="md-nav__link">
+    Usage examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mixing-cmake-and-maked-build-systems" class="md-nav__link">
+    Mixing CMake and make.d build systems
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmake-helper-functions" class="md-nav__link">
+    CMake helper functions
+  </a>
+  
+    <nav class="md-nav" aria-label="CMake helper functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hexagon-cmake-helper-functions" class="md-nav__link">
+    Hexagon Cmake helper functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-toolchain" class="md-nav__link">
+    Custom Toolchain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-notes" class="md-nav__link">
+    Additional Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gnu-make" class="md-nav__link">
+    GNU make
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-android-application" class="md-nav__link">
+    Building Android application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-libraries-residing-on-target" class="md-nav__link">
+    Using libraries residing on target
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-documents" class="md-nav__link">
+    Reference documents
+  </a>
+  
+    <nav class="md-nav" aria-label="Reference documents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reference-documents-for-compiler-and-linker" class="md-nav__link">
+    Reference documents for compiler and linker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-description-language-idl" class="md-nav__link">
+    Interface Description Language (IDL)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="build-resources">Build resources</h1>
+<h2 id="introduction">Introduction</h2>
+<p>This page explains the three make systems supported by this SDK. At least one example using each is included in the $HEXAGON_SDK_ROOT/examples folder.</p>
+<table>
+<thead>
+<tr>
+<th>Make system</th>
+<th>Reference</th>
+<th>SDK example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#maked">make.d</a></td>
+<td>Brew</td>
+<td><a href="../examples/calculator/index.html">calculator</a></td>
+<td>Legacy Hexagon SDK make framework, based on GNU make, with a set of common definitions files and templates for project make files.</td>
+</tr>
+<tr>
+<td><a href="#cmake">cmake</a></td>
+<td><a href="https://cmake.org/">cmake</a></td>
+<td><a href="../examples/calculator/index.html">calculator</a></td>
+<td>Support for cross-platform builds</td>
+</tr>
+<tr>
+<td><a href="#gnu-make">GNU make</a></td>
+<td><a href="https://www.gnu.org/software/make/">make</a></td>
+<td><a href="../examples/qhl/index.html">qhl</a></td>
+<td>Legacy Make system</td>
+</tr>
+</tbody>
+</table>
+<h2 id="maked">make.d</h2>
+<p>The make.d framework is built upon two main files in the SDK: defines.min and rules.min. Each user project contains a file named Makefile that includes these two files and defines the project to be built according to make.d variables and conventions.</p>
+<table>
+<thead>
+<tr>
+<th>File Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Makefile</td>
+<td>A user-defined file that includes make.d's defines.min, sets BUILD variables, and lastly includes $(RULES_MIN).</td>
+</tr>
+<tr>
+<td>defines.min</td>
+<td>Customized for Hexagon SDK. It sets up all the predefined variables and functions exported by make.d and also includes the <code>all</code> default rule definition.</td>
+</tr>
+<tr>
+<td>rules.min</td>
+<td>Customized for Hexagon SDK. It sets up all the rules based on the make.d primitives, tells GNU Make what to execute and how.</td>
+</tr>
+</tbody>
+</table>
+<p>Once created for a new project, the SDK user will typically not have to modify any of these files.</p>
+<p><code>defines.min</code> should be included at the beginning of the makefile and <code>rules.min</code> at the end.</p>
+<p>Snippet from the <a href="../examples/calculator_c%2B%2B/index.html">Calculator C++</a> Makefile:</p>
+<pre><code>    ...
+
+    project definition
+
+    ...
+
+    include $(V_TARGET)_deps.min
+    include $(HEXAGON_SDK_ROOT)/build/make.d/$(V_TARGET)_vs.min
+    include $(HEXAGON_SDK_ROOT)/build/defines.min
+    include $(V_TARGET).min
+    include $(RULES_MIN)
+</code></pre>
+<h3 id="maked-user-project-files">make.d user-project files</h3>
+<p>A project Makefile typically includes a local project-defined <code>&lt;V_TARGET&gt;.min</code> and <code>&lt;V_TARGET&gt;_deps.min</code> file, which specify the custom build rules for that project:</p>
+<ul>
+<li><code>&lt;V_TARGET&gt;.min</code> specifies the sources and dependencies needed to generate the executables or shared objects.</li>
+<li><code>&lt;V_TARGET&gt;_deps.min</code> specifies the <a href="#dependency-specification">dependencies</a> of the project.</li>
+</ul>
+<p><code>&lt;V_TARGET&gt;</code>, which is derived from <a href="#build-goals">the make command</a>, can take one of the following values:</p>
+<ul>
+<li><code>hexagon</code>, for building rules applying to the Hexagon DSP</li>
+<li><code>android</code>, for building rules applying to the application processor running Android</li>
+<li><code>UbuntuARM</code>, for building rules applying to the application processor running Ubuntu</li>
+</ul>
+<h3 id="build-goals">Build goals</h3>
+<p>The make command has the following syntax:</p>
+<pre><code>make &lt;action&gt; [options]
+</code></pre>
+<p>Note that action is also referred as build goal in the document.</p>
+<p>The make.d system defines the following target goals:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hexagon</td>
+<td>Builds all binaries for Hexagon platform and runs QEXES tests on simulator if the project is updated</td>
+</tr>
+<tr>
+<td>hexagonsim</td>
+<td>Builds all binaries for Hexagon platform and runs QEXES tests on simulator forcefully</td>
+</tr>
+<tr>
+<td>android</td>
+<td>Builds the project and its dependencies for Android platform with default options</td>
+</tr>
+<tr>
+<td>ubuntuARM</td>
+<td>Builds the project and its dependencies for ubuntu platform with default options</td>
+</tr>
+<tr>
+<td>hexagon_clean</td>
+<td>Cleans project and its dependencies for hexagon variant. Prebuilt dependencies are not removed.</td>
+</tr>
+<tr>
+<td>android_clean</td>
+<td>Cleans project and its dependencies for Android variant. Prebuilt dependencies are not removed.</td>
+</tr>
+<tr>
+<td>ubuntuARM_clean</td>
+<td>Cleans project and its dependencies for Ubuntu variant. Prebuilt dependencies are not removed.</td>
+</tr>
+<tr>
+<td>help</td>
+<td>Prints brief description on the usage and usage examples</td>
+</tr>
+</tbody>
+</table>
+<p>Make.d supports a syntax for specifying the build goal where options can be given as separate arguments and options may be omitted to rely on defaults.</p>
+<p>List of options to build for hexagon and Android/ubuntu are given below:</p>
+<ul>
+<li>Options for all Android and ubuntuArm actions(android, android_clean, UbuntuARM, UbuntuARM_clean)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Options</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BUILD</td>
+<td>ReleaseG*, Release, Debug</td>
+<td>Builds ReleaseG, Release or Debug executable</td>
+</tr>
+<tr>
+<td>HLOS_ARCH</td>
+<td>32*,64</td>
+<td>Builds 32-bit or 64-bit executable</td>
+</tr>
+<tr>
+<td>tree</td>
+<td>0, 1*</td>
+<td>Builds only the project and not dependencies if tree=0, Build the project and dependencies if tree=1.</td>
+</tr>
+<tr>
+<td>VERBOSE</td>
+<td>any value</td>
+<td>Displays all the outputs from the build process. If VERBOSE is not defined, the build system displays only error messages.</td>
+</tr>
+<tr>
+<td>BUILD_OUTPUT_DIR</td>
+<td>any directory name</td>
+<td>Generates all the project binaries in the specified directory</td>
+</tr>
+</tbody>
+</table>
+<p>Note the default values for each option are identified with *. Also cleaning the build with tree=1 does not remove prebuilt dependencies.</p>
+<ul>
+<li>Options for all hexagon actions(hexagon, hexagonsim, hexagon_clean)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Options</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BUILD</td>
+<td>ReleaseG*, Release, Debug</td>
+<td>Builds ReleaseG, Release or Debug executable</td>
+</tr>
+<tr>
+<td>DSP_ARCH</td>
+<td>v65*, v66, v68, ...</td>
+<td>Builds executable for the specified DSP architecture</td>
+</tr>
+<tr>
+<td>tree</td>
+<td>0, 1*</td>
+<td>Build only the project and not dependencies if tree=0, Build the project and dependencies if tree=1</td>
+</tr>
+<tr>
+<td>NO_QURT_INC</td>
+<td>0*, 1</td>
+<td>Do not include QuRT as a dependency when NO_QURT_INC=1</td>
+</tr>
+<tr>
+<td>VERBOSE</td>
+<td>any value</td>
+<td>Displays all the outputs from the build process and simulator tests. If VERBOSE is not defined, the build system displays only error messages.</td>
+</tr>
+<tr>
+<td>BUILD_OUTPUT_DIR</td>
+<td>any directory name</td>
+<td>Generates all the project binaries in the specified directory</td>
+</tr>
+</tbody>
+</table>
+<p>Most of the user applications running on the DSP require <a href="../software/os/os_support_dsp.html">QURT OS</a> support. If you want to run your application/example in a standalone build without OS support, you can select <code>NO_QURT_INC=1</code>
+Refer to $HEXAGON_SDK_ROOT/examples/calculator for an example that does not need QURT OS support and  $HEXAGON_SDK_ROOT/examples/multithreading for an example that
+needs QURT OS support.</p>
+<ul>
+<li>Description for BUILD option values</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReleaseG</td>
+<td>optimized, symbols not removed</td>
+</tr>
+<tr>
+<td>Release</td>
+<td>optimized , symbols  removed</td>
+</tr>
+<tr>
+<td>Debug</td>
+<td>unoptimized, symbols not removed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-examples">Usage examples</h3>
+<p>Refer to <a href="../examples/calculator/index.html">calculator example</a> for more details.</p>
+<p>Below are some example make.d invocations:
+<code>make android</code> builds 32-bit Android libraries (and dependencies) for the project defined in the user Makefile, in ReleaseG mode.</p>
+<p><code>make hexagon</code> will build the project's Hexagon artifacts, in ReleaseG mode, for architecture version v65, with default toolchain version supplied in the SDK.</p>
+<p><code>make hexagon VERBOSE=1</code> is same as <code>make hexagon</code>, but displays all the outputs from the build process and simulator tests.</p>
+<p>The make command prints the default options used in building the project and the build output directory as shown below:</p>
+<pre><code>make hexagonsim
+==== Building for ReleaseG variant of hexagon architecture v65 ====
+==== Using Hexagon Tools at &lt;HEXAGON_SDK_ROOT&gt;/tools/HEXAGON_Tools/8.4.12 ====
+
+Build output directory: &lt;HEXAGON_SDK_ROOT&gt;/examples/calculator/hexagon_ReleaseG_toolv84_v65/ship
+</code></pre>
+<p>If BUILD_QEXES is defined, as part of build process, the build outputs for hexagon are validated by running them on simulator ensuring a successful build completion.</p>
+<h3 id="build-targets">Build targets</h3>
+<p>The <code>&lt;V_TARGET&gt;.min</code> file must specify its build targets.</p>
+<p>Supported build targets are listed below.</p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BUILD_LIBS</td>
+<td>Name of static libraries built</td>
+<td>BUILD_LIBS += libcalculator_skel</td>
+</tr>
+<tr>
+<td>BUILD_EXES</td>
+<td>Name of executable targets</td>
+<td>BUILD_EXES += calculator</td>
+</tr>
+<tr>
+<td>BUILD_QEXES</td>
+<td>Name of quick executables. These executables are run automatically on simulator as part of any build command to ensure basic tests are passing</td>
+<td>BUILD_QEXES += calculator_q</td>
+</tr>
+<tr>
+<td>QEXE_ARGS</td>
+<td>List of arguments to the quick executable</td>
+<td>multithreading_q_QEXE_ARGS += arg1 arg2</td>
+</tr>
+<tr>
+<td>QEXE_SIM_OPTIONS</td>
+<td>List of arguments to the Hexagon simulator when running the quick executable</td>
+<td>QEXE_SIM_OPTIONS += --dsp_clock 1000 --ahb:lowaddr 0xc0000000 --ahb:highaddr 0xc0ffffff</td>
+</tr>
+<tr>
+<td>BUILD_DLLS</td>
+<td>Name of shared or dynamic libraries built</td>
+<td>BUILD_DLLS += libcalculator</td>
+</tr>
+<tr>
+<td>PRIMORDIAL_STACK_SIZE</td>
+<td>User-thread stack size for Qurt-based simulator tests(default is 256 KB)</td>
+<td>multithreading_q_PRIMORDIAL_STACK_SIZE = 0x80000</td>
+</tr>
+<tr>
+<td>BUILD_COPIES</td>
+<td>Files to be copied to output directories</td>
+<td>see <a href="#exporting-build-outputs">build copies</a> below</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tool-variables">Tool variables</h3>
+<p>Some variables control the flags and options to be used with the building tools:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DEFINES</code></td>
+<td>Specifies #define names passed to the compiler. Always append to this variable when adding defines. When appropriate, use the alternate <code>&lt;objectname&gt;_DEFINES</code> to be more specific. Note: <code>-D</code> should not be appended to the variable names.  E.g. DEFINES += MYDEFINE1 MYDEFINE2 should be used to define variables MYDEFINE1 and MYDEFINE2.</td>
+</tr>
+<tr>
+<td><code>INCDIRS</code></td>
+<td>Specifies additional include paths that are passed to the compiler. Always append to this variable when adding include paths. When possible, use the alternate <code>&lt;objectname&gt;_INCDIRS</code>.</td>
+</tr>
+<tr>
+<td><code>LIBDIRS</code></td>
+<td>Specifies the paths to search for libraries, DLLS, and import libraries. Always append to this variable when adding paths.</td>
+</tr>
+<tr>
+<td><code>C_FLAGS</code> or <code>CC_FLAGS</code></td>
+<td>Specifies compiler flags applying to all C objects.</td>
+</tr>
+<tr>
+<td><code>CPP_FLAGS</code> or <code>CXX_FLAGS</code></td>
+<td>Specifies compiler flags applying to all C++ objects.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="target-specific-variables">Target-specific variables</h3>
+<p>After defining the build targets, the .min file should define the sources, objects and options needed to generate them.
+Some of the frequently used options are listed below. For an exhaustive list refer to <a href="#build-sources">build_SRCS</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Target source</th>
+<th>Type of Source file definition</th>
+<th>Example definition</th>
+<th>SDK .min file example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;targetName&gt;_C_SRCS</code></td>
+<td>List of .c source files. Do not specify the .c extension.</td>
+<td>calculator_q_C_SRCS = src/calculator_test_main</td>
+<td>calculator_c++/hexagon.min</td>
+</tr>
+<tr>
+<td><code>&lt;targetName&gt;_CPP_SRCS</code></td>
+<td>List of .cpp source files. Do not specify the .c extension.</td>
+<td>calculator_q_CPP_SRCS = src/calculator_dsp</td>
+<td>calculator_c++/hexagon.min</td>
+</tr>
+<tr>
+<td><code>&lt;targetName&gt;_ASM_SRCS</code></td>
+<td>List of ASM source files. Do not specify the .S extension</td>
+<td>libqprintf_example_skel_ASM_SRCS += asm_src/qprintf_example_asm</td>
+<td>qprintf_example/hexagon.min</td>
+</tr>
+<tr>
+<td><code>&lt;targetName&gt;_LIBS</code></td>
+<td>list of libs to link with this target. These libs are dependencies for the application and they are listed in <code>DEPENDENCIES</code> variable in corresponding _deps.min file.</td>
+<td>calculator_plus_LIBS += rpcmem</td>
+<td>calculator_c++/UbuntuARM.min</td>
+</tr>
+<tr>
+<td><code>&lt;targetName&gt;_DIR</code></td>
+<td>Source directory from which a lib needs to be generated</td>
+<td>RPCMEM_DIR = $(HEXAGON_SDK_ROOT)/ipc/fastrpc/rpcmem</td>
+<td>calculator_c++/UbuntuARM_deps.min</td>
+</tr>
+<tr>
+<td><code>&lt;targetName&gt;_QAICIDLS</code></td>
+<td>IDL files to be compiled into C/C++ prior to building the target</td>
+<td>calculator_q_QAICIDLS = inc/calculator</td>
+<td>calculator/hexagon.min</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dependency-specification">Dependency specification</h3>
+<p>A project's <code>&lt;V_TARGET&gt;_deps.min</code> file defines its dependencies, which may be picked up from a prebuilt binary or built from source.</p>
+<p>Here is an example of how dependencies are specified(from $HEXAGON_SDK_ROOT/example/calculator/hexagon_deps.min):
+    DEPENDENCIES += \
+      ATOMIC \
+      RPCMEM \
+      TEST_MAIN \
+      TEST_UTIL</p>
+<p>The Hexagon SDK comes with dependencies in prebuilt binaries. They are located in their respective directories. For an example please see the $HEXAGON_SDK_ROOT/libs/atomic/prebuilt/ directory.
+Most of these prebuilt libraries contain debug symbols as they are built with "-g" compiler flag. When libraries are built with -g, the symbols they contain will be part of the final build output.
+For most of the dependencies, source code also has been provided in the SDK. For an example please see the $HEXAGON_SDK_ROOT/libs/atomic/ directory.</p>
+<p>The $HEXAGON_SDK_ROOT/build/default_deps.min file specifies whether a prebuilt library needs to be used or built from sources by default and where to find the source or binary for that library. This file needs to be included in <code>&lt;V_TARGET&gt;_deps.min</code> file.</p>
+<p>If you want to override the way default_deps.min specifies how dependencies should be accessed, you need to set <code>&lt;LIB_NAME&gt;_[PREBUILT_]DIR</code> in your local <code>&lt;V_TARGET&gt;_deps.min</code> to point to the desired location of the dependency, as shown below:</p>
+<pre><code>  ATOMIC_PREBUILT_DIR = $(HEXAGON_SDK_ROOT)/libs/atomic
+</code></pre>
+<p>The line above indicates that the ATOMIC library should be retrieved as a prebuilt binary from the $(HEXAGON_SDK_ROOT)/libs/atomic folder.</p>
+<p>Alternatively, you may specify the following in your local dependency file:</p>
+<pre><code>  ATOMIC_DIR = $(HEXAGON_SDK_ROOT)/libs/atomic
+</code></pre>
+<p>The line above would indicate that the ATOMIC library should be built from source located under $(HEXAGON_SDK_ROOT)/libs/atomic.</p>
+<p><strong><em>Note: </em></strong> For each library, you should only set <code>&lt;LIB_NAME&gt;_DIR</code> or <code>&lt;LIB_NAME&gt;_PREBUILT_DIR</code> in the <code>&lt;V_TARGET&gt;_deps.min</code>.</p>
+<p>See $HEXAGON_SDK_ROOT/build/default_deps.min and $HEXAGON_SDK_ROOT/examples/calculator/hexagon_deps.min for more clarity.</p>
+<h3 id="customizing-build-rules">Customizing build rules</h3>
+<p>It is sometimes necessary to define custom build rules. For example, when a single file needs a custom compile option or when a tool is needed to generate a source file. These rules can be added to the makefile after the include $(RULES_MIN) line.</p>
+<p>For example:</p>
+<pre><code>    $(OBJ_DIR)/example.c : example.bin
+    bin2src.exe -s$(subst /,\\,$&lt;) -dfs:/example.bin -o$@
+</code></pre>
+<h3 id="additional-information">Additional Information</h3>
+<h4 id="build-sources">Build Sources</h4>
+<p>The variables below allow to change definitions for a specific target.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Target-specific variables</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>&lt;targetName&gt;_C_SRCS</code></td>
+<td align="left">Specifies a list of .c source files required to build this target. Do not specify the .c extension.</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;targetName&gt;.C_SRCS</code></td>
+<td align="left">Specifies a list of C sources files required to build this target. You must specify the file's extension.</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;targetName&gt;_CPP_SRCS</code></td>
+<td align="left">Specifies a list of CPP source files required to build this target. Do not specify the .cpp extension.</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;targetName&gt;.CPP_SRCS</code></td>
+<td align="left">Specifies a list of CPP sources files required to build this target. You must specify the file's extension.</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;targetName&gt;_CXX_SRCS</code>,  <code>&lt;targetName&gt;.CXX_SRCS</code></td>
+<td align="left">Specifies a list of CPP source files required to build this target. Do not specify the .cxx extension.</td>
+</tr>
+<tr>
+<td align="left">`<targetName>_ASM_SRCS</td>
+<td align="left">Specifies a list of ASM source files required to build this target. Do not specify the .S extension.</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;targetName&gt;.ASM_SRCS</code></td>
+<td align="left">Specifies a list of ASM sources files required to build this target. You must specify the file's extension. This is useful when you need to distinguish between ASM sources that use the extension .S vs .S</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;targetName&gt;_LIBS</code></td>
+<td align="left">Specifies a list of libraries to link with this target. When a variable <lib>_DIR is defined for any of these libraries, the make system will recurse to that directory to update the library dependency.</td>
+</tr>
+<tr>
+<td align="left">`<libname>_DIR</td>
+<td align="left">Similar to <targetName>_LIBS.</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;targetName&gt;_DLLS</code></td>
+<td align="left">Specifies a list of shared objects from which symbols will be imported (similar to IMPLIB).</td>
+</tr>
+<tr>
+<td align="left">`<targetName>_RCS</td>
+<td align="left">Specifies a list of resource (RES) files.</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;targetName&gt;_LD_FLAGS</code></td>
+<td align="left">Used to specify additional linker flags for a specific shared object or executable target. Linker flags may be compiler specific; this variable may need to be set conditionally.</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;targetName&gt;_DEFS</code></td>
+<td align="left">Specifies DLL-specific DEF files.</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;targetName&gt;_ZIP_SPEC</code></td>
+<td align="left">Specifies the files to include in the ZIP file. Paths should be specified relative to <targetName>_ZIP_SRCHROOT. Wildcards are supported for directories and files.</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;targetName&gt;_ZIP_SRCHROOT</code></td>
+<td align="left">Specifies the base path for files listed in <targetName>_ZIP_SPEC. Paths in the ZIP file are relative to this base.</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;targetName&gt;_QAICIDLS</code></td>
+<td align="left">Specifies the IDL files to be compiled into C/C++ prior to building the target. Targets should add the stub or skel sources to their list of C sources.</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;targetName&gt;_QAICIDLS</code></td>
+<td align="left"><code>&lt;targetName&gt;_QAICIDLS=&lt;idl&gt; &lt;targetName&gt;_C_SRCS+=$V/&lt;interface&gt;_stub</code> or <code>&lt;targetName&gt;_QAICIDLS=&lt;idl&gt; &lt;targetName&gt;_C_SRCS+=$V/&lt;interface&gt;_skel</code>: Typically only the stub or the skel is built into a single target.</td>
+</tr>
+</tbody>
+</table>
+<p>The variables below allow to modify the build options for a specific object.</p>
+<table>
+<thead>
+<tr>
+<th>Build variables</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;objectName&gt;_CC_FLAGS</code>, <code>&lt;objectName&gt;_C_FLAGS</code></td>
+<td>Used to specify additional compiler flags for a specific C object. Compiler flags may be compiler specific; this variable may need to be set conditionally.</td>
+</tr>
+<tr>
+<td><code>&lt;objectName&gt;_CXX_FLAGS</code>, <code>&lt;objectName&gt;_CPP_FLAGS</code></td>
+<td>Used to specify additional compiler flags for a specific C++ object. Compiler flags may be compiler specific; this variable may need to be set conditionally.</td>
+</tr>
+<tr>
+<td>`<objectName>_CC</td>
+<td>Used to change the default tool used to compile this C object.</td>
+</tr>
+<tr>
+<td><code>&lt;objectName&gt;_CXX</code></td>
+<td>Used to change the default tool used to compile this CPP or CXX object.</td>
+</tr>
+<tr>
+<td><code>&lt;objectName&gt;_INCDIRS</code></td>
+<td>Specifies additional include paths to use for <code>&lt;objectName&gt;</code>.</td>
+</tr>
+<tr>
+<td><code>&lt;objectName&gt;_DEFINES</code></td>
+<td>Specifies additional defines that are added when building <code>&lt;objectName&gt;</code>.  Note: <code>&lt;objectname&gt;_DEFINES += -DMYDEFINE1 –DMYDEFINE2</code> should not be used, instead <code>&lt;objectname&gt;_DEFINES += MYDEFINE1 MYDEFINE2</code> should be used, -D will be picked up by default.</td>
+</tr>
+<tr>
+<td><code>&lt;objectName&gt;_UNDEFINES</code></td>
+<td>Removes the specified defines when building <code>&lt;objectName&gt;</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="exporting-build-outputs">Exporting build outputs</h4>
+<p>After the project is built, the final built outputs need to be validated on target or/and an application needs to
+ invoke the APIs exported by the project. In order to consolidate these outputs all the required
+ header files, libraries, dlls, executables are typically copied to a directory called <code>&lt;output&gt;/ship</code>, where <code>output</code> is the output directory name. The make.d build system supports a build
+ target called "BUILD_COPIES" to achieve this.</p>
+<p>Here is an example of <code>&lt;target.min&gt;</code> containing BUILD_COPIES definition:</p>
+<pre><code>    BUILD_COPIES = \
+       $(DLLS) \
+       $(EXES) \
+       $V/calculator.h \
+       $(LIBS) \
+       $(SHIP_DIR)/ ;
+</code></pre>
+<p>Which copies all the generated DLLs, executables, calculator.h, libraries to $(SHIP_DIR).</p>
+<p>The ship directory can be overridden by redefining <code>SHIP_DIR</code> after including defines.min as follows in the makefile,.</p>
+<pre><code>    include $(HEXAGON_SDK_ROOT)/build/defines.min
+    SHIP_DIR=$(V)/ship_new
+</code></pre>
+<h3 id="toolchain-support-in-android-ndk">Toolchain Support in Android NDK</h3>
+<p>The Android NDK r19c comes with Clang toolchain support. However, Hexagon SDK build supports GCC toolchain to enable users to compile using other NDK versions. To use the GCC toolchain, set ANDROID_ROOT_DIR to the Android root directory and use <code>V_GCC=1</code> option in the make command.
+Note that Android NDK r19c does not support GCC and hence the below command will not work with NDK r19c.</p>
+<pre><code>    make android V_GCC=1
+</code></pre>
+<p>The default Android API level is set to 26 (i.e. Version 8 OREO). The API level can be modified by passing API_LEVEL=<code>&lt;&gt;</code> in the make command.</p>
+<pre><code>    make android API_LEVEL=28
+</code></pre>
+<p>To use an older Android NDK such as r14b, it is recommended to change the Android API level to 24 or below. API level 24 works only with the full Android NDK and not with the minimal Android NDK.</p>
+<pre><code>    make android V_GCC=1 API_LEVEL=24
+</code></pre>
+<p>Users need to make sure the Android NDK platform at $HEXAGON_SDK_ROOT/tools/android-ndk-r19c/platforms folder has a respective API folder present before they set API level.</p>
+<h2 id="cmake">CMake</h2>
+<p>CMake is an open source cross-platform tool designed to build, test and package complex software projects. The software compilation in CMake is controlled using simple, platform- and compiler-independent configuration files. In Hexagon SDK, CMake build system is supported along with  make.d-based build system and offers an alternative to make.d to build projects. Using both CMake and  make.d to build a single project is also possible with some limitations that are described in the sections below.</p>
+<h3 id="cmake-configuration-files">CMake configuration files</h3>
+<p>The toolchain and configuration files that are needed to use the CMake build system are located in the $HEXAGON_SDK_ROOT/build/cmake directory. The description of each of these files is as follows:</p>
+<ul>
+<li><code>cmake_configure.bash</code>   : This file contains the environment setup and configuration of the CMake build system based on the options provided by the user. This file also generates the necessary MakeFiles for Hexagon or Android targets.</li>
+<li><code>hexagon_fun.cmake</code>      : This file contains the support functions that are needed to simplify the compilation of IDL files, running on simulator and invoking make.d build commands from CMake.</li>
+<li><code>hexagon_toolchain.cmake</code>: This file defines the cross-compilation tools needed to compile code for Hexagon targets. This contains all the options related to the Hexagon LLVM toolchain.</li>
+<li><code>ubuntuARM32_toolchain.cmake</code>: This file defines the cross-compilation tools needed to compile code for UbuntuARM 32-bit targets. This contains all the options related to the UbuntuARM 32-bit toolchain.</li>
+<li><code>ubuntuARM64_toolchain.cmake</code>: This file defines the cross-compilation tools needed to compile code for UbuntuARM 64-bit targets. This contains all the options related to the UbuntuARM 64-bit toolchain.</li>
+<li><code>custom_toolchain.cmake</code> : This file can be used to define the compilation tools needed to compile code for custom hosts OS different than Android, UbuntuARM, Windows and QNX.</li>
+</ul>
+<p>The Android toolchain file used to build the application code is taken from the Android NDK installed in the Hexagon SDK, located at: $HEXAGON_SDK_ROOT/tools/android-ndk-r19c/build/cmake/android.toolchain.cmake.</p>
+<h3 id="using-cmake-build-system">Using CMake build system</h3>
+<p>To use the CMake build system to compile code for Hexagon or HLOS targets, the user has to create a CMakeLists.txt file which defines the necessary rules to build an HLOS executable and DSP library.</p>
+<p>To keep the build commands identical for both make.d and CMake, there is a simple shell script "cmake_build.bash" that is added in each example. This shell script also helps to run the example on target device attached to the host. A cmake_build.cmd is also available to provide the same functionality on Windows.</p>
+<p>The usage of the CMake build systems is as described below:</p>
+<pre><code>cmake_build.cmd/bash &lt;action&gt; [Options]
+</code></pre>
+<p>CMake build system supports the following target options</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hexagon</td>
+<td>Build a dynamic DSP lib .so</td>
+</tr>
+<tr>
+<td>hexagonsim</td>
+<td>Build a dynamic DSP lib or executable for hexagon and run on simulator</td>
+</tr>
+<tr>
+<td>android</td>
+<td>Build the Android executable</td>
+</tr>
+<tr>
+<td>ubuntuARM</td>
+<td>Build the UbuntuARM executable</td>
+</tr>
+<tr>
+<td><code>&lt;CUSTOM_NAME&gt;</code></td>
+<td><code>&lt;CUSTOM_NAME&gt;</code> helps to build the custom HLOS executable. <code>&lt;CUSTOM_NAME&gt;</code> can take any name other than hexagon, hexagonsim, android, windows, qnx and ubuntuARM. <a href="#custom-toolchain">Custom Toolchain</a> explains how to use the custom toolchain for CMake projects</td>
+</tr>
+<tr>
+<td>V=<code>&lt;valid make.d build ID&gt;</code></td>
+<td>Build as with make.d</td>
+</tr>
+<tr>
+<td>VERBOSE=1</td>
+<td>Displays all the outputs from the build process. If VERBOSE is not defined, the build system displays only error messages.</td>
+</tr>
+</tbody>
+</table>
+<p>Note: the valid make.d build ID will be of the form: <code>hexagon_&lt;Debug/Release/ReelaseG&gt;_dynamic_toolv84_&lt;v65/v66/v68&gt;</code> or <code>hexagon_&lt;Debug/Release/ReelaseG&gt;_toolv84_&lt;v65/v66/v68&gt;</code> for Hexagon and <code>android_&lt;ReleaseG/Release/Debug&gt;_aarch64</code> or <code>android_&lt;ReleaseG/Release/Debug&gt;</code> for Android.</p>
+<table>
+<thead>
+<tr>
+<th>Hexagon Options</th>
+<th>Acceptable Options( * denotes defaults )</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BUILD</td>
+<td>*ReleaseG, Debug, Release</td>
+<td>Build Variant</td>
+</tr>
+<tr>
+<td>DSP_ARCH</td>
+<td>*v65, v66, v68</td>
+<td>Target Variant</td>
+</tr>
+<tr>
+<td>NO_QURT_INC</td>
+<td>0*, 1</td>
+<td>Do not include QuRT as a dependency when NO_QURT_INC=1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>HLOS Options</th>
+<th>Acceptable Options( * denotes defaults )</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BUILD</td>
+<td>*ReleaseG, Debug, Release</td>
+<td>Build Variant</td>
+</tr>
+<tr>
+<td>HLOS_ARCH</td>
+<td>32, *64</td>
+<td>HLOS architecture variant</td>
+</tr>
+<tr>
+<td>DOMAIN_FLAG</td>
+<td>0, 1, 2, 3*</td>
+<td>Select the fastrpc domain</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-examples_1">Usage examples</h3>
+<p>Arguments to <code>cmake_build.&lt;bash/cmd&gt;</code> for some common usage examples are listed in the table below:</p>
+<table>
+<thead>
+<tr>
+<th>Arguments to <code>cmake_build.&lt;bash/cmd&gt;</code></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hexagonsim</td>
+<td>Builds binary for hexagon target and runs on simulator</td>
+</tr>
+<tr>
+<td>hexagon</td>
+<td>Builds <example>_skel.so</td>
+</tr>
+<tr>
+<td>hexagon_clean</td>
+<td>Cleans the hexagon build directory and the dependency build directories if built</td>
+</tr>
+<tr>
+<td>android</td>
+<td>Builds Android target related files</td>
+</tr>
+<tr>
+<td>android_clean</td>
+<td>Cleans the Android build directory and the dependency build directories if built</td>
+</tr>
+<tr>
+<td>ubuntuARM</td>
+<td>Builds UbuntuARM 64-bit target related files</td>
+</tr>
+<tr>
+<td>ubuntuARM_clean HLOS_ARCH=32</td>
+<td>Cleans the UbuntuARM 32-bit build directory and the dependency build directories if built</td>
+</tr>
+<tr>
+<td>V=android_ReleaseG_aarch64</td>
+<td>Builds ReleaseG variant of Android for 64-bit arch</td>
+</tr>
+<tr>
+<td>V=hexagon_Debug_toolsv84_v66</td>
+<td>Builds Debug variant of hexagon target V66 using Hexagon tools version 8.4.*</td>
+</tr>
+<tr>
+<td>android BUILD=ReleaseG HLOS_ARCH=32</td>
+<td>Builds ReleaseG variant of Android for 32-bit arch</td>
+</tr>
+<tr>
+<td>hexagon BUILD=Debug DSP_ARCH=v68</td>
+<td>Builds Debug variant of hexagon target V68 to run on top of QURT</td>
+</tr>
+<tr>
+<td>hexagon BUILD=Debug DSP_ARCH=v68 NO_QURT_INC=1</td>
+<td>Builds baremetal Debug variant of hexagon target V68</td>
+</tr>
+<tr>
+<td>V=hexagon_Debug_dynamic_toolv84_v66</td>
+<td>Builds Debug variant of Hexagon target V66</td>
+</tr>
+<tr>
+<td>V=hexagon_ReleaseG_toolv84_v68</td>
+<td>Builds ReleaseG variant of Hexagon target V68</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mixing-cmake-and-maked-build-systems">Mixing CMake and make.d build systems</h3>
+<p>Mixing of CMake and make.d is needed if a CMake-based project has a dependency on a library built only with make.d. In this scenario, the CMake project should invoke make.d commands to build the required libraries. This approach is illustrated in the benchmark example of the compute add-on.</p>
+<p>Since all the Hexagon SDK libraries have make.d support, there should never be a case where a make.d project needs to invoke a CMake command.</p>
+<h3 id="cmake-helper-functions">CMake helper functions</h3>
+<p>The table below describes some CMake helper functions that are commonly used in building software:</p>
+<table>
+<thead>
+<tr>
+<th>Helper function</th>
+<th>Usage summary</th>
+<th>Documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>find_library</td>
+<td>Find a library in the specified locations</td>
+<td><a href="https://cmake.org/cmake/help/latest/command/find_library.html">find_library</a></td>
+</tr>
+<tr>
+<td>add_dependencies</td>
+<td>Add a dependency between top level targets</td>
+<td><a href="https://cmake.org/cmake/help/latest/command/add_dependencies.html">add_dependencies</a></td>
+</tr>
+<tr>
+<td>add_library</td>
+<td>Add a library target, built from the sources specified</td>
+<td><a href="https://cmake.org/cmake/help/latest/command/add_library.html">add_library</a></td>
+</tr>
+<tr>
+<td>target_link_directories</td>
+<td>Specify the search paths for the linker</td>
+<td><a href="https://cmake.org/cmake/help/latest/command/target_link_directories.html">target_link_directories</a></td>
+</tr>
+<tr>
+<td>target_link_libraries</td>
+<td>Specify the libraries to be used to link a given target</td>
+<td><a href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html">target_link_libraries</a></td>
+</tr>
+<tr>
+<td>add_custom_command</td>
+<td>Add a custom build rule to the generated build system</td>
+<td><a href="https://cmake.org/cmake/help/latest/command/add_custom_command.html">add_custom_command</a></td>
+</tr>
+<tr>
+<td>ExternalProject_Add</td>
+<td>Build a target from sources outside of the current CMake project</td>
+<td><a href="https://cmake.org/cmake/help/latest/module/ExternalProject.html">ExternalProject</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="hexagon-cmake-helper-functions">Hexagon Cmake helper functions</h4>
+<p>The table below describes some CMake helper function that are present when you include <code>$(HEXAGON_SDK_ROOT)/build/cmake/hexagon_fun.cmake</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Helper function</th>
+<th>Usage summary</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>build_idl(&lt;idlFile&gt; &lt;target&gt;)</code></td>
+<td>Set up a custom_target to build <code>&lt;idlFile&gt;</code> using qaic IDL compiler and also add the custom_target created as the dependency of <code>&lt;target&gt;</code></td>
+<td>build_idl(inc/calculator calculator)</td>
+</tr>
+<tr>
+<td><code>link_options(&lt;target&gt;)</code></td>
+<td>Set up the Arch-specific linker flags for the <code>&lt;target&gt;</code></td>
+<td>link_options(calculator_device)</td>
+</tr>
+<tr>
+<td><code>link_custom_library(&lt;target&gt; &lt;custom_library&gt;)</code></td>
+<td>Builds the <code>&lt;custom_library&gt;</code> and links to the target. <code>&lt;custom_library&gt;</code> can take one of (rpcmem, atomic, test_util, rtld, qhl, qhl_hvx)</td>
+<td>link_custom_library(calculator_device rpcmem)</td>
+</tr>
+<tr>
+<td><code>choose_dsprpc(&lt;domain&gt; &lt;target&gt;)</code></td>
+<td>Takes <code>&lt;domain&gt;</code> as argument and returns the corresponding remote library name in <code>&lt;target&gt;</code>. <code>&lt;domain&gt;</code> takes value from 0-3 and default is 3.</td>
+<td>choose_dsprpc("3", calculator)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="custom-toolchain">Custom Toolchain</h3>
+<p><code>custom_toolchain.cmake</code> helps users to run HLOS toolchains not supported in the Hexagon SDK to compile the code. The table below contains target variables needed to be updated in <code>custom_toolchain.cmake</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Target variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CUSTOM_PREFIX</td>
+<td>Full custom toolchain prefix</td>
+</tr>
+<tr>
+<td>CUSTOM_LIB_DIR</td>
+<td>Path for finding target-specific libs</td>
+</tr>
+<tr>
+<td>RELEASE_FLAGS</td>
+<td>Common compiler flags needed in the Release variant</td>
+</tr>
+<tr>
+<td>DEBUG_FLAGS</td>
+<td>Common compiler flags needed in the Debug variant</td>
+</tr>
+<tr>
+<td>CXX_FLAGS</td>
+<td>Specific compiler flags needed for building CXX-executable</td>
+</tr>
+<tr>
+<td>C_FLAGS</td>
+<td>Specific compiler flags needed for building C-executable</td>
+</tr>
+<tr>
+<td>EXE_LD_FLAGS</td>
+<td>Linker flags needed to build an executable</td>
+</tr>
+<tr>
+<td>DLL_LD_FLAGS</td>
+<td>Linker flags needed to build a shared library</td>
+</tr>
+</tbody>
+</table>
+<p>To build with a custom toolchain, use any target name other than the pre-existing target names android, ubuntuARM, hexagon, qnx and windows in the cmake_build command. The output folder name wil be <code>&lt;CUSTOM_NAME&gt;_&lt;BUILD_VARIANT&gt;</code> for 32-bit Arch and <code>&lt;CUSTOM_NAME&gt;_&lt;BUILD_VARIANT&gt;_aarch64</code> for 64-bit arch where <code>&lt;CUSTOM_NAME&gt;</code> is the target name provided.</p>
+<p>For example, to compile code for Debian HLOS.</p>
+<ul>
+<li>Update the <code>custom_toolchain.cmake</code> target specific variables mentioned above with Debian configurations.</li>
+<li>To build an executable run <code>cmake_build.&lt;bash/cmd&gt; debian BUILD=Debug HLOS_ARCH=32'. In the command</code><CUSTOM_NAME><code>is</code>debian` and HLOS_ARCH is 32-bit.</li>
+<li>The binaries built using the Debian toolchain will be available in the <code>debian_Debug</code> folder.</li>
+</ul>
+<h3 id="additional-notes">Additional Notes</h3>
+<ul>
+<li>
+<p>In CMakeLists.txt file, the <code>CMAKE_SYSTEM_NAME</code> variable must match the <code>&lt;CUSTOM_NAME&gt;</code> name passed with <code>cmake_build.&lt;bash/cmd&gt;</code> command. This variable can be used to add custom target code in CMakeLists.txt</p>
+</li>
+<li>
+<p>If the user is using both make.d and cmake build systems, clean the output directories before switching between build systems.</p>
+</li>
+</ul>
+<h2 id="gnu-make">GNU make</h2>
+<p>It is possible to construct traditional GNU makefiles for Hexagon SDK projects. One example is given at $HEXAGON_SDK_ROOT/examples/qhl.</p>
+<h2 id="building-android-application">Building Android application</h2>
+<p>Steps to build an Android application are mentioned in <a href="../examples/calculator_c%2B%2B_apk/index.html">C++_APK example</a></p>
+<h2 id="using-libraries-residing-on-target">Using libraries residing on target</h2>
+<p>Some APIs are implemented directly in the Hexagon DSP image.
+ This is the case for example for <code>memscpy</code> or <code>HAP_power_request</code>.</p>
+<p>Projects that use these libraries need to specify test_util as a library dependency to the project in order to be able to run the application on the hexagon simulator.</p>
+<h2 id="reference-documents">Reference documents</h2>
+<h3 id="reference-documents-for-compiler-and-linker">Reference documents for compiler and linker</h3>
+<p>Documentation on the Hexagon toolchain is provided as part of the Hexagon SDK:
+ * <a href="../pdf/80-VB419-8984_B_Hexagon_LLVM_C_CPP_Compiler_User_Guide.pdf">Compiler documentation</a>
+ * Linker section in <a href="../pdf/80-N2040-1584_D_Hexagon_Utilities_User_Guide.pdf">Hexagon Utilities documentation</a></p>
+<h3 id="interface-description-language-idl">Interface Description Language (IDL)</h3>
+<p>The <a href="../reference/idl.html">IDL</a> used in the SDK describes the interface between the application processor and the Hexagon DSPs communicating using <a href="../software/ipc/rpc.html">FastRPC</a>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="setup.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Setup
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="sign.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Device signing
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../js/iframe-worker.js"></script>
+<script src="../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

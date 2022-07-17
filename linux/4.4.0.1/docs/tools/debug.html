@@ -1,0 +1,2729 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Debugging - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#debugging-resources" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Debugging
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Debugging
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="debug.html" class="md-nav__link md-nav__link--active">
+      Debugging
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-is-it-not-working" class="md-nav__link">
+    Why is it not working?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tools" class="md-nav__link">
+    Debugging tools
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qprintf" class="md-nav__link">
+    qprintf
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-on-simulator" class="md-nav__link">
+    Debugging on Simulator
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging on Simulator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-process-on-hexagon-simulator-using-command-line" class="md-nav__link">
+    Debug process on Hexagon simulator using command line
+  </a>
+  
+    <nav class="md-nav" aria-label="Debug process on Hexagon simulator using command line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-useful-lldb-commands" class="md-nav__link">
+    Some useful LLDB commands
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-of-launch-lldb-script" class="md-nav__link">
+    Usage of launch-lldb script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-process-on-hexagon-simulator-using-eclipse-ide" class="md-nav__link">
+    Debug process on Hexagon simulator using Eclipse IDE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-qurt-crash-on-hexagon-simulator" class="md-nav__link">
+    Debugging QuRT crash on Hexagon Simulator
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-on-target" class="md-nav__link">
+    Debugging on target
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging on target">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overall-flow" class="md-nav__link">
+    Overall flow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-of-software-requirements" class="md-nav__link">
+    Verification of software requirements
+  </a>
+  
+    <nav class="md-nav" aria-label="Verification of software requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview-and-purpose" class="md-nav__link">
+    Overview and Purpose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-of-errors" class="md-nav__link">
+    List of Errors
+  </a>
+  
+    <nav class="md-nav" aria-label="List of Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-verification-errors-these-errors-occur-before-the-debug-agent-is-initialized" class="md-nav__link">
+    Pre-Verification Errors: These errors occur before the debug agent is initialized.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-errors-these-errors-occur-after-the-debug-agent-has-been-initialized" class="md-nav__link">
+    Verification Errors: These errors occur after the debug agent has been initialized.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-requirements" class="md-nav__link">
+    Software requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    Known issues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-procedure" class="md-nav__link">
+    Debugging procedure
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line" class="md-nav__link">
+    Command Line
+  </a>
+  
+    <nav class="md-nav" aria-label="Command Line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps-for-debugging" class="md-nav__link">
+    Steps for debugging
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-the-multithreading-example" class="md-nav__link">
+    Debugging the multithreading example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eclipse-ide" class="md-nav__link">
+    Eclipse IDE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-pd-exceptions" class="md-nav__link">
+    Debugging PD exceptions
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging PD exceptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debugging-with-pd-exception-logs" class="md-nav__link">
+    Debugging with PD exception logs
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging with PD exception logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-crash-signature" class="md-nav__link">
+    Debug crash signature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse-error-code" class="md-nav__link">
+    Parse error code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-with-pd-dumps" class="md-nav__link">
+    Debugging with PD dumps
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging with PD dumps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabling-pd-dump-mode" class="md-nav__link">
+    Enabling PD dump mode
+  </a>
+  
+    <nav class="md-nav" aria-label="Enabling PD dump mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prior-to-lahaina" class="md-nav__link">
+    Prior to Lahaina
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lahaina-and-beyond" class="md-nav__link">
+    Lahaina and beyond
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collecting-pd-dump" class="md-nav__link">
+    Collecting PD dump
+  </a>
+  
+    <nav class="md-nav" aria-label="Collecting PD dump">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prior-to-lahaina_1" class="md-nav__link">
+    Prior to Lahaina
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lahaina-and-beyond_1" class="md-nav__link">
+    Lahaina and beyond
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyzing-pd-dumps" class="md-nav__link">
+    Analyzing PD dumps
+  </a>
+  
+    <nav class="md-nav" aria-label="Analyzing PD dumps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-is-it-not-working" class="md-nav__link">
+    Why is it not working?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tools" class="md-nav__link">
+    Debugging tools
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qprintf" class="md-nav__link">
+    qprintf
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-on-simulator" class="md-nav__link">
+    Debugging on Simulator
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging on Simulator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-process-on-hexagon-simulator-using-command-line" class="md-nav__link">
+    Debug process on Hexagon simulator using command line
+  </a>
+  
+    <nav class="md-nav" aria-label="Debug process on Hexagon simulator using command line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-useful-lldb-commands" class="md-nav__link">
+    Some useful LLDB commands
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-of-launch-lldb-script" class="md-nav__link">
+    Usage of launch-lldb script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-process-on-hexagon-simulator-using-eclipse-ide" class="md-nav__link">
+    Debug process on Hexagon simulator using Eclipse IDE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-qurt-crash-on-hexagon-simulator" class="md-nav__link">
+    Debugging QuRT crash on Hexagon Simulator
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-on-target" class="md-nav__link">
+    Debugging on target
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging on target">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overall-flow" class="md-nav__link">
+    Overall flow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-of-software-requirements" class="md-nav__link">
+    Verification of software requirements
+  </a>
+  
+    <nav class="md-nav" aria-label="Verification of software requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview-and-purpose" class="md-nav__link">
+    Overview and Purpose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-of-errors" class="md-nav__link">
+    List of Errors
+  </a>
+  
+    <nav class="md-nav" aria-label="List of Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-verification-errors-these-errors-occur-before-the-debug-agent-is-initialized" class="md-nav__link">
+    Pre-Verification Errors: These errors occur before the debug agent is initialized.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-errors-these-errors-occur-after-the-debug-agent-has-been-initialized" class="md-nav__link">
+    Verification Errors: These errors occur after the debug agent has been initialized.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-requirements" class="md-nav__link">
+    Software requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    Known issues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-procedure" class="md-nav__link">
+    Debugging procedure
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line" class="md-nav__link">
+    Command Line
+  </a>
+  
+    <nav class="md-nav" aria-label="Command Line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps-for-debugging" class="md-nav__link">
+    Steps for debugging
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-the-multithreading-example" class="md-nav__link">
+    Debugging the multithreading example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eclipse-ide" class="md-nav__link">
+    Eclipse IDE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-pd-exceptions" class="md-nav__link">
+    Debugging PD exceptions
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging PD exceptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debugging-with-pd-exception-logs" class="md-nav__link">
+    Debugging with PD exception logs
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging with PD exception logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-crash-signature" class="md-nav__link">
+    Debug crash signature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse-error-code" class="md-nav__link">
+    Parse error code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-with-pd-dumps" class="md-nav__link">
+    Debugging with PD dumps
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging with PD dumps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabling-pd-dump-mode" class="md-nav__link">
+    Enabling PD dump mode
+  </a>
+  
+    <nav class="md-nav" aria-label="Enabling PD dump mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prior-to-lahaina" class="md-nav__link">
+    Prior to Lahaina
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lahaina-and-beyond" class="md-nav__link">
+    Lahaina and beyond
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collecting-pd-dump" class="md-nav__link">
+    Collecting PD dump
+  </a>
+  
+    <nav class="md-nav" aria-label="Collecting PD dump">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prior-to-lahaina_1" class="md-nav__link">
+    Prior to Lahaina
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lahaina-and-beyond_1" class="md-nav__link">
+    Lahaina and beyond
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyzing-pd-dumps" class="md-nav__link">
+    Analyzing PD dumps
+  </a>
+  
+    <nav class="md-nav" aria-label="Analyzing PD dumps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="debugging-resources">Debugging resources</h1>
+<h2 id="introduction">Introduction</h2>
+<h2 id="why-is-it-not-working">Why is it not working?</h2>
+<p>All software developers find themselves in this situation at one time or another. And there are many ways of approaching such a situation, with or without the use of tools.</p>
+<p>Debugging is best when you don't have to do it.  New Hexagon SDK users should refer to the <a href="../reference/troubleshooting.html#trouble-shooting-fastrpc-issues">FastRPC debugging documentation</a>, which discusses a number of common issues that users run into and that are difficult to debug.</p>
+<p>When issues occur on the simulator or target, understanding and using proper debugging tools can make the debugging process less painful. The <a href="#debugging-tools">debugging section below</a> provides an introduction of the Hexagon LLDB tool, which can be used to debug your application either <a href="#debugging-on-simulator">on simulator</a> or <a href="#debugging-on-target">on target</a>.</p>
+<h2 id="debugging-tools">Debugging tools</h2>
+<h3 id="qprintf">qprintf</h3>
+<p>The SDK comes with the qprintf library. This library provides different APIs to display scalar and vector registers in various formats from C/C++ or assembly.
+This library works on both the simulator and the target.</p>
+<p>For example, after including qprintf_asm.h to your assembly code, insert the following line.</p>
+<pre><code>qprintf("v0 = %d",v0);
+</code></pre>
+<p>This will display the contents of HVX register V0 as a succession of 32-bit integers in the logs that are accessible using <a href="messaging.html">mini-dm or logcat</a>:</p>
+<pre><code>qprintf_example_asm.S[174]: v0 =
+  -1,-1,-1,-1,-1,-1,-1,-1
+  -1,-1,-1,-1,-1,-1,-1,-1
+  -1,-1,-1,-1,-1,-1,-1,-1
+  -1,-1,-1,-1,-1,-1,-1,-1
+</code></pre>
+<p>The library also supports more advanced options for controlling the format of the output, the elements to hide or display, or the number of columns for displaying the elements of a vector register. For example:</p>
+<pre><code>qprintf("Displaying scalar registers in various formats: %u, %x. %23d. %+.6d or %5.2f. Etc.",r20,r20,r20,r20,r21);
+</code></pre>
+<p>The output will be</p>
+<pre><code>qprintf_example_asm.S[162]: Displaying scalar registers in various formats: 20, 14, 20, +000020,  4.00. Etc.
+</code></pre>
+<p>Another example:</p>
+<pre><code>qprintf("Masked vector register contents as 16-bit unsigned integers in rows of 5 elements: %m(5)uu",v0);
+</code></pre>
+<p>The output will be</p>
+<pre><code>qprintf_example_asm.S[183]: Masked vector register contents as 16-bit unsigned integers in rows of 5 elements:
+   [7e]= 65535,[7c]= 65535,[76]= 65535,[74]= 65535,[6e]= 65535
+   [6c]= 65535,[66]= 65535,[64]= 65535,[5e]= 65535,[5c]= 65535
+   [56]= 65535,[54]= 65535,[4e]= 65535,[4c]= 65535,[46]= 65535
+   [44]= 65535,[3a]= 65535,[38]= 65535,[32]= 65535,[30]= 65535
+   [2a]= 65535,[28]= 65535,[22]= 65535,[20]= 65535,[1a]= 65535
+   [18]= 65535,[12]= 65535,[10]= 65535,[0a]= 65535,[08]= 65535
+   [02]= 65535,[00]= 65535,
+</code></pre>
+<p>For more details on this library, see the library package in <code>$HEXAGON_SDK_ROOT/libs/qprintf</code> and its <a href="../doxygen/qprintf/index.html" target="_blank">documentation</a>.</p>
+<p>For examples on how to use the library, see the code example in <a href="../examples/qprintf/index.html">qprintf_example</a>.</p>
+<h3 id="debugging-on-simulator">Debugging on Simulator</h3>
+<p>It is possible to debug a process on simulator from either the <a href="#debug-process-on-hexagon-simulator-using-command-line">command line</a> or the <a href="#debug-process-on-hexagon-simulator-using-eclipse-ide">Eclipse IDE</a></p>
+<h4 id="debug-process-on-hexagon-simulator-using-command-line">Debug process on Hexagon simulator using command line</h4>
+<p>This chapter describes how to debug the <a href="../examples/multithreading/index.html">multithreading example</a> on simulator from command line.</p>
+<p>Please use the following steps. Here we are debugging a v65 architecture based application. Steps to debug v66/v68 application are also same as below, it is as simple as replacing v65 with v66/v68 everywhere it appears in the instructions.</p>
+<ul>
+<li>
+<p>Build project</p>
+<pre><code>cd %HEXAGON_SDK_ROOT% for Windows or cd $HEXAGON_SDK_ROOT for Linux
+
+setup_sdk_env.cmd for Windows or setup_sdk_env.source for Linux
+
+cd examples\multithreading
+
+make hexagon DSP_ARCH=v65 BUILD=Debug VERBOSE=1
+</code></pre>
+<p>The above make command builds the multithreading example and runs it on simulator using <a href="run.html#run_main_on_hexagon">run_main_on_hexagon</a></p>
+<p>You can re-run the code on simulator with the following command which is also provided as part of <code>%HEXAGON_SDK_ROOT%/examples/multithreading/hexagon_Debug_toolv84_v65/pmu_stats.txt</code>.</p>
+<pre><code>%DEFAULT_HEXAGON_TOOLS_ROOT%/Tools/bin/hexagon-sim -mv65 --simulated_returnval --usefs hexagon_Debug_toolv84_v65 --pmu_statsfile hexagon_Debug_toolv84_v65/pmu_stats.txt --dsp_clock 1000 --ahb:lowaddr 0xc0000000 --ahb:highaddr 0xc0ffffff --cosim_file hexagon_Debug_toolv84_v65/q6ss.cfg --l2tcm_base 0xd800 --rtos hexagon_Debug_toolv84_v65/osam.cfg %HEXAGON_SDK_ROOT%/rtos/qurt//computev65/sdksim_bin/runelf.pbn -- %HEXAGON_SDK_ROOT%/libs/run_main_on_hexagon/ship/hexagon_toolv84_v65/run_main_on_hexagon_sim -- multithreading_q.so
+</code></pre>
+</li>
+<li>
+<p>Define LLDB_HEXAGON_BOOTER_PATH</p>
+<p>Before beginning to debug the multithreading project, the <code>LLDB_HEXAGON_BOOTER_PATH</code> environment variable needs to be defined. Define the environment variable <code>LLDB_HEXAGON_BOOTER_PATH</code> with the path to the booter executable.</p>
+<p>For Windows:</p>
+<pre><code>set LLDB_HEXAGON_BOOTER_PATH=%HEXAGON_SDK_ROOT%\rtos\qurt\computev65\sdksim_bin\runelf.pbn
+</code></pre>
+<p>For Linux:</p>
+<pre><code>export LLDB_HEXAGON_BOOTER_PATH=$HEXAGON_SDK_ROOT/rtos/qurt/computev65/sdksim_bin/runelf.pbn
+</code></pre>
+<p>When LLDB gets down to the simulator launch, it will check for this environment variable. If it exists, it will treat this environment variable as the main target (runelf.pbn) and pick the original target(multithreading_q) as first argument to main target(runelf.pbn).</p>
+<p><strong><em>Note.</em></strong> Once LLDB_HEXAGON_BOOTER_PATH is defined, we should not pass runelf.pbn as simulator argument.</p>
+</li>
+<li>
+<p>Build run_main_on_hexagon</p>
+<p>Build the run_main_on_hexagon library for the Debug build flavor.</p>
+<pre><code>cd %HEXAGON_SDK_ROOT%\libs\run_main_on_hexagon
+
+make hexagon DSP_ARCH=v65 BUILD=Debug
+</code></pre>
+<p>The above make command builds the run_main_on_hexagon library.</p>
+</li>
+<li>
+<p>Debug project</p>
+<p>Please run the following command to launch the debugger on the multithreading example</p>
+<p>For Windows:</p>
+<pre><code> %DEFAULT_HEXAGON_TOOLS_ROOT%\Tools\bin\hexagon-lldb.exe %HEXAGON_SDK_ROOT%\libs\run_main_on_hexagon\hexagon_Debug_toolv84_v65\run_main_on_hexagon_sim -o "image search-paths add . hexagon_Debug_toolv84_v65" -- -mv65 --simulated_returnval --usefs hexagon_Debug_toolv84_v65 --pmu_statsfile hexagon_Debug_toolv84_v65/pmu_stats.txt --dsp_clock 1000 --ahb:lowaddr 0xc0000000 --ahb:highaddr 0xc0ffffff --cosim_file hexagon_Debug_toolv84_v65/q6ss.cfg --l2tcm_base 0xd800 --rtos hexagon_Debug_toolv84_v65/osam.cfg -- -- ./hexagon_Debug_toolv84_v65/multithreading_q.so
+</code></pre>
+<p>For Linux:</p>
+<pre><code> $DEFAULT_HEXAGON_TOOLS_ROOT/Tools/bin/hexagon-lldb $HEXAGON_SDK_ROOT/libs/run_main_on_hexagon/hexagon_Debug_toolv84_v65/run_main_on_hexagon_sim  -o "image search-paths add . hexagon_Debug_toolv84_v65" -- -mv65 --simulated_returnval --usefs hexagon_Debug_toolv84_v65 --pmu_statsfile hexagon_Debug_toolv84_v65/pmu_stats.txt --dsp_clock 1000 --ahb:lowaddr 0xc0000000 --ahb:highaddr 0xc0ffffff --cosim_file hexagon_Debug_toolv84_v65/q6ss.cfg --l2tcm_base 0xd800 --rtos hexagon_Debug_toolv84_v65/osam.cfg -- -- ./hexagon_Debug_toolv84_v65/multithreading_q.so
+</code></pre>
+<p>You can also get lldb command for your simulator test using <a href="#usage-of-launch-lldb-script">launch-lldb.py</a> script</p>
+<p>This command will result in the following LLDB output:</p>
+<pre><code>(lldb) target create "%HEXAGON_SDK_ROOT%\\libs\\run_main_on_hexagon\\hexagon_Debug_toolv84_v65\\run_main_on_hexagon_sim"
+
+Current executable set to '%HEXAGON_SDK_ROOT%\libs\run_main_on_hexagon\\hexagon_Debug_toolv84_v65\run_main_on_hexagon_sim' (hexagon).
+
+(lldb) settings set -- target.run-args  "-mv65" "--simulated_returnval" "--usefs" "hexagon_Debug_toolv84_v65" "--pmu_statsfile" "hexagon_Debug_toolv84_v65/pmu_stats.txt" "--dsp_clock" "1000" "--ahb:lowaddr" "0xc0000000" "--ahb:highaddr" "0xc0ffffff" "--cosim_file" "hexagon_Debug_toolv84_v65/q6ss.cfg" "--l2tcm_base" "0xd800" "--rtos" "hexagon_Debug_toolv84_v65/osam.cfg" "--" "--" "multithreading_q.so"
+
+(lldb) image search-paths add . hexagon_Debug_toolv84_v65
+</code></pre>
+<p>The first line indicates the name of the Hexagon executable, <code>run_main_on_hexagon_sim</code>, while the third line lists the Hexagon simulator options followed, after <code>--</code>, by the name of the Hexagon library, <code>multithreading_q.so</code>, containing the <code>main()</code> function to execute. The <code>image search-paths add</code> command can be given to the <code>-o</code> flag as an argument to hexagon-lldb and is explained <a href="#some-useful-lldb-commands">below</a>. The <code>-o</code> flag can be used to execute the specified command <code>image search-paths add</code> after LLDB loads the executable file. Further details can be found in the <a href="../pdf/80-N2040-31_C_Hexagon_LLDB_Debugger_User_Guide.pdf" target="_blank">Hexagon LLDB Debugger User Guide</a></p>
+<p>Please refer to the <a href="../pdf/80-N2040-1784_E_Hexagon_Simulator_User_Guide.pdf" target="_blank">Hexagon Simulator User Guide</a> for understanding the above arguments.</p>
+<p><strong><em>Note.</em></strong> A <code>--</code> after osam.cfg in LLDB launching command is used to separate simulator arguments from program arguments .</p>
+<p>Once LLDB is launched you can set breakpoints using <code>b</code>.</p>
+<pre><code>b multithreading_parallel_sum
+</code></pre>
+<p>Breakpoint can be set at main also , but it will hit main() of run_main_on_hexagon_sim first and main() of your simulator test next. To avoid this it is recommended to set breakpoint at multithreading_parallel_sum() so that LLDB can directly break in simulator test.</p>
+<p>Use <code>r</code> to run the program.</p>
+<p>It should launch the executable and break at multithreading_parallel_sum() of multithreading_q.so, as shown below.</p>
+<pre><code>(lldb) r
+Process 1 launched: '%HEXAGON_SDK_ROOT%\libs\run_main_on_hexagon\hexagon_Debug_toolv84_v65\run_main_on_hexagon_sim' (hexagon)
+1 location added to breakpoint 1
+Process 1 stopped
+    * thread #17, name = 'ribbon', stop reason = breakpoint 1.1
+    frame #0: 0xd8044914 multithreading_q.so`multithreading_parallel_sum(h=14593280) at multithreading_imp.c:90:5
+    87    * We initialize all threads with an equal priority value of: QURT_THREAD_ATTR_PRIORITY_DEFAULT/2 (127)
+    88    */
+    89
+    -&gt; 90       qurt_thread_attr_init(&amp;attr1);
+    91       qurt_thread_attr_set_name(&amp;attr1, (char *)"cntr1");
+    92       qurt_thread_attr_set_stack_addr(&amp;attr1, malloc(1024));
+    93       qurt_thread_attr_set_stack_size(&amp;attr1, 1024);
+(lldb)
+</code></pre>
+<p>From here on you can step, continue, look at the thread information, register information, print variable values and continue debugging.</p>
+</li>
+</ul>
+<h5 id="some-useful-lldb-commands">Some useful LLDB commands</h5>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>breakpoint list</td>
+<td>list of breakpoints</td>
+</tr>
+<tr>
+<td>registers read</td>
+<td>list the registers</td>
+</tr>
+<tr>
+<td>thread list</td>
+<td>list the threads in the system at that instance of time</td>
+</tr>
+<tr>
+<td>bt</td>
+<td>show trace of where you are currently. Prints stack backtrace</td>
+</tr>
+<tr>
+<td>frame v</td>
+<td>print values of local variables</td>
+</tr>
+<tr>
+<td>fr v variable-name</td>
+<td>print value stored in variable</td>
+</tr>
+<tr>
+<td>fr v -f x variable-name</td>
+<td>print variable in hex</td>
+</tr>
+<tr>
+<td>finish</td>
+<td>go to the end of the program</td>
+</tr>
+<tr>
+<td>quit</td>
+<td>exit LLDB debugger</td>
+</tr>
+</tbody>
+</table>
+<p>If you are debugging multiple shared objects, then you have to add the path for the other shared objects.</p>
+<p>Use <code>image search-paths add</code> or <code>target modules search-paths add</code> (image is an alias for target modules) to tell LLDB where to find shared libraries.</p>
+<pre><code>image search-paths add old_so_path new_so_path
+</code></pre>
+<p>Libraries are always loaded on QuRT with “./” as the path, so you want to remap ./ to the path to your library. If your library is in /local/mnt/workspace/, you’d say</p>
+<pre><code>image search-paths add . /local/mnt/workspace/
+</code></pre>
+<h4 id="usage-of-launch-lldb-script">Usage of launch-lldb script</h4>
+<p>The <code>launch-lldb.py</code> script automates the process of launching the debugger on an executable that was previously simulated. The script is located under <code>$HEXAGON_SDK_ROOT/utils/debugger/launch-lldb.py</code>.</p>
+<p>The script parses a simulator command stored in a <code>sim_cmd_line.txt</code> file and launches hexagon-lldb to run the same code within the debugger.</p>
+<pre><code>python $(HEXAGON_SDK_ROOT)/utils/debugger/launch-lldb.py sim_cmd_line.txt
+</code></pre>
+<p><strong><em>Note.</em></strong> <code>sim_cmd_line.txt</code> is automatically generated when the application is run on the simulator by make.d build system. This file is currently not generated when cmake build system is used.</p>
+<h4 id="debug-process-on-hexagon-simulator-using-eclipse-ide">Debug process on Hexagon simulator using Eclipse IDE</h4>
+<p>Please refer to <a href="ide.html#debug-on-simulator">Eclipse IDE</a> and follow the steps to debug on the Hexagon simulator using Eclipse IDE.</p>
+<h4 id="debugging-qurt-crash-on-hexagon-simulator">Debugging QuRT crash on Hexagon Simulator</h4>
+<p>When a process execution fails on the Hexagon simulator, a QuRT exception handling mechanism retrieves the relevant information from the process state and displays it on the console. The QuRT error code returned as part of this exception can be analyzed using the qurt_error_info.py script in $HEXAGON_SDK_ROOT/utils/scripts.</p>
+<p>For example, in the following error log:</p>
+<pre><code>!!! Exception occurred
+QuRT error code 0x2101
+Thread ID       0x59
+SP              0x23091810
+ELR             0x23018d34
+BADVA           0x1
+</code></pre>
+<p>The QuRT error code is 0x2101 which can be deciphered as below:</p>
+<pre><code>python3 qurt_error_info.py 0x2101
+
+Cause type:  QURT_EXCEPT_PRECISE ( 0x1 )
+Cause details:  A precise exception occurred.
+Cause2 details:
+Exception type:  Precise ( 0x21 )
+Exception description:  Store to misaligned address.
+</code></pre>
+<p>The exception here points to "Store to misaligned address", which can be further debugged using the lldb debugger. Refer to Section-19 and Appendix-B of the <a href="../pdf/80-VB419-178_B_QuRT_User_Guide.pdf" target="_blank">QuRT document</a> to read more about exception handling and understanding the QuRT error codes.</p>
+<h3 id="debugging-on-target">Debugging on target</h3>
+<p>The Debug Agent along with the Remote Debug Driver implement a shared memory based transport mechanism that allows for a LLDB debugger running on a host PC to communicate with a remote stub running on peripheral subsystems such as the aDSP, cDSP etc. This approach provide a reliable, responsive, accurate, and secure debug capability without the use of a hardware debugger</p>
+<p>The diagram below depicts, end to end, the components involved to support remote debugging:</p>
+<p><img alt="svg" src="../images/remote_debugger_components.PNG" /></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Debugger</td>
+<td>Debugger application (LLDB) running on the host PC that communicates with the remote stub</td>
+</tr>
+<tr>
+<td>Debug Agent</td>
+<td>Software that runs on the Android platform that provides connectivity from the device to the host PC</td>
+</tr>
+<tr>
+<td>Remote Debug Driver</td>
+<td>A character-based driver that the Debug Agent uses to transport the payload received from the host to the debug stub running on the subsystem processor over shared memory and vice versa</td>
+</tr>
+<tr>
+<td>Shared Memory</td>
+<td>Shared memory from the SMEM pool that is accessible from the Applications Processor (AP) and the subsystem processors</td>
+</tr>
+<tr>
+<td>Remote Debug Stub</td>
+<td>Privileged code that runs in the kernels of the subsystem processors that receives debug commands from the debugger running on the host and acts on these commands. These commands include reading and writing to registers and memory belonging to the subsystem's address space, setting breakpoints, single stepping etc.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="overall-flow">Overall flow</h4>
+<p>When the Debug Agent application starts up, it opens up a shared memory based transport channel to the DSP that will be debugged (aDSP, cDSP, etc...)</p>
+<p>The Debug Agent application communicates with the DSP to discover the running processes and exposes a port for each one.</p>
+<p>LLDB on the host machine connects to the port associated with the DSP process that the user wishes to debug</p>
+<p>LLDB then communicates via this port to debug the process on the DSP. This includes setting breakpoints, reading registers, querying threads, etc...</p>
+<p>When the process hits a breakpoint it will be halted and control turned over the LLDB. LLDB then provides the user the ability to single step, continue, etc...</p>
+<h4 id="verification-of-software-requirements">Verification of software requirements</h4>
+<h5 id="overview-and-purpose">Overview and Purpose</h5>
+<p>The debugger has a few components that need to be present and working correctly in order for LLDB debugging to work. Since you may not know the details of the device you are working on, the Hexagon SDK provides a debugger verification script that will attempt to verify that all the pieces are present and functioning correctly.</p>
+<p>The debugger verification script contains several error handlers designed to check for several of the most common issues that will prevent the debug agent from initializing properly. These error handlers work to both mitigate these issues by fixing them (i.e. obtaining the remote_debug_agent from the SDK and pushing it to the device) and/or by providing an informative error message to the user.</p>
+<ul>
+<li>
+<p>Where to find the script files:</p>
+<p>The debugger verification script is accessible from the scripts directory in the Hexagon SDK:</p>
+<pre><code>%HEXAGON_SDK_ROOT%/utils/debugger for Windows or $HEXAGON_SDK_ROOT\utils\debugger for Linux
+</code></pre>
+</li>
+<li>
+<p>How to run the script:</p>
+<p>Below is the basic procedure for running the debugger verification script.</p>
+<p>Connect the target device to the host PC using the specified USB cable</p>
+<pre><code>Open a CLI shell
+
+Type “adb devices”
+</code></pre>
+<p>Look to make sure the following message is displayed in the CLI shell:</p>
+<pre><code>“List of devices attached”
+
+“abcdef device” ('adcdef' is replaced with unique device ID)
+</code></pre>
+<p>Change directory to the Hexagon_SDK root</p>
+<p>Run setup_sdk_env.cmd from the Hexagon_SDK root location</p>
+<p>Look to make sure the following message is displayed in the CLI shell:</p>
+<pre><code>“Setting up the Hexagon SDK environment locally”
+
+“Done”
+</code></pre>
+<p>Change directory to %HEXAGON_SDK_ROOT%\utils\debugger in Windows or $HEXAGON_SDK_ROOT\utils\debugger in Linux.</p>
+<p>Run “python verify_debugger.py -ADSP” to verify debugger on aDSP.</p>
+<p>Run “python verify_debugger.py -CDSP” to verify debugger on cDSP.</p>
+<p>Displayed message if the script verifies that end-to-end communication is successful between host PC and target device:</p>
+<pre><code>*** REMOTE DEBUGGER STATUS: remote software debugger is working properly ***
+</code></pre>
+<p>Displayed message if the script is unsuccessful at establishing end-to-end communication between host PC and target device:</p>
+<pre><code>*** REMOTE DEBUGGER STATUS: remote software debugger is NOT initialized / NOT working properly ***
+</code></pre>
+<p>Displayed message if the script encounters an error prior to initializing debug agent:</p>
+<pre><code>*Error message is specific to particular error. No remote debugger status is displayed.*
+</code></pre>
+</li>
+</ul>
+<h5 id="list-of-errors">List of Errors</h5>
+<h6 id="pre-verification-errors-these-errors-occur-before-the-debug-agent-is-initialized">Pre-Verification Errors: These errors occur before the debug agent is initialized.</h6>
+<ol>
+<li>
+<p>Error: SDK environment has not been set up.</p>
+<ul>
+<li>
+<p>Display message: “SDK Environment not set up -&gt; please run setup_sdk_env.cmd from SDK's root directory</p>
+</li>
+<li>
+<p>Cause: the SDK environment must be setup in order to ensure the script will function properly. For example, this sets up the %HEXAGON_SDK_ROOT% variable which is a necessary component in the script's verification capability.</p>
+</li>
+<li>
+<p>Solution: change directory within the CLI shell you are using to the Hexagon_SDK root. Type “setup_sdk_env.cmd” and wait for the return message that says “Done”.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Error: rdbg.ko driver file is missing on target device.</p>
+<ul>
+<li>
+<p>Display message: “ERROR: rdbg.ko driver file does not exist. Expected file location on device: /system/lib/modules/rdbg.ko or /vendor/lib/modules/rdbg.ko”</p>
+</li>
+<li>
+<p>Cause: rdbg.ko driver file is not present on the device. This file is necessary to facilitate communication between the host PC and target device.</p>
+</li>
+<li>
+<p>Solution: Please move to different build that has rdbg.ko“.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Error: insmod command failed for rdbg.ko module.</p>
+<ul>
+<li>
+<p>Display message: “ERROR: rdbg.ko module could not be installed/instantiated properly. Expected file location on device: /system/lib/modules/rdbg.ko or /vendor/lib/modules/rdbg.ko.</p>
+</li>
+<li>
+<p>Cause: rdbg.ko file may be missing, device may not to be rooted (adb root command), rdbg.ko file may have incorrect permissions.</p>
+</li>
+<li>
+<p>Solution: Please ensure that rdbg.ko is present on device at either /system/lib/modules/rdbg.ko or /vendor/lib/modules/rdbg.ko and have proper permissions. If present, please check dmesg logs for the errors.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Error: unable to change permissions for remote_debug_agent file on target device.</p>
+<ul>
+<li>
+<p>Display message: “ERROR: unable to chmod remote_debug_agent”</p>
+</li>
+<li>
+<p>Cause: target device may not be rooted (adb root command), may need to be remounted (adb remount command). Possible improper connection between host PC and target device.</p>
+</li>
+<li>
+<p>Solution: disconnect the target device from the host PC and then reconnect. Type “adb devices” into the CLI shell and ensure host PC is recognizing the device. Ensure you are acting as root (“adb root”) and mounted properly on device (“adb remount”).</p>
+</li>
+</ul>
+</li>
+</ol>
+<h6 id="verification-errors-these-errors-occur-after-the-debug-agent-has-been-initialized">Verification Errors: These errors occur after the debug agent has been initialized.</h6>
+<ol>
+<li>
+<p>Error: no XML file generated by debug agent software.</p>
+<ul>
+<li>
+<p>Display message: “No XML file exists on the local host for parsing”</p>
+</li>
+<li>
+<p>Cause: debug monitor was not fully initialized and therefore did not generate an XML file on the host with a list of running processes and their attributes.</p>
+</li>
+<li>
+<p>Solution: check http://localhost:5555/pslist.xml to see if a “pslist.xml” file has been generated. It may be corrupt or inaccessible to the host PC for security/permissions reasons. Most likely cause is that the debug agent was instantiated but did not initialize properly. Ensure Linux Android and aDSP build are compatible and are using an appropriate rdbg.ko file.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Error: the debug port value assigned to process <code>x</code> is out of acceptable range. Acceptable range is greater than 1 and less than 99999.</p>
+<ul>
+<li>
+<p>Display message: “Debug port value out of acceptable range ( &lt;1 or &gt;99999 )”</p>
+</li>
+<li>
+<p>Cause: debug port was assigned a value that is not acceptable. Value will prevent debug monitor from properly attaching to the running process and will restrict or prevent debug capabilities.</p>
+</li>
+<li>
+<p>Solution: Check debug value to see what value, if any, it was assigned. Use this as context to help determine what value was assigned and what caused this error.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Error: the debug port value is not an integer data type.</p>
+<ul>
+<li>
+<p>Display message: “Debug port value not an integer data type”</p>
+</li>
+<li>
+<p>Cause: debug port was assigned a value that is not acceptable. Value will prevent debug monitor from properly attaching to the running process and will restrict or prevent debug capabilities.</p>
+</li>
+<li>
+<p>Solution: Check debug value to see what value, if any, it was assigned. Use this as context to help determine what value was assigned and what caused this error.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Error: no running processes exist on the device.</p>
+<ul>
+<li>
+<p>Display message: “No running processes exist. If you see <code>DM_FAILED -1</code> then possible causes are: aDSP build does not contain debug software OR LA and aDSP build are not compatible”</p>
+</li>
+<li>
+<p>Cause: debug agent did not initialize properly. aDSP build does not contain debug software OR LA and aDSP build are not compatible.</p>
+</li>
+<li>
+<p>Solution: reflash Linux Android (LA) and aDSP build and make sure they are compatible. Push rdbg.ko to target device again and make sure it is compatible with LA and aDSP builds. Make sure remote_debug_agent is present on target device. Check permissions for remote_debug_agent (755). Ensure you are acting as root (“adb root”) and mounted properly on device (“adb remount”).</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>Next Steps</p>
+<p>The debugger verification script will provide as detailed and informative error handling information as possible. Use the output messages provided by the script to help debug and fix any issues that arise when attempting to initialize the debug agent software and verify end-to-end communication between the host and the target device. Continue to do this until the debug agent software initializes properly. You will know the debug agent has initialized properly when the resulting output of the script provides the following display message:</p>
+<pre><code>*** REMOTE DEBUGGER STATUS: remote software debugger is working properly ***
+</code></pre>
+<p>Once functioning correctly proceed to the <a href="#debugging-procedure">target debugging</a> instructions.</p>
+<h4 id="software-requirements">Software requirements</h4>
+<ol>
+<li>
+<p>hexagon-lldb executable from Hexagon tools. This can be found under <code>%DEFAULT_HEXAGON_TOOLS_ROOT%\Tools\bin</code></p>
+</li>
+<li>
+<p>Debug agent user mode Android app. It is present on the target at /vendor/bin/ location. If your target did not include the remote debug agent the scripts will push it for you from the SDK</p>
+<p>($HEXAGON_SDK_ROOT/tools/debug/remote_debug_agent/android).</p>
+</li>
+<li>
+<p>Linux Android build that has the driver (rdbg.ko). To check whether this are part of the image that has been flashed, connect the device to the host machine using a USB cable and do the following in a windows command prompt:</p>
+<p>adb root</p>
+<p>adb shell</p>
+<p>ls /system/lib/modules</p>
+</li>
+</ol>
+<p>if rdbg.ko is not present in /system/lib/modules, please check /vendor/lib/modules</p>
+<pre><code>ls /vendor/lib/modules
+</code></pre>
+<p>rdbg.ko should be present in either /system/lib/modules or /vendor/lib/modules. If rdbg.ko is not present then remote debugging is not supported. Please use a build that has rdbg.ko</p>
+<h4 id="known-issues">Known issues</h4>
+<ol>
+<li>
+<p>The device needs to be rebooted between debug sessions. After completing a debug session LLDB will not be able to re-connect and any attempt to do so will result in unpredictable behavior.</p>
+</li>
+<li>
+<p>If you are seeing a hang on the application while debugging with LLDB, it is possible that FastRPC has killed the process on the DSP as part of the last domain close. To avoid being in this situation, make sure that the CPU does not close the <a href="../software/ipc/rpc.html#multi-domain">remote handle</a> until you are done debugging.</p>
+</li>
+<li>
+<p>If you try and force exit the application that you are debugging (Ctrl-c), you will likely crash the device or at least see some unpredictable behavior. If you need to start over or run a program that you want to debug, you will have to reboot the device.</p>
+</li>
+<li>
+<p>Stdout is getting buffered with ADB versions 1.0.39 when an application (like multithreading) has started and is waiting for debugger to connect. This has been fixed in 1.0.40 or later ADB releases. With 1.0.39 ADB version, users can try any one of the following work-around.</p>
+<p>Use setbuf(stdout,NULL) in the main() of application to disable buffering on stdout</p>
+<p>Run the application from the shell . adb shell . :/ # ./vendor/bin//multithreading</p>
+</li>
+<li>
+<p>QuRT does not support reading HVX registers while debugging on V65 targets. This is only supported from V66</p>
+</li>
+<li>
+<p>Debugging is not supported on unsigned PD.</p>
+</li>
+<li>
+<p>Debugger is not working properly while debugging an application on ADSP on SM6125, SM6150, SM7150, SM8150 and Rennell targets.</p>
+</li>
+<li>
+<p>Modifying HVX register content from the IDE when debugging on target does not work properly.</p>
+</li>
+</ol>
+<h4 id="debugging-procedure">Debugging procedure</h4>
+<p>There are two ways to do on-target debugging:</p>
+<ol>
+<li>
+<p>Command line</p>
+</li>
+<li>
+<p>Eclipse IDE</p>
+</li>
+</ol>
+<h5 id="command-line">Command Line</h5>
+<p>This section provides steps to use the remote debugger command-line interface. Refer to <a href="../pdf/80-N2040-31_C_Hexagon_LLDB_Debugger_User_Guide.pdf" target="_blank">Hexagon LLDB Debugger User Guide</a> to get an overview of the debugger framework and to ensure the hardware and software requirements are met. Run the Debugger Verification Script to ensure that the device being debugged has all the necessary software on it.</p>
+<h6 id="steps-for-debugging">Steps for debugging</h6>
+<pre><code>Connect a USB cable from the host machine to the device.
+
+Launch LLDB
+
+issue the `target_connect` command
+
+Follow the prompts
+</code></pre>
+<p>The following section goes into much more detail and walks you through debugging the multithreading example</p>
+<h6 id="debugging-the-multithreading-example">Debugging the multithreading example</h6>
+<p>Connect a USB cable from the host machine to the device.</p>
+<p>In this documentation we debug the multithreading example. The first step is to run the multithreading walkthrough to push its binaries and verify it is working properly</p>
+<p>Open a new Windows cmd shell and run the multithreading walkthrough script. Please refer to <a href="../examples/multithreading/index.html">multithreading example</a> to run it on target.</p>
+<p>Open a second Windows cmd shell on the host machine and start LLDB. Note that it is required to run setup_sdk_env.cmd in the second CLI shell before starting LLDB.</p>
+<pre><code>cd %HEXAGON_SDK_ROOT%
+
+setup_sdk_env.cmd
+
+%DEFAULT_HEXAGON_TOOLS_ROOT%\Tools\bin\hexagon-lldb.exe
+</code></pre>
+<p>You should see the following:</p>
+<pre><code>Hexagon utilities (pagetable, tlb, pv) loaded
+
+Hexagon SDK device_connect command loaded
+</code></pre>
+<p>Issue the device_connect command on the LLDB command line and follow the presented instructions</p>
+<pre><code>(lldb) device_connect
+</code></pre>
+<p>When asked to choose which DSP, select the DSP you are debugging. In this case, the multithreading example runs on the cDSP. If you will be debugging on the cDSP, you will be asked to choose the PD where the example will be running. The example runs on the unsigned PD by default.</p>
+<p>LLDB will eventually pause and ask you to run your program. LLDB has configured your device so that all new user processes will halt on start. This allows LLDB to connect to the process before calling your user code. It also allows you to configure your debug session before running any of your code (such as setting set breakpoints, etc...). This also means you will have to reboot your device after you are done debugging in order to return the device back to the default (non-halting) configuration.</p>
+<p>Run the multithreading example on the first cmd shell. The multithreading program should hang indefinitely waiting for the debugger to attach.</p>
+<pre><code>adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH ADSP_LIBRARY_PATH="/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;" /vendor/bin//multithreading
+</code></pre>
+<p>This will run the multithreading example on the unsigned PD by default. To run the example on the signed PD, pass the flag <code>-U 0</code>
+After you run your program, press ENTER on the LLDB prompt. LLDB will present you a list of processes you can connect to. There will be a few processes displayed on the command line. Choose the one that matches your program's name. In this case the <code>multithreading</code> process. Your list should looks something like this, you would choose #3 to debug multithreading</p>
+<pre><code>- Reading list of active user processes ...
+
+- Please select the process to debug (if you don't see your process ensure you application is running):
+
+1       _ASID0_
+
+2       1112_3
+
+3       /frpc/c0468710 multithreading
+</code></pre>
+<p>LLDB will then set a breakpoint in the user process's exception handler so that if an exception occurs the debugger will stop in the exception so that you can determine the reason for the exception. Please refer to <a href="#debugging-pd-exceptions">Hexagon exception handling</a> for more information on how to debug an exception.</p>
+<p>Next LLDB will ask you for the search-path to your shared object. This step is optional but if you choose to enter nothing then you must set a search-path later using the following LLDB command:</p>
+<pre><code>(lldb) image search-paths add . local path to your shared objects
+</code></pre>
+<p>Take note that only one search-path mapping to <code>.</code> can Exist. If you have multiple search-paths the results are unpredictable.</p>
+<p>In this example we are running multithreading so enter the multithreading's ship directory.</p>
+<p>Be sure to replace %HEXAGON_SDK_ROOT% with the actual location of the SDK on your host machine.</p>
+<pre><code>%HEXAGON_SDK_ROOT%/examples/multithreading/hexagon_Debug_toolv84_v65/ship
+</code></pre>
+<p>Take note that if you don't add a search-path or the search-path is incorrect, then LLDB won't be able to halt at any of the breakpoints in your code. It's good practice to check your search-path for accuracy if you are having trouble getting LLDB to hit breakpoints in your user code.</p>
+<p>LLDB will then connect to your user process on device and halt at the start of the process. This halt location is not in your user code, it is an early  halt in the start up code of the process. You should see something like this:</p>
+<pre><code>Process 8418 stopped
+
+* thread #1, stop reason = signal SIGTRAP
+
+    frame #0: 0xe522817c fastrpc_shell_unsigned_3`qurt_ptrace + 4
+
+fastrpc_shell_unsigned_3`qurt_ptrace:
+
+-&gt;  0xe522817c &lt;+4&gt;:    {       jumpr r31 }
+
+
+fastrpc_shell_unsigned_3`qurt_allsignal_wait:
+
+    0xe5228180 &lt;+0&gt;:    {       r2 = memw_locked(r0) }
+
+    0xe5228184 &lt;+4&gt;:    {       memw_locked(r0,p0) = r1 }
+
+    0xe5228188 &lt;+8&gt;:    {       immext(#4294967232)
+
+    0xe522818c &lt;+12&gt;:           if (!p0) jump:nt 0xe5228180
+
+    0xe5228190 &lt;+16&gt;:           r4 = add(r0,#4)
+
+    0xe5228194 &lt;+20&gt;:           r5 = sub(#-1,r1) }
+</code></pre>
+<p>This is a good time to set any user breakpoints you wish to set.</p>
+<p>For this example, we should set a breakpoint in multithreading_parallel_sum()</p>
+<pre><code>(lldb) b multithreading_parallel_sum
+</code></pre>
+<p>You will see something like this:</p>
+<pre><code>Breakpoint 2: no locations (pending).
+
+WARNING:  Unable to resolve breakpoint to any actual locations.
+</code></pre>
+<p>This is normal and just means that LLDB has added a future breakpoint. Since the multithreading shared object is not loaded yet LLDB has no idea where in memory to put that breakpoint. Once the multithreading shared object is loaded LLDB will set the breakpoint at the correct location</p>
+<p>In order to avoid setting breakpoints every time you debug, you can instead put your breakpoints (and search path) in a file and have LLDB load and run these commands. There must be one command per line.</p>
+<p>An example file:</p>
+<pre><code>echo commands.txt
+
+image search-paths add . C:/Qualcomm/Hexagon_SDK/4.4.0.0/examples/multithreading/hexagon_Debug_toolv84_v65/ship/
+
+b multithreading_parallel_sum
+</code></pre>
+<p>Then in LLDB you can load and run these commands by issuing:</p>
+<pre><code>(lldb) commands source commands.txt
+</code></pre>
+<p>Now it is time to let multithreading execute and for LLDB to stop at the breakpoint you set. Issue the <code>continue</code> command</p>
+<pre><code>(lldb) c
+</code></pre>
+<p>You should see something like this:</p>
+<pre><code>Process 8418 resuming
+
+1 location added to breakpoint 2
+
+Process 8418 stopped
+
+* thread #3, stop reason = breakpoint 2.1
+
+    frame #0: 0xe42f7fe8 libmultithreading_skel.so`multithreading_parallel_sum [inlined] qurt_thread_attr_set_name(attr=&lt;unavailable&gt;, name=0x00000000) at qurt_thread.h:209:5
+
+   206  */
+
+   207  static inline void qurt_thread_attr_set_name (qurt_thread_attr_t *attr, char *name)
+
+   208  {
+
+-
+209      strlcpy (attr-&gt;name, name, QURT_THREAD_ATTR_NAME_MAXLEN);
+
+   210      attr-&gt;name[QURT_THREAD_ATTR_NAME_MAXLEN - 1] = 0;
+
+   211  }
+
+   212
+</code></pre>
+<p>You can see from the output that the multithreading process has stopped and the reason was a breakpoint. LLDB will show you the line number and source code of the location where the breakpoint stopped.</p>
+<p>If the breakpoint is not hit, check that you entered a correct <a href="#some-useful-lldb-commands">search path</a>.</p>
+<p>At this point you are free to use LLDB to debug the program. For a list of LLDB commands take a look at <a href="https://lldb.llvm.org/lldb-gdb.html" target="_blank">LLDB commands</a></p>
+<h5 id="eclipse-ide">Eclipse IDE</h5>
+<p>Please refer to <a href="ide.html#run-and-debug-on-target">Eclipse IDE</a> and follow the steps to debug on target using Eclipse IDE.</p>
+<h2 id="debugging-pd-exceptions">Debugging PD exceptions</h2>
+<h3 id="debugging-with-pd-exception-logs">Debugging with PD exception logs</h3>
+<p>When a user PD crashes on the DSP, the FastRPC exception handler collects the required information from QuRT and flushes the messages to logcat. This allows the user to understand the reason for the crash. It contains information such as PD name, thread name, and last known PC location along with the library name. It also lists the offset and size of all the dynamically loaded objects for user reference.</p>
+<p>For information on how to recover from a user PD crash, see the discussion on <a href="../software/ipc/rpc.html#handling-exceptions">handling exceptions</a>.</p>
+<p>The details below are provided in the <a href="messaging.html#logcat">logcat logs</a> or <a href="messaging.html#mini-dm">mini-dm</a> output during a user PD crash:</p>
+<ol>
+<li>
+<p>User PD name</p>
+</li>
+<li>
+<p>Thread name</p>
+</li>
+<li>
+<p>Name of the shared object and the symbol offset (derived from PC during crash)</p>
+</li>
+<li>
+<p>Kind of exception and details</p>
+</li>
+<li>
+<p>Last known PC</p>
+</li>
+<li>
+<p>Call trace</p>
+</li>
+<li>
+<p>QuRT Error code</p>
+</li>
+</ol>
+<p>Here is an example of a crash report collected from logcat:</p>
+<pre><code>adsprpc : ADSP: ############################### Process on aDSP CRASHED!!!!!!! ########################################
+
+adsprpc : ADSP: --------------------- Crash Details are furnished below ----------------------------------------------------
+
+
+adsprpc : ADSP: process "/frpc/f067e6a0 calculator" crashed in thread "/frpc/f067e6a0 " due to "TLBMISS RW occurrence" in ./libcalculator_skel.so
+
+adsprpc : ADSP: Crashed Shared Object ./libcalculator_skel.so load address : 0xe648c000
+
+adsprpc : ADSP: fastrpc_shell_0 load address : DE500000  and size : D2208
+
+adsprpc : ADSP: Fault PC   :    0xE648C8D0
+
+adsprpc : ADSP: LR         :    0xE648C8B4
+
+adsprpc : ADSP: SP         :    0xAE0B3DC0
+
+adsprpc : ADSP: Bad va     :    0x0
+
+adsprpc : ADSP: FP         :    0xAE0B3DE8
+
+adsprpc : ADSP: SSR        :    0x21970770
+
+adsprpc : ADSP: Error code :    0x7003
+
+adsprpc : ADSP: Call trace:
+
+adsprpc : ADSP: [&lt;e648c8b4&gt;] calculator_sum+0xB4:     (./libcalculator_skel.so)
+
+adsprpc : ADSP: [&lt;e648c7ac&gt;] calculator_skel_invoke+0x23C:     (./libcalculator_skel.so)
+
+adsprpc : ADSP: [&lt;e648c5c0&gt;] calculator_skel_invoke+0x50:     (./libcalculator_skel.so)
+
+adsprpc : ADSP: [&lt;de5721a0&gt;] mod_table_invoke+0x2A4:     (fastrpc_shell_0)
+
+adsprpc : ADSP: [&lt;de5950b4&gt;] fastrpc_invoke_dispatch+0x14D4:     (fastrpc_shell_0)
+
+adsprpc : ADSP: [&lt;de56cab4&gt;] adsp_current_process_getASID+0x26C:     (fastrpc_shell_0)
+
+adsprpc : ADSP: [&lt;de56e36c&gt;] _pl_fastrpc_uprocess+0x730:     (fastrpc_shell_0)
+
+
+adsprpc : ADSP: ----------------------------- End of Crash Report -----------------------------------------------------------
+</code></pre>
+<p>It is recommended to use the Debug flavor in order to get the correct details from crash report.</p>
+<p>To debug the PD exception further, you can use the script <code>debug_exceptions.py</code> located under <code>{HEXAGON_SDK_ROOT}/utils/debugger</code>. Below is the command line usage of this script.</p>
+<pre><code>Debug PD exceptions by parsing crash signature in log file:
+  Usage: debug_exceptions.py --debug_crash log_file [--lib crashed_library]
+
+  --debug_crash LOG_FILE
+                        path of log file containing the crash signature.
+  --lib CRASHED_LIBRARY
+                        path of crashed shared library.
+
+Parse QuRT error code returned during PD crash:
+  Usage: debug_exceptions.py --parse_error error_code
+
+  --parse_error ERROR_CODE
+                        QuRT Error code to to parsed.
+
+***Note: *** Error code is displayed as part of the crash signature in Lahaina and onward targets only.
+</code></pre>
+<h4 id="debug-crash-signature">Debug crash signature</h4>
+<p>As shown above, use the <code>--debug_crash</code> option to debug a crash signature in a log file.</p>
+<p>For example, the following command:</p>
+<pre><code>./debug_exceptions.py --debug_crash log_file.log
+</code></pre>
+<p>will parse <code>log_file.log</code>, identify the crash signature, read the QuRT Error code and display the complete crash signature with the reason of crash.</p>
+<p>With this command:</p>
+<pre><code>./debug_exceptions.py --debug_crash log_file.log --lib libcalculator_skel.so
+</code></pre>
+<p>the script will also run <code>hexagon-addrline.exe</code> on the crashed library <code>libcalculator_skel.so</code> to find the line number where the crash occurred in the source file.</p>
+<h4 id="parse-error-code">Parse error code</h4>
+<p>As explained above, use the <code>--parse_error</code> option to get the explanation for an error code.</p>
+<p>For example,</p>
+<pre><code>./debug_exceptions.py --parse_error 0x7003
+</code></pre>
+<p>will explain the meaning of the error code <code>0x7003</code></p>
+<p>Alternatively, please follow the manual steps below to find out the crash location in the source code from a crash signature.</p>
+<p>A crash signature gives the Fault PC address and the load address of crashed ELF.</p>
+<pre><code>Crashed Shared Object ./libcalculator_skel.so load address : 0xE42F0000
+
+Fault PC   :    0xE42F08B0
+</code></pre>
+<p>Determine the PC offset by calculating difference between the Fault PC and the load address of your crashed shared object.</p>
+<pre><code>(0xE42F08B0 - 0xE42F0000) = 0x8B0
+</code></pre>
+<p>Run the <code>hexagon-addr2line</code> using this offset and the crashed shared object to get the line number in the source file where the crashed occured.</p>
+<pre><code>%DEFAULT_HEXAGON_TOOLS_ROOT%\Tools\bin\hexagon-addr2line.exe  -e libcalculator_skel.so  0x8B0
+</code></pre>
+<p>hexagon-addr2line.exe output should look like below</p>
+<pre><code>%HEXAGON_SDK_ROOT%\examples\calculator\src\calculator_imp.c:24:4
+</code></pre>
+<p>This means source code located at line number 24 in calculator_imp.c caused this PD crash.</p>
+<p>Also you can run hexagon-llvm-objdump.exe to find out the disassembly of crashing packet.</p>
+<pre><code>%DEFAULT_HEXAGON_TOOLS_ROOT%\Tools\bin\hexagon-llvm-objdump.exe  --disassemble -source libcalculator_skel.so &gt; disassembled_calculator.txt
+</code></pre>
+<p>The command above gives disassembly of all instructions in libcalculator_skel.so with source interleaved.</p>
+<p>In this example the offset of FaultPC is 0x8B0, you can search for instructions at this offset in hexagon-llvm-objdump.exe output. You should see something like below.</p>
+<pre><code>*res = *p;
+
+    8ac:       62 ff 9e 97 979eff62 {  r2 = memw(r30+#-20) }
+
+    8b0:       02 c0 82 91 9182c002 {  r2 = memw(r2+#0) }
+
+    8b4:       00 c0 42 84 8442c000 {  r1:0 = sxtw(r2) }
+
+    8b8:       a2 ff 9e 97 979effa2 {  r2 = memw(r30+#-12) }
+
+    8bc:       00 c0 c2 a1 a1c2c000 {  memd(r2+#0) = r1:0 }
+</code></pre>
+<p>The instruction at <code>0x8B0</code> is causing PD exception in this example.</p>
+<h3 id="debugging-with-pd-dumps">Debugging with PD dumps</h3>
+<p>A Protection Domain (PD) dump captures the state of a user PD when it encounters an exception. It shows what threads and instructions were executing, what modules were loaded and other useful information for analyzing the exception.</p>
+<h4 id="enabling-pd-dump-mode">Enabling PD dump mode</h4>
+<h5 id="prior-to-lahaina">Prior to Lahaina</h5>
+<p>Collection of PD dumps is enabled by default for both signed and unsigned PDs. PD dumps are not enabled on devices with debug policy disabled.</p>
+<h5 id="lahaina-and-beyond">Lahaina and beyond</h5>
+<p>Once enabled, PD dumps are always collected for unsigned PDs on all devices. However for Signed PDs, PD dumps are not collected on devices with debug policy disabled.</p>
+<p>Enabling PD dump on signed or unsigned PDs has to be done at PD creation. There is no option to enable PD dump dynamically.</p>
+<p>PD dump is enabled by following two steps</p>
+<ol>
+<li>
+<p>Run the command below before launching the application</p>
+<pre><code>adb shell setprop vendor.fastrpc.debug.pddump 1
+</code></pre>
+</li>
+<li>
+<p>Follow EITHER ONE (not both) of these steps:</p>
+<ul>
+<li>
+<p>Push a debug configuration file with debug properties enabled to a process readable location i.e <a href="../software/ipc/rpc.html">DSP_LIBRARY_PATH</a> on the target. This debug config file is read only during the start of the process and debug properties are set before a FastRPC session is created on DSP.</p>
+<p>File extension for debug configuration file is .debugconfig.</p>
+<p>A sample debug configuration file for calculator application will be calculator.debugconfig and the content of this file will be:</p>
+<pre><code>pddump = 1
+</code></pre>
+<p>Once the file is created, push this file to DSP_LIBRARY_PATH on target. For e.g.</p>
+<pre><code>adb push calculator.debugconfig /vendor/lib/rfsa/adsp
+</code></pre>
+</li>
+<li>
+<p>Use the remote_session_control <a href="../doxygen/remote/index.html" target="_blank">remote API</a> before a FastRPC session is created:</p>
+<pre><code>struct remote_rpc_control_pd_dump pddump;
+pddump.domain = CDSP_DOMAIN_ID;
+pddump.enable = 1;
+nErr = remote_session_control(FASTRPC_CONTROL_PD_DUMP, &amp;pddump, sizeof(struct remote_rpc_control_pd_dump));
+</code></pre>
+</li>
+</ul>
+<p><strong><em>Note: </em></strong> Unlike the first approach, this alternate approach requires the application to be rebuilt.</p>
+</li>
+</ol>
+<p>For enabling PD dumps for signed PD, both steps are required. However, PD dumps for unsigned PD can be enabled with step 2 only, but to enable guest OS info, we need to run step 1 as well.</p>
+<h4 id="collecting-pd-dump">Collecting PD dump</h4>
+<p>Once PD dump mode is enabled, dumps will be automatically collected whenever any exception occurs in any PD. This change won't affect the PDs that existed before the PD dump mode was enabled.</p>
+<h5 id="prior-to-lahaina_1">Prior to Lahaina</h5>
+<p>PD dumps will be generated at</p>
+<pre><code>ADSP: /vendor/rfs/msm/adsp/ramdumps
+
+CDSP: /vendor/rfs/msm/cdsp/ramdumps
+
+SLPI: /vendor/rfs/msm/slpi/ramdumps
+</code></pre>
+<p>You can use adb to fetch the PD dump files from the target to your local machine.</p>
+<pre><code>    adb pull /vendor/rfs/msm/adsp/ramdumps/pd_dump_/frpc .
+</code></pre>
+<h5 id="lahaina-and-beyond_1">Lahaina and beyond</h5>
+<p>PD dumps will be generated at</p>
+<pre><code>ADSP:  /data/vendor/pddump/rfs/adsppd_dump_
+
+CDSP: /data/vendor/pddump/rfs/cdsppd_dump_
+
+SLPI: /data/vendor/pddump/rfs/sdsppd_dump_
+</code></pre>
+<p>You can use adb to fetch the PD dump files from the target to your local machine.</p>
+<pre><code>    adb pull /data/vendor/pddump/rfs/adsppd_dump_/frpc .
+</code></pre>
+<h4 id="analyzing-pd-dumps">Analyzing PD dumps</h4>
+<h5 id="prerequisites">Prerequisites</h5>
+<ol>
+<li>
+<p>Hexagon LLDB tools 8.4.05 or above</p>
+</li>
+<li>
+<p>PD dump file collected following the <a href="#collecting-pd-dump">instructions above</a></p>
+</li>
+<li>
+<p>FastRPC shell image ( ex. fastrpc_shell_0 for ADSP, fastrpc_shell_3 for CDSP etc.). This can be pulled from the target at location /vendor/dsp/adsp or /vendor/dsp/cdsp.</p>
+</li>
+</ol>
+<p>To pull the FastRPC shell for the CDSP, run:</p>
+<pre><code>    adb pull /vendor/dsp/cdsp/fastrpc_shell_3
+</code></pre>
+<p>To pull the FastRPC shell for the ADSP, run:</p>
+<pre><code>    adb pull /vendor/dsp/adsp/fastrpc_shell_0
+</code></pre>
+<ol>
+<li>All the required shared object files. This includes the shared object running on the DSP for that user PD and its dependent shared objects.</li>
+</ol>
+<h5 id="example">Example</h5>
+<p>We will take the benchmark example from the Hexagon SDK compute add-on to illustrate how we can analyze the dumps.</p>
+<p>The examples below are for Windows but the same approach also works with Linux using Linux paths and executables.</p>
+<p>Setup your <a href="setup.html#sdk-environment">SDK environment</a></p>
+<p>If you want to collect dumps for an application that doesn't behave as you expect but doesn't crash either, you can induce a crash by writing to the NULL address from the DSP side:</p>
+<pre><code>volatile int* crash=NULL;
+*crash = 0xdead;
+</code></pre>
+<p>This approach is used in benchmark with the <code>-f crash10</code> option:</p>
+<pre><code>adb wait-for-device shell export LD_LIBRARY_PATH=/vendor/lib64/:$LD_LIBRARY_PATH ADSP_LIBRARY_PATH="/vendor/lib/rfsa/dsp/sdk\;/vendor/lib/rfsa/dsp/testsig;" /vendor/bin//benchmark -o /data/local/benchmark.csv -P 6 -L 10 -l 10 -s -f crash10
+</code></pre>
+<p>Go to %HEXAGON_TOOLS_ROOT%\Tools\bin directory and make sure you copy into your local directory the elf file, which is generated as part of PD dumps, the FastRPC shell image, and all the required shared objects.</p>
+<p>Run the command below:</p>
+<pre><code>hexagon-lldb.exe fastrpc_shell_3 -c "c04e0d60 benchmark.00.elf"
+</code></pre>
+<p>Here <code>c04e0d60 benchmark.00.elf</code> is the name for PD dump file. <code>c04e0d60</code> is a unique identifier created for a process on the DSP. All threads spawned from this process have the same identifier.</p>
+<p>After running the above command, you should see a message similar to this:</p>
+<pre><code>(lldb) target create "fastrpc_shell_3" --core "c04e0d60 benchmark.00.elf"
+Core file 'C:\Qualcomm\Hexagon_SDK\4.4.0.0\tools\HEXAGON_Tools\8.4.04\Tools\bin\c04e0d60 benchmark.00.elf' (hexagon) was loaded.
+List all the required shared objects to make sure you are not missing any
+
+(lldb) image list
+[  0] 06B067D7 0xe3bb5074 C:\Qualcomm\Hexagon_SDK\4.4.0.0\tools\HEXAGON_Tools\8.4.04\Tools\bin\fastrpc_shell_3
+[  1] CEB4F524 0xe32e0000 .\libbenchmark_skel.so
+[  2] 95A1580D 0xe32f5000 .\libworker_pool.so
+</code></pre>
+<p>If you are missing a shared objects, then copy that .so file to the current directory, exit the lldb and start again.</p>
+<p>To see the backtrace of the crashed thread, you can use <code>bt</code> command:</p>
+<pre><code>(lldb) bt
+  thread #6, name = '/frpc/c051d630 ', stop reason = signal Memory write miss
+* frame #0: 0xe32e9dec
+  frame #1: 0xe32e37e4 libbenchmark_skel.so`benchmark_skel_handle_invoke [inlined] _skel_method_2(_pfn=&lt;unavailable&gt;, _h=&lt;unavailable&gt;, _sc=&lt;unavailable&gt;, _pra=&lt;unavailable&gt;) at benchmark_skel.c:585:4
+  frame #2: 0xe32e3674 libbenchmark_skel.so`benchmark_skel_handle_invoke(_h=&lt;unavailable&gt;, _sc=&lt;unavailable&gt;, _pra=&lt;unavailable&gt;) at benchmark_skel.c:1135
+  frame #3: 0xe32e37e4 libbenchmark_skel.so`benchmark_skel_handle_invoke [inlined] _skel_method_2(_pfn=&lt;unavailable&gt;, _h=&lt;unavailable&gt;, _sc=&lt;unavailable&gt;, _pra=&lt;unavailable&gt;) at benchmark_skel.c:585:4
+  frame #4: 0xe32e3674 libbenchmark_skel.so`benchmark_skel_handle_invoke(_h=&lt;unavailable&gt;, _sc=&lt;unavailable&gt;, _pra=&lt;unavailable&gt;) at benchmark_skel.c:1135
+  frame #5: 0xe3c31088 fastrpc_shell_3`mod_table_invoke + 576
+  frame #6: 0xe3c50c24 fastrpc_shell_3`fastrpc_invoke_dispatch + 336
+  frame #7: 0xe3c2ad4c fastrpc_shell_3
+  frame #8: 0xe3c2ce2c fastrpc_shell_3
+  frame #9: 0xe3bde200 fastrpc_shell_3`qurt_trampoline + 44
+</code></pre>
+<p>This shows that the crash occurred when thread 6 processed frame 9.</p>
+<p>To see the backtrace for all the threads, you can use</p>
+<pre><code>(lldb) bt all
+thread #1, name = 'worker3', stop reason = signal 0
+  frame #0: 0xe3bdd1dc fastrpc_shell_3`qurt_mutex_lock_i + 72
+  frame #1: 0xe32f5f98 libworker_pool.so`::worker_pool_init(context=&lt;unavailable&gt;) at worker_pool.cpp:212:20
+  frame #2: 0xe3bde200 fastrpc_shell_3`qurt_trampoline + 44
+thread #2, name = 'worker2', stop reason = signal 0
+  frame #0: 0xe3bdd1dc fastrpc_shell_3`qurt_mutex_lock_i + 72
+  frame #1: 0xe32f5f98 libworker_pool.so`::worker_pool_init(context=&lt;unavailable&gt;) at worker_pool.cpp:212:20
+  frame #2: 0xe3bde200 fastrpc_shell_3`qurt_trampoline + 44
+thread #3, name = 'worker1', stop reason = signal 0
+  frame #0: 0xe3bdd1dc fastrpc_shell_3`qurt_mutex_lock_i + 72
+  frame #1: 0xe32f5f98 libworker_pool.so`::worker_pool_init(context=&lt;unavailable&gt;) at worker_pool.cpp:212:20
+  frame #2: 0xe3bde200 fastrpc_shell_3`qurt_trampoline + 44
+thread #4, name = 'worker0', stop reason = signal 0
+  frame #0: 0xe3bdd8a0 fastrpc_shell_3`qurt_signal_wait + 100
+  frame #1: 0xe3bde200 fastrpc_shell_3`qurt_trampoline + 44
+</code></pre>
+<p>Here are some useful commands:</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>thread list</td>
+<td>list the threads in your program</td>
+</tr>
+<tr>
+<td>thread select <thread_idx></td>
+<td>select thread <thread_idx> for subsequent commands</td>
+</tr>
+<tr>
+<td>frame select <frame_idx></td>
+<td>select stack frame <frame_idx> for subsequent commands</td>
+</tr>
+<tr>
+<td>frame info</td>
+<td>list information about the currently selected frame in the current thread</td>
+</tr>
+<tr>
+<td>disassemble --frame</td>
+<td>disassemble the current function for the current frame</td>
+</tr>
+<tr>
+<td>frame variable</td>
+<td>print values of all local variables for the current frame</td>
+</tr>
+<tr>
+<td>register read --all</td>
+<td>show all registers in all register sets for the current thread</td>
+</tr>
+<tr>
+<td>memory read  0xe0415e34</td>
+<td>read memory from address 0xe0415e34</td>
+</tr>
+<tr>
+<td>image dump sections</td>
+<td>dump information about all the sections of the main executable and all the loaded shared objects</td>
+</tr>
+</tbody>
+</table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="messaging.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Message logging
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="profile.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Profiling
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../js/iframe-worker.js"></script>
+<script src="../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,378 @@
+*******************
+Halide with UBWCDMA
+*******************
+
+..  contents::
+    :local:
+    :depth: 2
+
+Universal Bandwidth Compression Direct Memory Access (UBWCDMA) is a feature
+provided by an IP peripheral block on the cDSP. This feature provides DMA
+capability for transferring data from DDR main memory to Hexagon local memory
+and back, with the data (image frames) in DDR either compressed (bandwidth-wise)
+or linear, for the DSP to process. The data in local memory in the DSP is
+uncompressed.
+
+==============
+UBWCDMA basics
+==============
+
+The following table describes the UBWCDMA read and write operations.
+
+.. csv-table::
+           :align: left
+           :header: "UBWCDMA direction", "Description"
+           :widths: 29, 71
+
+           "UBWCDMA read", "Transfer data from a buffer in DDR main memory to a buffer in Hexagon local memory"
+           "UBWCDMA write", "Transfer data from a buffer in Hexagon local memory to a buffer in DDR main memory"
+
+
+.. note::
+
+    Do not confuse UBWCDMA with User DMA (Hexagon V68 ISA and later). UBWCDMA
+    is provided on select Qualcomm Snapdragon devices by an IP block external
+    to the cDSP. User DMA is internal to the cDSP and is supported in
+    Halide by the user of the ``hexagon_user_dma`` scheduling directive.
+    UBWCDMA is supported only in the two Standalone modes.
+
+In Halide, the UBWCDMA operations and interactions are abstracted with the DMA
+driver calls hidden by the Hexagon UBWCDMA runtime. They are reduced to the
+following:
+
+- A set of host-side API calls used to manage DMA resources and associate a
+  frame buffer with DMA along with the buffer parameters
+- A set of Halide scheduling directives to describe where, when, and how much
+  data to move using UBWCDMA
+
+For more detailed information about UBWCDMA, see the Hexagon SDK documentation.
+
+
+----------------------
+Supported data formats
+----------------------
+
+The following table lists the UBWCDMA formats. The enumerations
+(``halide_hexagon_image_fmt_t``) are defined in
+``Halide/include/HalideRuntimeHexagonDma.h``.
+
+.. csv-table::
+           :align: left
+           :header: "Data format in DDR", "Description"
+           :widths: 29, 71
+
+           "Raw", "Unformatted and uncompressed, per-byte DMA access"
+           "NV12", "Linear, 8 bpp semi-planar 4:2:0 YUV format, with each pixel component stored in 8b"
+           "NV12-4R", "Same as linear NV12"
+           "P010", "Linear, padded 10 bpp semi-planar 4:2:0 YUV format, with each 10b pixel component represented in 16b; results in 2 bytes per pixel in Y plane and 4 bytes per pixel in UV plane"
+           "NV12 UBWC", "Bandwidth compressed NV12"
+           "NV12-4R UBWC", "Bandwidth compressed NV12-4R, encoded differently than NV12 compressed"
+           "P010 UBWC", "Bandwidth compressed P010"
+           "TP10", "Bandwidth compressed, tightly packed 10 bpp semi-planar 4:2:0 YUV format; results in 4 bytes for every three pixels in Y plane and 8 bytes for every three pixels in UV plane"
+
+Because Halide requires the image frame to be represented by two separate
+Halide buffers (a Y and a UV buffer), a DMA transaction is specified and
+scheduled separately for the Y and UV planes. An image-formatted frame buffer
+must compose and contain either Y (luma) only or both Y (luma) and UV (chroma)
+planes, per the format specification
+
+
+-----------------------------------------------------
+Supported Snapdragon devices and Hexagon local memory
+-----------------------------------------------------
+
+Hexagon local memory is a shared and limited resource for the entire compute
+subsystem. Its available size is device-specific, and its usage must be
+constrained with a trade-off against the required application performance.
+The following table lists the device-specific memory information.
+
+.. csv-table::
+           :align: left
+           :header: "Snapdragon device", "Total L2 cache", "Hexagon local memory type", "Size"
+           :widths: 21, 20, 34, 20
+
+           "SM8150", "1 MB", "Hexagon locked L2 cache", "Up to 384 KB"
+           "SM8250", "1 MB", "Hexagon locked L2 cache", "Up to 768 KB"
+           "SM8350", "1 MB", "Hexagon locked L2 cache", "Up to 768 KB"
+
+Hexagon local memory is a shared and limited resource for the entire compute
+subsystem, whose available size is device specific, and its usage must be
+constrained with a trade-off against required application performance.
+
+
+===============================
+Program UBWCDMA with Halide
+===============================
+
+---------------------------------
+UBWCDMA with Halide runtime model
+---------------------------------
+
+UBWCDMA with Halide is supported in the two Standalone modes
+(:ref:`ExecutionModes`). In Simulator Standalone mode, the generated object
+file can be used to simulate an end-to-end vision algorithm running on the DSP
+with the UBWCDMA co-sim add on.
+
+
+-----------------------------------
+Halide device interface for UBWCDMA
+-----------------------------------
+
+The Halide device interface for UBWCDMA provides a host-side API for
+application code to set up and associate buffers to the UBWCDMA device. This
+gives the host-side application access to the UBWCDMA device services. The
+functions are summarized in the following table, and the prototypes and
+detailed descriptions are available in
+``Halide/include/HalideRuntimeHexagonDma.h``.
+
+.. csv-table::
+           :align: left
+           :header: "API name", "Description"
+           :widths: 45, 53
+
+           "``halide_hexagon_dma_device_interface``", "Used with the ``device_wrap_native`` method of ``Halide::Runtime::Buffer`` to associate the
+           buffer with the UBWCDMA device."
+           "``halide_hexagon_dma_allocate_engine``", "Allocate a UBWCDMA engine."
+           "``halide_hexagon_dma_power_mode_voting``", "Vote for a preset performance level to set the DMA power mode as required by the application.
+           This power mode voting is separate from the Hexagon power votes."
+           "``halide_hexagon_dma_device_wrap_native``", "Attach a buffer to the UBWCDMA interface when a raw buffer (``halide_buffer_t``) is used."
+           "``halide_hexagon_dma_prepare_for_copy_to_host``", "Before any UBWCDMA transfers, set up the DDR buffer specification for UBWCDMA read."
+           "``halide_hexagon_dma_prepare_for_copy_to_device``", "Before any UBWCDMA transfers, set up the DDR buffer specification for UBWCDMA write."
+           "``halide_hexagon_dma_unprepare``", "Clean up the buffer from UBWCDMA after all transfers are completed."
+           "``halide_hexagon_dma_device_detach_native``", "Detach a buffer from the UBWCDMA interface when a raw buffer (``halide_buffer_t``) is used."
+           "``halide_hexagon_dma_deallocate_engine``", "De-allocate the DMA engine."
+
+The Hexagon local memory buffer is internal to the generated Halide pipeline
+that is managed by the Halide UBWCDMA runtime, and it is not visible to the
+host-side user code. However, pipeline execution might be impacted at runtime
+by its availability; for details, see :ref:`MemoryLocality`.
+
+
+----------
+Scheduling
+----------
+
+Many scheduling directive have already been covered (:ref:`Schedule`). This
+section lists more scheduling directives that are important to working with
+UBWCDMA.
+
+.. csv-table::
+               :align: left
+               :header: "Directive", "Description of typical use"
+               :widths: 24, 74
+
+               "``hexagon_ubwcdma_read``", "UBWCDMA read."
+               "``hexagon_ubwcdma_write``", "UBWCDMA write."
+               "``store_in``", "Specify the type of memory to be allocated for a ``Func``. For UBWCDMA, it is typically Hexagon local memory,
+               ``MemoryType::LockedCache``."
+               "``store_at``", "Place the allocation of Hexagon local memory buffer at a specific stage or loop (that is, it must be outside of inner loops)."
+               "``reorder_storage``", "De-interleave the UV semi-plane for 4:2:0 pixel format in the Hexagon local memory buffer."
+               "``tile``", "Define the ROI dimensions that are factored into calculating the required Hexagon local memory buffer size."
+               "``bound``", "For stencil processing, bound DMA access to within the image frame buffer boundary."
+               "``fold_storage``", "For asynchronous or stencil processing, a circular buffer of Hexagon local memory. Allows access in a
+               monotonically increasing or decreasing order, by rotating the buffer. Also factored into the required Hexagon local memory buffer size."
+               "``async``", "Asynchronous control flow between the consumer and producer of fold storage. Allows concurrency of processing data that is
+               already transferred on one fold while simultaneously DMA transferring data on another fold. That is, to prefetch the next required consumer
+               data from the DDR with DMA read, or to store resultant producer data to DDR with DMA write, while in parallel, processing (consuming or
+               producing) another set of data."
+               "``split``", "Splits the dimension of a frame buffer. Precursor to independent DMA access per an outer dimension split when used with the
+               parallel directive."
+               "``parallel``", "Parallelize each split outer dimension, with independently assigned DMA access. Allows for parallel processing and DMA of
+               data for each split."
+               "``compute_at``", "Specify when the producer stage is computed with respect to the consumer stage."
+               "``compute_root``", "Place the computation of the stage at the top level (before any place where it is used)."
+               "``store_at``", "Specify where the memory for the producer stage is allocated with respect to the consumer stage."
+               "``store_root``", "Place the allocation of the stage at the top level."
+               "``align_storage``", "Align the dimension specified by ``x`` to be a multiple of the alignment specified by ``align``."
+
+.. note::
+
+  You can use ``copy_to_host`` instead of ``hexagon_ubwcdma_read``, and ``copy_to_device`` instead of ``hexagon_ubwcdma_write``. However, these two alternatives will lead to noticeably poor run-time performance of your pipeline.
+
+
+--------------------------------
+De-interleaving of UV for 4:2:0
+--------------------------------
+
+For the 4:2:0 semi-planar format, the UV plane is expected to be after the Y
+plane when stored within a frame buffer. The Y and UV planes are then cropped
+appropriately and presented as two individual Halide buffers to the Halide
+pipeline. The Y buffer is described as 2D, and UV buffer is described as 3D
+with the UV interleaved.
+
+For details on how to describe the UV interleaved property to Halide, see
+the NV12 example in
+``Halide/Examples/standalone/device/apps/dma_nv12_rw/halide/dma_nv12_rw_generator.cpp``.
+
+
+------------------
+Known limitations
+------------------
+
+Following are the known limitations of UBWCDMA with Halide.
+
+.. csv-table::
+               :align: left
+               :header: "Limitation", "Description"
+               :widths: 29, 71
+
+               "``fold_storage``", "See limitation for ``async``."
+               "``async``", "Requires use of ``fold_storage`` to ping-pong asynchronously between producer and consumer threads."
+
+
+==========================
+Performance considerations
+==========================
+
+.. _MemoryLocality:
+
+---------------
+Memory locality
+---------------
+
+UBWCDMA data transfer into Hexagon local memory increases the transfer
+efficiency and reduces access latency seen by the Hexagon DSP core. This
+improves the overall performance of the program. The requirement of Hexagon
+local memory is mandatory for UBWCDMA as either the destination memory type
+for UBWCDMA read or the source memory type for UBWCDMA write to DDR.
+
+The Halide pipeline uses the ``store_in`` scheduling directive to allocate
+Hexagon local memory.
+
+For each extern buffer provided to the Halide pipeline, there is at least one
+corresponding instance of a Hexagon local memory buffer allocated to service it.
+The size of this local buffer is determined by several factors, including the
+Halide tile size, value size, and amount of storage folded.
+This is equivalent to the following example.
+
+.. code-block:: c++
+
+    local_size = align(tile_width x tile_height x sizeof(data), 128) x number_of_folds
+
+The number of allocated local memory instances per Halide data buffer is
+determined by the parallelizable aspect of Halide directives, such as the
+number of splits for multi-threading. This is roughly represented by the number
+of DMA threads, which, to avoid unnecessary resource allocation, should be
+limited to the number of Hexagon cores.
+
+.. code-block:: c++
+
+    number_of_DMA_threads = max(number_of_splits, number_of_hexagon_cores)
+
+When supported, local memory is allocated from a part of the L2 cache
+(Snapdragon device-specific). This is a limited resource and because UBWCDMA
+data transfers require locked L2 cache, the amount of L2 cache memory available
+for other processing is reduced. Thus, while increasing the UBWCDMA data
+transfer size will increase the efficiency of UBWCDMA, it might impact the
+performance of the entire cDSP-based workload due to the reduced L2 cache
+available for compute.
+
+
+---------------------
+Power API for UBWCDMA
+---------------------
+
+UBWCDMA performance can be controlled by its power modes. Each mode translates
+into a corresponding set of pre-configured performance parameters. The
+application determines its performance requirement and votes for a power mode
+accordingly. This is done using an API that is provided for both the Hexagon DSP
+(:ref:`PowerAndPerformanceAPI`) and UBWCDMA. UBWCDMA performance/power level
+is voted for independently from the Hexagon DSP power level.
+
+The power level must be voted for after a UBWCDMA engine has been allocated.
+You can change your vote at any time during the allocation lifetime of the
+UBWCDMA engine. If there is no power mode vote, the default power mode is
+applied. On application exit and before deallocating the DMA engine, vote the
+power mode back to the default mode.
+
+All enumerated power modes are supported by the API. If a specific Snapdragon
+device does not have support for a mode, that requested power mode is mapped to
+the closest (next or higher) appropriate supported mode.
+
+The following example shows the application-side API for specifying the power
+level of UBWCDMA (voting).
+
+.. code-block:: c++
+
+    #include "HalideRuntimeHexagonHost.h"
+    #include "HalideRuntimeHexagDma.h"
+
+    int halide_hexagon_dma_power_mode_voting(void *user_context, halide_hexagon_power_mode_t mode);
+    // user_context - Ignore. Can be NULL
+    // mode         - Power level value similar to selecting a voltage corner as documented in the Hexagon SDK
+    //                documentation.
+
+For all possible values for the ``mode`` argument to
+``halide_hexagon_dma_power_mode_voting``, see :ref:`PowerAndPerformanceAPI`.
+
+
+-------------------
+UBWCDMA concurrency
+-------------------
+
+To improve performance, following are some best practices or considerations for
+concurrency.
+
+- Split a frame for parallel processing to take advantage of the multi-threaded
+  Hexagon DSP core.
+
+  - Processing of each split is scheduled on a separate hardware thread. The
+    number of tasks created is based on the split factor.
+  - A key best practice is to keep the number of tasks less than or equal to
+    the number of supported hardware threads.
+
+- Asynchronize between the Halide producer and consumer to allow simultaneous
+  UBWCDMA data transfer and data processing to reduce processing time.
+
+  - UBWCDMA is a hardware accelerator that runs independently of the cDSP core.
+    This method improves performance by removing UBWCDMA transfer waits with
+    ahead-of-time data transfer to ensure that data is already available when
+    the cDSP core needs it.
+  - The best practice is to transfer the right-sized data that takes longer for
+    the cDSP to process than for UBWCDMA to transfer it.
+  - It is also a good idea to apply ping-pong buffers, using ``fold_storage``,
+    to enable this asynchronous parallelism between producer and consumer. The
+    number of folds is dictated by the algorithm of how much data ahead
+    (future) and behind (history) is required.
+  - For right sizing the data buffer, see :ref:`MemoryLocality` for the local
+    memory constraints.
+
+- Deploy multiple independent UBWCDMA engines to allow for simultaneous
+  transfer of data. This can potentially shorten the overall runtime by
+  reducing the data transfer time.
+
+  - Logistically, the per application UBWCDMA engine separation can be:
+
+    - Per frame buffer UBWCDMA engine.
+    - Read vs. write DMA engine.
+
+  - Points to consider for potentially reducing runtime:
+
+    - There are a limited number of available UBWCDMA engines, with only
+      allocated engines shared within the application and not across
+      applications.
+    - A transfer unit is sized small (local memory resource constraint) such
+      that the overall difference between serialization and parallelization of
+      a transfer is minimized.
+    - An asynchronous ping-pong style DMA transfer might be a better option.
+
+
+========
+Examples
+========
+
+All the examples that demonstrate the use of UBWCDMA in Halide are located in
+``Halide/Examples/standalone/device/apps/``.
+
+**Linear data**
+    For details on how to process raw (linear) format data, see ``dma_raw_blur_rw_async``.
+    This example also includes a line-buffered schedule that demonstrates whole-line transfer
+    via UBWCDMA.
+
+**p010 format data**
+    For details on how to process p010 format data, see ``dma_p010_rw_async``.
+
+**nv12 format data**
+    For processing nv12 format data asynchronously with storage folding, see
+    ``dma_nv12_blur_stencil``. This example also includes details on how to
+    use line buffering in the schedule.

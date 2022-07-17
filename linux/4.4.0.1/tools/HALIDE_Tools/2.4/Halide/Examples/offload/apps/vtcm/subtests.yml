@@ -1,0 +1,6 @@
+# This is a necessary evil for subtests.
+# This file is used to list all subdirs that are tests
+# Additionaly it may list the name of an environment var
+# than can be set to include only some of the subtests
+
+subtests : [vtcm/gather, vtcm/scatter, vtcm/histogram, vtcm/sg_chain, vtcm/vtcm_alloc, vtcm/small_lut]

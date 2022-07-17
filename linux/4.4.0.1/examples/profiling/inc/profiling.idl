@@ -1,0 +1,27 @@
+/**=============================================================================
+Copyright (c) 2020 QUALCOMM Technologies Incorporated.
+All Rights Reserved Qualcomm Proprietary
+=============================================================================**/
+#ifndef PROFILING_IDL
+#define PROFILING_IDL
+
+#include "AEEStdDef.idl"
+#include "remote.idl"
+
+interface profiling : remote_handle64 {
+    AEEResult sum(in sequence<long> vec, rout long long res);
+    AEEResult test_memcpy(rout long dest_pt, rout long src, in long len);
+    AEEResult memcpy_time_pcycles(in unsigned long long len, rout unsigned long long run_time);
+    AEEResult asm_iterations_time_us(in unsigned long num);
+    AEEResult asm_iterations_pcycles(in unsigned long num);
+    AEEResult asm_iterations_qtimer(in unsigned long num);
+    AEEResult vector_assignment(in unsigned long num);
+    AEEResult noop();
+    AEEResult inbuf(in sequence<uint8> seq, in long mem_test, rout unsigned long long run_time);
+    AEEResult routbuf(rout sequence<uint8> seq, in long mem_test, rout unsigned long long run_time);
+    AEEResult sleep_latency(in uint32 latency_us);
+    AEEResult power_boost(in uint32 on);
+    AEEResult early_signal(in uint32 early_wakeup_time_us);
+};
+
+#endif //PROFILING_IDL

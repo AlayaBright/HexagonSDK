@@ -1,0 +1,1346 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>System-level optimizations - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#system-optimizations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              System-level optimizations
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" checked>
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        System-level optimizations
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="system_optimizations.html" class="md-nav__link md-nav__link--active">
+      System-level optimizations
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#offload-tasks-onto-the-dsp" class="md-nav__link">
+    Offload tasks onto the DSP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipc-performance-considerations" class="md-nav__link">
+    IPC performance considerations
+  </a>
+  
+    <nav class="md-nav" aria-label="IPC performance considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fastrpc-latency" class="md-nav__link">
+    FastRPC latency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-fastrpc-overhead" class="md-nav__link">
+    Reduce FastRPC overhead
+  </a>
+  
+    <nav class="md-nav" aria-label="Reduce FastRPC overhead">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommendations-for-best-fastrpc-performance" class="md-nav__link">
+    Recommendations for best FastRPC performance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ion-buffers" class="md-nav__link">
+    ION buffers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-coherence" class="md-nav__link">
+    Cache coherence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu-wakeup-and-scheduling-delays" class="md-nav__link">
+    CPU wakeup and scheduling delays
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-map-buffers-to-the-dsp" class="md-nav__link">
+    Pre-map buffers to the DSP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu-build-configuration" class="md-nav__link">
+    CPU build configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsp-sleep-latency" class="md-nav__link">
+    DSP sleep latency
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speed-and-power-management" class="md-nav__link">
+    Speed and power management
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#offload-tasks-onto-the-dsp" class="md-nav__link">
+    Offload tasks onto the DSP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipc-performance-considerations" class="md-nav__link">
+    IPC performance considerations
+  </a>
+  
+    <nav class="md-nav" aria-label="IPC performance considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fastrpc-latency" class="md-nav__link">
+    FastRPC latency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-fastrpc-overhead" class="md-nav__link">
+    Reduce FastRPC overhead
+  </a>
+  
+    <nav class="md-nav" aria-label="Reduce FastRPC overhead">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommendations-for-best-fastrpc-performance" class="md-nav__link">
+    Recommendations for best FastRPC performance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ion-buffers" class="md-nav__link">
+    ION buffers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-coherence" class="md-nav__link">
+    Cache coherence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu-wakeup-and-scheduling-delays" class="md-nav__link">
+    CPU wakeup and scheduling delays
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-map-buffers-to-the-dsp" class="md-nav__link">
+    Pre-map buffers to the DSP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu-build-configuration" class="md-nav__link">
+    CPU build configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsp-sleep-latency" class="md-nav__link">
+    DSP sleep latency
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speed-and-power-management" class="md-nav__link">
+    Speed and power management
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="system-optimizations">System optimizations</h1>
+<p>This page discusses OS and interprocessor considerations that impact performance. For more information on how to optimize algorithmic code running on the DSP, see the <a href="dsp_optimizations.html">DSP optimization page</a> instead.</p>
+<h2 id="offload-tasks-onto-the-dsp">Offload tasks onto the DSP</h2>
+<p>Using the DSP offers several benefits:</p>
+<ul>
+<li>Compared to the CPU, the Hexagon DSP typically consumes much less power and is less susceptible to thermal concerns.</li>
+<li>In many cases that vectorize well on HVX, the DSP performs the same computations in less time (while at a lower clock) than multiple CPU cores.</li>
+<li>Moving large blocks of computational software to the DSP keeps the CPU unburdened for other tasks that might work well only on the CPU.</li>
+</ul>
+<p>Separately, the DSP is best suited for signal processing tasks, and it excels at any type of operation that can be parallelized. Running such tasks on the DSP uses the DSP to the best of its ability and results in significant gains with respect to power consumption.</p>
+<p>In summary, prioritize moving large signal-processing tasks onto the DSP and let the CPU run the control-oriented code and short individual processing functions.</p>
+<h2 id="ipc-performance-considerations">IPC performance considerations</h2>
+<p>Communication between the CPU and DSP is performed through shared memory with interrupts. Offloading tasks from the CPU onto the DSP comes with a communication overhead.</p>
+<p>Because the CPU and DSP do not share a cache, maintenance operations are required on all buffers transacted between them. These operations can take a minimum of a few hundred microseconds (on DSPs without hardware IO-coherence with the CPU L2 cache, as discussed later in this section). Depending on system clock settings and CPU sleep modes enabled, the overhead for each invocation to the DSP could extend to several milliseconds. Hence, it is preferable to offload large tasks onto the DSP instead of invoking the DSP for small trivial tasks. To understand and improve overall performance, it is important to know what factors contribute to this overhead.</p>
+<h3 id="fastrpc-latency">FastRPC latency</h3>
+<p>The latency of a FastRPC synchronous call is the amount of time spent from when the CPU thread initiates a call to the DSP until it can resume its operation, less the amount of time spent by the DSP to execute the task itself. Under optimized conditions, the FastRPC round-trip average latency is on the order of 200 to 700 microseconds on the latest targets. It is recommended to measure average FastRPC latency over multiple RPC calls instead of one call for consistent results as it depends on variable latencies like CPU wake up and scheduler delays.</p>
+<h3 id="reduce-fastrpc-overhead">Reduce FastRPC overhead</h3>
+<p>We begin with a brief list of recommendations for accomplishing the best FastRPC performance and then detail each of the main contributing factor to FastRPC performance.</p>
+<h4 id="recommendations-for-best-fastrpc-performance">Recommendations for best FastRPC performance</h4>
+<ul>
+<li>Allocate <a href="#ion-buffers">ION buffers</a> using the <a href="../../doxygen/rpcmem/index.html" target="_blank">RPCMEM APIs</a></li>
+<li>Enable FastRPC QoS mode with a low latency tolerance using the <a href="../../doxygen/remote/index.html" target="_blank">remote APIs</a><ul>
+<li>For best performance, use the <code>PM_QOS</code> mode and a recommended QoS latency of 100 microseconds</li>
+</ul>
+</li>
+<li>Use <a href="../../doxygen/HAP_power/index.html" target="_blank">HAP_power APIs</a> to vote for DSP clocks and DCVS according to requirements<ul>
+<li>For best performance, vote for TURBO or TURBO_L1, and a vote for a 40 microsecond DSP sleep latency</li>
+</ul>
+</li>
+<li>Make sure you are using an <a href="#cpu-build-configuration">Android kernel build</a> with performance kernel <code>defconfig</code> settings</li>
+<li>Use early wakeup hints using the <code>HAP_send_early_signal</code> API if possible</li>
+</ul>
+<h4 id="ion-buffers">ION buffers</h4>
+<p>To achieve low FastRPC overhead, it is important to use ION buffers (available on Android  targets), which do not require extra copy when shared between the DSP and CPU. Each non-ION buffer passed to the DSP in a FastRPC call is automatically copied by the FastRPC framework, thus resulting in higher FastRPC overhead when large buffers are used.</p>
+<p>Register the ION buffers with the FastRPC library. Otherwise, the driver treats unregistered ION buffers as non-ION and results in extra copy.</p>
+<p>The RPCMEM library provides an API for allocating shared buffers and automatically registering buffers with the FastRPC library. For more information, see <a href="../../doxygen/rpcmem/index.html" target="_blank">RPCMEM API</a>.</p>
+<p>Pre-allocated ION buffers can be directly registered with the FastRPC library using the <code>remote_register_buf()</code> function defined as part of the remote interface. For more information, see <a href="../../doxygen/remote/index.html" target="_blank">remote API</a>.</p>
+<h4 id="cache-coherence">Cache coherence</h4>
+<p>Coherency ensures that all processors see the latest data when accessing shared buffers through their respective caches. The FastRPC driver maintains cache coherency between the CPU and DSP for shared buffers that are accessed in a FastRPC call. Hardware-based IO coherency for the CPU is supported on most of the recent Snapdragon chipsets, which helps to reduce FastRPC latency significantly from several milliseconds to approximately one millisecond.</p>
+<p>IO coherence, also called one-way coherence, allows DSPs that support it to access the CPU caches on DSP load or store operations to maintain coherence continuously throughout DSP operations on shared buffers. For example, when the DSP populates a shared coherent output buffer, the CPU can read the data immediately without invalidating cache lines.</p>
+<p>IO coherency is enabled by default for all buffers. On chipsets without IO coherency hardware support, the FastRPC software driver invalidates and flushes CPU cache lines as necessary to ensure coherency and results in higher latency. For details, see the <a href="../../reference/feature_matrix.html">feature matrix</a>.</p>
+<p>The FastRPC software driver also invalidates and flushes DSP cache lines to ensure DSP cache coherency. Cache maintenance time varies and depends on the DSP clocks and size of total buffers used in an RPC call. The driver cleans all cache lines of a user process (instead of cleaning by buffer addresses and lines) when the total size of shared buffers to be cleaned exceeds 1 MB.</p>
+<h4 id="cpu-wakeup-and-scheduling-delays">CPU wakeup and scheduling delays</h4>
+<p>Idle CPU cores can enter low power sleep modes for saving power after sending a message to the DSP. Some of the power saving sleep modes include shutting down L1/L2 cache and core clocks. CPU wakeup delay can be several hundreds of microseconds. CPU wakeup delay varies and depends on the current system load and sleep mode.</p>
+<p>After receiving a response from the DSP, the CPU handles the response in the interrupt handler and sets a signal to the actual thread waiting for job completion. The CPU scheduler is invoked to schedule the actual waiting thread for further processing; this can add variable latency to the FastRPC overhead.</p>
+<p>The Hexagon SDK allows the user to select CPU modes that help manage FastRPC performance in typical conditions by disabling certain sleep states. These modes, referred as PM_QOS and ADAPT_QOS, mitigate the CPU wakeup latency and may be selected using the <code>remote_handle_control()</code> APIs from the <a href="../../doxygen/remote/index.html" target="_blank">remote library</a>.  When selecting one of these modes, the user also specifies a wakeup latency, which the driver will try to satisfy by enabling certain features and available techniques available on a given target.</p>
+<p><strong><em>Note: </em></strong> There is no guarantee that the driver can meet the requested latency.</p>
+<p>Another way of reducing the wakeup latency is for the DSP to send anticipatory early completion signals to prompt the CPU to wakeup.  This approach is suited for situations when the developer can determine when the DSP is about to complete the task that it was assigned.  If the CPU wakes up before the DSP has completed its task, it will pull continuously until completion of the FastRPC call.  It is currently supported with the <code>HAP_send_early_signal</code> API, which is replacing the deprecated API <code>fastrpc_send_early_signal</code>, both defined in <code>$HEXAGON_SDK_ROOT/incs/HAP_ps.h</code>.</p>
+<h4 id="pre-map-buffers-to-the-dsp">Pre-map buffers to the DSP</h4>
+<p>The FastRPC driver supports transient and persistent mapping of a buffer to the remote DSP. By default, the FastRPC driver maps and unmaps buffers passed as arguments of FastRPC invocation at the beginning and end of that invocation respectively, consuming several uSec in each invocation. On SM8150, for example it was observed that mapping and unmapping a large buffer is taking ~20 us overhead on the average when L2 cache fully evicted by previous RPC call.</p>
+<p>The FastRPC library supports a flag <a href="../../doxygen/rpcmem/index.html" target="_blank">RPCMEM_TRY_MAP_STATIC</a> for implicitly mapping a buffer to the DSP during allocation. The FastRPC library tries to map buffers allocated with the <code>RPCMEM_TRY_MAP_STATIC</code> flag to the remote process of all current and new FastRPC sessions. In case of failure to map, the FastRPC library ignores the error and continues to open the session without pre-mapping the buffer. In case of success, buffers allocated with this flag will be pre-mapped to reduce the latency of upcoming FastRPC calls. Pre-mapped buffers will be automatically unmapped at either buffer free or session close.</p>
+<p><strong><em> Note: </em></strong> RPC memory flag <code>RPCMEM_TRY_MAP_STATIC</code> and buffer attribute <code>FASTRPC_ATTR_TRY_MAP_STATIC</code> are supported from Lahaina and later targets only. Older targets ignore these flags and has no impact on the latency.</p>
+<p>The FastRPC driver searches each buffer passed to remote call in static mapping list and re-assign the same virtual address on DSP. As a result, pre-mapping many buffers can also add an extra latency for all FastRPC calls. Hence pre-mapping a buffer with <code>RPCMEM_TRY_MAP_STATIC</code> is recommended to use only for large buffers which are used with latency-critical RPC calls after profiling and estimating the actual reduction in FastRPC overhead.</p>
+<p>Pre-map during memory allocation with <code>RPCMEM_TRY_MAP_STATIC</code> flag using the following approach</p>
+<pre><code>#include "rpcmem.h"
+
+src = (uint8_t *)rpcmem_alloc(RPCMEM_HEAP_ID_SYSTEM, RPCMEM_DEFAULT_FLAGS | RPCMEM_TRY_MAP_STATIC, srcSize);
+//... RPC calls with src buffer as parameter ...
+rpcmem_free(src);
+</code></pre>
+<p>When an ION buffer is allocated without using <code>rpcmem_alloc()</code> function, register the buffer with an attribute <code>FASTRPC_ATTR_TRY_MAP_STATIC</code> for pre-map:</p>
+<pre><code>#include "remote.h"
+
+remote_register_buf_attr(buffer, size, fd, FASTRPC_ATTR_TRY_MAP_STATIC);
+//... RPC calls with src buffer as parameter ...
+remote_register_buf(buffer, size, -1); // the -1 argument results in unregistering the buffer
+</code></pre>
+<p>For more information refer to <a href="../../doxygen/rpcmem/index.html" target="_blank">rpcmem API</a> and <a href="../../doxygen/remote/index.html" target="_blank">remote API</a>.</p>
+<h4 id="cpu-build-configuration">CPU build configuration</h4>
+<p>The CPU software builds on development platforms might have additional logging and debugging code built in, which can significantly impact FastRPC performance. QTI recommends measuring FastRPC overhead with full performance builds. Production devices always use performance builds. Development builds should use performance kernel <code>defconfig</code> settings.</p>
+<h4 id="dsp-sleep-latency">DSP sleep latency</h4>
+<p>The DSP can enter low power sleep mode after sending a response to the CPU, and if it becomes idle with no further jobs to process. The time to bring the DSP out of sleep mode after it receives an interrupt from the CPU adds additional latency to FastRPC overhead for processing the newly offloaded job.</p>
+<p>The impact of sleep latency on FastRPC latency is higher when the jobs are submitted periodically and the idle DSP enters sleep mode between the jobs. If the jobs are submitted back-to-back, the DSP might not go to sleep and latency impact will be minimal.</p>
+<p>The FastRPC driver votes for a default sleep latency during session open. QTI recommends overwriting the sleep latency setting based on the use case and latency requirement. For more information, see the <a href="../../doxygen/HAP_power/index.html" target="_blank">HAP power API</a>.</p>
+<h2 id="speed-and-power-management">Speed and power management</h2>
+<p>Controlling the clock speed of the various performance-critical components on the chip allows the application to trade power for speed. The Hexagon SDK provides a set of APIs that allow the DSP to control its own performance and power modes. To learn more about these APIs, see <a href="../../doxygen/HAP_power/index.html" target="_blank">Performance and power manager</a>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../hexagon_libraries/index.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Hexagon libraries
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="dsp_optimizations.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                DSP optimizations
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../../js/iframe-worker.js"></script>
+<script src="../../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

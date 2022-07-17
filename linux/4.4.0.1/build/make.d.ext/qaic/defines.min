@@ -1,0 +1,2 @@
+QAIC_DIR = $(HEXAGON_SDK_ROOT)/ipc/fastrpc/qaic/bin
+Q=$(QAIC_DIR)/qaic$(EXEC_EXT)

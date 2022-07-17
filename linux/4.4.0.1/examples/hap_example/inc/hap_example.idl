@@ -1,0 +1,59 @@
+/**=============================================================================
+Copyright (c) 2020 QUALCOMM Technologies Incorporated.
+All Rights Reserved Qualcomm Proprietary
+=============================================================================**/
+
+
+#include "AEEStdDef.idl"
+#include "remote.idl"
+
+
+
+
+interface hap_example : remote_handle64{
+
+    /*
+     * Illustrates usage of HAP_compute_res.h APIs
+     */
+    AEEResult compute_res();
+
+    /*
+     * Illustrates usage of FARF macro and run-time logging
+     */
+    AEEResult farf_runtime(in long runtime_logging_enable);
+
+    /*
+     * Illustrates usage of HAP_mem.h APIs, mapping and sharing buffers using the dmahandle attribute
+     */
+    AEEResult mem_dmahandle(in dmahandle buffer);
+
+    /*
+     * Illustrates usage of HAP_mem.h APIs, mapping and sharing buffers using the fastrpc_mmap() API
+     */
+    AEEResult mem_fastrpc_mmap(in long fd, in uint32 buffer_length);
+
+    /*
+     * Illustrates usage of HAP_perf.h APIs
+     */
+    AEEResult perf();
+
+    /*
+     * Illustrates usage of HAP_power.h APIs
+     */
+    AEEResult power();
+
+    /*
+     * Illustrates usage of sysmon_cachelock.h APIs
+     */
+    AEEResult sysmon_cachelock();
+
+    /*
+     * Illustrates usage of HAP_vtcm_mgr.h APIs
+     */
+    AEEResult vtcm_mgr();
+
+    /*
+     * Unit test that validates HAP APIs
+     */
+    AEEResult unit_test(in dmahandle buffer);
+};

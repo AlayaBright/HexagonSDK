@@ -1,0 +1,13 @@
+include cpu.min
+
+# stand-alone queuetest executable
+queuetest_LD_FLAGS += -lpthread
+queuetest_DEFINES += _LE_
+
+# fcvqueue test/example
+fcvqueuetest_LD_FLAGS += -lpthread
+fcvqueuetest_DEFINES += _LE_
+
+# stand-alone queueperf executable
+queueperf_LD_FLAGS += -lpthread
+queueperf_DEFINES += _LE_

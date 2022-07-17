@@ -1,0 +1,380 @@
+*************
+Autoscheduler
+*************
+
+.. versionadded:: 2.3.0
+
+Writing schedules (:ref:`Schedule`) that achieve high performance is difficult.
+There are two problems:
+
+1. The search space of possible schedules is large.
+2. Predicting the runtime of a given schedule in the search space of possible
+   schedules is hard.
+
+Halide provides an Autoscheduler plug-in that can schedule Halide pipelines written
+for HVX. Following are the important features of the Autoscheduler library:
+
+- It defines a parameterization of the schedule space that enables it to explore
+  a large set of schedules.
+- It provides a cost model based on a combination of hand-crafted features and
+  machine learning.
+
+The Autoscheduler uses a variant of beam search to search the space of possible
+schedules. At each stage of the beam search, it sorts the schedules based on the
+runtimes predicted by the cost model. The use of a hybrid learned cost model makes
+it easy for the Autoscheduler to adapt to a given target or algorithm
+(see :ref:`Autotuning`).
+
+This Autoscheduler is based on the paper, *Learning to Optimize Halide with Tree
+Search and Random Programs*
+(https://halide-lang.org/papers/halide_autoscheduler_2019.pdf).
+
+
+=======================
+Use the Autoscheduler
+=======================
+
+We support using the Autoscheduler for Halide pipelines that are defined using
+generators (:ref:`Generators`). Following are the steps to use the Autoscheduler
+on a Halide pipeline:
+
+1. Add estimates for all input/output buffers in the generator.
+2. Compile the generator as usual with an extra ``rdynamic`` option.
+3. Run the generator with the appropriate target, specifying the generator,
+   parameter, ``auto_schedule=true``, and the location of the Autoscheduler
+   plug-in.
+
+   This step runs the Autoscheduler for the given pipeline and produces the
+   autoscheduled object file.
+
+The Autoscheduler plug-in library is located at: ``Halide/lib/libauto_schedule.so``
+
+For autotuning (:ref:`Autotuning`), required tools are located at: ``Halide/bin``.
+
+
+.. _SettingUpAGeneratorForAutoscheduling:
+
+-----------------------------------------
+Set up a generator for autoscheduling
+-----------------------------------------
+
+No change is required in the Halide algorithm part for autoscheduling.
+The Autoscheduler uses estimates for the region of input and output buffers to
+make its decisions. Provide estimates for the input and output buffers and any
+other generator inputs. For example:
+
+.. code-block:: C++
+
+    // set the estimates for input and output buffer dimensions.
+    const int W = 292;
+    const int H = 274;
+
+    in.dim(0).set_estimate(0, W);
+    in.dim(1).set_estimate(0, H);
+
+    output.dim(0).set_estimate(0, W);
+    output.dim(1).set_estimate(0, H);
+
+Use the provided generator parameter, ``auto_schedule`` (default value:
+``false``), to predicate manual scheduling directives, if any, when not using
+the Autoscheduler. This parameter is required because if any scheduling
+directives are already present, the generator will issue an error
+(with the exception of the ``.hexagon()`` directive. See :ref:`UserSpecifiedOffload`).
+
+For example:
+
+.. code-block:: C++
+
+    if (!auto_schedule) {
+        const int vector_size = natural_vector_size<uint8_t>();
+        output
+            .vectorize(x, vector_size)
+            .parallel(y, 16);
+    }
+
+The Autoscheduler generates a schedule for the Hexagon DSP if the host in the
+target is set to ``hexagon`` or if the target has the target feature, ``hvx``.
+
+.. _UserSpecifiedOffload:
+
+-------------------------
+User-specified offloading
+-------------------------
+
+.. versionadded:: 2.4.0
+
+User-specified offloading provides more control in deciding which stages of a pipeline
+are offloaded to the Hexagon DSP using the Autoscheduler. If you add the ``hexagon`` scheduling
+directive to a ``Func``, the Autoscheduler will generate a schedule that offloads that
+``Func`` and other stages computed within the loopnest of that ``Func`` to the Hexagon DSP.
+
+However, if no stage is explicitly marked with the ``hexagon`` scheduling directive,
+the Autoscheduler, by default, offloads the execution of the entire pipeline to the Hexagon DSP.
+For example:
+
+.. code-block:: C++
+
+    if (auto_schedule) {
+        // This ensures that the autoscheduler generates schedule such that the output
+        // Func and all other funcs computed inside the loopnest of output are
+        // scheduled to be offloaded to Hexagon.
+
+        output.hexagon()
+    }
+
+.. note::
+
+    Apart from the ``hexagon`` scheduling directive, other scheduling directives are not
+    respected by the Autoscheduler. In some cases, they might cause the generator to issue
+    an error.
+
+
+--------------------------------------------------
+Call the pipeline generator with the Autoscheduler
+--------------------------------------------------
+
+The Autoscheduler is invoked on the pipeline when the following are passed to
+the generator executable:
+
+- Parameter: ``auto_schedule=true``
+- Option: ``-p Halide/lib/libauto_schedule.so -s Adams2019``, used to point to
+  the Autoscheduler plug-in and specify the name of the Autoscheduler
+  (``Adams2019``).
+
+.. note::
+
+    If the plug-in library is not passed to the Autoscheduler, Halide uses the
+    default Autoscheduler, which cannot offload to HVX.
+
+A large part of the Autoscheduler plug-in library is written in Halide and uses
+``libHalide`` at runtime. For the Autoscheduler to find ``libHalide`` symbols
+when the generator is run, specify the ``-rdynamic`` compiler option while
+building the generator.
+
+The ``schedule`` emit option can be specified to the generator executable to
+output a ``<pipeline>.schedule.h`` header file, which contains the schedule
+produced by the Autoscheduler. This schedule file can be included directly with
+the pipeline to reproduce the Autoscheduler results (see :ref:`ScheduleFiles`).
+
+For example, specifying the ``-e o,h,schedule`` emit options to the generator
+tells the generator to output the object file, header file, and generated schedule
+header. If the generator is not directed to ``auto_schedule``, the schedule file
+will not include any scheduling directives.
+
+The ``featurization`` emit option produces a feature file that is required for
+autotuning. For details, see :ref:`Autotuning`.
+
+
+---------------------
+Environment variables
+---------------------
+
+The following Halide environment variables can be used with the Autoscheduler.
+
+``HL_WEIGHTS_DIR``
+    Path to custom weights to use for the cost model. This variable is used for
+    autotuning and retraining.
+
+    The initially trained weights are located at
+    ``Halide/bin/baseline.weights``. The path to ``baseline.weights`` is not
+    required because the Autoscheduler uses ``baseline.weights`` by default.
+
+``HL_DEBUG_AUTOSCHEDULE``
+    If set, this variable is used for the debug log level for autoschedule
+    generation (overriding the value of ``HL_DEBUG_CODEGEN``, if there is a
+    value).
+
+``HL_MACHINE_PARAMS``
+    An architecture description string that contains three comma-separated values.
+
+    The Autoscheduler plug-in uses only the first term, which loosely defines the
+    number of parallel contexts supported by the hardware. For HVX, the ideal
+    first term is four (for example, ``HL_MACHINE_PARAMS=4,,``).
+
+``HL_PREFETCHING``
+    If set to 1, this variable allows the Autoscheduler to emit prefetches of
+    inputs required for computing the innermost tile of output.
+
+    This variable will emit prefetches only if the target is ``hexagon`` or if
+    it has the feature ``hvx_128``.
+
+``HL_BEAM_SIZE``
+    This variable is used in the beam search. The default value is 32. To get a
+    *greedy* search instead, set this variable to 1.
+
+``HL_RANDOM_DROPOUT``
+    This variable is the chance (as a percent) of accepting each state in the
+    beam, normalized by the number of decisions made.
+
+    For example, a value of 5 means there is a 5 percent chance of never rejecting
+    any states in the beam.
+
+``HL_SEED``
+    This variable specifies the random seed used by the random dropout.
+
+
+.. _Autotuning:
+
+===========
+Autotuning
+===========
+
+The Autoscheduler can be retrained for specific user pipelines, which typically
+leads to better performance for those pipelines. It is designed so schedules can
+be importance-sampled based on the cost model. These schedules can then be
+benchmarked and used to retrain the cost model.
+
+This process of randomly sampling schedules and retraining the cost model helps
+the Autoscheduler find better performing schedules for a given algorithm
+(:ref:`Algorithm`). This process is called *autotuning*.
+
+The Autoscheduler is shipped with the following tools that allow for autotuning
+custom pipelines:
+
+- ``autotune_loop.py``
+- ``featurization_to_sample``
+- ``retrain_cost_model``
+- ``baseline.weights``
+
+The ``autotune_loop.py`` script uses the Autoscheduler as follows:
+
+- Compiles a user pipeline with different schedules.
+
+- Benchmarks the compiled pipelines on a Hexagon device, using the
+  ``featurization_to_sample`` construct samples for each schedule and the
+  corresponding runtimes that are observed.
+
+- Retrains the Autoscheduler cost model on the new samples.
+
+Autotuning requires a compiled generator enabled for autoscheduling
+(see :ref:`SettingUpAGeneratorForAutoscheduling`).
+
+Usage:
+
+.. code-block:: shell
+
+    ./autotune_loop.py /path/to/some.generator generatorname
+
+The following options can be given to ``autotune_loop.py``:
+
+``--target/-t``
+    Autotune target. The default target is ``host``.
+
+``--bld-dir/-b``
+    Location for any built artifacts. The default location is the current directory.
+
+``--batch-size/-s``
+    Batch of samples to compile in parallel. The default value is 32.
+
+``--num-batches/-n``
+    Number of batches to train for. The default value is 100.
+
+``--parallel-factor/-p``
+    Parallelization factor to be used for schedules. The default value is 16.
+
+``--hexagon-sdk-root/-sdk``
+    Location of the Hexagon SDK. This option is required for
+    any Android-based target.
+
+``--run-device-id/-r``
+    Space-separated list of devices on which to run benchmarking.
+    This option is required for any Android-based target.
+
+``q6-version/-v``
+    Hexagon (Q6) version of the device. The default value is 65 for v65.
+
+``generator-arg-sets``
+    Space-separated list of extra generator argument sets
+    used when running the generator.
+
+``--weights/-w``
+    Location of the starting weights file. The default file is baseline.weights.
+
+
+The ``autotune_loop.py`` script compiles a batch of 32 schedules in parallel
+and serially benchmarks them on a device. By default, it runs 1000 such batches
+(retraining after every iteration) before stopping.
+
+The best performing schedule found during autotuning is saved at
+``build_dir/samples/best.<generatorname>.schedule.h``, which can be used to
+reproduce the performance seen after autotuning (see :ref:`ScheduleFiles`).
+
+The script can be stopped at any point, and it saves the current trained
+weights in ``build_dir/samples/updated.weights``. To run the Autoscheduler
+with new weights, point the ``HL_WEIGHTS_DIR`` environment variable to this
+path:
+
+.. code-block:: shell
+
+    export HL_WEIGHTS_DIR=build_dir/samples/updated.weights
+
+Weights trained before every batch execution are also saved in the corresponding
+batch directory. For example, weights used to produce the second batch are in
+``build_dir/samples/batch_2_0/used.weights``. The script saves the schedule files
+for all the benchmarked pipelines and the best schedule seen so far.
+
+
+.. _ScheduleFiles:
+
+==============
+Schedule files
+==============
+
+The Autoscheduler generates the schedule in a header file that exposes an
+interface for using the schedule with a pipeline.
+
+For example, the interface to apply the schedule that the Autoscheduler produces
+after autoscheduling ``median3x3`` is written to the header file,
+``median3x3.schedule.h``, as follows:
+
+.. code-block:: C++
+
+    inline void apply_schedule_median3x3(
+        ::Halide::Pipeline pipeline,
+        ::Halide::Target target
+    );
+
+The following example shows a schedule can be used within a generator.
+
+.. code-block:: C++
+
+    #include median3x3.schedule.h
+
+    apply_schedule_median3x3(get_pipeline(), target);
+
+
+.. note::
+
+    Using a schedule file can fail or produce sub-optimal results if there is a
+    change to the pipeline algorithm after the schedule file is generated.
+
+
+======================
+Autoscheduler examples
+======================
+
+The following examples are enabled for autoscheduling:
+
+- ``Halide/Examples/standalone/device/apps/conv3x3``
+- ``Halide/Examples/offload/apps/hexagon_benchmarks``
+
+Set up the environment as described in (:ref:`ExamplesSetUp`).
+
+For a manual schedule:
+
+.. code-block:: shell
+
+    make run
+
+To automatically schedule this example, set the ``AUTOSCHEDULE`` variable to ``true``.
+
+.. code-block:: shell
+
+    AUTOSCHEDULE=true make run
+
+To use the pregenerated schedule file, set the ``USE_SCHEDULE`` variable to
+``true``.
+
+.. code-block:: shell
+
+    USE_SCHEDULE=true make run

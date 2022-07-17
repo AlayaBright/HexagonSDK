@@ -1,0 +1,14 @@
+BUILD_DLLS += libdspqueue_sample_skel
+
+libdspqueue_sample_skel_QAICIDLS += inc/dspqueue_sample
+libdspqueue_sample_skel_C_SRCS += $(OBJ_DIR)/dspqueue_sample_skel \
+			     	src/dspqueue_sample_imp
+
+INCDIRS += inc
+
+# copy final build products to the ship directory
+BUILD_COPIES += \
+   $(DLLS) \
+   $(EXES) \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

@@ -1,0 +1,61 @@
+div.container {
+    max-width: 1500px;
+    max-height: 600px;
+    overflow: scroll;
+    position: relative;
+}
+
+.freeze a:link {
+    color: rgb(198, 230, 249)
+}
+
+.freeze a:visited {
+    color: rgb(179, 163, 230);
+}
+
+.freeze a:hover {
+    text-decoration: underline;
+}
+
+.freeze table {
+    position: relative;
+    border-collapse: collapse;
+    display: table;
+}
+
+.freeze td,
+th {
+    padding: 0.55em;
+}
+
+.freeze thead th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background: rgb(75, 75, 75);
+    color: #fff;
+    min-width: 200px;
+}
+
+.freeze thead th:first-child {
+    left: 0;
+    z-index: 1;
+}
+
+.freeze tbody th {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    background: rgb(135, 135, 135);
+    color: #fff;
+    border-right: 1px solid #CCC;
+}
+
+.freeze .infoRow th {
+    border-right: 0px;
+    background: rgb(105, 105, 105);
+}
+
+.freeze .infoRow td {
+    background: rgb(105, 105, 105);
+}

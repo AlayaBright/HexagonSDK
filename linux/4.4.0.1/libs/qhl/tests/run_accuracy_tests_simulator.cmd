@@ -1,0 +1,1 @@
+@%HEXAGON_SDK_ROOT%\tools\utils\gow-0.8.0\bin\bash.exe %~dp0\run_accuracy_tests_simulator.bash %*

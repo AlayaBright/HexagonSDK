@@ -1,0 +1,25 @@
+var qhblas_8h =
+[
+    [ "cfloat_a8_t", "qhblas_8h.html#a0534153c7af033c1b23e6c43050c66b8", null ],
+    [ "float_a8_t", "qhblas_8h.html#a907eaa8c75493476afd335e8a1e5083d", null ],
+    [ "int16_a8_t", "qhblas_8h.html#a0eb79b2a8eb6a62c94394a25bdbdb8ec", null ],
+    [ "qhblas_cf_vector_dot_acf", "group__qhblas__complex__float__functions.html#ga2d2e5b28d585d077f584333d2c8e3340", null ],
+    [ "qhblas_f_vector_dot_af", "group__qhblas__float__functions.html#gacc33a6644c5d68a3dce77c98dbe49e57", null ],
+    [ "qhblas_f_vector_norm_af", "group__qhblas__float__functions.html#ga0a29d05937927d7ac2a698c2eb133b6a", null ],
+    [ "qhblas_f_vector_self_max_af", "group__qhblas__float__functions.html#ga3413bb1e45e07ccf444a0ab91799235e", null ],
+    [ "qhblas_f_vector_self_min_af", "group__qhblas__float__functions.html#ga6a57ddfeb6db6b211f5c7fd4bce49355", null ],
+    [ "qhblas_h_vector_dot_ah", "group__qhblas__16b__functions.html#ga9e9c3a7b1b034c186bb021a66fa11ca8", null ],
+    [ "qhblas_h_vector_norm_ah", "group__qhblas__16b__functions.html#ga75c623e0a82618b04eb79ad46d208208", null ],
+    [ "qhblas_h_vector_self_max_ah", "group__qhblas__16b__functions.html#gaf0404bb772b6c9719856cbc283a5f6ab", null ],
+    [ "qhblas_h_vector_self_min_ah", "group__qhblas__16b__functions.html#ga89d9286c0975f0d0031ed81f56769207", null ],
+    [ "qhblas_matrix_inverse_acf", "group__qhblas__complex__float__functions.html#gac1aa2f08e8efd0935e11e448b0b451bd", null ],
+    [ "qhblas_matrix_inverse_af", "group__qhblas__float__functions.html#ga5c14095d95de2649e9713ffa94113772", null ],
+    [ "qhblas_matrix_inverse_ah", "group__qhblas__16b__functions.html#ga457ce93887a8ee1ff4fe1ece15afbe91", null ],
+    [ "qhblas_vector_add_af", "group__qhblas__float__functions.html#gaac195af996c17bf6614989ed5cddd558", null ],
+    [ "qhblas_vector_add_ah", "group__qhblas__16b__functions.html#gae4e500d027dd38a2e7418e8070cd3db1", null ],
+    [ "qhblas_vector_hadamard_acf", "group__qhblas__complex__float__functions.html#ga4d4e8596c2f16405be654c533275636b", null ],
+    [ "qhblas_vector_hadamard_af", "group__qhblas__float__functions.html#ga7c3040660aa4d15122fc9117a2634b9b", null ],
+    [ "qhblas_vector_hadamard_ah", "group__qhblas__16b__functions.html#ga163a25367c863dda95099501b12a5b59", null ],
+    [ "qhblas_vector_scaling_af", "group__qhblas__float__functions.html#ga0bf91777f3df18e2aa36f3491faa3f8b", null ],
+    [ "qhblas_vector_scaling_ah", "group__qhblas__16b__functions.html#ga0c2752aec1b4236b5c75c6c97823f438", null ]
+];

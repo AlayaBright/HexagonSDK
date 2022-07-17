@@ -1,0 +1,152 @@
+* Try it:
+
+0. Update CMAKE_ROOT within the first few lines in cmake_configure.bash to point to the installed cmake directory on your system.
+
+On windows, within the same shell:
+1. Goto hexagon SDK root and run "setup_sdk_env.cmd"
+2. Go to source directory of the example and run .\cmake_build.cmd <OPTIONS>
+
+On Linux:
+1. Goto hexagon SDK root and do "source setup_sdk_env.source"
+2. Go to source directory of the example and run "./cmake_build.bash" <OPTIONS>
+
+Usage:
+    cmake_build.cmd/bash <action> [Options]
+
+    action:
+
+    hexagon                                                              => Build a dynamic DSP lib .so
+    hexagonsim                                                           => Build a dynamic DSP lib or executable for hexagon and run on simulator
+    android                                                              => Build the android executable
+    V=<valid make.d build ID>                                            => Build as with make.d
+
+    Hexagon Options ( * denotes defaults ):
+
+    BUILD=<*ReleaseG/ Debug>                                             => Build Variant
+    DSP_ARCH=<*v65/v66,v68>                                              => Target Variant
+    NO_QURT_INC=<*0/1>                                                   => Do not include QuRT as a dependency when NO_QURT_INC=1
+
+    Android Options ( * denotes defaults ):
+
+    BUILD=<*ReleaseG/ Debug>                                             => Build Variant
+    HLOS_ARCH=<32/*64>                                                   => Android architecture variant
+
+    Some common usage examples:
+
+    ./cmake_build.bash hexagonsim                                        => builds binary for hexagon target and runs on simulator
+    ./cmake_build.bash hexagon                                           => builds <example>_skel.so
+    ./cmake_build.bash android                                           => builds android target related files
+    ./cmake_build.bash V=android_ReleaseG_aarch64                        => Builds ReleaseG variant of android for 64-bit arch
+    ./cmake_build.bash V=hexagon_Debug_toolsv84_v66                      => Builds Debug variant of hexagon target V66 using Hexagon tools version 8.4.*
+    ./cmake_build.bash android BUILD=ReleaseG HLOS_ARCH=32               => Builds ReleaseG variant of android for 32-bit arch
+    ./cmake_build.bash hexagon BUILD=Debug DSP_ARCH=v68                  => Builds Debug variant of hexagon target V68 to run on top of QURT
+    ./cmake_build.bash hexagon BUILD=Debug DSP_ARCH=v68 NO_QURT_INC=1    => Builds baremetal Debug variant of hexagon target V68
+    ./cmake_build.bash V=hexagon_Debug_dynamic_toolv84_v66               => Builds Debug variant of hexagon target V66
+    ./cmake_build.bash V=hexagon_ReleaseG_dynamic_toolv84_v66            => Builds ReleaseG variant of hexagon target V68
+
+Tech notes:
+
+1. Hexagon_Toolchain.cmake. The main toolchain set up file for Hexagon tool chain and also define the
+Compiler/linker options. Currently we are supporting the V65 and above hexagon versions and the v84 toolchain version.
+
+2. hexagon_fun.cmake.  Helper functions to help both Android side and
+Hexagon side to set up target dependency, include path and library
+dependencies.
+
+
+Interfaces & Usage case:
+
+interfaces for now:
+
+1. prepare_libraries_hexagon (<hexagon_targets> <hexagon_incs>  <hexagon_libs> libName [libNames...])
+
+    Rationale:
+
+    This hexagon helper function will return (1) A target for all dependent
+    libraries (2) a include list (3) a library list.  So that you can put them
+    into corresponding part in your target/lib/inc dependencies.
+
+    We can always add the hexagon targets as the dependencies of your
+    specified target. But that's less flexible, as you might want to have two
+    of your target depends on the same "hexagon" target
+
+    ##############################
+    #
+    # prepare_libraries_hexagon (<hexagon_targets> <hexagon_incs>  <hexagon_libs>
+    #   libName [libNames...])
+    #
+    # The first 3 arguments will be the output arguments.  And the
+    # following arguments will be the library names.  Without surfix, it is
+    # treated as a dynamic library. Surfixed with ".a" will be processed as
+    # static library. And surffixed with ".so" will be processed as dynamic
+    # library.
+    #
+    # This function will do the following:
+    #
+    # (1) For all libraries that specified, it will search Hexagon SDK tree
+    # to find the corresponding library, and add a target into the
+    # <hexagon_targets> list.  The custom_target will specify what to do
+    # for that target.  It can be going into that corresponding directory to
+    # build the directory or do nothing if it's prebuilt library. Caller of
+    # this function can add this target as the dependency of their own
+    # target or multiple targets
+    #
+    # (2) This call will add the "library specific" include directories
+    # into <hexagon_incs> list. Caller of the function can add this include
+    # path list into their corresponding include list
+    #
+    # (3) This library call will also return a "library-target" list
+    # <hexagon_libs> so that it can be added into the linker dependency
+    # list from target_link_libraries call
+    #
+    ##############################
+    prepare_libraries_hexagon(hexagonTargets_1 hexagonIncs_1 hexagonLibs_1
+        adsprpc
+        )
+
+    # Step 1: Add hexagonIncs as part of your includes
+    include_directories(
+        ${incs}
+        ${hexagonIncs_1}
+        )
+    # Step 2: Add hexagonTargets as one of your dependencies
+    add_dependencies(benchmark ${hexagonTargets_1})
+
+    # Step 3: Add hexagonLibs as your target link dependency
+    target_link_libraries( benchmark ${hexagonLibs_1} )
+
+
+2. buildIDL (<idlFile> <currentTaget>)
+
+    ##############################
+    #
+    # buildIDL (<idlFile> <currentTaget>)
+    #
+    # This function will set up a custom_target to build <idlFile> using qaic
+    # IDL compiler. For foo.idl, it wll generate foo.h, foo_stub.c and
+    # foo_skel.c into ${CMAKE_CURRENT_BINARY_DIR} diretory.
+    #
+    # This function will also add the custom_target created as the dependency
+    # of <currentTarget>
+    #
+    ##############################
+    buildIDL( inc/benchmark.idl benchmark incs)
+
+
+3. runHexagonSim (<targetToRunOnSimulator>)
+
+    ##############################
+    #
+    # runHexagonSim (<targetToRunOnSimulator>)
+    #
+    # This fuction will help create a target to run simulator on the target
+    # specified from the argument
+    #
+    # You can update <HEXAGON_EXEC_SIM_OPTIONS> to customized the options for
+    # simualtor
+    #
+    # You can also update <HEXAGON_EXEC_CMD_OPTIONS> to customized the options
+    # for executable
+    #
+    ##############################
+    runHexagonSim(benchmark_q)

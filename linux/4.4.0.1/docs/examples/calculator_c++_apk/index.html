@@ -1,0 +1,1504 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Calculator C++ APK - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#calculator-c-apk-example" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Calculator C++ APK
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Calculator C++ APK
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="index.html" class="md-nav__link md-nav__link--active">
+      Calculator C++ APK
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#on-target-testing" class="md-nav__link">
+    On-target testing
+  </a>
+  
+    <nav class="md-nav" aria-label="On-target testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-the-apk" class="md-nav__link">
+    Install the APK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-and-push-the-dsp-shared-object" class="md-nav__link">
+    Generate and push the DSP shared object
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-customization" class="md-nav__link">
+    Application customization
+  </a>
+  
+    <nav class="md-nav" aria-label="Application customization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-android-studio-project" class="md-nav__link">
+    Create a new Android Studio project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-the-project-compilation-tools" class="md-nav__link">
+    Customize the project compilation tools
+  </a>
+  
+    <nav class="md-nav" aria-label="Customize the project compilation tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#android-ndk" class="md-nav__link">
+    Android NDK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmake" class="md-nav__link">
+    cmake
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-the-project-source-files" class="md-nav__link">
+    Customize the project source files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-the-project-buildgradle-file" class="md-nav__link">
+    Customize the project build.gradle file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-the-customized-apk" class="md-nav__link">
+    Testing the customized APK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    Debugging
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gradle-sync-issues" class="md-nav__link">
+    Gradle sync issues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-on-target-errors" class="md-nav__link">
+    Debugging on-target errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libcdsprpcso-packaged-in-apk" class="md-nav__link">
+    libcdsprpc.so packaged in APK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#on-target-testing" class="md-nav__link">
+    On-target testing
+  </a>
+  
+    <nav class="md-nav" aria-label="On-target testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-the-apk" class="md-nav__link">
+    Install the APK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-and-push-the-dsp-shared-object" class="md-nav__link">
+    Generate and push the DSP shared object
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-customization" class="md-nav__link">
+    Application customization
+  </a>
+  
+    <nav class="md-nav" aria-label="Application customization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-android-studio-project" class="md-nav__link">
+    Create a new Android Studio project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-the-project-compilation-tools" class="md-nav__link">
+    Customize the project compilation tools
+  </a>
+  
+    <nav class="md-nav" aria-label="Customize the project compilation tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#android-ndk" class="md-nav__link">
+    Android NDK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmake" class="md-nav__link">
+    cmake
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-the-project-source-files" class="md-nav__link">
+    Customize the project source files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-the-project-buildgradle-file" class="md-nav__link">
+    Customize the project build.gradle file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-the-customized-apk" class="md-nav__link">
+    Testing the customized APK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    Debugging
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gradle-sync-issues" class="md-nav__link">
+    Gradle sync issues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-on-target-errors" class="md-nav__link">
+    Debugging on-target errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libcdsprpcso-packaged-in-apk" class="md-nav__link">
+    libcdsprpc.so packaged in APK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="calculator-c-apk-example">Calculator C++ APK example</h1>
+<p>This example illustrates how to build an end-to-end Android APK that uses C++ APIs in the Android application layer and offloads computation to the DSP.</p>
+<p>Starting with Android-P, access to <code>/system</code> libraries from the <code>/vendor</code> partition and vice-versa are prohibited with the addition of Treble restrictions.  Hence, vendor applications do not have access to the <code>libc++_shared.so</code> library located in <code>/system</code>. However APKs have access to the libray located in <code>system</code>. Thus using C++ in an Android vendor application requires constructing an APK that dynamically links to the C++ libraries.</p>
+<p>APKs are untrusted applications. Starting with Android-R untrusted applications cannot create signed PDs on the DSPs for offloading. They can only create <a href="../../software/system_integration.html#unsigned-pds">unsigned PDs</a> on the compute DSP for offloading. Hence this example uses unsigned PD.</p>
+<h2 id="on-target-testing">On-target testing</h2>
+<p>This section describes installation and use of the existing pre-compiled APK <code>calculator_c++.apk</code> on the device. To run the APK on device, you will need to <a href="#install-the-apk">install the APK</a> and <a href="#generate-and-push-the-dsp-shared-object">push the Hexagon shared object</a> onto your device. This APK can run directly on all LA devices supported in the Hexagon SDK.</p>
+<h3 id="install-the-apk">Install the APK</h3>
+<p>The example comes with a pre-existing APK that can be installed on device directly. For instructions on how to modify the implementation and rebuild the APK, see how to <a href="#application-customization">customize the application</a>.</p>
+<p>To install the existing APK on device, execute the following command:</p>
+<pre><code>adb install calculator_c++.apk
+</code></pre>
+<h3 id="generate-and-push-the-dsp-shared-object">Generate and push the DSP shared object</h3>
+<p>The DSP source code of the calculator C++ APK example is under <code>$HEXAGON_SDK_ROOT/examples/calculator_c++_apk/dsp</code>.  You can build the DSP shared object with the following instructions:</p>
+<pre><code>cd dsp
+make hexagon BUILD=Debug DSP_ARCH=v65
+</code></pre>
+<p>Refer to the <a href="../calculator/index.html#building">build instructions of the calculator example</a> for more details on building shared objects.</p>
+<p>When the shared object is ready, push it to /vendor/lib/rfsa/dsp on your Android device. For example:</p>
+<pre><code>adb root
+adb remount
+adb push hexagon_Debug_toolv84_v65\ship\libcalculator_skel.so /vendor/lib/rfsa/dsp
+</code></pre>
+<h2 id="application-customization">Application customization</h2>
+<p>The steps below explain how to recreate the APK introduced in the <a href="#install-the-apk">previous section</a>.  We first <a href="#create-a-new-android-studio-project">create a new Android Studio project</a> that uses Java as the Android app development language and the Java Native Interface (JNI) for enabling native C/C++ support and thus interfacing the DSP.  We then customize both the <a href="#customize-the-project-compilation-tools">project setup</a> and the <a href="#customize-the-project-source-files">source code</a> to build the customized APK with the tools used with the Hexagon SDK.</p>
+<h3 id="create-a-new-android-studio-project">Create a new Android Studio project</h3>
+<ul>
+<li>Use this <a href="https://developer.android.com/studio/">link</a> to download and install the Android SDK.</li>
+<li>If you are new to Android Studio, familiarize yourself with existing <a href="https://developer.android.com/training/basics/firstapp/creating-project">online tutorials</a> to learn how to create, build, and run projects</li>
+<li>Create a new Android <strong><em>Native C++</em></strong> project.
+    Native development enables the Java application to interface C methods, which can then make FastRPC calls to offload workload on the Hexagon DSP.
+<img alt="png" src="../../images/AS_new_project.png" /></li>
+<li>Select the following options<ul>
+<li>Name your project <code>calculator</code></li>
+<li>Select Java as the language</li>
+<li>Default toolchain (on the next configuration page)
+<img alt="png" src="../../images/AS_project_config.png" /></li>
+</ul>
+</li>
+</ul>
+<h3 id="customize-the-project-compilation-tools">Customize the project compilation tools</h3>
+<p>This section explains how to configure your Android Studio project to use external compilation tools provided with the Hexagon SDK instead of using the Android Studio SDK manager to download and bundle these tools as part of Android Studio.</p>
+<h4 id="android-ndk">Android NDK</h4>
+<p>Under File --&gt; Project Structure --&gt; SDK Location, set the Android NDK location to where the Android NDK is installed with the Hexagon SDK. For example, assuming the Hexagon SDK is installed under <code>C:\Qualcomm\Hexagon_SDK\4.4.0.0</code>:</p>
+<p>Android NDK location: <code>C:\Qualcomm\Hexagon_SDK\4.4.0.0\tools\android-ndk-r19c</code></p>
+<p><img alt="png" src="../../images/AS_NDK_config.png" /></p>
+<h4 id="cmake">cmake</h4>
+<p>Edit the <code>local.properties</code> file of the calculator project to set <code>cmake.dir</code> to the path where the <code>cmake</code> version installed with the Hexagon SDK is installed. Make sure to precede each special character <code>:</code> and <code>\</code> with <code>\</code>. For example, using the same assumption as above for the Hexagon SDK install location:</p>
+<pre><code>cmake.dir=C\:\\Qualcomm\\Hexagon_SDK\\4.4.0.0\\tools\\utils\\cmake-3.17.0-win64-x64
+</code></pre>
+<p><strong><em>Note: </em></strong></p>
+<ul>
+<li>
+<p>The Android SDK relies on the build system Ninja for the CMake backend.  In order to use the external version of CMake, you need to <a href="https://github.com/ninja-build/ninja/releases">download</a>, put the <code>ninja.exe</code> executable on your system path, and then restart Android Studio.</p>
+</li>
+<li>
+<p>When creating a new project, Android Studio sets the cmake version to a default value in the <code>build.gradle</code> file of the <code>app</code> module:</p>
+<pre><code>externalNativeBuild {
+    cmake {
+        path "src/main/cpp/CMakeLists.txt"
+        version "3.10.2"
+    }
+}
+</code></pre>
+<p>This version may differ from the one provided in the Hexagon SDK, which will cause a failure. Remove the cmake version number specified as follows:</p>
+<pre><code>externalNativeBuild {
+    cmake {
+        path "src/main/cpp/CMakeLists.txt"
+    }
+}
+</code></pre>
+</li>
+</ul>
+<h3 id="customize-the-project-source-files">Customize the project source files</h3>
+<p>The <code>calculator_c++_apk</code> example folder contains all the source files you need to customize the native C++ project you just created following the <a href="#create-a-new-android-studio-project">instructions above</a>.  These source files demonstrate how to offload a workload onto the DSP.</p>
+<p>We recommend that you compare side by side the files present in your newly created Android Studio calculator project with those included under the <code>app</code> folder of the Hexagon SDK <code>calculator_c++_apk</code> example to understand how to modify the project.</p>
+<p>Alternatively, you may add all the provided source files to your project with a simple copy command as follows:</p>
+<pre><code>cp -fr app\src\main\* C:\Users\&lt;your_user_name&gt;\AndroidStudioProjects\calculator\app\src\main\
+</code></pre>
+<p><strong><em>Note: </em></strong> We do not guarantee that this approach will always work as Android Studio evolves rapidly and modifying files when Android Studio synchronizes a project may generate some errors.</p>
+<p>This command adds or replaces the following source files to your project:</p>
+<table>
+<thead>
+<tr>
+<th>File name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AndroidManifest.xml</td>
+<td>General information about the application to the Android build tools, the Android operating system, and Google Play.  The modified manifest file adds a declaration of <code>DisplayResults.java</code> as an activity.</td>
+</tr>
+<tr>
+<td>MainActivity.java</td>
+<td>Functionality of the main screen when the application opens</td>
+</tr>
+<tr>
+<td>DisplayResults.java</td>
+<td>Functionality of the screen used to display the results of the calculator</td>
+</tr>
+<tr>
+<td>activity_main.xml</td>
+<td>Layout for the main screen of the application</td>
+</tr>
+<tr>
+<td>activity_display_result.xml</td>
+<td>Layout for the screen used to display the results of the calculator</td>
+</tr>
+<tr>
+<td>strings.xml</td>
+<td>String values to be displayed on screen</td>
+</tr>
+<tr>
+<td>calculator-jni.cpp</td>
+<td>JNI file contains the function implemented to make a remote call <code>calculator_sum</code> to the DSP</td>
+</tr>
+<tr>
+<td>CMakeLists.txt</td>
+<td>CMake configuration file containing the rules to compile the IDL and JNI cpp source files, and link the required Hexagon SDK libraries needed to offload a workload onto the DSP</td>
+</tr>
+</tbody>
+</table>
+<h3 id="customize-the-project-buildgradle-file">Customize the project build.gradle file</h3>
+<p>The <code>build.gradle</code> of the <code>app</code> module file maintained in the calculator project configures the build for the calculator project.  Two changes are needed:</p>
+<ul>
+<li>
+<p>Add a cmake argument to externalNativeBuild to dynamically link libc++_shared.so to the application:</p>
+<pre><code>externalNativeBuild {
+    cmake {
+        cppFlags ""
+        arguments "-DANDROID_STL=c++_shared"
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>Specify the ABI filter for the NDK</p>
+<p>Since different Android handsets use different CPUs, it is required to specify a compatible Android Binary Interface(ABI) for each CPU architecture an application works with. Below we are specifying a default variant as 64-bit arm V8a instruction set.</p>
+<pre><code>ndk {
+    moduleName "calculator"
+    abiFilter "arm64-v8a"
+    ldLibs "log"
+}
+</code></pre>
+</li>
+</ul>
+<p>The <code>build.gradle</code> provided under the <code>app</code> folder illustrates how to set both of these properties.</p>
+<h3 id="testing-the-customized-apk">Testing the customized APK</h3>
+<p>After following all the customization steps above and building the project in Android Studio, you should obtain a new APK file under the <code>app\build\outputs\apk\debug</code> folder of your Android Studio project. Install this new APK on your device <a href="#install-the-apk">as explained earlier</a> to confirm that your calculator application still works as expected.</p>
+<h2 id="debugging">Debugging</h2>
+<h3 id="gradle-sync-issues">Gradle sync issues</h3>
+<p>Please note that if you are facing synchronization issues with the Gradle build system on the Android SDK, use the documentation provided in the <a href="https://developer.android.com/studio/intro/update">link</a> to update your IDE and Android SDK tools.</p>
+<h3 id="debugging-on-target-errors">Debugging on-target errors</h3>
+<p>Analyze the application-processor and DSP logs to debug on-target functionality of the application. For more information on debugging and logging, please refer to <a href="../../tools/debug.html">debug</a> and <a href="../../tools/messaging.html">messaging</a> documentation, respectively.</p>
+<h3 id="libcdsprpcso-packaged-in-apk">libcdsprpc.so packaged in APK</h3>
+<p>If you are seeing issues when running the APK on the device because APK is picking the stubbed version of rpcmem APIs, you should check if the compiled APK is packaging the stubbed version of remote library <code>libcdsprpc.so</code> into the APK. The following logs in the logcat would mean that the stubbed library is packaged into the APK.</p>
+<pre><code>    remote.c:110:rpcmem alloc stubbed routine - Return failure
+    remote.c:100:Invoking stubbed routine - Return failure
+</code></pre>
+<p>You can view the APK in Android Studio or simply unzip the APK in Windows explorer to find out if the library libcdsprpc.so is packaged. In Android Studio, an APK looks like this.</p>
+<p><img alt="svg" src="../../images/calculator_apk_package.PNG" /></p>
+<p>Ideally when the library is not packaged, the APK looks like this.</p>
+<p><img alt="svg" src="../../images/calculator_apk.PNG" /></p>
+<p>To fix this issue, you can add the following packaging rule in <code>build.gradle</code> of the <code>app</code> module. This prevents the inclusion of the stubbed library into the APK.</p>
+<pre><code>    android {
+       packagingOptions {
+            exclude "lib/arm64-v8a/libcdsprpc.so"
+        }
+    }
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../calculator_c%2B%2B/index.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Calculator C++
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../dspqueue/index.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                DSP Packet Queue
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../../js/iframe-worker.js"></script>
+<script src="../../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

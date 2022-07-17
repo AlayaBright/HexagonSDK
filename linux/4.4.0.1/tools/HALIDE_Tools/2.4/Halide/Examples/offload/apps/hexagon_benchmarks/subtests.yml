@@ -1,0 +1,8 @@
+# This is a necessary evil for subtests.
+# This file is used to list all subdirs that are tests
+# Additionaly it may list the name of an environment var
+# than can be set to include only some of the subtests
+
+#subtests : [median3x3, gaussian5x5, conv3x3a16, conv3x3a32, sobel, dilate3x3, morph_edge]
+subtests : [median3x3, gaussian5x5, conv3x3a16, sobel, dilate3x3, morph_edge]
+env_var_name: HEXAGON_BENCHMARKS_FILTERS

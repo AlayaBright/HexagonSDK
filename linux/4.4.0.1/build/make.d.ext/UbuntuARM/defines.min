@@ -1,0 +1,8 @@
+ifeq (UbuntuARM,$(V_TARGET))
+include $(thisDir)/defines_$V.min
+ifndef print_Ubuntu_tools_version_only_once
+$(info ==== Using Tools at $(UBUNTUARM_TOOLS_DIR) ====)
+print_Ubuntu_tools_version_only_once=1
+endif
+endif
+MAKE_D_V_EXT_UbuntuARM_DIR:=$(thisDir)

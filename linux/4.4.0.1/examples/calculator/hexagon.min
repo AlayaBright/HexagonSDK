@@ -1,0 +1,25 @@
+#Set NO_QURT_INC to 1 to disable qurt libraries/headers inclusion
+NO_QURT_INC = 1
+
+# This builds the skel library
+BUILD_LIBS += libcalculator_skel
+
+# This builds the dynamic library
+BUILD_DLLS += libcalculator_skel
+
+libcalculator_skel_QAICIDLS += inc/calculator
+libcalculator_skel_C_SRCS += $(OBJ_DIR)/calculator_skel
+libcalculator_skel.C_SRCS += src/calculator_imp.c
+
+# quality test
+BUILD_QEXES += calculator_q
+
+calculator_q_C_SRCS += src/calculator_test_main src/calculator_test
+calculator_q_LIBS += rtld rpcmem test_util atomic libcalculator_skel
+
+# copy final build products to the ship directory
+BUILD_COPIES += \
+   $(DLLS) \
+   $(EXES) \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

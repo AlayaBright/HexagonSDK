@@ -1,0 +1,31 @@
+# builds the static/dynamic skel
+BUILD_DLLS +=  libqueuetest_skel libfcvqueue_dsp_skel libfcvqueuetest_skel
+
+INCDIRS += inc
+
+# Use -O0 temporarily when trying to debug C code.
+#_OPT = -O0
+
+# Queue test skeleton
+libqueuetest_skel_QAICIDLS += inc/queuetest
+libqueuetest_skel_C_SRCS += $(OBJ_DIR)/queuetest_skel \
+                                src/queuetest_imp
+libqueuetest_skel_DLLS+= libasyncdspq_skel
+
+# fcvqueue test/example
+libfcvqueue_dsp_skel_QAICIDLS += inc/fcvqueue_dsp
+libfcvqueue_dsp_skel_C_SRCS += $(OBJ_DIR)/fcvqueue_dsp_skel \
+                               src/fcvqueue_dsp_imp
+libfcvqueue_dsp_skel_DLLS += libasyncdspq_skel
+
+# fcvqueue test
+libfcvqueuetest_skel_QAICIDLS += inc/fcvqueuetest
+libfcvqueuetest_skel_C_SRCS += $(OBJ_DIR)/fcvqueuetest_skel \
+                               src/fcvqueuetest_imp
+
+# copy final build products to the ship directory
+BUILD_COPIES += \
+   $(DLLS) \
+   $(EXES) \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

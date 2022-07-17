@@ -1,0 +1,174 @@
+
+# by default don't echo, define this var to nothing to echo
+_@ ?= @
+
+# sort variant options
+null :=
+SPACE := $(null) $(null)
+
+
+ifneq (,$(findstring dynamic,$V))
+V_without_dynamic = $(subst dynamic,,$V)
+override V:= $(V_without_dynamic)
+endif
+override V:=$(subst $(SPACE),_,$(strip $(wordlist 1, 2, $(subst _, ,$(V))) $(sort $(wordlist 3,$(words $(subst _, ,$(V))),$(subst _, ,$(V))))))
+
+# ensure variant is supported
+ifeq (,$(filter $V,$(SUPPORTED_VS)))
+# define newline
+define n
+
+
+endef
+$(error "$V" is not a supported build variant.$nSupported variants:$(foreach v,$(SUPPORTED_VS),$n$(v)))
+endif
+
+# these must be defined before including make.d's defines.min
+MAKE_D_EXT_c_DIR = $(HEXAGON_SDK_ROOT)/build/make.d.ext/c/
+MAKE_D_EXT_5_DIR = $(HEXAGON_SDK_ROOT)/build/make.d.ext/qaic
+MAKE_D_EXT_1_DIR = $(HEXAGON_SDK_ROOT)/build/make.d.ext/hexagon
+MAKE_D_EXT_2_DIR = $(HEXAGON_SDK_ROOT)/build/make.d.ext/android
+MAKE_D_EXT_4_DIR = $(HEXAGON_SDK_ROOT)/build/make.d.ext/UbuntuARM
+MAKE_D_EXT_qnx_DIR = $(HEXAGON_SDK_ROOT)/build/make.d.ext/qnx
+# include make.d's defines.min only after V has been decided
+include $(HEXAGON_SDK_ROOT)/build/make.d/defines.min
+
+SHIP_DIR := $(join $(dir $(SHIP_DIR)),$(OBJ_DIR)/ship)
+
+ifndef print_output_dir_only_once
+$(info ==== Build output directory: $(SHIP_DIR) ====)
+print_output_dir_only_once=1
+endif
+
+QURT_INSTALL = $(HEXAGON_SDK_ROOT)/rtos/qurt
+
+# add common dependencies
+INCDIRS += $(HEXAGON_SDK_ROOT)/incs
+INCDIRS += $(HEXAGON_SDK_ROOT)/incs/stddef
+INCDIRS += $(HEXAGON_SDK_ROOT)/ipc/fastrpc/incs
+INCDIRS += $(HEXAGON_SDK_ROOT)/ipc/fastrpc/remote/ship/$(V)
+INCDIRS += $(HEXAGON_SDK_ROOT)/incs/qnx
+INCDIRS += $(HEXAGON_SDK_ROOT)/libs/common/qnx/ship/$(V)
+INCDIRS += $(HEXAGON_SDK_ROOT)/utils/examples
+
+ifneq (,$(findstring Debug,$V))
+        V_without_Debug_or_Release_or_ReleaseG:=$(subst _Debug,,$V)
+else ifneq (,$(findstring ReleaseG,$V))
+        V_without_Debug_or_Release_or_ReleaseG:=$(subst _ReleaseG,,$V)
+else ifneq (,$(findstring Release,$V))
+        V_without_Debug_or_Release_or_ReleaseG:=$(subst _Release,,$V)
+endif
+
+#rtld and remote variant folders does not contain "Debug" or "Release" in folder name.
+
+INCDIRS += $(HEXAGON_SDK_ROOT)/ipc/fastrpc/rtld/ship/$(V_without_Debug_or_Release_or_ReleaseG)
+LIBDIRS += $(HEXAGON_SDK_ROOT)/ipc/fastrpc/rtld/ship/$(V_without_Debug_or_Release_or_ReleaseG)
+LIBDIRS += $(HEXAGON_SDK_ROOT)/ipc/fastrpc/remote/ship/$(V_without_Debug_or_Release_or_ReleaseG)
+
+# if both *_DIR and *_PREBUILT_DIR are defined, error out.
+$(foreach d,$(DEPENDENCIES),$(if $(and $($(d)_PREBUILT_DIR), $($(d)_DIR)), $(error Both $(d)_DIR and $(d)_PREBUILT_DIR are defined),))
+
+SRCS_BUILD +=$(foreach d,$(DEPENDENCIES), $(if $($(d)_DIR),$(d),))
+
+HOST := $(firstword $(subst _, ,$V))
+
+ifneq (,$(or $(findstring android, $(HOST)), $(findstring UbuntuARM, $(HOST))))
+# add user prebuilt dependencies
+INCDIRS += $(foreach d,$(DEPENDENCIES),$(if $($(d)_PREBUILT_DIR),$($(d)_PREBUILT_DIR)/prebuilt/$(V_without_Debug_or_Release_or_ReleaseG),))
+LIBDIRS += $(foreach d,$(DEPENDENCIES),$(if $($(d)_PREBUILT_DIR),$($(d)_PREBUILT_DIR)/prebuilt/$(V_without_Debug_or_Release_or_ReleaseG),))
+# add default prebuilt dependencies
+INCDIRS += $(foreach d,$(DEPENDENCIES),$(if $(or $($(d)_PREBUILT_DIR), $($(d)_DIR)),,$($(d)_PREBUILT_DIR_DEFAULT)/prebuilt/$(V_without_Debug_or_Release_or_ReleaseG)))
+LIBDIRS += $(foreach d,$(DEPENDENCIES),$(if $(or $($(d)_PREBUILT_DIR), $($(d)_DIR)),,$($(d)_PREBUILT_DIR_DEFAULT)/prebuilt/$(V_without_Debug_or_Release_or_ReleaseG)))
+endif
+
+ifeq ($(HOST),qnx)
+INCDIRS += $(HEXAGON_SDK_ROOT)/ipc/fastrpc/rpcmem/qnx/inc
+LIBDIRS += $(HEXAGON_SDK_ROOT)/ipc/fastrpc/rpcmem/qnx/libs/$(V_without_Debug_or_Release_or_ReleaseG)
+endif
+
+ifeq ($(HOST),hexagon)
+HEXAGON_ARCH := $(lastword $(subst _, ,$V))
+TOOL_VER := $(subst _$(lastword $(subst _, ,$(V_without_Debug_or_Release_or_ReleaseG))),,$(V_without_Debug_or_Release_or_ReleaseG))
+# add user prebuilt dependencies
+INCDIRS += $(foreach d,$(DEPENDENCIES),$(if $($(d)_PREBUILT_DIR),\
+				$(foreach deps,$(HEX_PREBUILT_$(HEXAGON_ARCH)), $($(d)_PREBUILT_DIR)/prebuilt/$(TOOL_VER)_$(deps)),))
+LIBDIRS += $(foreach d,$(DEPENDENCIES),$(if $($(d)_PREBUILT_DIR),\
+				$(foreach deps,$(HEX_PREBUILT_$(HEXAGON_ARCH)), $($(d)_PREBUILT_DIR)/prebuilt/$(TOOL_VER)_$(deps)),))
+# add default prebuilt dependencies
+INCDIRS += $(foreach d,$(DEPENDENCIES),$(if $(or $($(d)_PREBUILT_DIR), $($(d)_DIR)),,\
+				$(foreach deps,$(HEX_PREBUILT_$(HEXAGON_ARCH)), $($(d)_PREBUILT_DIR_DEFAULT)/prebuilt/$(TOOL_VER)_$(deps))))
+LIBDIRS += $(foreach d,$(DEPENDENCIES),$(if $(or $($(d)_PREBUILT_DIR), $($(d)_DIR)),,\
+				$(foreach deps,$(HEX_PREBUILT_$(HEXAGON_ARCH)), $($(d)_PREBUILT_DIR_DEFAULT)/prebuilt/$(TOOL_VER)_$(deps))))
+endif
+
+# add user sources dependencies
+INCDIRS += $(foreach d,$(DEPENDENCIES),$(if $($(d)_DIR),$($(d)_DIR)/$(OBJ_DIR)/ship,))
+LIBDIRS += $(foreach d,$(DEPENDENCIES),$(if $($(d)_DIR),$($(d)_DIR)/$(OBJ_DIR)/ship,))
+
+SRCS_CLEAN = $(foreach d,$(DEPENDENCIES), $(if $($(d)_DIR),$(d)_CLEAN,))
+$(foreach d,$(DEPENDENCIES), $(if $($(d)_DIR), $(eval $(d)_CLEAN_DIR = $($(d)_DIR)),))
+
+
+.PHONY: tree tree_clean $(SRCS_BUILD) $(SRCS_CLEAN)
+
+ifeq ($(TREE),0)
+
+hexagon android ubuntuARM qnx:
+	$(call job,,$(MAKE) V=$(V),making . )
+
+hexagon_clean android_clean ubuntuARM_clean qnx_clean:
+	$(call job,,$(MAKE) V=$(V) clean,making . )
+
+hexagonsim: hexagon run_on_sim
+
+else
+
+hexagon android ubuntuARM qnx: tree
+
+hexagon_clean android_clean ubuntuARM_clean qnx_clean: tree_clean
+
+hexagonsim: tree run_on_sim
+
+endif
+
+hexagonsim: tree run_on_sim
+
+run_on_sim:
+	$(foreach q,$(QEXES),\
+	$(call QEXE_EXEC,$(call OKS_SIM_OPTIONS_OF,$(q)),$(q),$(call OKS_ARGS_OF,$(q))))
+	$(foreach q_ok,$(OKS),$(touch $(q_ok)))
+	$(foreach q,$(QEXES_MAIN),\
+	$(call QURT_QEXE_EXEC,$(call OKS_MAIN_SIM_OPTIONS_OF,$(q)),$(call OKS_MAIN_PRIMORDIAL_STACK_SIZE_OF,$(q)),$(q),$(call OKS_MAIN_ARGS_OF,$(q))))
+	$(foreach q_ok,$(OKS_MAIN),$(touch $(q_ok)))
+
+tree: $(SRCS_BUILD)
+	$(call job,,$(MAKE) V=$(V),making . )
+
+tree_clean: $(SRCS_CLEAN)
+	$(call job,,$(MAKE) V=$(V) clean,making .)
+
+
+$(SRCS_BUILD):
+	$(call job,$($(@)_DIR),$(MAKE) V=$(V) tree,making $($(@)_DIR))
+
+$(SRCS_CLEAN):
+	$(call job,$($(@)_DIR),$(MAKE) V=$(V) tree_clean,cleaning $($(@)_DIR))
+
+
+W := $(findstring ECHO,$(shell echo))# W => Windows environment
+
+ifeq ($(OS),Windows_NT)
+RANDOM := $(shell echo %RANDOM%)
+else
+RANDOM := $(shell bash -c 'echo $$RANDOM')
+endif
+
+@LOG =  $(if $W,$(TEMP)\\)$@-$(RANDOM).log
+C = $(if $1,$(if $W,cd /D,cd) $1 && )$2
+job = $(_@)echo $3 && ( $C )> $(@LOG) && $(if $W,del,rm) $(@LOG) || ( echo ERROR $3 && $(if $W,type,cat) $(@LOG) && $(if $W,del,rm) $(@LOG) && exit 1)
+ifdef VERBOSE
+  job = $(_@)echo $3 && $C
+endif
+
+
+

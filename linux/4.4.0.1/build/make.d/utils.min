@@ -1,0 +1,153 @@
+ifneq (1,$(words $(shell pwd)))
+    $(error Error! Current working directory path contains spaces. GNU make does not build the directory if there is a space in its directory path.)
+endif
+
+ifndef BUILD
+BUILD=$(DEFAULT_BUILD)
+endif
+
+ifndef DSP_ARCH
+DSP_ARCH=$(DEFAULT_DSP_ARCH)
+endif
+
+
+ifndef HLOS_ARCH
+HLOS_ARCH=$(DEFAULT_HLOS_ARCH)
+endif
+
+ifndef TOOLS_VARIANT
+ifneq (,$(findstring 8.3,$(HEXAGON_TOOLS_ROOT)))
+TOOLS_VARIANT=toolv83
+else ifneq (,$(findstring 8.2,$(HEXAGON_TOOLS_ROOT)))
+TOOLS_VARIANT=toolv82
+else ifneq (,$(findstring 8.1,$(HEXAGON_TOOLS_ROOT)))
+TOOLS_VARIANT=toolv81
+else
+TOOLS_VARIANT=$(DEFAULT_TOOLS_VARIANT)
+endif
+endif
+
+ifndef QNX_TOOLS_VARIANT
+QNX_TOOLS_VARIANT=toolv710
+endif
+
+ifndef NO_QURT_INC
+NO_QURT_INC=$(DEFAULT_NO_QURT_INC)
+endif
+
+ifndef TREE
+TREE=$(DEFAULT_TREE)
+endif
+
+
+ifndef ACTION
+ifeq (,$(findstring clean,$(MAKECMDGOALS)))
+ACTION=Building
+else
+ACTION=Cleaning
+endif
+endif
+
+#construct hexagon build string
+ifneq (,$(findstring hexagon, $(MAKECMDGOALS)))
+ifndef V
+$(info ==== $(ACTION) $(BUILD) variant of hexagon architecture $(DSP_ARCH) ====)
+$(eval V=hexagon_$(BUILD)_$(TOOLS_VARIANT)_$(DSP_ARCH))
+endif
+endif
+
+
+ifeq ($(MAKECMDGOALS),hexagonsim)
+ifndef V
+$(info  ==== $(ACTION) $(BUILD) variant of hexagon architecture $(DSP_ARCH) ====)
+$(eval V=hexagon_$(BUILD)_$(TOOLS_VARIANT)_$(DSP_ARCH))
+endif
+endif
+
+#construct android build string
+ifneq (,$(findstring android, $(MAKECMDGOALS)))
+ifndef V
+$(info  ==== $(ACTION) $(BUILD) variant of android for $(HLOS_ARCH) bit architecture ====)
+ifeq ($(HLOS_ARCH),32)
+$(eval V=android_$(BUILD))
+else
+$(eval V=android_$(BUILD)_aarch$(HLOS_ARCH))
+endif
+endif
+endif
+
+#construct ubuntuARM build string
+ifneq (,$(findstring ubuntuARM, $(MAKECMDGOALS)))
+ifndef V
+$(info  ==== $(ACTION) $(BUILD) variant of ubuntuARM for $(HLOS_ARCH) bit architecture ====)
+ifeq ($(HLOS_ARCH),32)
+$(eval V=UbuntuARM_$(BUILD))
+else
+$(eval V=UbuntuARM_$(BUILD)_aarch$(HLOS_ARCH))
+endif
+endif
+endif
+
+#construct qnx build string
+ifneq (,$(findstring qnx, $(MAKECMDGOALS)))
+ifndef V
+$(info  ==== $(ACTION) $(BUILD) variant of qnx for $(HLOS_ARCH) architecture ====)
+$(eval V=qnx_$(BUILD)_aarch$(HLOS_ARCH)_$(QNX_TOOLS_VARIANT))
+endif
+endif
+
+ifeq ($(MAKECMDGOALS),help)
+
+$(info ================================================ help ====================================================================================)
+$(info                                                                                      )
+$(info Usage:)
+$(info       make <action> [options])
+$(info                                                                                      )
+$(info       action:)
+$(info              hexagon                 => Builds for hexagon platform with default options)
+$(info              hexagonsim              => Builds for hexagon platform and runs on simulator)
+$(info              android                 => Builds for android platform with default options)
+$(info              ubuntuARM               => Builds for ubuntuARM  platform with default options)
+$(info              qnx                     => Builds for qnx platform with default options)
+$(info                                                                                      )
+$(info       Hexagon options ( * denotes defaults ):)
+$(info              BUILD=<*ReleaseG/Debug/Release> => Build variant)
+$(info              DSP_ARCH=<*v65/v66,v68> => DSP architecture)
+$(info              NO_QURT_INC=<*0/1>      => Do not include QuRT as a dependency when NO_QURT_INC=1)
+$(info                                                                                      )
+$(info       qnx options ( * denotes defaults ):)
+$(info              BUILD=<*ReleaseG/Debug/Release>   => Build variant)
+$(info              QNX_TOOLS_VARIANT=<*toolv710/toolv700> => TOOLCHAIN variant)
+$(info                                                                                      )
+$(info       android or ubuntuARM options ( * denotes defaults ):)
+$(info              BUILD=<*ReleaseG/Debug> => Build variant)
+$(info              HLOS_ARCH=<32/*64>      => HLOS architecture)
+$(info                                                                                      )
+$(info       common options ( * denotes defaults ):)
+$(info              TREE=<0/*1>             => Builds project dependencies)
+$(info              BUILD_OUTPUT_DIR=<build output directory name>     => Generates binaries in the specified directory)
+$(info                                                                                      )
+$(info       Some common usage examples:)
+$(info       make qnx                                               => Builds binaries for qnx platform)
+$(info       make qnx_clean                                         => Cleans binaries for qnx platform)
+$(info       make qnx QNX_TOOLS_VARIANT=toolv700                    => Builds binaries for qnx platform with 700 toolchain)
+$(info       make android                                           => Builds binaries for android platform)
+$(info       make android_clean                                     => Cleans binaries for android platform)
+$(info       make hexagon                                           => Builds binaries for hexagon platform)
+$(info       make hexagon_clean                                     => Cleans binaries for hexagon platform)
+$(info       make hexagonsim                                        => Builds binaries for hexagon platform and runs on simulator)
+$(info       make ubuntuARM                                         => Builds binaries for android platform)
+$(info       make ubuntuARM_clean                                   => Cleans binaries for android platform)
+$(info       make android BUILD=ReleaseG HLOS_ARCH=32               => Builds ReleaseG variant of android for 32-bit arch)
+$(info       make hexagon BUILD=Debug DSP_ARCH=v68                  => Builds Debug variant of hexagon architecture v68 to run on top of QURT)
+$(info       make hexagon BUILD=Debug DSP_ARCH=v68 NO_QURT_INC=1    => Builds baremetal Debug variant of hexagon architecture V68)
+$(info       make hexagon TREE=0                                    => Builds only current project but not its dependencies with default hexagon options)
+$(info       make hexagon_clean TREE=0                              => Cleans only project but not its dependencies)
+
+$(info                                                                                      )
+$(info ==========================================================================================================================================)
+$(error )
+endif
+
+
+

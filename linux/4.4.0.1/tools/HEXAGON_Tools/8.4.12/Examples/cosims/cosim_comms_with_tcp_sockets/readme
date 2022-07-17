@@ -1,0 +1,135 @@
+
+    TxRx interface cosim module 
+
+    This cosim module demonstrates a method for using TCP sockets
+    as a communication channel between cosims. Two copies of this
+    cosim are created to represent both the server (RX) and client
+    (TX) side of a TCP socket. The cosim takes arguments that 
+    specify the following values:
+      1) Init/Ack address
+      2) Read/Write buffer address
+      3) Buffer size, in bytes
+      4) Port number
+      5) Cosim direction (RX or TX)
+
+    Please note that because this is an example, no guarantees are
+	made as to the robustness of the implementation in terms of 
+	proper checking and handling of socket return values. This code
+	is meant to serve as a proof-of-concept, not as a definitive
+	implementation. 
+
+    The cosim is implemented as a C++ class in order to encapsulate
+    data specific to the cosim's role as either a server (RX) or
+    a client (TX). Arguments passed to the cosim are parsed in a 
+    separate helper function prior to instantiation of the cosim 
+    object.
+
+    Two TCP ports are created and configured for use in setting up
+    a communication channel between the cosims. For the sake of 
+    simplicity, the entire example is structured to poll init/ack
+    flags on one socket designated as a 'signal' before reading or
+    writing a second socket designated as 'data'.
+
+    The TCP port initalization is begun in the cosim constructors
+    and completed within the context of one-shot timed callbacks
+    that are called shortly after simulation begins. This approach
+    is taken to ensure both cosims and both ports are properly
+    instantiated and configured before any attempt to read or write
+    to them is made. 
+
+    Once the cosim constructors and one-shot timed callbacks have
+    been called, the sockets are ready for use. The following 
+    is a high-level description of how messages are passed in this
+    example. 
+
+      TX side:
+      1) Hexagon ISS TX software writes message into memory-mapped
+         buffer
+      2) Hexagon ISS TX software writes 0x1 to txInit address
+         to initiate message transfer
+     3a) Write to txInit triggers TX cosim memory-was-written 
+         callback
+     3b) Mem-was-written callback reads message out of Hexagon ISS 
+         memory into local cosim buffer via ReadMemory() API
+     3c) Mem-was-written callback writes message to data socket
+     3d) Mem-was-written callback writes 'INIT' to signal socket
+      4) Hexagon ISS TX software waits for txInit value read
+         from memory to clear, signaling message has been received
+      5) TX cosim timed callback periodically checks signal socket 
+         for 'ACK' message
+      6) If 'ACK' message is read from signal socket, TX cosim
+         timed callback writes 0x0 to txInit address using
+         WriteMemory() API
+      7) Hexagon ISS TX software loops back to step 1
+
+      RX side:
+      1) Hexagon ISS RX software writes 0x1 to rxAck address to
+         indicate 'wait for message' state
+      2) Hexagon ISS RX software waits for rxAck value read from
+         memory to clear, signaling a new message is available
+     3a) RX cosim timed callback periodically checks signal socket 
+         for 'INIT' message
+     3b) If 'INIT' message is read from signal socket, RX cosim
+         reads message from data socket into internal cosim buffer
+     3c) RX cosim writes message into Hexagon ISS memory via 
+         WriteMemory() API
+     3d) RX cosim writes 'ACK' to signal socket
+     3e) RX cosim writes 0x0 to rxAck address to signal message has
+         been read successfully
+      5) Hexagon ISS RX software loops back to step 1
+
+   The Hexagon code is a contrived example meant to demonstrate
+   the use of TCP sockets as a communication channel between Hexagon
+   ISS cosimulation modules. 
+   
+   The program uses a set of fixed addresses to represent a memory-mapped 
+   communication channel between cores. As such, the program uses a 
+   simplistic (and inefficient) 'polling' scheme to coordinate message 
+   passing between the 'TX' and 'RX' portions of the main loop. A real
+   world implementation would most likely rely on interrupts to handle
+   the communcations channel rather than polling to avoid wasting
+   cycles waiting for something to happen.
+    
+   The program is designed to run in one of two modes: 
+      Loopback - A single instance of the Hexagon ISS loads both the
+                 RX and TX versions of the cosim and runs one
+                 copy of the test program with direction set as 'BD'
+                 (bi-directional). Messages will loop from the TX 
+                 portion of the program -> TX cosim -> RX cosim -> RX
+                 portion of the program.
+      Mutisim  - Two instances of the Hexagon ISS are created and
+                 configured via the HexagonWrapper API. The same program
+                 is loaded in each instance of the simulator, but each
+                 with a different direction (RX or TX). The 'RX' simulator
+                 will load the RX version of the cosim and the 'TX' 
+                 simulator will load the TX version of the cosim. Messages
+                 will be passed from TX ISS -> TX cosim -> RX cosim ->
+                 RX ISS. Multisim mode is invoked by executing 'make' from
+                 the top-level '/socketsim' directory.
+
+-----------------------------------------------------------------------
+To build:
+
+Building on Linux requires a version of GCC with C++11 support, ideally 
+5.4.0 or higher.
+
+Building on Windows requires:
+1) Visual Studio 14 or higher. See the make.cmd for details on changing 
+the release and version number to compile.  The make.cmd file has Visual 
+Studio 14 configured as default. 
+2) The following directory must be added to your system PATH in order to 
+properly load the Hexagon ISS cosim API shared library:
+<Hexagon tools install path>/Tools/lib/iss
+3) Running on Windows requires the use of Powershell. To open a PS 
+command prompt, use a File Explorer window to right click on the
+'cosim_comms_with_tcp_sockets' folder while pressing the Shift key,
+and select 'Open Powershell window here' from the drop down menu. 
+
+Loopback mode is invoked by executing 'make -f cosim.mk' on Linux or '.\cosim.cmd' on 
+Windows from within the '/cosim_comms_with_tcp_sockets/cosim_src' directory.
+Multisim mode is invoked by executing 'make' (or '.\make.cmd' for Windows) 
+from the top-level '/cosim_comms_with_tcp_sockets' directory.
+
+Refer to the Hexagon Simulator System API User Guide
+(80-N2040-18) for more details on creating cosimulation
+models.

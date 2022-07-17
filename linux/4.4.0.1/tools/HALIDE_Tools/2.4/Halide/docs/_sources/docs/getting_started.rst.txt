@@ -1,0 +1,41 @@
+***************
+Getting started
+***************
+
+To use Halide for HVX, you need the Qualcomm\ |reg| Hexagon\ |TM| Software
+Development Kit (SDK) in addition to the Halide installer. Follow these steps
+to download and install the Hexagon SDK.
+
+
+==========================
+Download the Hexagon SDK
+==========================
+
+1. Visit https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools
+2. Download and install Qualcomm Package Manager - Linux
+3. Run QPM and select "All" on the top tool bar
+4. Scroll down to the Qualcomm Hexagon SDK Product Suite and click on it
+5. Click on Hexagon SDK 4.x
+6. Select a version of at least 4.2.0.2
+7. Click on the pull-down next to the version number and select install
+8. Accept the terms of the license agreement
+9. Click on Customize
+10. Accept or specify the SDK install directory
+11. Click on Next
+12. Select "Full Android NDK" & "Eclipse", de-select "Minimal Android NDK"
+13. Click on Next
+14. Proceed with the installation
+
+.. note::
+
+    If you do not have Android NDK r19c installed, choose the option to do a
+    full install so it will also be installed.
+
+
+==========================
+Examples of running Halide
+==========================
+
+See :ref:`HalideExamples`.
+
+.. include:: release_notes.inc

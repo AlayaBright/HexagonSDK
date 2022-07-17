@@ -1,0 +1,8 @@
+ifeq (android,$(V_TARGET))
+include $(thisDir)/defines_$V.min
+ifndef print_android_tools_version_only_once
+$(info ==== Using Android ndk at $(ANDROID_ROOT_DIR) ====)
+print_android_tools_version_only_once=1
+endif
+endif
+MAKE_D_V_EXT_android_DIR:=$(thisDir)

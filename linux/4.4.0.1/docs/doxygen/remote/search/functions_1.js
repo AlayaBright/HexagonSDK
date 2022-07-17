@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['remote_5fhandle64_5fclose',['remote_handle64_close',['../remote__default_8h.html#a2c1cff778289bec2d251e40e433391b7',1,'remote_default.h']]],
+  ['remote_5fhandle64_5fcontrol',['remote_handle64_control',['../remote__default_8h.html#a1585e990656fd8cabcdf767eb913cef5',1,'remote_default.h']]],
+  ['remote_5fhandle64_5finvoke',['remote_handle64_invoke',['../remote__default_8h.html#a0a981d1601df6df48ff94ee2b8e6b104',1,'remote_default.h']]],
+  ['remote_5fhandle64_5finvoke_5fasync',['remote_handle64_invoke_async',['../remote__default_8h.html#a813df4e32d5310da028b1c2759eaf860',1,'remote_default.h']]],
+  ['remote_5fhandle64_5fopen',['remote_handle64_open',['../remote__default_8h.html#a683992175f44ba31f2a6f72f8c253e9d',1,'remote_default.h']]],
+  ['remote_5fhandle_5fclose',['remote_handle_close',['../remote__default_8h.html#afcfb5570640e9d2658638423ed6c21a6',1,'remote_default.h']]],
+  ['remote_5fhandle_5fcontrol',['remote_handle_control',['../remote__default_8h.html#ac1d199a773951108b8346d95da115594',1,'remote_default.h']]],
+  ['remote_5fhandle_5finvoke',['remote_handle_invoke',['../remote__default_8h.html#ab82e9284698a5095e97cbab6f521c782',1,'remote_default.h']]],
+  ['remote_5fhandle_5finvoke_5fasync',['remote_handle_invoke_async',['../remote__default_8h.html#a1c8cce0a3f7e023b660f77e54e61b23d',1,'remote_default.h']]],
+  ['remote_5fhandle_5fopen',['remote_handle_open',['../remote__default_8h.html#ae6665027808c55638cc73412a27781be',1,'remote_default.h']]],
+  ['remote_5fmem_5fmap',['remote_mem_map',['../remote__default_8h.html#a9022b7ef39625f9ecb444f2cceab94d9',1,'remote_default.h']]],
+  ['remote_5fmem_5funmap',['remote_mem_unmap',['../remote__default_8h.html#aac86afba7ad5ca585701c55026d8c813',1,'remote_default.h']]],
+  ['remote_5fmmap',['remote_mmap',['../remote__default_8h.html#aaab0390a1edd4f770654c87e47f481c6',1,'remote_default.h']]],
+  ['remote_5fmunmap',['remote_munmap',['../remote__default_8h.html#ae208d5c67f3d160c85f9626b283e8569',1,'remote_default.h']]],
+  ['remote_5fregister_5fbuf',['remote_register_buf',['../remote__default_8h.html#ab650f48da37bf96723436f1524222a64',1,'remote_default.h']]],
+  ['remote_5fregister_5fbuf_5fattr',['remote_register_buf_attr',['../remote__default_8h.html#a6cb20033f921cfe69f73b5dae6e00448',1,'remote_default.h']]],
+  ['remote_5fregister_5fdma_5fhandle',['remote_register_dma_handle',['../remote__default_8h.html#a0b3f4104aeec55d0e00ab3548017f8d6',1,'remote_default.h']]],
+  ['remote_5fregister_5fdma_5fhandle_5fattr',['remote_register_dma_handle_attr',['../remote__default_8h.html#adc6a3ada25edefc9a1487f94c3afe058',1,'remote_default.h']]],
+  ['remote_5fregister_5ffd',['remote_register_fd',['../remote__default_8h.html#aeb89a1f6878acd58e6e8ba9f8f27e2dc',1,'remote_default.h']]],
+  ['remote_5fsession_5fcontrol',['remote_session_control',['../remote__default_8h.html#ad29f233575ae5d2807db89d30dbc1190',1,'remote_default.h']]],
+  ['remote_5fset_5fmode',['remote_set_mode',['../remote__default_8h.html#a30102ac48e2b254084acf782874cf95f',1,'remote_default.h']]]
+];

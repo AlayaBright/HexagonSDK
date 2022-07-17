@@ -1,0 +1,27 @@
+# binary names
+DLL_NAME=libhap_example
+EXE_NAME=hap_example
+
+UTILS_DIR=$(HEXAGON_SDK_ROOT)/utils/examples
+
+# stub library
+BUILD_DLLS += $(DLL_NAME)
+$(DLL_NAME)_QAICIDLS += inc/hap_example
+$(DLL_NAME)_C_SRCS += $(OBJ_DIR)/hap_example_stub
+$(DLL_NAME)_DLLS += $(LIB_DSPRPC)
+
+# stand-alone executable
+BUILD_EXES += $(EXE_NAME)
+$(EXE_NAME)_QAICIDLS += inc/hap_example
+$(EXE_NAME)_C_SRCS += src_app/hap_example_main \
+                      src_app/hap_example \
+                      src_app/hap_unit_test \
+                      $(UTILS_DIR)/dsp_capabilities_utils
+$(EXE_NAME)_DEFINES += VERIFY_PRINT_ERROR
+
+# copy final build products to the ship directory
+BUILD_COPIES = \
+   $(DLLS) \
+   $(EXES) \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

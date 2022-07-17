@@ -1,0 +1,111 @@
+name: qti-fastrpc-calculatorplusapp
+base: core20
+version: '0.1'
+summary: Application to offload computations to DSPs
+description: Sample Calculator application offloading to DSPs.
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+
+
+apps:
+  testapp:
+    command: usr/bin/calculator_plus  -d 3 -m sum -i 10
+    environment:
+            ADSP_LIBRARY_PATH: $SNAP/usr/lib/rfsa/adsp;$SNAP/dspso
+            LD_LIBRARY_PATH: $SNAP/usr/local/lib
+
+plugs:
+  ion:
+    interface: system-files
+    write:
+     - /dev/ion
+  adsprpc-smd:
+    interface: system-files
+    write:
+     - /dev/adsprpc-smd
+
+parts:
+  calculatorplus-app:
+    plugin: dump
+    source: .
+    source-type: local
+    override-pull: |
+        # allow custom source definition
+          if [ -n "${HLOS_APP_PREBUILTS_PATH:-}" ]; then
+            if [ -d ${HLOS_APP_PREBUILTS_PATH} ]; then
+              cp -r ${HLOS_APP_PREBUILTS_PATH}/* ${SNAPCRAFT_PART_SRC}
+            else
+              echo "Error: Its not a directory, please check the path"
+            fi
+          else
+            echo "Error:Missing env HLOS_APP_PREBUILTS_PATH , no HLOS app prebuilts path provided"
+            exit 1;
+          fi
+    override-build: |
+        snapcraftctl build
+        chmod -R 777 calculator_plus
+    organize:
+        calculator_plus : /usr/bin/calculator_plus
+        libcalculator_plus.so : /usr/lib/libcalculator_plus.so
+        calculator_plus.farf : /usr/lib/rfsa/adsp/calculator_plus.farf
+    after:
+       - qti-adsprpc
+       - calplus-skel
+       - dspso
+  qti-adsprpc:
+    plugin: dump
+    source: .
+    source-type: local
+    override-pull: |
+        # allow custom source definition
+          if [ -n "${ADSPRPC_TAR_PATH:-}" ]; then
+            if [ -d ${ADSPRPC_TAR_PATH} ]; then
+              tar -xvf ${ADSPRPC_TAR_PATH}/qti-adsprpc.tar --directory ${SNAPCRAFT_PART_SRC}
+            else
+              echo "Error: Its not a directory, please check the path"
+            fi
+          else
+            echo "Error:Missing env ADSPRPC_TAR_PATH , no HLOS app prebuilts path provided"
+            exit 1;
+          fi
+  calplus-skel:
+    plugin: dump
+    source: .
+    source-type: local
+    override-pull: |
+        # allow custom source definition
+          if [ -n "${HEXAGON_DSP_PREBUILTS_PATH:-}" ]; then
+            if [ -d ${HEXAGON_DSP_PREBUILTS_PATH} ]; then
+              cp -r ${HEXAGON_DSP_PREBUILTS_PATH}/* ${SNAPCRAFT_PART_SRC}
+            else
+              echo "Error: Its not a directory, please check the path"
+            fi
+          else
+            echo "Error: Missing env HEXAGON_DSP_PREBUILTS_PATH , no hexagon prebuilts path provided"
+            exit 1;
+          fi
+    organize:
+      libcalculator_plus_skel.so : usr/lib/rfsa/adsp/
+      libc++.so.1 : usr/lib/rfsa/adsp/
+      libc++abi.so.1 : usr/lib/rfsa/adsp/
+      weak_refs.so : usr/lib/rfsa/adsp/
+      calculator.input : usr/lib/rfsa/adsp/
+    prime:
+      - usr/lib/rfsa/adsp/
+  dspso:
+    plugin: dump
+    source: .
+    source-type: local
+    override-pull: |
+      # allow custom source definition
+      if [ -n "${DSP_LIB_PATH:-}" ]; then
+        if [ -d ${DSP_LIB_PATH} ]; then
+          cp -r ${DSP_LIB_PATH}/* ${SNAPCRAFT_PART_SRC}
+        fi
+      else
+        echo "Missing env DSP_LIB_PATH , no dsp libs path provided"
+        exit 1;
+      fi
+    stage:
+      - dspso/*

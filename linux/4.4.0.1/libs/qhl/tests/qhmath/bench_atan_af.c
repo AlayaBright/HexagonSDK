@@ -1,0 +1,60 @@
+/**=============================================================================
+@file
+    bench_atan_af.c
+
+@brief
+    Benchmark for measuring performance of qhmath_atan_af function.
+
+    Benchmark measures number of cycles needed for executing qhmath_atan_af function
+    certain number of times on randomly generated values.
+    Performance is shown in cycles per call (CPC) and it is calculated as
+
+    CPC = elapsed_nr_of_cycles / nr_of_calls
+
+Copyright (c) 2019 Qualcomm Technologies Incorporated.
+All Rights Reserved. Qualcomm Proprietary and Confidential.
+=============================================================================**/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "qhmath.h"
+#include "qhmath_test.h"
+
+typedef struct
+{
+    float lo;  // Lowest value
+    float hi;  // Highest value
+} range0;
+
+range0 ranges0[] = {
+    {-9.0f, -1.178f},
+    {-0.392699f, 0.392699f},
+    {-1.178f, -0.392699f},
+    {0.392699f, 1.178f},
+    {1.178f, 9.0f}
+};
+
+#define RANGE_CNT0 (sizeof(ranges0) / sizeof(range0))
+
+static float a0[ARR_LEN];
+static float a1[ARR_LEN];
+static int32_t r;
+
+BENCH_TFUN_AF3(qhmath_atan_af, ARR_LEN);
+
+int main(int argc, char const *argv[])
+{
+    performance_high();
+
+    printf("Benchmark for qhmath_atan_af\n\n");
+
+    // initialize test array
+    BENCH_AF3_INPUT_INIT(ARR_LEN, RANGE_CNT0, RAND_MAX);
+
+    TCALL(qhmath_atan_af);
+
+    performance_normal();
+
+    return 0;
+}

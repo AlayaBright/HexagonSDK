@@ -1,0 +1,87 @@
+name: qti-qhl-hvx
+base: core20
+version: '0.1'
+summary: Application to offload computations to DSPs
+description: QHL application offloading to DSPs.
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+
+
+apps:
+  testapp:
+    command: usr/bin/run_main_on_hexagon 3 /snap/qti-qhl-hvx/current/usr/lib/rfsa/adsp/qhl_hvx_example.so 128 /snap/qti-qhl-hvx/current/usr/lib/rfsa/adsp/fft2D_float_real_test_data_HVX_in128x128.dat /snap/qti-qhl-hvx/current/usr/lib/rfsa/adsp/fft2D_float_real_test_data_HVX_in128x128.out
+    environment:
+            ADSP_LIBRARY_PATH: $SNAP/usr/lib/rfsa/adsp;$SNAP/dspso
+            LD_LIBRARY_PATH: $SNAP/usr/local/lib
+plugs:
+  ion:
+    interface: system-files
+    write:
+     - /dev/ion
+  adsprpc-smd:
+    interface: system-files
+    write:
+     - /dev/adsprpc-smd
+
+parts:
+  qhl-hvx-app:
+    plugin: dump
+    source: .
+    source-type: local
+    override-pull: |
+        # allow custom source definition
+          if [ -n "${DSP_APP_PATH:-}" ]; then
+            if [ -d ${DSP_APP_PATH} ]; then
+              cp -r ${DSP_APP_PATH}/* ${SNAPCRAFT_PART_SRC}
+            else
+              echo "Error: Its not a directory, please check the path"
+            fi
+          else
+            echo "Error:Missing env HLOS_APP_PREBUILTS_PATH , no HLOS app prebuilts path provided"
+            exit 1;
+          fi
+    override-build: |
+        snapcraftctl build
+        chmod -R 777 run_main_on_hexagon
+    organize:
+        run_main_on_hexagon : /usr/bin/run_main_on_hexagon
+        librun_main_on_hexagon_skel.so : /usr/lib/rfsa/adsp/librun_main_on_hexagon_skel.so
+        qhl_hvx_example.so : /usr/lib/rfsa/adsp/qhl_hvx_example.so
+        fft2D_float_real_test_data_HVX_in128x128.dat : /snap/qti-qhl-hvx/current/usr/lib/rfsa/adsp/fft2D_float_real_test_data_HVX_in128x128.dat
+    after:
+       - qti-adsprpc
+       - dspso
+  qti-adsprpc:
+    plugin: dump
+    source: .
+    source-type: local
+    override-pull: |
+        # allow custom source definition
+          if [ -n "${ADSPRPC_TAR_PATH:-}" ]; then
+            if [ -d ${ADSPRPC_TAR_PATH} ]; then
+              tar -xvf ${ADSPRPC_TAR_PATH}/qti-adsprpc.tar --directory ${SNAPCRAFT_PART_SRC}
+            else
+              echo "Error: Its not a directory, please check the path"
+            fi
+          else
+            echo "Error:Missing env ADSPRPC_TAR_PATH , no HLOS app prebuilts path provided"
+            exit 1;
+          fi
+
+  dspso:
+    plugin: dump
+    source: .
+    source-type: local
+    override-pull: |
+      # allow custom source definition
+      if [ -n "${DSP_LIB_PATH:-}" ]; then
+        if [ -d ${DSP_LIB_PATH} ]; then
+          cp -r ${DSP_LIB_PATH}/* ${SNAPCRAFT_PART_SRC}
+        fi
+      else
+        echo "Missing env DSP_LIB_PATH , no dsp libs path provided"
+        exit 1;
+      fi
+    stage:
+      - dspso/*

@@ -1,0 +1,24 @@
+#/* ============================================================================================== */
+#/*  QUALCOMM TECHNOLOGIES, INC.                                                                   */
+#/*                                                                                                */
+#/*  Halide Benchmarks/Examples in Device-standalone mode                                          */
+#/*                                                                                                */
+#/* ---------------------------------------------------------------------------------------------- */
+#/*          Copyright (c) 2016-2021 QUALCOMM Technologies, Inc. and/or its subsidiaries.          */
+#/*                           All Rights Reserved.                                                 */
+#/*                  QUALCOMM Confidential and Proprietary                                         */
+#/* ============================================================================================== */
+
+ifndef HEXAGON_SDK_ROOT
+$(error HEXAGON_SDK_ROOT not set)
+endif
+
+ANDROID_NDK_ROOT ?= $(HEXAGON_SDK_ROOT)/tools/android-ndk-r19c
+ANDROID_ARM64_TOOLCHAIN ?= $(ANDROID_NDK_ROOT)/toolchains/llvm/prebuilt/linux-x86_64
+# This is assuming Hexagon SDK 4.4
+HEXAGON_TOOLS_VER ?= 8.4.12
+
+ARMCC ?= $(ANDROID_ARM64_TOOLCHAIN)/bin/clang
+ARMCXX ?= $(ANDROID_ARM64_TOOLCHAIN)/bin/clang++
+
+DSPTYPE ?= cdsp

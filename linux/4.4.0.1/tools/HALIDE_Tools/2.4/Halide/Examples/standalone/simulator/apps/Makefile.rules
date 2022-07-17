@@ -1,0 +1,194 @@
+#/* ============================================================================================== */
+#/*  QUALCOMM TECHNOLOGIES, INC.                                                                   */
+#/*                                                                                                */
+#/*  Halide for HVX Image Processing Example                                                       */
+#/*                                                                                                */
+#/* ---------------------------------------------------------------------------------------------- */
+#/*          Copyright (c) 2016-2021 QUALCOMM Technologies, Inc. and/or its subsidiaries.          */
+#/*                           All Rights Reserved.                                                 */
+#/*                  QUALCOMM Confidential and Proprietary                                         */
+#/* ============================================================================================== */
+
+.SECONDARY:
+
+$(BIN)/%_generator: %_generator.cpp $(GENERATOR_DEPS)
+	@-mkdir -p $(BIN)
+	$(CXX) $(CXXFLAGS) $(GENERATOR_CXXFLAGS) -g -fno-rtti $(filter-out %.h,$^) -o $@ $(GENERATOR_LDFLAGS)
+
+$(BIN)/%.o $(BIN)/%.h: $(BIN)/%_generator
+	@-mkdir -p $(BIN)
+	$^ -o $(BIN) -e $(HALIDE_OUTPUT) -g $* -f $* target=$(TARGET)-$(FEATURES)
+
+$(BIN)/%_run.o: %_run.cpp $(BIN)/%.h
+	@-mkdir -p $(BIN)
+	$(HEXAGON_CXX) -c $(HEXAGON_CXXFLAGS) -I$(BIN)  $< -DRUN_BASELINE=0 -o $@
+
+$(BIN)/%.out:  $(BIN)/%_run.o $(BIN)/%.o $(UTILS_BIN)/stubs.o
+	$(HEXAGON_CXX) $(HEXAGON_CXXFLAGS) $^ $(HEXAGON_LDFLAGS) -o $@
+
+$(BASELINE_BIN)/%.o: $(BASELINE_SRC)/%$(REF_SRC_SUFFIX) $(BASELINE_SRC)/%.h
+	@-mkdir -p $(BASELINE_BIN)
+	 $(HEXAGON_CC) $(HEXAGON_CCFLAGS) -mhvx-double -c -I$(BASELINE_SRC) $< -DLOG2VLEN=7 -o $@
+
+$(BASELINE_BIN)/%_run.o: %_run.cpp $(BASELINE_SRC)/%.h
+	@-mkdir -p $(BASELINE_BIN)
+	$(HEXAGON_CXX) -c $(HEXAGON_CXXFLAGS) -I$(BASELINE_SRC) $< -DRUN_BASELINE=1 -o $@
+
+$(BASELINE_BIN)/%.out:  $(BASELINE_BIN)/%_run.o $(BASELINE_BIN)/%.o $(UTILS_BIN)/stubs.o
+	@-mkdir -p $(BASELINE_BIN)
+	$(HEXAGON_CXX) $(HEXAGON_CXXFLAGS) $^ $(HEXAGON_LDFLAGS) -o $@
+
+$(UTILS_BIN)/stubs.o: $(UTILS)/stubs.c
+	@-mkdir -p $(UTILS_BIN)
+	$(HEXAGON_CC) -c $(HEXAGON_CCFLAGS) $< -o $@
+
+.PHONY : all
+
+all: run bmark-report
+
+.PHONY : clean
+
+clean:
+	rm -rf $(BLD_DIR) $(UTILS_BIN)/stubs.o
+
+baseline: $(BASELINE_BIN)/$(TESTNAME).out
+	cd $(BASELINE_BIN); $(HEXAGON_SIM) $(BASELINE_BIN)/$(TESTNAME).out $(SIM_ARGS) -- $(BASELINE_TEST_ARGS)  1>$(BASELINE_BIN)/run.stdout 2>$(BASELINE_BIN)/run.stderr; \
+        RUN_STATUS=$$?; \
+        FAIL=0; \
+        if [ $$RUN_STATUS -ne 0 ]; then \
+          FAIL=1; \
+        fi; \
+	if ! cmp $(BASELINE_OUTPUT_BIN_FILE) $(GOLDEN_FILE); then \
+          FAIL=1; \
+        fi; \
+	if [ $$FAIL -eq 0 ]; then \
+          echo PASS > $(BASELINE_BIN)/result; \
+          echo PASS; \
+        else \
+          echo FAIL > $(BASELINE_BIN)/result; \
+          echo FAIL;\
+          exit 1; \
+        fi
+	cd $(SRC)
+
+.PHONY : baseline
+
+distclean:
+	rm -rf $(BLD_DIR) $(UTILS_BIN)
+
+run:  $(BIN)/$(TESTNAME).out
+	echo Result:Unknown > $(BIN)/result
+	echo Mode:simulator-standalone >> $(BIN)/result
+	echo Name:$(TESTNAME) >> $(BIN)/result
+	cd $(BIN);  $(HEXAGON_SIM) $(BIN)/$(TESTNAME).out $(SIM_ARGS) -- $(TEST_ARGS)  1>$(BIN)/run.stdout 2>$(BIN)/run.stderr; \
+        RUN_STATUS=$$?; \
+        FAIL=0; \
+        if [ $$RUN_STATUS -ne 0 ]; then \
+          FAIL=1; \
+        fi; \
+	if ! cmp $(OUTPUT_BIN_FILE) $(GOLDEN_FILE); then \
+          FAIL=1; \
+        fi; \
+	if [ $$FAIL -eq 0 ]; then \
+          echo Result:Pass > $(BIN)/result; \
+		  echo Mode:simulator-standalone >> $(BIN)/result; \
+		  echo Name:$(TESTNAME) >> $(BIN)/result; \
+          echo "Features:$(FEATURES)" >> $(BIN)/result; \
+          echo PASS; \
+        else \
+          echo Result:Fail > $(BIN)/result; \
+		  echo Mode:simulator-standalone >> $(BIN)/result; \
+		  echo Name:$(TESTNAME) >> $(BIN)/result; \
+          echo "Features:$(FEATURES)" >> $(BIN)/result; \
+          echo FAIL;\
+          exit 1; \
+        fi
+	cd $(SRC)
+
+run-prof: $(BIN)/$(TESTNAME).out
+	cd $(BIN); $(HEXAGON_SIM) $(BIN)/$(TESTNAME).out $(SIM_ARGS) $(PACK_ANLZ)  -- $(TEST_ARGS)  1>$(BIN)/run.stdout 2>$(BIN)/run.stderr; \
+        RUN_STATUS=$$?; \
+        FAIL=0; \
+        if [ $$RUN_STATUS -ne 0 ]; then \
+          FAIL=1; \
+        fi; \
+	if ! cmp $(OUTPUT_BIN_FILE) $(GOLDEN_FILE); then \
+          FAIL=1; \
+        fi; \
+	if [ $$FAIL -eq 0 ]; then \
+          echo PASS > $(BIN)/result; \
+          echo PASS; \
+        else \
+          echo FAIL > $(BIN)/result; \
+          echo FAIL;\
+          exit 1; \
+        fi
+	$(HEXAGON_PROF) $(PROF_ARGS) --elf=$(BIN)/$(TESTNAME).out \
+	cd $(SRC)
+
+.PHONY : bmark-report bmark-report-run bmark-report-baseline
+
+bmark-report: bmark-report-run bmark-report-baseline
+
+bmark-report-run:
+	if [ -d $(BIN) ]; then \
+		if [ -e $(BIN)/run.stdout ]; then \
+			grep -q PASS $(BIN)/result; \
+			if [ $$? -eq 0 ];  then \
+				grep "cycles/pixel" $(BIN)/run.stdout | awk '{print $$5 $$6" " $$7}'; \
+			else \
+				echo "$(TEST_NAME): FAIL";\
+				exit 1; \
+			fi \
+		else \
+			echo "run.stdout not found; please do make run first"; \
+		fi \
+	else \
+		echo "Test not run yet. Do make run"; \
+	fi
+
+bmark-report-baseline:
+	if [ -d $(BASELINE_BIN) ]; then \
+		if [ -e $(BASELINE_BIN)/run.stdout ]; then \
+			grep -q PASS $(BASELINE_BIN)/result; \
+			if [ $$? -eq 0 ];  then \
+				grep "cycles/pixel" $(BASELINE_BIN)/run.stdout | awk '{print $$5 $$6" " $$7}'; \
+			else \
+				echo "$(TEST_NAME): FAIL";\
+				exit 1; \
+			fi \
+		else \
+			echo "baseline run not found; please do make baseline first"; \
+		fi \
+	else \
+		echo "NO baseline run. To run baseline numbers, do make baseline"; \
+	fi
+
+.PHONY: report_txt report_txt_run report_txt_baseline
+
+report_txt: report_txt_run report_txt_baseline
+
+report_txt_run:
+	if [ -d $(BIN) ]; then \
+	 	rm -rf $(REPORT_TXT); \
+	 	if [[ -e $(BIN)/run.stdout && -e $(BIN)/result ]]; then \
+	 		echo "FIXME: report_txt_run"; \
+	 	else \
+	 		echo "run.stdout or result file not found; please run make run first"; \
+	 	fi; \
+	 else \
+	 	echo "Test not run yet. Do make run"; \
+	 fi
+
+report_txt_baseline:
+	if [ -d $(BASELINE_BIN) ]; then \
+		rm -rf $(BASELINE_REPORT_TXT); \
+	 	if [[ -e $(BASELINE_BIN)/run.stdout && -e $(BASELINE_BIN)/result ]]; then \
+	 		echo "FIXME: report_txt"; \
+		else \
+			echo "No baseline run. To run baseline numbers, do make baseline"; \
+		fi; \
+	else \
+		echo "No baseline run. To run baseline numbers, do make baseline"; \
+	fi
+

@@ -1,0 +1,1655 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Asynchronous DSP Packet Queue - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#asynchronous-dsp-packet-queue" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Asynchronous DSP Packet Queue
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/setup.html" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" checked>
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Asynchronous DSP Packet Queue
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="dspqueue.html" class="md-nav__link md-nav__link--active">
+      Asynchronous DSP Packet Queue
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intro" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    dspqueue API
+  </a>
+  
+    <nav class="md-nav" aria-label="dspqueue API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flow" class="md-nav__link">
+    Basic Usage Flow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating" class="md-nav__link">
+    Creating Queues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#packets" class="md-nav__link">
+    Reading and Writing Packets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffers" class="md-nav__link">
+    Buffer References and Cache Maintenance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#callbacks" class="md-nav__link">
+    Callbacks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perf" class="md-nav__link">
+    Performance Considerations
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#queuedepth" class="md-nav__link">
+    Queue Depth
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#early-wakeup" class="md-nav__link">
+    Early Wakeup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limits" class="md-nav__link">
+    Limits
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intro" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    dspqueue API
+  </a>
+  
+    <nav class="md-nav" aria-label="dspqueue API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flow" class="md-nav__link">
+    Basic Usage Flow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating" class="md-nav__link">
+    Creating Queues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#packets" class="md-nav__link">
+    Reading and Writing Packets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffers" class="md-nav__link">
+    Buffer References and Cache Maintenance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#callbacks" class="md-nav__link">
+    Callbacks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perf" class="md-nav__link">
+    Performance Considerations
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#queuedepth" class="md-nav__link">
+    Queue Depth
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#early-wakeup" class="md-nav__link">
+    Early Wakeup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limits" class="md-nav__link">
+    Limits
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="asynchronous-dsp-packet-queue">Asynchronous DSP Packet Queue</h1>
+<h2 id="intro">Introduction</h2>
+<p>The Asynchronous DSP Packet Queue (<code>dspqueue</code>) is a queue-based
+asynchronous inter-processor communication API for communicating
+between the main Application CPU and the Hexagon DSP. It provides a
+low-overhead communication API for clients that can queue up multiple
+requests on the DSP and are looking for a low-level non-IDL-based
+communication primitives.</p>
+<p>The <a href="../../doxygen/dspqueue/index.html" target="_blank">Asynchronous DSP Packet Queue API</a> is defined and documented in
+<code>dspqueue.h</code>. It is supported on Lahaina and later targets on the
+Compute DSP or NSP; see the <a href="../../reference/feature_matrix.html">feature matrix</a>.
+The <code>dspqueue</code> API provides clients with a number of benefits over
+simple FastRPC calls:</p>
+<ul>
+<li>
+<p>Clients can queue multiple requests on the DSP without waiting for a
+  response. This helps keep the DSP occupied and can improve
+  throughput regardless of communication latency</p>
+</li>
+<li>
+<p>Messages in queue packets are opaque byte buffers; clients are free
+  to write or reuse custom serialization without using an IDL
+  compiler for their messages.</p>
+</li>
+<li>
+<p>Clients can directly control when cache maintenance operations take
+  place.</p>
+</li>
+</ul>
+<p>The Asynchronous DSP Packet Queue API is not necessarily a better
+solution for all clients. In particular it has some disadvantages that
+can affect many applications:</p>
+<ul>
+<li>
+<p>Clients must handle marshaling their messages themselves and ensure
+  they trigger cache maintenance operations as needed. FastRPC handles
+  this automatically on the clients' behalf.</p>
+</li>
+<li>
+<p><code>dspqueue</code> does not necessarily improve latency for single-shot
+  operations. Clients will only see throughput improvements if they
+  can asynchronously queue multiple requests on the DSP.</p>
+</li>
+<li>
+<p>The framework does not handle in-band buffer mappings; all buffers
+  used in <code>dspqueue</code> messages must be first mapped to the DSP's MMU
+  and SMMU. See <a href="rpc.html#fastrpc-memory-management">RPC documentation</a>
+  for a further discussion on shared memory mapping.</p>
+</li>
+</ul>
+<h2 id="api">dspqueue API</h2>
+<h3 id="flow">Basic Usage Flow</h3>
+<p>The Asynchronous DSP Packet Queue is accessed through a simple C
+API as documented in <a href="../../doxygen/dspqueue/index.html" target="_blank">dspqueue API documentation</a>.
+The sequence diagram below illustrates a basic usage flow from a
+client's perspective:</p>
+<ol>
+<li>
+<p>The client creates a new queue (<code>dspqueue_create()</code>), exports it for
+   use on the DSP (<code>dspqueue_export()</code>), and passes the ID to the
+   DSP. On the DSP the client uses the ID to open a local handle to
+   the queue (<code>dspqueue_import()</code>).</p>
+</li>
+<li>
+<p>The host CPU client writes messages to the queue
+   (<code>dspqueue_write()</code>). The write calls return immediately as long as
+   there is space in the queue, in parallel to delivering the packet
+   to the DSP.</p>
+</li>
+<li>
+<p>The DSP client reads messages from the queue (<code>dspqueue_read()</code>). If
+   the queue is empty, the call will block until a packet is
+   available, but if there is already a packet in the queue it returns
+   immediately.</p>
+</li>
+</ol>
+<p>The DSP client can similarly send packets to the CPU client.</p>
+<p><img alt="dspqueue basic usage flow" src="../../images/dspqueue_basic_sequence.png" title="Asynchronous DSP Queue Basic Usage Flow" /></p>
+<h3 id="creating">Creating Queues</h3>
+<p>Clients create queues with <code>dspqueue_create()</code> on the host CPU. Some of
+the key arguments are:</p>
+<ul>
+<li><code>req_queue_size</code>: CPU to DSP request queue size in bytes. Typical
+  values are around 4kB depending on packet sizes used; the queue
+  should be large enough to hold several packets.</li>
+<li><code>resp_queue_size</code>: DSP to CPU queue size in bytes. Similar to the
+  request queue, typical values are around 4kB.</li>
+<li><code>packet_callback</code>: Pointer to a packet callback function. See section
+  <a href="#callbacks">Callbacks</a> for more details.</li>
+</ul>
+<p>See the <a href="../../doxygen/dspqueue/index.html" target="_blank">API definition</a> for more details.</p>
+<p>One client can create multiple queues and use them in parallel. The
+system has an upper limit of queues a single process can use, but it
+is typically high - 64 in the initial implementation, possibly higher
+in future products.</p>
+<h3 id="packets">Reading and Writing Packets</h3>
+<p>Both CPU and DSP clients can read and write packets from/to a queue
+with <code>dspqueue_read()</code>, <code>dspqueue_write()</code>, and their variants. There are
+two basic variants of the functions:</p>
+<ul>
+<li><code>dspqueue_read_noblock()</code> / <code>dspqueue_write_noblock()</code>: Non-blocking
+  read/write operations. These functions will return immediately with
+  an error code (<code>AEE_EWOULDBLOCK</code>) if there is no packet to read or
+  not enough space to write.</li>
+<li><code>dspqueue_read()</code> / <code>dspqueue_write()</code>: Blocking operations. These
+  functions will wait until a packet is available or there is
+  sufficient space in the queue. Both functions take an optional
+  timeout parameter and will return with an error code
+  (<code>AEE_EEXPIRED</code>) if the timeout expires before the operation could succeed.</li>
+</ul>
+<p>The non-blocking variants are typically used in a packet callback
+function (see section <a href="#callbacks">Callbacks</a>) to read packets. In
+other cases the blocking variants are usually appropriate.</p>
+<p>Each packet consists of the same three basic components which are also
+visible as arguments to all read/write operations:</p>
+<ul>
+<li>
+<p><strong>Flags</strong>: Information about packet contents. Mostly used internally
+  within the framework; most clients can currently ignore packet
+  flags. See <code>enum dspqueue_packet_flags</code>.</p>
+</li>
+<li>
+<p><strong>Buffer references</strong>: References to pre-mapped buffers, such as
+  input and output buffers for an operation described in the
+  packet. The framework can populate buffer address information and
+  perform cache maintenance operations based on buffer references. See
+  section <a href="#buffers">Buffer
+  References</a> for more
+  information.</p>
+</li>
+<li>
+<p><strong>Message</strong>: Opaque message, constructed and interpreted by the
+  client. The <code>dspqueue</code> framework simply passes the message from the
+  sender to the recipient. Typically the message contains information
+  on what operation to perform on the buffers attached to the packet,
+  arguments, and other data passed by value. Message should be kept
+  relatively small for best performance, typically around 8-256
+  bytes. The framework currently limits the maximum message size to
+  64kB.</p>
+</li>
+</ul>
+<p>For read operations the client must provide adequate space for buffer
+references and the message. For example, with <code>dspqueue_read_noblock()</code>:</p>
+<div class="highlight"><pre><span></span><code>AEEResult dspqueue_read_noblock(dspqueue_t queue, uint32_t *flags,
+    uint32_t max_buffers, uint32_t *num_buffers, struct dspqueue_buffer *buffers,
+    uint32_t max_message_length, uint32_t *message_length, uint8_t *message);
+</code></pre></div>
+
+<p><code>max_buffers</code> must be equal to or higher than the number of buffer
+references in the packet, <code>buffers</code> must point to an array of <code>struct
+dspqueue_buffer</code> of the correct size, <code>max_message_length</code> must be
+equal to or higher than the length of the message in the packet in
+bytes, and <code>message</code> must point to a byte array of
+<code>max_message_length</code>. If any of the buffers is too small, the call
+will fail with <code>AEE_EBUFFERTOOSMALL</code>.</p>
+<h3 id="buffers">Buffer References and Cache Maintenance</h3>
+<p>Each Asynchronous DSP Packet Queue packet can contain one or more
+buffer references. Buffer references typically refer to input and
+output buffers used in an operation described in the packet. Clients
+can use buffer references to get information about buffer mappings
+without having to track it themselves and to get the <code>dspqueue</code>
+framework to perform cache maintenance operations.</p>
+<p>All buffers must be previously mapped to the DSP with
+<code>fastrpc_mmap()</code> and must be shareable ION buffers.
+For example, this code snippet allocates
+and maps a buffer using the <a href="../../doxygen/rpcmem/index.html" target="_blank">RPCMEM library</a> (error handling omitted):</p>
+<pre><code>uint64_t remote_addr;
+void *buf = rpcmem_alloc(RPCMEM_HEAP_ID_SYSTEM, RPCMEM_DEFAULT_FLAGS, BUFFER_SIZE);
+int fd = rpcmem_to_fd(buf);
+fastrpc_mmap(CDSP_DOMAIN_ID, fd, buf, 0, BUFFER_SIZE, FASTRPC_MAP_FD);
+</code></pre>
+<p>See the <code>dspqueue</code> <a href="../../examples/dspqueue/index.html">Example Application</a> for a
+more comprehensive example on allocating and deallocating buffers.</p>
+<p>Each buffer reference in a <code>dspqueue</code> packet has five main
+properties, corresponding to fields in <code>struct dspqueue_buffer</code>:</p>
+<ul>
+<li>
+<p><code>fd</code>: Buffer file descriptor. The buffer must be mapped to the DSP
+  using the same FD.</p>
+</li>
+<li>
+<p><code>size</code>: Buffer size in bytes. Set to zero to use the whole buffer
+  when writing a packet; in this case the framework will populate the
+  field in received packets.</p>
+</li>
+<li>
+<p><code>offset</code>: Offset in bytes within the allocated buffer. Set to zero
+  to use the whole buffer when writing a packet. A non-zero size and
+  offset can be used to refer to a subsection of a buffer.</p>
+</li>
+<li>
+<p><code>ptr</code>: Buffer virtual address in the current process; <code>NULL</code> if a
+  valid mapping is not available. Populated by the framework in received
+  packets, can be left empty in packets being sent.</p>
+</li>
+<li>
+<p><code>flags</code>: Buffer flags, including cache maintenance operations. See
+  <code>enum #dspqueue_buffer_flags</code>.</p>
+</li>
+</ul>
+<p>Buffer flags come in two categories: Changes to buffer reference count
+and buffer cache maintenance operations:</p>
+<ul>
+<li>
+<p><code>DSPQUEUE_BUFFER_FLAG_REF</code> and <code>DSPQUEUE_BUFFER_FLAG_DEREF</code> are used
+  to add or remove a reference to a buffer. Using them is not
+  mandatory, but can help debugging if a client accidentally attempts
+  to unmap a buffer that is still being used.</p>
+</li>
+<li>
+<p><code>DSPQUEUE_BUFFER_(FLUSH|INVALIDATE)_(SENDER|RECIPIENT)</code> are used to
+  instruct the <code>dspqueue</code> framework to perform cache maintenance on
+  the buffer as part of processing the packet. "Sender" and
+  "recipient" refer to the sender and recipient of the specific packet
+  (CPU or DSP depending on communication direction); "flush" and
+  "invalidate" specify the type of cache maintenance to perform
+  (flush/clean or invalidate). On devices with I/O coherency support
+  the framework will automatically skip cache maintenance operations
+  where possible, so clients should always specify the operations
+  needed assuming CPU and DSP caches are not coherent.</p>
+</li>
+</ul>
+<p>As a rule, buffers must be flushed before any data written to them is
+visible to the other processor, and must be invalidated before new
+data can be read. For a typical scenario where the host CPU sends
+requests to the DSP for processing, the following flags are
+appropriate:</p>
+<table>
+<thead>
+<tr>
+<th>Packet</th>
+<th>Buffer</th>
+<th>Flags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU-&gt;DSP Request</td>
+<td>Input buffer</td>
+<td><code>DSPQUEUE_BUFFER_FLAG_REF | DSPQUEUE_BUFFER_FLAG_FLUSH_SENDER | DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT</code></td>
+</tr>
+<tr>
+<td>CPU-&gt;DSP Request</td>
+<td>Output buffer</td>
+<td><code>DSPQUEUE_BUFFER_FLAG_REF | DSPQUEUE_BUFFER_FLAG_FLUSH_SENDER</code></td>
+</tr>
+<tr>
+<td>DSP-&gt;CPU Response</td>
+<td>Input buffer</td>
+<td><code>DSPQUEUE_BUFFER_FLAG_DEREF | DSPQUEUE_BUFFER_FLAG_FLUSH_SENDER</code></td>
+</tr>
+<tr>
+<td>DSP-&gt;CPU Response</td>
+<td>Output buffer</td>
+<td><code>DSPQUEUE_BUFFER_FLAG_DEREF | DSPQUEUE_BUFFER_FLAG_FLUSH_SENDER | DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT</code></td>
+</tr>
+</tbody>
+</table>
+<p>Note that flushing an input buffer on the "sender" side is not
+necessary if the application can guarantee the processor has not
+written to the buffer and the caches do not contain dirty cache lines
+for it. Performing unnecessary cache maintenance operations is always
+safe but on some platforms may have a performance penalty.</p>
+<p>The <code>dspqueue</code> <a href="../../examples/dspqueue/index.html">Example Application</a> illustrates
+how to use buffer references, request cache maintenance, and use
+framework-provided buffer information to access buffer contents.</p>
+<h3 id="callbacks">Callbacks</h3>
+<p>The Asynchronous DSP Packet Queue framework provides clients with two
+types of callbacks:</p>
+<ul>
+<li>
+<p>Error callbacks: Called when the framework encounters an
+  unrecoverable error. Such errors are currently only raised on the
+  host CPU when its corresponding DSP process crashes. The only way to
+  recover is to tear down and restart all DSP sessions.</p>
+</li>
+<li>
+<p>Packet callbacks: Called when one or more packets may be available
+  to read from a queue.</p>
+</li>
+</ul>
+<p>Most clients use a packet callback to read packets from a queue
+instead of blocking read operations. The callback is not called for
+every packet, but instead the client should read all packets available
+in the queue before returning from the callback or otherwise ensure
+all packets will be read. A typical packet callback function has the
+following structure:</p>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">void</span> <span class="n">packet_callback</span><span class="p">(</span><span class="n">dspqueue_t</span> <span class="n">queue</span><span class="p">,</span> <span class="n">AEEResult</span> <span class="n">error</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//...</span>
+        <span class="n">AEEResult</span> <span class="n">err</span> <span class="o">=</span> <span class="n">dspqueue_read_noblock</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">flags</span><span class="p">,</span>
+                                              <span class="n">MAX_BUFFERS</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">num_bufs</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">bufs</span><span class="p">,</span>
+                                              <span class="k">sizeof</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">msg_len</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">err</span> <span class="o">==</span> <span class="n">AEE_EWOULDBLOCK</span> <span class="p">)</span>
+            <span class="k">break</span><span class="p">;</span> <span class="c1">// No more packets until next callback</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">err</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">)</span>
+            <span class="c1">// Handle error</span>
+        <span class="c1">// Process packet</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>See the <code>dspqueue</code> <a href="../../examples/dspqueue/index.html">Example Application</a> for a
+more complete packet callback example for both the host CPU and the
+DSP.</p>
+<h2 id="perf">Performance Considerations</h2>
+<p>Using the Asynchronous DSP Packet Queue can yield better performance
+than regular synchronous FastRPC calls, but it is not automatically
+more efficient. This section discusses some performance considerations
+to get the most out of the <code>dspqueue</code> API.</p>
+<h3 id="queuedepth">Queue Depth</h3>
+<p>The Asynchronous DSP Packet Queue is not designed to improve
+end-to-end latency for individual requests. Instead, it lets clients
+queue up multiple requests on the DSP, keeping the DSP occupied and
+increasing overall throughput. This is only possible if the queues are
+large enough to hold several packets, and the client application
+queues enough work.</p>
+<p>Queues should typically be sized to fit multiple pieces of work. The
+exact number depends on the workload, but at a minimum there should be
+always be a few requests queued, enough to occupy the DSP for at least
+5-20 milliseconds. If the DSP can drain the request queue it will end
+up having to wait the host CPU for more work, reducing the benefit
+from using the packet queue.</p>
+<p>To determine a suitable queue size, consider the size of each packet
+and the number of packets that should be queued. Each packet consists
+of a 8-byte header, 24 bytes of data for each buffer reference, plus a
+message. Each packet is further 8-byte aligned. Assuming four buffer references and a 64-byte message, each
+packet would be:</p>
+<pre><code>   8 + 4*24 + 64 = 168 bytes
+</code></pre>
+<p>A 4kB queue would be enough to store around 24 packets, which should
+be sufficient for most use cases. Packet queues are allocated
+dynamically from regular system memory, making them fairly inexpensive
+so allocating a larger queue (16-64kB) would be a reasonable decision.</p>
+<h3 id="early-wakeup">Early Wakeup</h3>
+<p>While the Asynchronous DSP Packet Queue is not designed to reduce
+single-shot latency, it provides a way to reduce latencies by sending
+"early wakeup packets". Host CPU power management and interrupt
+handling is a large contributor to end-to-end latency, and clients can
+reduce the impact by sending an early wakeup packet from the DSP to
+the CPU a short time before processing is complete. This starts waking
+up the CPU and executing some of the interrupt handling code while the
+DSP finishes processing in parallel.</p>
+<p>Clients can send an early wakeup packet by calling</p>
+<div class="highlight"><pre><span></span><code><span class="n">AEEResult</span> <span class="nf">dspqueue_write_early_wakeup_noblock</span><span class="p">(</span><span class="n">dspqueue_t</span> <span class="n">queue</span><span class="p">,</span>
+                                              <span class="kt">uint32_t</span> <span class="n">wakeup_delay</span><span class="p">,</span>
+                                              <span class="kt">uint32_t</span> <span class="n">packet_flags</span><span class="p">);</span>
+</code></pre></div>
+
+<p><code>wakeup_delay</code> should be set to the time (in microseconds) until the
+actual response packet is available if known; the framework can use
+this information to optimize waiting for the final
+packet. <code>packet_flags</code> should match the flags for the actual response
+packet if known.</p>
+<p>Choosing how early to send an early wakeup packet is critical for good
+performance. After handling the wakeup packet the <code>dspqueue</code> framework
+will wait for the final packet in a tight loop for a period of time -
+this can consume power, so long waits should be avoided. On the other
+hand sending the wakeup packet too late reduces the benefit seen.</p>
+<p>To avoid consuming excess power, the framework limits the wait time
+after an early wakeup packet based on the <code>wakeup_delay</code> parameter and
+internal limits. If the final packet does not arrive within the
+expected time window the framework will revert back to a normal
+lower-power higher-latency wait.</p>
+<p>Developers can use two statistics from the framework to tune early
+wakeup signaling:</p>
+<div class="highlight"><pre><span></span><code><span class="n">dspqueue_get_stat</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="n">DSPQUEUE_STAT_EARLY_WAKEUP_WAIT_TIME</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">);</span>
+<span class="n">dspqueue_get_stat</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="n">DSPQUEUE_STAT_EARLY_WAKEUP_MISSES</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">);</span>
+</code></pre></div>
+
+<p><code>DSPQUEUE_STAT_EARLY_WAKEUP_WAIT_TIME</code> returns the total time spent
+waiting for the final packet. This time should be minimized to avoid
+spending extra processor cycles and power waiting for packets. If the
+time is high the early wakeup packets are being sent too early. The
+target should be no more than a few microseconds per packet on
+average.</p>
+<p><code>DSPQUEUE_STAT_EARLY_WAKEUP_MISSES</code> counts the number of times the
+framework did not receive the final packet within a time window and
+considered it a miss. If this counter is larger than zero early wakeup
+packets are being sent too early or the <code>wakeup_delay</code> value is too
+low.</p>
+<p>Clients should tune any early wakeup signaling to minimize the
+end-to-end latency seen while minimizing wakeup wait times. Such
+tuning is highly workload and product specific.</p>
+<p>Early wakeup signaling is also available for packets sent from the
+host CPU to the DSP but is typically not useful in that direction.</p>
+<h2 id="limits">Limits</h2>
+<p>The current Asynchronous DSP Packet Queue implementation has a number
+of built-in limits. These limits are chosen so that they are unlikely
+to impact real-world clients and may be increased or removed in future
+implementations:</p>
+<ul>
+<li>Number of queues: 64 queues per process</li>
+<li>Queue size: 16 MB. Note that using large packet sizes (multiple
+  kilobytes or more) that would require using large queues is likely
+  to yield poor performance.</li>
+<li>Message size: 64 kB per packet</li>
+<li>Number of buffer references: 64 per packet</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="rpc.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                RPC
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../system_libraries/index.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                System libraries
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../../js/iframe-worker.js"></script>
+<script src="../../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

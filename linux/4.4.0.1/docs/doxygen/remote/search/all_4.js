@@ -1,0 +1,13 @@
+var searchData=
+[
+  ['default_5fdomain_5fid',['DEFAULT_DOMAIN_ID',['../remote__default_8h.html#ab6cc6b4707dec0c561eec43222a498ca',1,'remote_default.h']]],
+  ['dma',['dma',['../unionremote__arg.html#a316fa4b3357f3f2b3741f0a1b778972a',1,'remote_arg']]],
+  ['domain',['domain',['../structremote__dsp__capability.html#a01b1e6122c72f6c0918b883eae035364',1,'remote_dsp_capability::domain()'],['../structremote__rpc__get__domain.html#ac1f1c39259ecf655ec3ee168355fc8c9',1,'remote_rpc_get_domain::domain()'],['../structremote__rpc__thread__params.html#ae651a13837ed501ab412eb78535273d3',1,'remote_rpc_thread_params::domain()'],['../structremote__rpc__control__unsigned__module.html#abe566c150e8e13e0894fd717bcd2f19c',1,'remote_rpc_control_unsigned_module::domain()'],['../structremote__rpc__relative__thread__priority.html#af2ef3fdce23f022c34b4e64d99a79fa7',1,'remote_rpc_relative_thread_priority::domain()'],['../structremote__rpc__process__clean__params.html#af7477e1d4037359a30e9e4752caf2294',1,'remote_rpc_process_clean_params::domain()'],['../structremote__rpc__session__close.html#aafd0cf66ccce1871e544816a36d91d67',1,'remote_rpc_session_close::domain()'],['../structremote__rpc__control__pd__dump.html#ade18882a15a5078c719cb8795e47e807',1,'remote_rpc_control_pd_dump::domain()'],['../structremote__process__type.html#abc0a4ad70bc1015fc055602220e55a9d',1,'remote_process_type::domain()'],['../structremote__rpc__notif__register.html#a8378fe0e265e3d9f1d7eefb9b61ad78e',1,'remote_rpc_notif_register::domain()']]],
+  ['domain_5fid_5fmask',['DOMAIN_ID_MASK',['../remote__default_8h.html#a78de2edb82d6af184c9183822ca35ed4',1,'remote_default.h']]],
+  ['domain_5fsupport',['DOMAIN_SUPPORT',['../remote__default_8h.html#aee413697e4f86a8f5c75ea507323e7b3a4aade6bdc5c6c43a7aac5fb7b4fda222',1,'remote_default.h']]],
+  ['dsprpc_5fcontrol_5flatency',['DSPRPC_CONTROL_LATENCY',['../remote__default_8h.html#a27fbb9a9de3c44377287a4903a6057aead22d2c3d92aa3b67b99c3dedaeffdf72',1,'remote_default.h']]],
+  ['dsprpc_5fcontrol_5funsigned_5fmodule',['DSPRPC_CONTROL_UNSIGNED_MODULE',['../remote__default_8h.html#a31d56ae1f349ab7c5c263eb2d5fbb98aa20cc142c2fcdb798d166f25948b17a41',1,'remote_default.h']]],
+  ['dsprpc_5fcontrol_5fwakelock',['DSPRPC_CONTROL_WAKELOCK',['../remote__default_8h.html#a27fbb9a9de3c44377287a4903a6057aea008616e1592a2c840949a56fa5027d88',1,'remote_default.h']]],
+  ['dsprpc_5fget_5fdomain',['DSPRPC_GET_DOMAIN',['../remote__default_8h.html#a27fbb9a9de3c44377287a4903a6057aea7d4e62ae3d21aacdcf073778bd731521',1,'remote_default.h']]],
+  ['dsprpc_5fget_5fdsp_5finfo',['DSPRPC_GET_DSP_INFO',['../remote__default_8h.html#a27fbb9a9de3c44377287a4903a6057aea5561ab802d5fa176bde2b69b07b41abc',1,'remote_default.h']]]
+];

@@ -1,0 +1,104 @@
+#/* ============================================================================================== */
+#/*  QUALCOMM TECHNOLOGIES, INC.                                                                   */
+#/*                                                                                                */
+#/*  Halide Benchmarks/Examples in offload mode                                                    */
+#/*                                                                                                */
+#/* ---------------------------------------------------------------------------------------------- */
+#/*          Copyright (c) 2016-2021 QUALCOMM Technologies, Inc. and/or its subsidiaries.          */
+#/*                           All Rights Reserved.                                                 */
+#/*                  QUALCOMM Confidential and Proprietary                                         */
+#/* ============================================================================================== */
+
+# NOTE:: This file is included in a number of Makefiles in subdirectories and/or
+# their subdirectories. As such, therefore, no variable in this file should be
+# defined to a value that is a relative path because at what level this Makefile
+# is included
+ifndef HEXAGON_SDK_ROOT
+$(error HEXAGON_SDK_ROOT not set)
+endif
+
+ANDROID_NDK_ROOT ?= $(HEXAGON_SDK_ROOT)/tools/android-ndk-r19c
+ANDROID_ARM64_TOOLCHAIN ?= $(ANDROID_NDK_ROOT)/toolchains/llvm/prebuilt/linux-x86_64
+HEXAGON_TOOLS_VER ?= 8.4.12
+
+HEXAGON_TOOLS=$(HEXAGON_SDK_ROOT)/tools/HEXAGON_Tools/$(HEXAGON_TOOLS_VER)
+
+HALIDE_ROOT ?= $(HEXAGON_TOOLS)/Tools/Halide
+
+AUTOSCHEDULE ?= false
+AUTOSCHED_BIN ?= $(HALIDE_ROOT)/lib
+AUTOSCHED_TOOLS ?= $(HALIDE_ROOT)/bin
+HL_WEIGHTS_DIR ?= $(AUTOSCHED_TOOLS)/baseline.weights
+
+EMIT_OPTIONS ?= o,h
+ifeq (true,$(AUTOSCHEDULE))
+  AUTOSCHEDULE_OPTS ?= -p $(AUTOSCHED_BIN)/libauto_schedule.so -s Adams2019
+  export HL_PERMIT_FAILED_UNROLL = 1
+  EMIT_OPTIONS := $(EMIT_OPTIONS),schedule
+  # Set to 1 to tell Halide not to freak out if we try to unroll a loop that doesn't have a constant extent.
+endif
+
+USE_SCHEDULE ?= false
+
+# Convenience variable that can be set in environment pointing to the location of schedule files
+# to be used with USE_SCHEDULE. By default, includes pre-defined schedule files in halide_test.
+SCHEDULE_INCLUDES ?= includes
+
+ifeq (true,$(USE_SCHEDULE))
+  GENERATOR_CXXFLAGS += -DUSE_SCHEDULE -I $(SCHEDULE_INCLUDES)
+endif
+
+include $(HALIDE_ROOT)/halide_config.make
+GENERATOR_DEPS += $(HALIDE_ROOT)/lib/libHalide.a $(HALIDE_ROOT)/include/Halide.h $(HALIDE_ROOT)/tools/GenGen.cpp
+GENERATOR_LDFLAGS += $(HALIDE_SYSTEM_LIBS)
+
+ifeq ($(origin CXX),default)
+  CXX = clang++
+endif
+PYTHON ?= python3
+# Check python version is 3.6.x as Halide python bindings
+# are currently only built for that version.
+SUPPORTED_PYTHON_VERSIONS = 3.6
+ifeq (1,$(USE_PYTHON))
+  system_python_version = $(shell $(PYTHON) --version)
+  python_version_full = $(wordlist 2,4,$(subst ., ,$(system_python_version)))
+  python_version_major_minor = $(word 1,$(python_version_full)).$(word 2,$(python_version_full))
+  $(if $(findstring $(python_version_major_minor), $(SUPPORTED_PYTHON_VERSIONS)), , \
+    $(error Halide python bindings are built for python $(SUPPORTED_PYTHON_VERSIONS). $(system_python_version) not supported.))
+endif
+
+CXX-host ?= $(CXX)
+CXX-arm-64-android ?= $(ANDROID_ARM64_TOOLCHAIN)/bin/clang++
+CXX-arm-64-profile-android ?= $(CXX-arm-64-android)
+
+ifneq (,$(findstring clang,$(CXX)))
+LLVM_CXX_FLAGS_LIBCPP := -stdlib=libc++
+endif
+
+# CXXFLAGS is used to compile the driver file which is process.cpp is most/all cases.
+CXXFLAGS += -std=c++11 -I $(HALIDE_ROOT)/include -I $(HALIDE_ROOT)/support -stdlib=libc++
+
+# GENERATOR_CXXFLAGS is used to compile all the generators.
+GENERATOR_CXXFLAGS += -std=c++11 -I $(HALIDE_ROOT)/include $(LLVM_CXX_FLAGS_LIBCPP)
+
+CXXFLAGS-arm-64-android ?= -target aarch64-linux-android21
+CXXFLAGS-arm-32-android ?= -target armv7a-linux-androideabi21
+
+#FEATURES ?= hvx_128
+DASH_D_DEFINES += -DHALIDE_NO_PNG -DHALIDE_NO_JPEG
+
+# If generators statically link to libHalide then, they must be
+# built with $(USE_EXPORT_DYNAMIC), otherwise autoscheduler can't
+# find the libHalide symbols that it needs.
+ifneq ($(OS),Windows_NT)
+UNAME ?= $(shell uname)
+ifeq ($(UNAME), Linux)
+USE_EXPORT_DYNAMIC=-rdynamic
+else
+ifeq ($(UNAME), Darwin)
+USE_EXPORT_DYNAMIC=-undefined dynamic_lookup
+else
+USE_EXPORT_DYNAMIC=
+endif
+endif
+endif

@@ -1,0 +1,1616 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Setup - Hexagon SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mermaid.css">
+    
+      <link rel="stylesheet" href="../css/freezeTable.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Hexagon SDK" class="md-header-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hexagon SDK
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Setup
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hexagon SDK" class="md-nav__button md-logo" aria-label="Hexagon SDK">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hexagon SDK
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Tools
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Setup
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="setup.html" class="md-nav__link md-nav__link--active">
+      Setup
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sdk-environment" class="md-nav__link">
+    SDK environment
+  </a>
+  
+    <nav class="md-nav" aria-label="SDK environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hexagon-tools" class="md-nav__link">
+    Hexagon tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-ndk" class="md-nav__link">
+    Android NDK
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#device-setup-verification" class="md-nav__link">
+    Device setup verification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usb-drivers" class="md-nav__link">
+    USB drivers
+  </a>
+  
+    <nav class="md-nav" aria-label="USB drivers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-usb-drivers-for-windows" class="md-nav__link">
+    Install USB drivers for Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-usb-drivers-for-linux" class="md-nav__link">
+    Install USB drivers for Linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adb-and-fastboot" class="md-nav__link">
+    ADB and fastboot
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk-dependencies" class="md-nav__link">
+    SDK dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="SDK dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-dependencies" class="md-nav__link">
+    Available Dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-a-missing-dependency" class="md-nav__link">
+    Installing a Missing Dependency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-a-source-to-install-from" class="md-nav__link">
+    Defining a Source to Install From
+  </a>
+  
+    <nav class="md-nav" aria-label="Defining a Source to Install From">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-online-sources-for-dependencies" class="md-nav__link">
+    Available Online Sources for Dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Available Online Sources for Dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows_2" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux_2" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="build.html" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="sign.html" class="md-nav__link">
+      Device signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="run.html" class="md-nav__link">
+      Running
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="messaging.html" class="md-nav__link">
+      Message logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="debug.html" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="profile.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="ide.html" class="md-nav__link">
+      Using the IDE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="clone.html" class="md-nav__link">
+      Project cloning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="qhcg.html" class="md-nav__link">
+      QHCG
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Software
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Software" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Software
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_cpu.html" class="md-nav__link">
+      CPU OS build support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/os/os_support_dsp.html" class="md-nav__link">
+      DSP OS QuRT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/resource_management.html" class="md-nav__link">
+      Resource management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Interprocessor Communication (IPC)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Interprocessor Communication (IPC)" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        Interprocessor Communication (IPC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/rpc.html" class="md-nav__link">
+      RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/ipc/dspqueue.html" class="md-nav__link">
+      Asynchronous DSP Packet Queue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Libraries
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Libraries" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon"></span>
+        Libraries
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_libraries/index.html" class="md-nav__link">
+      System libraries
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/hexagon_libraries/index.html" class="md-nav__link">
+      Hexagon libraries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      System performance
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System performance" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon"></span>
+        System performance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/system_optimizations.html" class="md-nav__link">
+      System-level optimizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_performance/dsp_optimizations.html" class="md-nav__link">
+      DSP optimizations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../software/system_integration.html" class="md-nav__link">
+      System integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/asyncdspq_example/index.html" class="md-nav__link">
+      Asyncdspq
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator/index.html" class="md-nav__link">
+      Calculator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B/index.html" class="md-nav__link">
+      Calculator C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/calculator_c%2B%2B_apk/index.html" class="md-nav__link">
+      Calculator C++ APK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/dspqueue/index.html" class="md-nav__link">
+      DSP Packet Queue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/gtest/index.html" class="md-nav__link">
+      GTEST
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/hap_example/index.html" class="md-nav__link">
+      HAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/lpi_example/index.html" class="md-nav__link">
+      LPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/multithreading/index.html" class="md-nav__link">
+      Multithreading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/profiling/index.html" class="md-nav__link">
+      Profiling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl/index.html" class="md-nav__link">
+      QHL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qhl_hvx/index.html" class="md-nav__link">
+      QHL HVX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/qprintf/index.html" class="md-nav__link">
+      QPRINTF
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/releases.html" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/idl.html" class="md-nav__link">
+      IDL documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/manuals.html" class="md-nav__link">
+      Reference manuals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/faq.html" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/troubleshooting.html" class="md-nav__link">
+      Trouble Shooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reference/feature_matrix.html" class="md-nav__link">
+      Feature matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support.html" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Add-ons
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Add-ons" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Add-ons
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/compute.html" class="md-nav__link">
+      Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/audio.html" class="md-nav__link">
+      Audio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/eai.html" class="md-nav__link">
+      eAI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../add-ons/qnx.html" class="md-nav__link">
+      QNX
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sdk-environment" class="md-nav__link">
+    SDK environment
+  </a>
+  
+    <nav class="md-nav" aria-label="SDK environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hexagon-tools" class="md-nav__link">
+    Hexagon tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-ndk" class="md-nav__link">
+    Android NDK
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#device-setup-verification" class="md-nav__link">
+    Device setup verification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usb-drivers" class="md-nav__link">
+    USB drivers
+  </a>
+  
+    <nav class="md-nav" aria-label="USB drivers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-usb-drivers-for-windows" class="md-nav__link">
+    Install USB drivers for Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-usb-drivers-for-linux" class="md-nav__link">
+    Install USB drivers for Linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adb-and-fastboot" class="md-nav__link">
+    ADB and fastboot
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk-dependencies" class="md-nav__link">
+    SDK dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="SDK dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-dependencies" class="md-nav__link">
+    Available Dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-a-missing-dependency" class="md-nav__link">
+    Installing a Missing Dependency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-a-source-to-install-from" class="md-nav__link">
+    Defining a Source to Install From
+  </a>
+  
+    <nav class="md-nav" aria-label="Defining a Source to Install From">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-online-sources-for-dependencies" class="md-nav__link">
+    Available Online Sources for Dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Available Online Sources for Dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows_2" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux_2" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="setup">Setup</h1>
+<h2 id="sdk-environment">SDK environment</h2>
+<p>Before using the SDK tools from the command line, run the SDK setup script, which points environment variables to the tools and utilities required by the Hexagon SDK. If some of the tools are missing or the environment is already setup, the script will generate some warnings.</p>
+<p><strong><em>NOTE:</em></strong> The system path and tool changes are made locally only for the current shell or terminal. They do not have any effect on the global variables.</p>
+<p>The instructions for running the setup script are different for Windows and Linux.</p>
+<h3 id="windows">Windows</h3>
+<p>To set up the SDK environment in Windows, run the following command from the Hexagon SDK root directory:</p>
+<pre><code>setup_sdk_env.cmd
+</code></pre>
+<h3 id="linux">Linux</h3>
+<p>To set up SDK environment in Linux, you must first to switch to a bash shell. To switch from any unknown shell to a bash shell in Linux, enter <code>bash</code> in the terminal. This step is required because the setup script works in the bash environment.</p>
+<p>Once in a bash shell, run the setup script:</p>
+<pre><code>source setup_sdk_env.source
+</code></pre>
+<p>Or</p>
+<pre><code>. setup_sdk_env.source
+</code></pre>
+<h2 id="hexagon-tools">Hexagon tools</h2>
+<p>By default, the Hexagon SDK uses the Hexagon tools installed with the SDK to compile and run the code on the simulator. You can override this default behavior by setting the <code>HEXAGON_TOOLS_ROOT</code> environment variable.</p>
+<p><strong><em>Note: </em></strong> Please note that in Windows, the <code>PATH</code> environment variable should <strong><em>NOT</em></strong> contain paths to the Hexagon Tools as this may cause the simulator to crash.</p>
+<h2 id="android-ndk">Android NDK</h2>
+<p>The <code>setup_sdk_env</code> script of the Hexagon SDK sets the Android Tools location to the default directory where they get installed as part of Hexagon SDK installation. However, this location can be changed by setting the <code>ANDROID_ROOT_DIR</code> environment variable.</p>
+<h2 id="device-setup-verification">Device setup verification</h2>
+<p>If the correct drivers and the Android Debug Bridge (ADB) are installed, access the device by entering the following command:</p>
+<pre><code>adb devices
+</code></pre>
+<p>This command lists all devices accessible via ADB. A typical response looks like this:</p>
+<pre><code>List of devices attached
+68070104        device
+</code></pre>
+<p>To obtain additional details for each connected device, append the <code>-l</code> option to the the command.</p>
+<p>If ADB reports one device as being connected, check whether the SDK is installed correctly with the required dependencies by running an SDK example such as the <a href="../examples/calculator/index.html">calculator</a>.</p>
+<p>If your setup is not working properly, the following sections will help you install any missing components.</p>
+<h2 id="usb-drivers">USB drivers</h2>
+<h3 id="install-usb-drivers-for-windows">Install USB drivers for Windows</h3>
+<p>Install USB drivers by running <code>Setup.exe</code> from <code>%HEXAGON_SDK_ROOT%\tools\debug\usb</code>.</p>
+<p>After successful installation of USB drivers, run the <a href="messaging.html#connecting-mini-dm-on-windows">com_finder.py</a> script to get the port number to which the device is attached. The script returns a message like the following example:</p>
+<pre><code>Qualcomm HS-USB Com ports found: COM6
+</code></pre>
+<p>If the following error message is returned instead:</p>
+<pre><code>No comm port found for Qualcomm HS-USB Device
+</code></pre>
+<p>Uninstall and reinstall the drivers. If the error persists, see the <a href="../support.html">support instructions</a>.</p>
+<h3 id="install-usb-drivers-for-linux">Install USB drivers for Linux</h3>
+<p>Qualcomm does not provide USB drivers to work with devices on Linux. Use the default Linux USB drivers on Ubuntu to connect the devices.</p>
+<p>After installing <a href="#adb-and-fastboot">ADB</a>, <code>adb logcat</code> may not be able to connect to your device directly:</p>
+<pre><code>$ adb logcat
+- waiting for device -
+</code></pre>
+<p><code>adb devices</code> may also indicate that you do not have permission to access your device:</p>
+<pre><code>$ adb devices
+List of devices attached
+???? no permissions (user is not in the plugdev group);
+</code></pre>
+<p>These issues can be resolved with the instructions below:</p>
+<p>Use the <code>lsusb</code> command to confirm that the device is actually connected:</p>
+<pre><code>$ lsusb
+Bus 001 Device 006: ID 05c6:90db Qualcomm, Inc.
+</code></pre>
+<p>Ensure that <code>udev</code> rules are set correctly for access to the USB device. You can add <code>udev</code> rules to have the permissions of the device changed. Create or append to <code>/etc/udev/rules.d/99-android.rules</code>:</p>
+<pre><code>SUBSYSTEMS=="usb", ATTRS{idVendor}=="05c6", ATTRS{idProduct}=="90db", MODE="0666", OWNER="root", GROUP="plugdev", SYMLINK+="android%n"
+</code></pre>
+<p>For further information on udev refer to the <a href="http://manpages.ubuntu.com/manpages/utopic/man7/udev.7.html" target="_blank">man page</a>.</p>
+<h2 id="adb-and-fastboot">ADB and fastboot</h2>
+<p>ADB and fastboot are required to work with Android devices. The following pages from the Android developer website describe the usage of ADB and how to configure Android devices.</p>
+<ul>
+<li><a href="http://developer.android.com/tools/help/adb.html" target="_blank">ADB: Android Debug Bridge</a></li>
+<li><a href="http://developer.android.com/tools/device.html" target="_blank">Using hardware devices</a></li>
+</ul>
+<p>To install ADB and fastboot on Linux, run the following commands:</p>
+<pre><code>wget https://dl.google.com/android/repository/platform-tools-latest-linux.zip
+unzip \platform-tools-latest-linux.zip
+sudo cp platform-tools/adb /usr/bin/adb
+sudo cp platform-tools/fastboot /usr/bin/fastboot
+</code></pre>
+<p>If you are still unable to see your device using adb devices, run the following commands:</p>
+<pre><code>adb kill-server
+sudo adb start-server
+</code></pre>
+<h2 id="sdk-dependencies">SDK dependencies</h2>
+<p>The SDK installer should install all its dependencies. If the installer does not complete successfully or if errors are present when running the setup script, you might need to manually install some of these dependencies.</p>
+<h3 id="available-dependencies">Available Dependencies</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+<th>Key</th>
+<th>Windows</th>
+<th>Linux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CMake</td>
+<td>CMake is a cross-platform free and open-source software tool for managing the build process of software using a compiler-independent method.</td>
+<td>cmake</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Devcon</td>
+<td>DevCon (Devcon.exe), the Device Console, is a command-line tool that displays detailed information about devices on computers running Windows. You can use DevCon to enable, disable, install, configure, and remove devices.</td>
+<td>devcon</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Eclipse</td>
+<td>Eclipse is an Integrated Development Environment (IDE) with an extensive suite of plugins that allow users to customize its functionality.</td>
+<td>eclipse</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Full Android NDK</td>
+<td>The Android NDK is a toolset that lets you implement parts of your app in native code, using languages such as C and C++.</td>
+<td>fullndk</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Gnu on Windows</td>
+<td>Gnu On Windows (GoW) is the lightweight alternative to Cygwin.</td>
+<td>gow</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Libusb</td>
+<td>Libusb is a C library that provides generic access to USB devices. It is intended to be used by developers to facilitate the production of applications that communicate with USB hardware.</td>
+<td>libusb</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Minimal Android NDK</td>
+<td>The minimal NDK is a lightweight version of the Android NDK that excludes unneeded APIs and toolchains.</td>
+<td>minimalndk</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>Python is an interpreted, object-oriented, high-level programming language with dynamic semantics.</td>
+<td>python</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="installing-a-missing-dependency">Installing a Missing Dependency</h3>
+<p>A tool for installing missing dependencies has been provided at $SDK_ROOT/utils/scripts/depDl.jar</p>
+<div class="highlight"><pre><span></span><code>Usage:
+
+Windows:
+    %HEXAGON_SDK_ROOT%\tools\hexagon_ide\jre\bin\java.exe -jar %HEXAGON_SDK_ROOT%\utils\scripts\depDl.jar -c &lt;key&gt; -t %HEXAGON_SDK_ROOT%
+
+Linux:
+    $HEXAGON_SDK_ROOT/tools/hexagon_ide/jre/bin/java -jar $HEXAGON_SDK_ROOT/utils/scripts/depDl.jar -c &lt;key&gt; -t $HEXAGON_SDK_ROOT
+</code></pre></div>
+
+<h3 id="defining-a-source-to-install-from">Defining a Source to Install From</h3>
+<p>If you wish to download these dependencies from a custom location you may define the locations in a config file.
+The config file is a JSON formatted file named "hexSDKCFG.json" This file must be placed in %TEMP% for Windows or /tmp for Linux.
+The file is able to download from local file systems, network locations, or the internet. An example format is provided below.</p>
+<h4 id="windows_1">Windows</h4>
+<div class="highlight"><pre><span></span><code>{
+    &quot;DependencyPaths&quot; : {
+        &quot;7zexe&quot; : &quot;C:\\7-Zip\\7z.exe&quot;,
+        &quot;minimalandroidndk&quot; : &quot;D:\\sdk_deps\\minimal_android-ndk-r19c-windows-x86_64.zip&quot;,
+        &quot;fullandroidndk&quot; : &quot;D:\\sdk_deps\\android-ndk-r19c-windows-x86_64.zip&quot;,
+        &quot;eclipse&quot; : &quot;D:\\sdk_deps\\eclipse_64.zip&quot;,
+        &quot;gnuwin&quot; : &quot;D:\\sdk_deps\\gow-0.8.0.zip&quot;,
+        &quot;devcon&quot; : &quot;D:\\sdk_deps\\devcon.exe&quot;,
+        &quot;python&quot; : &quot;D:\\sdk_deps\\python.2.7.2.msi&quot;,
+        &quot;cmake&quot; : &quot;D:\\sdk_deps\\cmake-3.17.0-win64-x64.zip&quot;
+        }
+}
+</code></pre></div>
+
+<h4 id="linux_1">Linux</h4>
+<div class="highlight"><pre><span></span><code>{
+    &quot;DependencyPaths&quot; : {
+        &quot;minimalandroidndk&quot; : &quot;/local/sdk/deps/minimal_android-ndk-r19c-linux-x86_64.tar.gz&quot;,
+        &quot;fullandroidndk&quot; : &quot;/local/sdk/deps/android-ndk-r19c-linux-x86_64.tar.gz&quot;,
+        &quot;eclipse&quot; : &quot;/local/sdk/deps/eclipse-cpp-photon-R-linux-gtk-x86_64.tar.gz&quot;,
+        &quot;libusb&quot; : &quot;/local/sdk/deps/libusb-1.0.so&quot;,
+        &quot;cmake&quot; : &quot;&quot;
+        }
+}
+</code></pre></div>
+
+<h4 id="available-online-sources-for-dependencies">Available Online Sources for Dependencies</h4>
+<p>If you would like to download the dependencies yourself they are available at the locations below.</p>
+<h5 id="windows_2">Windows</h5>
+<ul>
+<li>CMake : https://www.intrinsyc.com/hexagonsdk/windows/cmake-3.17.0-win64-x64.zip</li>
+<li>Devcon : https://www.intrinsyc.com/hexagonsdk/windows/devcon.exe</li>
+<li>Eclipse : https://www.intrinsyc.com/hexagonsdk/windows/eclipse-cpp-photon-R-win32-x86_64.zip</li>
+<li>Full Android NDK : https://www.intrinsyc.com/hexagonsdk/windows/android-ndk-r19c-windows-x86_64.zip</li>
+<li>GoW : https://www.intrinsyc.com/hexagonsdk/windows/gow-0.8.0.zip</li>
+<li>Minimal Android NDK : https://www.intrinsyc.com/hexagonsdk/windows/minimal_android-ndk-r19c-windows-x86_64.zip</li>
+<li>Python : https://www.intrinsyc.com/hexagonsdk/windows/python-2.7.2.msi</li>
+<li>7Zip : https://www.intrinsyc.com/hexagonsdk/windows/7z1900.msi</li>
+</ul>
+<h5 id="linux_2">Linux</h5>
+<ul>
+<li>CMake : https://www.intrinsyc.com/hexagonsdk/linux/cmake-3.17.0-Linux-x86_64.tar.gz</li>
+<li>Eclipse : https://www.intrinsyc.com/hexagonsdk/linux/eclipse-cpp-photon-R-linux-gtk-x86_64.tar.gz</li>
+<li>Full Android NDK : https://www.intrinsyc.com/hexagonsdk/linux/android-ndk-r19c-linux-x86_64.zip</li>
+<li>Libusb : https://www.intrinsyc.com/hexagonsdk/linux/libusb-1.0.so</li>
+<li>Minimal Android NDK : https://www.intrinsyc.com/hexagonsdk/linux/minimal_android-ndk-r19c-linux-x86_64.zip</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../index.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="build.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Building
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2020 Qualcomm Technologies Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+       
+<script src="../js/iframe-worker.js"></script>
+<script src="../search/search_index.js"></script>
+ 
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../js/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

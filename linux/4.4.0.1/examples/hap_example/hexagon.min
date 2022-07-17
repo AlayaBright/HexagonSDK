@@ -1,0 +1,38 @@
+# builds the static/dynamic skel
+BUILD_DLLS += libhap_example_skel
+
+libhap_example_skel_QAICIDLS += inc/hap_example
+
+libhap_example_skel_C_SRCS += $(OBJ_DIR)/hap_example_skel \
+                                 src_dsp/hap_example_imp \
+                                 src_dsp/hap_example_compute_res_imp \
+                                 src_dsp/hap_example_farf_runtime \
+                                 src_dsp/hap_example_mem_dmahandle_imp \
+                                 src_dsp/hap_example_mem_fastrpc_mmap_imp \
+                                 src_dsp/hap_example_perf_imp \
+                                 src_dsp/hap_example_power_imp \
+                                 src_dsp/hap_example_sysmon_cachelock_imp \
+                                 src_dsp/hap_example_vtcm_mgr_imp \
+                                 src_dsp/hap_unit_test_imp
+
+BUILD_QEXES += hap_example_q
+
+hap_example_q_QAICIDLS += inc/hap_example
+
+hap_example_q_C_SRCS +=     src_app/hap_example_main \
+                            src_app/hap_example \
+                            src_app/hap_unit_test \
+                            $(HEXAGON_SDK_ROOT)/utils/examples/dsp_capabilities_utils \
+
+hap_example_q_DLLS += libhap_example_skel
+
+hap_example_q_LIBS += rpcmem
+
+QEXE_SIM_OPTIONS += --l2tcm_base 0xd800 --dsp_clock 1000 --ahb:lowaddr 0xc0000000 --ahb:highaddr 0xc0ffffff
+QEXE_CMD_OPTIONS += -d 3 -f 0
+
+BUILD_COPIES += \
+   $(DLLS) \
+   $(EXES) \
+   $(LIBS) \
+   $(SHIP_DIR)/ ;

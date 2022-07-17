@@ -1,0 +1,110 @@
+#/* ============================================================================================== */
+#/*  QUALCOMM TECHNOLOGIES, INC.                                                                   */
+#/*                                                                                                */
+#/*  Halide Benchmarks/Examples in Device-standalone mode                                          */
+#/*                                                                                                */
+#/* ---------------------------------------------------------------------------------------------- */
+#/*          Copyright (c) 2016-2021 QUALCOMM Technologies, Inc. and/or its subsidiaries.          */
+#/*                           All Rights Reserved.                                                 */
+#/*                  QUALCOMM Confidential and Proprietary                                         */
+#/* ============================================================================================== */
+
+
+.PHONY : run clean
+run: $(BIN)/remote/lib$(TESTNAME)_skel.so run-$(TESTNAME)
+run-%: $(BIN)/main-%.out $(BIN)/remote/lib%_skel.so $(BIN)/host/lib%_stub.so
+	for DEVICE in $(RUN_DEVICE_ID); do \
+	    mkdir -p $(BIN)/$$DEVICE/; \
+	    rm -rf $(BIN)/$$DEVICE/* ; \
+	    echo "device_id:$$DEVICE" > $(BIN)/$$DEVICE/device.txt ; \
+	    echo Result:Unknown > $(BIN)/$$DEVICE/result ; \
+	    echo Mode:device-standalone >> $(BIN)/$$DEVICE/result ; \
+	    echo Name:$* >> $(BIN)/$$DEVICE/result ; \
+	    echo "Features:$(FEATURES)" >> $(BIN)/$$DEVICE/result; \
+	    adb -s $$DEVICE shell rm -rf $(DEVICE_TEST_PATH); \
+	    adb -s $$DEVICE shell mkdir -p $(DEVICE_TEST_PATH); \
+	    adb -s $$DEVICE push $(BIN)/main-$*.out $(DEVICE_TEST_PATH) ; \
+	    adb -s $$DEVICE push $(BIN)/host/lib$(TESTNAME)_stub.so /vendor/lib64 ; \
+	    adb -s $$DEVICE push $(BIN)/remote/lib$(TESTNAME)_skel.so $(DEVICE_TEST_PATH) ; \
+        IF_DMA=`echo $(FEATURES) | grep "hexagon_dma"`; \
+	    if [ "z$$IF_DMA" != "z" ]; then \
+	       echo "Pushing DMA Data"; \
+	       adb -s $$DEVICE push $(TESTIMAGE1) $(DEVICE_TEST_PATH) ; \
+	       adb -s $$DEVICE push $(TESTIMAGE2) $(DEVICE_TEST_PATH) ; \
+	    fi; \
+	    adb -s $$DEVICE shell getprop ro.serialno; \
+	    adb -s $$DEVICE shell cp /vendor/lib/rfsa/adsp/testsig*.so $(DEVICE_TEST_PATH)/; \
+	    adb -s $$DEVICE shell cp /vendor/lib/rfsa/adsp/libhalide_hexagon_remote_skel.so $(DEVICE_TEST_PATH)/; \
+	    adb -s $$DEVICE shell 'cd $(DEVICE_TEST_PATH); LD_LIBRARY_PATH=/vendor/lib64 ./main-$*.out $(TEST_ARGS)' 2>&1 | tee $(BIN)/$$DEVICE/run.stdout ; \
+	done
+
+
+$(UTILS_BIN)/ion_allocation.o: $(UTILS)/ion/ion_allocation.cpp $(UTILS)/ion/ion_allocation.h
+	mkdir -p $(@D)
+	$(ARMCXX) $(ARM_CFLAGS) -O3  -c $< -o $@
+
+$(UTILS_BIN)/libion_allocation.a: $(UTILS_BIN)/ion_allocation.o
+	ar q $@ $^
+
+$(BIN)/main-%.out: $(BIN)/main-%.o $(UTILS_BIN)/libion_allocation.a $(BIN)/host/lib%_stub.so
+	mkdir -p $(@D)
+	$(ARMCXX) $(ARM_CFLAGS) $< $(ARM_LDFLAGS) -lion_allocation -L$(UTILS_BIN) -l$*_stub -L$(BIN)/host -o $@;
+
+$(BIN)/%_generate: halide/%_generator.cpp $(GENERATOR_DEPS)
+	mkdir -p $(@D)
+	$(CXX) $(GENERATOR_CXXFLAGS) $(filter-out %.h,$^) -o $@ $(GENERATOR_LDFLAGS) $(USE_EXPORT_DYNAMIC)
+
+$(BIN)/%_halide.h $(BIN)/%_halide.o: $(BIN)/%_generate
+	mkdir -p $(@D)
+	$^ -g $*_halide -f $*_halide -e $(EMIT_OPTIONS) -o $(BIN) target=$(HALIDE_TARGET) $(AUTOSCHEDULE_OPTS)
+
+$(BIN)/src/%_stub.c $(BIN)/src/%_skel.c $(BIN)/src/%.h: rpc/%.idl
+	mkdir -p $(@D)
+	$(HEXAGON_QAIC) $(IDL_INCLUDES) $^ -o $(@D)
+
+$(BIN)/%_skel.o: $(BIN)/src/%_skel.c
+	mkdir -p $(@D)
+	$(HEXAGON_CC) $(HEXAGON_CFLAGS)  -fPIC -c $^ -o $@
+
+$(BIN)/remote/lib%_skel.so: $(BIN)/%_skel.o $(BIN)/%_halide.o $(BIN)/%_run.o $(BIN)/print.o
+	mkdir -p $(@D)
+	$(HEXAGON_CC) -mv$(Q6_VERSION) -mG0lib -G0 -fPIC -shared -lc -Wl,--start-group $^ -Wl,--end-group $(DMA_LIB_PATH)  -o $@;
+
+$(BIN)/main-%.o: host/main.cpp $(BIN)/src/%.h $(UTILS)/host/include/buffer.h
+	mkdir -p $(@D)
+	$(ARMCXX) -DVERIFY $< -std=c++11 $(ARM_CFLAGS) -c -o $@
+
+$(BIN)/%_run.o: dsp/%_run.cpp
+	mkdir -p $(@D)
+	$(HEXAGON_CXX) $< -std=c++11 $(HEXAGON_CFLAGS) -c -o $@ -fPIC -g
+
+$(BIN)/print.o: dsp/print.cpp
+	mkdir -p $(@D)
+	$(HEXAGON_CXX) $< -std=c++11 $(HEXAGON_CFLAGS) -c -o $@ -fPIC -g
+
+$(BIN)/host/lib%_stub.so: $(BIN)/src/%_stub.c
+	mkdir -p $(@D)
+	$(ARMCC)  $(ARM_CFLAGS) $^ $(ARM_LDFLAGS) -Wl,-soname,lib$*_stub.so -shared -o $@ ;
+
+
+clean:
+	rm -rf $(BIN)
+
+distclean:
+	rm -rf $(BIN) $(UTILS_BIN)
+.PHONY: report_txt
+
+report_txt:
+	for DEVICE in $(RUN_DEVICE_ID); do \
+		if [ -d $(BIN)/$$DEVICE ]; then \
+	 	   rm -rf $(BIN)/$$DEVICE/$(REPORT_TXT); \
+	 	   if [[ -e $(BIN)/$$DEVICE/run.stdout && -e $(BIN)/$$DEVICE/result ]]; then \
+	 	    	$(CREATE_REPORTS) --o txt $(BIN)/$$DEVICE; \
+	 	   else \
+	 	    	echo "run.stdout or result file not found; please run make run first"; \
+	 	   fi; \
+	    else \
+	 	  echo "Test not run yet. Do make run"; \
+	    fi; \
+	done
+

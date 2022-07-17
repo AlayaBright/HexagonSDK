@@ -1,0 +1,80 @@
+#!/bin/sh
+if [ -n "${HEXAGON_SDK_ROOT}" ]; then
+	echo sdk environment already setup
+	return
+fi
+echo ""
+echo Setting up the Hexagon SDK environment locally
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+export HEXAGON_SDK_ROOT=$DIR
+if [ -n "${ANDROID_ROOT_DIR}" ]; then
+  	echo -e "\nWarning: ANDROID_ROOT_DIR already defined in the environment"
+  	echo            Using:      $ANDROID_ROOT_DIR
+  	echo            Default is: $HEXAGON_SDK_ROOT/tools/android-ndk-r19c
+else
+ 	export  ANDROID_ROOT_DIR=$HEXAGON_SDK_ROOT/tools/android-ndk-r19c
+	export  QNX_BIN_DIR=$HEXAGON_SDK_ROOT/tools/qnx/
+fi
+echo -e "\nHEXAGON_SDK_ROOT is : $HEXAGON_SDK_ROOT"
+export SDK_SETUP_ENV=Done
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HEXAGON_SDK_ROOT/tools/libusb/
+export DEFAULT_HEXAGON_TOOLS_ROOT=$HEXAGON_SDK_ROOT/tools/HEXAGON_Tools/8.4.12
+export DEFAULT_DSP_ARCH=v65
+export DEFAULT_BUILD=ReleaseG
+export DEFAULT_HLOS_ARCH=64
+export DEFAULT_TOOLS_VARIANT=toolv84
+export DEFAULT_NO_QURT_INC=0
+export DEFAULT_TREE=1
+export CMAKE_ROOT_PATH=$HEXAGON_SDK_ROOT/tools/utils/cmake-3.17.0-Linux-x86_64
+export DEBUGGER_UTILS=$HEXAGON_SDK_ROOT/utils/debugger/
+
+echo -e "\nSetting up the QAIC binary for the platform"
+make -C $HEXAGON_SDK_ROOT/ipc/fastrpc/qaic/ clean
+make -C $HEXAGON_SDK_ROOT/ipc/fastrpc/qaic/
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to install QAIC"
+    export ERROR=1
+fi
+
+if [ -d $HEXAGON_SDK_ROOT/tools/android-ndk-r19c ];
+then
+   true
+else
+   echo "Could not find Androd ndk at $HEXAGON_SDK_ROOT/tools/android-ndk-r19c"
+   export WARNING=1
+fi
+if [ -d $DEFAULT_HEXAGON_TOOLS_ROOT ];
+then
+  true
+else
+   echo "Could not find Hexagon Tools at $DEFAULT_HEXAGON_TOOLS_ROOT"
+   export ERROR=1
+fi
+
+if ! command -v make &> /dev/null
+then
+    echo "\"make\" is not available on your machine, please install"
+    export ERROR=1
+fi
+
+if ! command -v python &> /dev/null
+then
+    echo "\"Error: python\" is not available on your machine"
+    echo "Python is needed to install IDE plugins and running SDK scripts."
+    echo "If you are planning to use IDE then please reinstall SDK after installing python."
+    echo "If not, you can continue with using SDK after python is installed"
+    export ERROR=1
+fi
+
+if [ -n "$ERROR" ]
+then
+   echo -e "\nPrerequisites are not setup. Do not proceed further without installing the missing components\n"
+fi
+
+if [ -n "$WARNING" ]
+then
+   echo -e "\nPlease refer to $HEXAGON_SDK_ROOT/docs/tools/setup.html for installing the missed components\n"
+fi
+
+echo "Done"
+

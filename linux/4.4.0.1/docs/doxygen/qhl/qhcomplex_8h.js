@@ -1,0 +1,28 @@
+var qhcomplex_8h =
+[
+    [ "_Complex_I", "qhcomplex_8h.html#ad10734686e92460e24698441d4f1c7ac", null ],
+    [ "complex", "qhcomplex_8h.html#a0fa4878c968311979d497ccc322e0b9b", null ],
+    [ "I", "qhcomplex_8h.html#a60ef6e1bcfabb95cfeb300e1d03ce470", null ],
+    [ "qhcomplex_cabs_f", "group__qhcomplex__manipulation__functions.html#ga39b02c8b36af81a595eb6455e0ee3fac", null ],
+    [ "qhcomplex_cacos_f", "group__qhcomplex__trigonometric__functions.html#ga0dd644a58d17d93d2357087bcd489cc9", null ],
+    [ "qhcomplex_cacosh_f", "group__qhcomplex__hyperbolic__functions.html#gaf2fc232aeefdfc32c1b72e8c26f956af", null ],
+    [ "qhcomplex_carg_f", "group__qhcomplex__manipulation__functions.html#gab4103d6156cec25702019f2d6160eb6b", null ],
+    [ "qhcomplex_casin_f", "group__qhcomplex__trigonometric__functions.html#ga186baf9f914a82ab07c134531617f4d4", null ],
+    [ "qhcomplex_casinh_f", "group__qhcomplex__hyperbolic__functions.html#gae3fd67eb78952a1ea35455c65692220d", null ],
+    [ "qhcomplex_catan_f", "group__qhcomplex__trigonometric__functions.html#ga7de7dc6b913e4cc170ba90097803a004", null ],
+    [ "qhcomplex_catanh_f", "group__qhcomplex__hyperbolic__functions.html#gacbd4fef153fbaf4fd4b774ffeb34ffcf", null ],
+    [ "qhcomplex_ccos_f", "group__qhcomplex__trigonometric__functions.html#ga7cc5b6e816ece3268eb16d5d252a1a6e", null ],
+    [ "qhcomplex_ccosh_f", "group__qhcomplex__hyperbolic__functions.html#ga348871729bae4fcf8ac8b7b54716b126", null ],
+    [ "qhcomplex_cexp_f", "group__qhcomplex__exponential__functions.html#ga389f2acafc0fa17d6c5792a5354bb5f3", null ],
+    [ "qhcomplex_cimag_f", "group__qhcomplex__manipulation__functions.html#ga2092a290bd9697a6841ac886f9ce0171", null ],
+    [ "qhcomplex_clog_f", "group__qhcomplex__exponential__functions.html#ga48a073de42df84f0b0537da70f5a1c92", null ],
+    [ "qhcomplex_conj_f", "group__qhcomplex__manipulation__functions.html#gab44ab6edcfe84bd7e08c7717e58baa16", null ],
+    [ "qhcomplex_cpow_f", "group__qhcomplex__power__functions.html#gaf2c30ba597cfe2083489ec264118ceff", null ],
+    [ "qhcomplex_cproj_f", "group__qhcomplex__manipulation__functions.html#ga1514827a12c0ddea3a49c471ff3e5833", null ],
+    [ "qhcomplex_creal_f", "group__qhcomplex__manipulation__functions.html#ga0dcb0aee30a6ae58c07036b74bb9b0df", null ],
+    [ "qhcomplex_csin_f", "group__qhcomplex__trigonometric__functions.html#ga1cf23ad20bf6deb9cd2ed1b98561ec73", null ],
+    [ "qhcomplex_csinh_f", "group__qhcomplex__hyperbolic__functions.html#gaeba73a4424de983c3152ea7bc4a39511", null ],
+    [ "qhcomplex_csqrt_f", "group__qhcomplex__power__functions.html#gaf9154f4d6a2a97f2ff10d17fd3cc3cee", null ],
+    [ "qhcomplex_ctan_f", "group__qhcomplex__trigonometric__functions.html#gad78669eac32a9f8839bdbff2b4189177", null ],
+    [ "qhcomplex_ctanh_f", "group__qhcomplex__hyperbolic__functions.html#gaca9129a01d95a3b9fc2dad3bc75e7087", null ]
+];

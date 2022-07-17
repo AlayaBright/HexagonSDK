@@ -1,0 +1,41 @@
+.. Halide for Hexagon Vector eXtensions (HVX) documentation master file, created by
+   sphinx-quickstart on Sat Sep 14 15:42:13 2019.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+####################################################
+Halide for Hexagon Vector eXtensions(HVX) User Guide
+####################################################
+
+This document describes usage of Halide for the Qualcomm\ |reg| Hexagon\ |TM| DSP, in
+particular, its vector coprocessor called Qualcomm\ |reg| Hexagon\ |TM| Vector
+eXtensions (HVX).
+
+Halide is a Domain Specific programming language (DSL), a dialect of C++. It is
+used to author efficient and feature-rich image processing and computational
+photography applications.
+
+Qualcomm Halide for HVX allows developers to utilize features of the HVX processor
+without knowledge of the underlying HVX architecture. It also supports offloading
+the workload to the Hexagon DSP on Qualcomm\ |reg| Snapdragon\ |TM| devices.
+
+
+.. toctree::
+   :maxdepth: 2
+
+
+   docs/getting_started
+   docs/halide
+   docs/halide_for_hvx
+   docs/autoscheduler
+   docs/ubwcdma
+   docs/python_bindings
+   docs/examples
+
+*******************
+Indices and tables
+*******************
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
